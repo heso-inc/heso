@@ -108,6 +108,7 @@ mod search;
 mod serve;
 mod template;
 mod tofu;
+mod witness;
 
 // Replace the system allocator with mimalloc. Windows' UCRT
 // allocator is the weakest standard allocator of any major platform;
@@ -430,6 +431,12 @@ fn print_banner() {
     println!("  heso unseal <file> [--extract]");
     println!("                                Verify a sealed envelope. With --extract, also write the inner plat to stdout.");
     println!("                                Exit 0 valid / 1 invalid / 2 wrong-alg or malformed.");
+    println!("  heso witness <plat-file> --notary <url> [--scope SCOPE] [--key PATH]");
+    println!("                                Sign an operator attestation over the plat's");
+    println!("                                {{input_url, plat_hash}} (bound to the notary's id +");
+    println!("                                declared scope) with your identity key, POST the v1.1");
+    println!("                                WitnessRequest, and print the returned signed receipt.");
+    println!("                                --scope static (default) | ssr | hydrated | none.");
     println!("  heso update [--dry-run]       Update every detected global heso install channel.");
     println!("  heso serve                    Long-running JSON-RPC server over stdin/stdout (framework integration)");
     println!("  heso identity init [--path P] Generate a fresh Ed25519 identity at <path> (default: heso-local-data/identity.key)");
@@ -7712,6 +7719,7 @@ async fn main() -> ExitCode {
         Some("info") => cmd_info::cmd_info(&args[1..]).await,
         Some("seal") => cmd_seal::cmd_seal(&args[1..]).await,
         Some("unseal") => cmd_unseal::cmd_unseal(&args[1..]).await,
+        Some("witness") => witness::cmd_witness(&args[1..]).await,
         Some(other) => {
             eprintln!("unknown subcommand: {other}\n");
             print_banner();
