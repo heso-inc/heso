@@ -477,13 +477,13 @@ mod tests {
     const GOLDEN_PLAT_HASH: &str =
         "bc272895d75d0d780e6304e2cbd15a7a67819a3909c1aa5c51f7b5bbb28abccf";
     const GOLDEN_PREIMAGE_HEX: &str = "6865736f2d6f70657261746f722d6174746573742f7631007b22696e7075745f75726c223a2268747470733a2f2f6578616d706c652e636f6d2f222c226e6f746172795f6964223a224f326f6e764d3632704331696f366a514b6d384e6332557946586364346b4f6d4f7342496f59745a32696b3d222c22706c61745f68617368223a2262633237323839356437356430643738306536333034653263626431356137613637383139613339303963316161356335316637623562626232386162636366222c227769746e6573735f73636f7065223a22737461746963227d";
-    /// The all-0x07 operator seed's public key (base64 std). Same key the
-    /// notary's fixture uses.
-    const GOLDEN_OPERATOR_PUBKEY: &str = "6kpsY+KcUgq+9VB7Ey7F+ZVHdq6+vnuSQh7qaRRG0iw=";
+    /// The re-seeded golden operator seed's public key (base64 std). Same
+    /// key the notary's fixture uses; decoupled from the scaffold key.
+    const GOLDEN_OPERATOR_PUBKEY: &str = "RaHGEZnpJn1PdahrTaRj3XSWQLKHOMHTWumslFuziqQ=";
     /// Deterministic Ed25519 signature over the golden preimage with the
-    /// 0x07 seed — pinned in the notary's fixture too.
+    /// re-seeded golden operator seed — pinned in the notary's fixture too.
     const GOLDEN_OPERATOR_SIG: &str =
-        "pvnVcj8m/2Xve2zPFIETVNKxBMgzdD4pUkRc1mKvOubvasZzUduYe4X8wOS8whTNTdZ97l1pl6Zj6LGf1uPgDg==";
+        "DMSca4IB1ffTF6jgy2uvBfHbsBLpXN/sT4bizT5bukqhiDsH6CXGDPJVqUOd43GdTiBGar8LlTyjPCetPaEbBQ==";
 
     fn hex(bytes: &[u8]) -> String {
         use std::fmt::Write as _;
@@ -531,13 +531,17 @@ mod tests {
         assert_eq!(preimage.len(), 223);
     }
 
-    /// Signing the golden preimage with the 0x07 operator seed must
-    /// reproduce the pinned deterministic Ed25519 signature (RFC 8032)
+    /// Signing the golden preimage with the re-seeded golden operator seed
+    /// must reproduce the pinned deterministic Ed25519 signature (RFC 8032)
     /// AND verify via `verify_strict` — proving this caller's signature is
     /// interoperable with the notary, byte-for-byte.
     #[test]
     fn signing_golden_preimage_reproduces_pinned_signature() {
-        let key = IdentityKey::from_bytes(&[0x07u8; 32]);
+        let key = IdentityKey::from_bytes(&[
+            0xa1, 0x7e, 0x6f, 0x0c, 0x93, 0xb2, 0x48, 0xd5, 0xe1, 0xc4, 0x07, 0x9a, 0xb3, 0x5d,
+            0x62, 0xf8, 0x08, 0x4c, 0x1a, 0xef, 0x27, 0x90, 0x5b, 0x3d, 0xc6, 0xe8, 0x14, 0x3f,
+            0xa9, 0x0b, 0x75, 0xd2,
+        ]);
         assert_eq!(key.public_key_b64(), GOLDEN_OPERATOR_PUBKEY);
         let preimage = operator_attest_preimage(
             GOLDEN_INPUT_URL,
@@ -551,6 +555,29 @@ mod tests {
         assert_eq!(sig.signature, GOLDEN_OPERATOR_SIG);
         // Round-trips through the house verify_strict path.
         sig.verify(&preimage).expect("golden signature verifies");
+    }
+
+    /// The re-seed DE-COUPLES the golden operator from the shipped
+    /// scaffold/zero-seed keys. Pin that the all-0x07 seed still derives
+    /// the well-known scaffold pubkey, and that the golden operator key is
+    /// DISJOINT from both that scaffold key and the zero-seed notary id —
+    /// so a future accidental re-collision fails loud here.
+    #[test]
+    fn golden_operator_key_is_not_a_scaffold_key() {
+        const SCAFFOLD_PUBKEY: &str = "6kpsY+KcUgq+9VB7Ey7F+ZVHdq6+vnuSQh7qaRRG0iw=";
+        assert_eq!(
+            IdentityKey::from_bytes(&[7u8; 32]).public_key_b64(),
+            SCAFFOLD_PUBKEY,
+            "the all-0x07 seed must still derive the well-known scaffold key"
+        );
+        assert_ne!(
+            GOLDEN_OPERATOR_PUBKEY, SCAFFOLD_PUBKEY,
+            "golden operator collides with the scaffold key — re-seed it"
+        );
+        assert_ne!(
+            GOLDEN_OPERATOR_PUBKEY, GOLDEN_NOTARY_ID,
+            "golden operator collides with the zero-seed notary id — re-seed it"
+        );
     }
 
     /// Guard the byte-pinning rule: the JCS the caller signs MUST contain
