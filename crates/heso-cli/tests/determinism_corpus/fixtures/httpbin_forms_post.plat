@@ -1,0 +1,249 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "action": "/post",
+        "method": "post"
+      },
+      "name": "Customer name: Telephone: E-mail address: Pizza Size Small Medium Large Pizza Toppings Bacon Extra Cheese Onion Mushroom…",
+      "ref": "@e0",
+      "role": "form",
+      "section": "/",
+      "tag": "form"
+    },
+    {
+      "attrs": {
+        "name": "custname"
+      },
+      "name": "custname",
+      "ref": "@e1",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "custtel",
+        "type": "tel"
+      },
+      "name": "custtel",
+      "ref": "@e2",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "custemail",
+        "type": "email"
+      },
+      "name": "custemail",
+      "ref": "@e3",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "size",
+        "type": "radio",
+        "value": "small"
+      },
+      "name": "size",
+      "ref": "@e4",
+      "role": "radio",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "size",
+        "type": "radio",
+        "value": "medium"
+      },
+      "name": "size",
+      "ref": "@e5",
+      "role": "radio",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "size",
+        "type": "radio",
+        "value": "large"
+      },
+      "name": "size",
+      "ref": "@e6",
+      "role": "radio",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "topping",
+        "type": "checkbox",
+        "value": "bacon"
+      },
+      "name": "topping",
+      "ref": "@e7",
+      "role": "checkbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "topping",
+        "type": "checkbox",
+        "value": "cheese"
+      },
+      "name": "topping",
+      "ref": "@e8",
+      "role": "checkbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "topping",
+        "type": "checkbox",
+        "value": "onion"
+      },
+      "name": "topping",
+      "ref": "@e9",
+      "role": "checkbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "topping",
+        "type": "checkbox",
+        "value": "mushroom"
+      },
+      "name": "topping",
+      "ref": "@e10",
+      "role": "checkbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "max": "21:00",
+        "min": "11:00",
+        "name": "delivery",
+        "step": "900",
+        "type": "time"
+      },
+      "name": "delivery",
+      "ref": "@e11",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "name": "comments"
+      },
+      "name": "comments",
+      "ref": "@e12",
+      "role": "textbox",
+      "section": "/",
+      "tag": "textarea"
+    },
+    {
+      "name": "Submit order",
+      "ref": "@e13",
+      "role": "button",
+      "section": "/",
+      "tag": "button"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFET0NUWVBFIGh0bWw+CjxodG1sPgogIDxoZWFkPgogIDwvaGVhZD4KICA8Ym9keT4KICA8IS0tIEV4YW1wbGUgZm9ybSBmcm9tIEhUTUw1IHNwZWMgaHR0cDovL3d3dy53My5vcmcvVFIvaHRtbDUvZm9ybXMuaHRtbCN3cml0aW5nLWEtZm9ybSdzLXVzZXItaW50ZXJmYWNlIC0tPgogIDxmb3JtIG1ldGhvZD0icG9zdCIgYWN0aW9uPSIvcG9zdCI+CiAgIDxwPjxsYWJlbD5DdXN0b21lciBuYW1lOiA8aW5wdXQgbmFtZT0iY3VzdG5hbWUiPjwvbGFiZWw+PC9wPgogICA8cD48bGFiZWw+VGVsZXBob25lOiA8aW5wdXQgdHlwZT10ZWwgbmFtZT0iY3VzdHRlbCI+PC9sYWJlbD48L3A+CiAgIDxwPjxsYWJlbD5FLW1haWwgYWRkcmVzczogPGlucHV0IHR5cGU9ZW1haWwgbmFtZT0iY3VzdGVtYWlsIj48L2xhYmVsPjwvcD4KICAgPGZpZWxkc2V0PgogICAgPGxlZ2VuZD4gUGl6emEgU2l6ZSA8L2xlZ2VuZD4KICAgIDxwPjxsYWJlbD4gPGlucHV0IHR5cGU9cmFkaW8gbmFtZT1zaXplIHZhbHVlPSJzbWFsbCI+IFNtYWxsIDwvbGFiZWw+PC9wPgogICAgPHA+PGxhYmVsPiA8aW5wdXQgdHlwZT1yYWRpbyBuYW1lPXNpemUgdmFsdWU9Im1lZGl1bSI+IE1lZGl1bSA8L2xhYmVsPjwvcD4KICAgIDxwPjxsYWJlbD4gPGlucHV0IHR5cGU9cmFkaW8gbmFtZT1zaXplIHZhbHVlPSJsYXJnZSI+IExhcmdlIDwvbGFiZWw+PC9wPgogICA8L2ZpZWxkc2V0PgogICA8ZmllbGRzZXQ+CiAgICA8bGVnZW5kPiBQaXp6YSBUb3BwaW5ncyA8L2xlZ2VuZD4KICAgIDxwPjxsYWJlbD4gPGlucHV0IHR5cGU9Y2hlY2tib3ggbmFtZT0idG9wcGluZyIgdmFsdWU9ImJhY29uIj4gQmFjb24gPC9sYWJlbD48L3A+CiAgICA8cD48bGFiZWw+IDxpbnB1dCB0eXBlPWNoZWNrYm94IG5hbWU9InRvcHBpbmciIHZhbHVlPSJjaGVlc2UiPiBFeHRyYSBDaGVlc2UgPC9sYWJlbD48L3A+CiAgICA8cD48bGFiZWw+IDxpbnB1dCB0eXBlPWNoZWNrYm94IG5hbWU9InRvcHBpbmciIHZhbHVlPSJvbmlvbiI+IE9uaW9uIDwvbGFiZWw+PC9wPgogICAgPHA+PGxhYmVsPiA8aW5wdXQgdHlwZT1jaGVja2JveCBuYW1lPSJ0b3BwaW5nIiB2YWx1ZT0ibXVzaHJvb20iPiBNdXNocm9vbSA8L2xhYmVsPjwvcD4KICAgPC9maWVsZHNldD4KICAgPHA+PGxhYmVsPlByZWZlcnJlZCBkZWxpdmVyeSB0aW1lOiA8aW5wdXQgdHlwZT10aW1lIG1pbj0iMTE6MDAiIG1heD0iMjE6MDAiIHN0ZXA9IjkwMCIgbmFtZT0iZGVsaXZlcnkiPjwvbGFiZWw+PC9wPgogICA8cD48bGFiZWw+RGVsaXZlcnkgaW5zdHJ1Y3Rpb25zOiA8dGV4dGFyZWEgbmFtZT0iY29tbWVudHMiPjwvdGV4dGFyZWE+PC9sYWJlbD48L3A+CiAgIDxwPjxidXR0b24+U3VibWl0IG9yZGVyPC9idXR0b24+PC9wPgogIDwvZm9ybT4KICA8L2JvZHk+CjwvaHRtbD4=",
+        "response_body_blake3": "96cc796bf5eff3b2a8c99b618af3ef29567eb9278e2fd84339e7fa9f0bcdef3d",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "1397"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": "Customer name:",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {},
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "336a1d9b6186a684afecb93d93b665df0be6b6a1f9395049069e82b34d9c3388",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "",
+  "tree": {
+    "description": "Customer name:",
+    "root": {
+      "byte_count": 181,
+      "child_count": 0,
+      "children": [],
+      "heading": null,
+      "intro": "Customer name: Telephone: E-mail address: Pizza Size Small Medium Large Pizza Toppings Bacon Extra Cheese Onion Mushroom Preferred delivery time: Delivery instructions: Submit order",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": "Customer name: Telephone: E-mail address: Pizza Size Small Medium Large Pizza Toppings Bacon Extra C…"
+    },
+    "title": "",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

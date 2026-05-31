@@ -1,0 +1,401 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "href": "/"
+      },
+      "ref": "@e0",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains"
+      },
+      "name": "Domains",
+      "ref": "@e1",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/protocols"
+      },
+      "name": "Protocols",
+      "ref": "@e2",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/numbers"
+      },
+      "name": "Numbers",
+      "ref": "@e3",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about"
+      },
+      "name": "About",
+      "ref": "@e4",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/go/rfc2606"
+      },
+      "name": "RFC 2606",
+      "ref": "@e5",
+      "role": "link",
+      "section": "/example-domains",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/go/rfc6761"
+      },
+      "name": "RFC 6761",
+      "ref": "@e6",
+      "role": "link",
+      "section": "/example-domains",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains/reserved"
+      },
+      "name": "IANA-managed Reserved Domains",
+      "ref": "@e7",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains"
+      },
+      "name": "Domain Names",
+      "ref": "@e8",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains/root"
+      },
+      "name": "Root Zone Registry",
+      "ref": "@e9",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains/int"
+      },
+      "name": ".INT Registry",
+      "ref": "@e10",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains/arpa"
+      },
+      "name": ".ARPA Registry",
+      "ref": "@e11",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/domains/idn-tables"
+      },
+      "name": "IDN Repository",
+      "ref": "@e12",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/numbers"
+      },
+      "name": "Number Resources",
+      "ref": "@e13",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/abuse"
+      },
+      "name": "Abuse Information",
+      "ref": "@e14",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/protocols"
+      },
+      "name": "Protocols",
+      "ref": "@e15",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/protocols"
+      },
+      "name": "Protocol Registries",
+      "ref": "@e16",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/time-zones"
+      },
+      "name": "Time Zone Database",
+      "ref": "@e17",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about"
+      },
+      "name": "About Us",
+      "ref": "@e18",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/news"
+      },
+      "name": "News",
+      "ref": "@e19",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/performance"
+      },
+      "name": "Performance",
+      "ref": "@e20",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/excellence"
+      },
+      "name": "Excellence",
+      "ref": "@e21",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/archive"
+      },
+      "name": "Archive",
+      "ref": "@e22",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/contact"
+      },
+      "name": "Contact Us",
+      "ref": "@e23",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://pti.icann.org"
+      },
+      "name": "Public Technical Identifiers",
+      "ref": "@e24",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.icann.org/"
+      },
+      "name": "ICANN",
+      "ref": "@e25",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.icann.org/privacy/policy"
+      },
+      "name": "Privacy Policy",
+      "ref": "@e26",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.icann.org/privacy/tos"
+      },
+      "name": "Terms of Service",
+      "ref": "@e27",
+      "role": "link",
+      "section": "/example-domains/further-reading",
+      "tag": "a"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "Cgo8IWRvY3R5cGUgaHRtbD4KPGh0bWw+CjxoZWFkPgoJPHRpdGxlPkV4YW1wbGUgRG9tYWluczwvdGl0bGU+CgoJPG1ldGEgY2hhcnNldD0idXRmLTgiIC8+Cgk8bWV0YSBodHRwLWVxdWl2PSJDb250ZW50LXR5cGUiIGNvbnRlbnQ9InRleHQvaHRtbDsgY2hhcnNldD11dGYtOCIgLz4KCTxtZXRhIG5hbWU9InZpZXdwb3J0IiBjb250ZW50PSJ3aWR0aD1kZXZpY2Utd2lkdGgsIGluaXRpYWwtc2NhbGU9MSIgLz4KCQogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSIvc3RhdGljL19jc3MvMjAyNS4wMS9pYW5hX3dlYnNpdGUuY3NzIi8+CiAgICA8bGluayByZWw9InNob3J0Y3V0IGljb24iIHR5cGU9ImltYWdlL2ljbyIgaHJlZj0iL3N0YXRpYy9faW1nL2Jvb2ttYXJrX2ljb24uaWNvIi8+CiAgICA8c2NyaXB0IHR5cGU9InRleHQvamF2YXNjcmlwdCIgc3JjPSIvc3RhdGljL19qcy9qcXVlcnkuanMiPjwvc2NyaXB0PgogICAgPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iL3N0YXRpYy9fanMvaWFuYS5qcyI+PC9zY3JpcHQ+CgoJCjwvaGVhZD4KCjxib2R5PgoKCgo8aGVhZGVyPgogICAgPGRpdiBpZD0iaGVhZGVyIj4KICAgICAgICA8ZGl2IGlkPSJsb2dvIj4KICAgICAgICAgICAgPGEgaHJlZj0iLyI+PGltZyBzcmM9Ii9zdGF0aWMvX2ltZy8yMDI1LjAxL2lhbmEtbG9nby1oZWFkZXIuc3ZnIiBhbHQ9IkhvbWVwYWdlIi8+PC9hPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9Im5hdmlnYXRpb24iPgogICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL2RvbWFpbnMiPkRvbWFpbnM8L2E+PC9saT4KICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvcHJvdG9jb2xzIj5Qcm90b2NvbHM8L2E+PC9saT4KICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvbnVtYmVycyI+TnVtYmVyczwvYT48L2xpPgogICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9hYm91dCI+QWJvdXQ8L2E+PC9saT4KICAgICAgICAgICAgPC91bD4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2PgogICAgCiAgICAKPC9oZWFkZXI+CgoKPGRpdiBpZD0iYm9keSI+CgoKPGFydGljbGUgY2xhc3M9ImhlbW1lZCBzaWRlbmF2Ij4KCiAgICA8bWFpbj4KICAgIAo8ZGl2IGNsYXNzPSJoZWxwLWFydGljbGUiPgoKPGgxIGlkPSJleGFtcGxlLWRvbWFpbnMiPkV4YW1wbGUgRG9tYWluczwvaDE+CjxwPkFzIGRlc2NyaWJlZCBpbiA8YSBocmVmPSIvZ28vcmZjMjYwNiI+UkZDIDI2MDY8L2E+IGFuZCA8YSBocmVmPSIvZ28vcmZjNjc2MSI+UkZDIDY3NjE8L2E+LCBhCm51bWJlciBvZiBkb21haW5zIHN1Y2ggYXMgZXhhbXBsZS5jb20gYW5kIGV4YW1wbGUub3JnIGFyZSBtYWludGFpbmVkCmZvciBkb2N1bWVudGF0aW9uIHB1cnBvc2VzLiBUaGVzZSBkb21haW5zIG1heSBiZSB1c2VkIGFzIGlsbHVzdHJhdGl2ZQpleGFtcGxlcyBpbiBkb2N1bWVudHMgd2l0aG91dCBwcmlvciBjb29yZGluYXRpb24gd2l0aCB1cy4gVGhleSBhcmUgbm90CmF2YWlsYWJsZSBmb3IgcmVnaXN0cmF0aW9uIG9yIHRyYW5zZmVyLjwvcD4KPHA+V2UgcHJvdmlkZSBhIHdlYiBzZXJ2aWNlIG9uIHRoZSBleGFtcGxlIGRvbWFpbiBob3N0cyB0byBwcm92aWRlIGJhc2ljCmluZm9ybWF0aW9uIG9uIHRoZSBwdXJwb3NlIG9mIHRoZSBkb21haW4uIFRoZXNlIHdlYiBzZXJ2aWNlcyBhcmUKcHJvdmlkZWQgYXMgYmVzdCBlZmZvcnQsIGJ1dCBhcmUgbm90IGRlc2lnbmVkIHRvIHN1cHBvcnQgcHJvZHVjdGlvbgphcHBsaWNhdGlvbnMuIFdoaWxlIGluY2lkZW50YWwgdHJhZmZpYyBmb3IgaW5jb3JyZWN0bHkgY29uZmlndXJlZAphcHBsaWNhdGlvbnMgaXMgZXhwZWN0ZWQsIHBsZWFzZSBkbyBub3QgZGVzaWduIGFwcGxpY2F0aW9ucyB0aGF0IHJlcXVpcmUKdGhlIGV4YW1wbGUgZG9tYWlucyB0byBoYXZlIG9wZXJhdGluZyBIVFRQIHNlcnZpY2UuPC9wPgo8aDIgaWQ9ImZ1cnRoZXItcmVhZGluZyI+RnVydGhlciBSZWFkaW5nPC9oMj4KPHVsPgo8bGk+PGEgaHJlZj0iL2RvbWFpbnMvcmVzZXJ2ZWQiPklBTkEtbWFuYWdlZCBSZXNlcnZlZCBEb21haW5zPC9hPjwvbGk+CjwvdWw+Cgo8ZGl2IGNsYXNzPSJsYXN0LXVwZGF0ZWQiPkxhc3QgcmV2aXNlZCAyMDE3LTA1LTEzLjwvZGl2PgoKCjwvZGl2PgoKICAgIDwvbWFpbj4KCiAgICA8bmF2IGlkPSJzaWRlbmF2Ij4KICAgIAogICAgPC9uYXY+Cgo8L2FydGljbGU+CgoKPC9kaXY+Cgo8Zm9vdGVyPgogICAgPGRpdiBpZD0iZm9vdGVyIj4KICAgICAgICA8dGFibGUgY2xhc3M9Im5hdmlnYXRpb24iPgogICAgICAgICAgICA8dHI+CiAgICAgICAgICAgICAgICA8dGQgY2xhc3M9InNlY3Rpb24iPjxhIGhyZWY9Ii9kb21haW5zIj5Eb21haW4mbmJzcDtOYW1lczwvYT48L3RkPgogICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJzdWJzZWN0aW9uIj4KICAgICAgICAgICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvZG9tYWlucy9yb290Ij5Sb290IFpvbmUgUmVnaXN0cnk8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9kb21haW5zL2ludCI+LklOVCBSZWdpc3RyeTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL2RvbWFpbnMvYXJwYSI+LkFSUEEgUmVnaXN0cnk8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9kb21haW5zL2lkbi10YWJsZXMiPklETiBSZXBvc2l0b3J5PC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0ic2VjdGlvbiI+PGEgaHJlZj0iL251bWJlcnMiPk51bWJlciZuYnNwO1Jlc291cmNlczwvYT48L3RkPgogICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJzdWJzZWN0aW9uIj4KICAgICAgICAgICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvYWJ1c2UiPkFidXNlIEluZm9ybWF0aW9uPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgIDwvdGQ+CiAgICAgICAgICAgIDwvdHI+CiAgICAgICAgICAgIDx0cj4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0ic2VjdGlvbiI+PGEgaHJlZj0iL3Byb3RvY29scyI+UHJvdG9jb2xzPC9hPjwvdGQ+CiAgICAgICAgICAgICAgICA8dGQgY2xhc3M9InN1YnNlY3Rpb24iPgogICAgICAgICAgICAgICAgICAgIDx1bD4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9wcm90b2NvbHMiPlByb3RvY29sIFJlZ2lzdHJpZXM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii90aW1lLXpvbmVzIj5UaW1lIFpvbmUgRGF0YWJhc2U8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgPC90ZD4KICAgICAgICAgICAgPC90cj4KICAgICAgICAgICAgPHRyPgogICAgICAgICAgICAgICAgPHRkIGNsYXNzPSJzZWN0aW9uIj48YSBocmVmPSIvYWJvdXQiPkFib3V0Jm5ic3A7VXM8L2E+PC90ZD4KICAgICAgICAgICAgICAgIDx0ZCBjbGFzcz0ic3Vic2VjdGlvbiI+CiAgICAgICAgICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL25ld3MiPk5ld3M8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9wZXJmb3JtYW5jZSI+UGVyZm9ybWFuY2U8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9hYm91dC9leGNlbGxlbmNlIj5FeGNlbGxlbmNlPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvYXJjaGl2ZSI+QXJjaGl2ZTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL2NvbnRhY3QiPkNvbnRhY3QgVXM8L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgPC90ZD4KICAgICAgICAgICAgPC90cj4KICAgICAgICA8L3RhYmxlPgogICAgICAgIDxkaXYgaWQ9ImN1c3RvZGlhbiI+CiAgICAgICAgICAgIDxwPlRoZSBJQU5BIGZ1bmN0aW9ucyBjb29yZGluYXRlIHRoZSBJbnRlcm5ldOKAmXMgZ2xvYmFsbHkgdW5pcXVlIGlkZW50aWZpZXJzLCBhbmQKICAgICAgICAgICAgICAgIGFyZSBwcm92aWRlZCBieSA8YSBocmVmPSJodHRwczovL3B0aS5pY2Fubi5vcmciPlB1YmxpYyBUZWNobmljYWwgSWRlbnRpZmllcnM8L2E+LCBhbiBhZmZpbGlhdGUgb2YKICAgICAgICAgICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vd3d3LmljYW5uLm9yZy8iPklDQU5OPC9hPi48L3A+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBpZD0ibGVnYWxub3RpY2UiPgogICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly93d3cuaWNhbm4ub3JnL3ByaXZhY3kvcG9saWN5Ij5Qcml2YWN5IFBvbGljeTwvYT48L2xpPgogICAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Imh0dHBzOi8vd3d3LmljYW5uLm9yZy9wcml2YWN5L3RvcyI+VGVybXMgb2YgU2VydmljZTwvYT48L2xpPgogICAgICAgICAgICAgICAgCiAgICAgICAgICAgIDwvdWw+CiAgICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KPC9mb290ZXI+CgoKCgo8L2JvZHk+Cgo8L2h0bWw+Cg==",
+        "response_body_blake3": "ebc0ed6b3b27b8548bd04102f7cfa9af7e37f4d5904dd1b5dccc60f7cb9a5572",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=UTF-8"
+          ],
+          [
+            "content-length",
+            "4744"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": "As described in RFC 2606 and RFC 6761, a number of domains such as example.",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "icons": [
+      "/static/_img/bookmark_icon.ico"
+    ],
+    "meta": {
+      "viewport": "width=device-width, initial-scale=1"
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "dae69ff27e363c5bd84b4eebad675902fb25039c13a3123185da46cd1210386f",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 2,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Example Domains",
+  "tree": {
+    "description": "As described in RFC 2606 and RFC 6761, a number of domains such as example.",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 685,
+          "child_count": 1,
+          "children": [
+            {
+              "byte_count": 54,
+              "child_count": 0,
+              "children": [],
+              "heading": "Further Reading",
+              "intro": "IANA-managed Reserved Domains Last revised 2017-05-13.",
+              "level": 2,
+              "path": "/example-domains/further-reading",
+              "slug": "further-reading",
+              "summary": "Further Reading — IANA-managed Reserved Domains Last revised 2017-05-13."
+            }
+          ],
+          "heading": "Example Domains",
+          "intro": "As described in RFC 2606 and RFC 6761 , a number of domains such as example.com and example.org are maintained for documentation purposes. These domains may be used as illustrative examples in documents without prior coordination with us. They are not available for registration or transfer. We provide a web service on the example domain hosts to provide basic information on the purpose of the domain. These web services are provided as best effort, but are not designed to support production applications. While incidental traffic for incorrectly configured applications is expected, please do not design applications that require the example domains to have operating HTTP service.",
+          "level": 1,
+          "path": "/example-domains",
+          "slug": "example-domains",
+          "summary": "Example Domains — As described in RFC 2606 and RFC 6761 , a number of domains such as example.com and example.org are …"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Example Domains",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

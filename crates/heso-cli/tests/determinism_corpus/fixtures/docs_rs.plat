@@ -1,0 +1,538 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "action": "/releases/search",
+        "id": "nav-search-form",
+        "method": "GET"
+      },
+      "name": "Docs.rs docs.rs About docs.rs Badges Builds Metadata Shorthand URLs Download Rustdoc JSON Build queue Privacy policy Rus…",
+      "ref": "@e0",
+      "role": "form",
+      "section": "/",
+      "tag": "form"
+    },
+    {
+      "attrs": {
+        "href": "/"
+      },
+      "name": "Docs.rs",
+      "ref": "@e1",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "#"
+      },
+      "name": "docs.rs",
+      "ref": "@e2",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about"
+      },
+      "name": "About docs.rs",
+      "ref": "@e3",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/badges"
+      },
+      "name": "Badges",
+      "ref": "@e4",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/builds"
+      },
+      "name": "Builds",
+      "ref": "@e5",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/metadata"
+      },
+      "name": "Metadata",
+      "ref": "@e6",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/redirections"
+      },
+      "name": "Shorthand URLs",
+      "ref": "@e7",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/download"
+      },
+      "name": "Download",
+      "ref": "@e8",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/about/rustdoc-json"
+      },
+      "name": "Rustdoc JSON",
+      "ref": "@e9",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/releases/queue"
+      },
+      "name": "Build queue",
+      "ref": "@e10",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://foundation.rust-lang.org/policies/privacy-policy/#docs.rs",
+        "target": "_blank"
+      },
+      "name": "Privacy policy",
+      "ref": "@e11",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "#"
+      },
+      "name": "Rust",
+      "ref": "@e12",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.rust-lang.org/",
+        "target": "_blank"
+      },
+      "name": "Rust website",
+      "ref": "@e13",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://doc.rust-lang.org/book/",
+        "target": "_blank"
+      },
+      "name": "The Book",
+      "ref": "@e14",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://doc.rust-lang.org/std/",
+        "target": "_blank"
+      },
+      "name": "Standard Library API Reference",
+      "ref": "@e15",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://doc.rust-lang.org/rust-by-example/",
+        "target": "_blank"
+      },
+      "name": "Rust by Example",
+      "ref": "@e16",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://doc.rust-lang.org/cargo/guide/",
+        "target": "_blank"
+      },
+      "name": "The Cargo Guide",
+      "ref": "@e17",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://doc.rust-lang.org/nightly/clippy",
+        "target": "_blank"
+      },
+      "name": "Clippy Documentation",
+      "ref": "@e18",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "id": "nav-search",
+        "name": "query",
+        "placeholder": "Find crate",
+        "type": "text"
+      },
+      "name": "Find crate by search query",
+      "ref": "@e19",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "action": "/releases/search",
+        "method": "GET"
+      },
+      "name": "Search I'm Feeling Lucky",
+      "ref": "@e20",
+      "role": "form",
+      "section": "/docs-rs",
+      "tag": "form"
+    },
+    {
+      "attrs": {
+        "id": "search",
+        "name": "query",
+        "placeholder": "Type 'S' or '/' to search",
+        "type": "text"
+      },
+      "name": "Find crate by search query",
+      "ref": "@e21",
+      "role": "textbox",
+      "section": "/docs-rs",
+      "tag": "input"
+    },
+    {
+      "attrs": {
+        "type": "submit"
+      },
+      "name": "Search",
+      "ref": "@e22",
+      "role": "button",
+      "section": "/docs-rs",
+      "tag": "button"
+    },
+    {
+      "attrs": {
+        "name": "i-am-feeling-lucky",
+        "type": "submit",
+        "value": "1"
+      },
+      "name": "I'm Feeling Lucky",
+      "ref": "@e23",
+      "role": "button",
+      "section": "/docs-rs",
+      "tag": "button"
+    },
+    {
+      "attrs": {
+        "href": "/releases"
+      },
+      "name": "Recent Releases",
+      "ref": "@e24",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/releases/feed",
+        "title": "Atom feed"
+      },
+      "name": "Atom feed",
+      "ref": "@e25",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/hypercircuit/0.2.0/hypercircuit/"
+      },
+      "name": "hypercircuit-0.2.0 Exact-aware circuit MNA carriers and adapter reports for the Hyper ecosystem 2 seconds ago",
+      "ref": "@e26",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/oxc_parser_napi/0.132.0/oxc_parser_napi/"
+      },
+      "name": "oxc_parser_napi-0.132.0 A collection of JavaScript tools written in Rust. 7 seconds ago",
+      "ref": "@e27",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/guilder-abstraction/0.1.24/guilder_abstraction/"
+      },
+      "name": "guilder-abstraction-0.1.24 multi-exchange crypto trading trait 8 seconds ago",
+      "ref": "@e28",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/oxc/0.132.0/oxc/"
+      },
+      "name": "oxc-0.132.0 A collection of JavaScript tools written in Rust. 14 seconds ago",
+      "ref": "@e29",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/oxc_minify_napi/0.132.0/oxc_minify_napi/"
+      },
+      "name": "oxc_minify_napi-0.132.0 A collection of JavaScript tools written in Rust. 19 seconds ago",
+      "ref": "@e30",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/oxc_transformer_plugins/0.132.0/oxc_transformer_plugins/"
+      },
+      "name": "oxc_transformer_plugins-0.132.0 A collection of JavaScript tools written in Rust. 25 seconds ago",
+      "ref": "@e31",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/ffav/4.3.12/ffav/"
+      },
+      "name": "ffav-4.3.12 Safe FFmpeg wrapper (FFmpeg 4 compatible fork of the ffmpeg-next crate) 32 seconds ago",
+      "ref": "@e32",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/browser-info/1.0.0/browser_info/"
+      },
+      "name": "browser-info-1.0.0 Cross-platform(planned) library retrieving active browser URL and detailed information 48 seconds ago",
+      "ref": "@e33",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/crate/kanade-backend/0.18.1"
+      },
+      "name": "kanade-backend-0.18.1 axum + SQLite projection backend for the kanade endpoint-management system. Hosts /api/* and the e…",
+      "ref": "@e34",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/performance-timing/0.1.1/performance_timing/"
+      },
+      "name": "performance-timing-0.1.1 Performance measurement library. Supports CPU cycle accurate measurement for x86 platforms. 55 …",
+      "ref": "@e35",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/doric/0.1.0/doric/"
+      },
+      "name": "doric-0.1.0 A highly simple asynchronous logging lib for Rust. 58 seconds ago",
+      "ref": "@e36",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/chbs_password_checker/0.1.0/chbslib/"
+      },
+      "name": "chbs_password_checker-0.1.0 Password Strength Checker one minute ago",
+      "ref": "@e37",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/base65536/1.0.1/base65536/"
+      },
+      "name": "base65536-1.0.1 A binary encoding optimized for UTF-32/UCS-4 encoded text and Twitter one minute ago",
+      "ref": "@e38",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/bounded_types/0.2.1/bounded_types/"
+      },
+      "name": "bounded_types-0.2.1 Provides a type representing bounded integers, implemented using const generics. one minute ago",
+      "ref": "@e39",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/cordic/0.1.5/cordic/"
+      },
+      "name": "cordic-0.1.5 Special functions for fixed-point numbers using the CORDIC method. one minute ago",
+      "ref": "@e40",
+      "role": "link",
+      "section": "/docs-rs",
+      "tag": "a"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KICAgIDxoZWFkPgogICAgICAgIDxtZXRhIGNoYXJzZXQ9IlVURi04Ij4KICAgICAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEiPgogICAgICAgIDxtZXRhIG5hbWU9ImdlbmVyYXRvciIgY29udGVudD0iZG9jcy5ycyAwLjAuMCAoZTUwMTUyZWQ0MTFiYjkxMzc1M2IxZGZkMjAzZjIyY2I4NzExZjA5NyAyMDI2LTA1LTE3ICkiPjxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iLy0vc3RhdGljL3ZlbmRvcmVkLmNzcz8wLTAtMC1lNTAxNTJlZDQxMWJiOTEzNzUzYjFkZmQyMDNmMjJjYjg3MTFmMDk3LTIwMjYtMDUtMTciIG1lZGlhPSJhbGwiIC8+CiAgICAgICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSIvLS9zdGF0aWMvc3R5bGUuY3NzPzAtMC0wLWU1MDE1MmVkNDExYmI5MTM3NTNiMWRmZDIwM2YyMmNiODcxMWYwOTctMjAyNi0wNS0xNyIgbWVkaWE9ImFsbCIgLz4KICAgICAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Ii8tL3N0YXRpYy9mb250LWF3ZXNvbWUuY3NzPzAtMC0wLWU1MDE1MmVkNDExYmI5MTM3NTNiMWRmZDIwM2YyMmNiODcxMWYwOTctMjAyNi0wNS0xNyIgbWVkaWE9ImFsbCIgLz4KCiAgICAgICAgPGxpbmsgcmVsPSJzZWFyY2giIGhyZWY9Ii8tL3N0YXRpYy9vcGVuc2VhcmNoLnhtbCIgdHlwZT0iYXBwbGljYXRpb24vb3BlbnNlYXJjaGRlc2NyaXB0aW9uK3htbCIgdGl0bGU9IkRvY3MucnMiIC8+CgogICAgICAgIDx0aXRsZT5Eb2NzLnJzPC90aXRsZT48c2NyaXB0IG5vbmNlPSJ3NmU0ckdhaTV1R0l6cWJEUHFGaTJZZGZ0ZVJ3amZwSGNCOWFaZlB3bFRJaXJ3UHAiPihmdW5jdGlvbigpIHsKICAgIGZ1bmN0aW9uIGFwcGx5VGhlbWUodGhlbWUpIHsKICAgICAgICBpZiAodGhlbWUpIHsKICAgICAgICAgICAgZG9jdW1lbnQuZG9jdW1lbnRFbGVtZW50LmRhdGFzZXQuZG9jc1JzVGhlbWUgPSB0aGVtZTsKICAgICAgICB9CiAgICB9CgogICAgd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoInN0b3JhZ2UiLCBldiA9PiB7CiAgICAgICAgaWYgKGV2LmtleSA9PT0gInJ1c3Rkb2MtdGhlbWUiKSB7CiAgICAgICAgICAgIGFwcGx5VGhlbWUoZXYubmV3VmFsdWUpOwogICAgICAgIH0KICAgIH0pOwoKICAgIC8vIHNlZSAuL3N0b3JhZ2UtY2hhbmdlLWRldGVjdGlvbi5odG1sIGZvciBkZXRhaWxzCiAgICB3aW5kb3cuYWRkRXZlbnRMaXN0ZW5lcigibWVzc2FnZSIsIGV2ID0+IHsKICAgICAgICBpZiAoZXYuZGF0YSAmJiBldi5kYXRhLnN0b3JhZ2UgJiYgZXYuZGF0YS5zdG9yYWdlLmtleSA9PT0gInJ1c3Rkb2MtdGhlbWUiKSB7CiAgICAgICAgICAgIGFwcGx5VGhlbWUoZXYuZGF0YS5zdG9yYWdlLnZhbHVlKTsKICAgICAgICB9CiAgICB9KTsKCiAgICBhcHBseVRoZW1lKHdpbmRvdy5sb2NhbFN0b3JhZ2UuZ2V0SXRlbSgicnVzdGRvYy10aGVtZSIpKTsKfSkoKTs8L3NjcmlwdD48c2NyaXB0IGRlZmVyIHR5cGU9InRleHQvamF2YXNjcmlwdCIgbm9uY2U9Inc2ZTRyR2FpNXVHSXpxYkRQcUZpMllkZnRlUndqZnBIY0I5YVpmUHdsVElpcndQcCIgc3JjPSIvLS9zdGF0aWMvbWVudS5qcz8wLTAtMC1lNTAxNTJlZDQxMWJiOTEzNzUzYjFkZmQyMDNmMjJjYjg3MTFmMDk3LTIwMjYtMDUtMTciPjwvc2NyaXB0PgogICAgICAgIDxzY3JpcHQgZGVmZXIgdHlwZT0idGV4dC9qYXZhc2NyaXB0IiBub25jZT0idzZlNHJHYWk1dUdJenFiRFBxRmkyWWRmdGVSd2pmcEhjQjlhWmZQd2xUSWlyd1BwIiBzcmM9Ii8tL3N0YXRpYy9pbmRleC5qcz8wLTAtMC1lNTAxNTJlZDQxMWJiOTEzNzUzYjFkZmQyMDNmMjJjYjg3MTFmMDk3LTIwMjYtMDUtMTciPjwvc2NyaXB0PgogICAgPC9oZWFkPgoKICAgIDxib2R5IGNsYXNzPSJjZW50ZXJlZCI+CjxkaXYgY2xhc3M9Im5hdi1jb250YWluZXIiPgogICAgPGRpdiBjbGFzcz0iY29udGFpbmVyIj4KICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLW1lbnUgcHVyZS1tZW51LWhvcml6b250YWwiIHJvbGU9Im5hdmlnYXRpb24iIGFyaWEtbGFiZWw9Ik1haW4gbmF2aWdhdGlvbiI+CiAgICAgICAgICAgIDxmb3JtIGFjdGlvbj0iL3JlbGVhc2VzL3NlYXJjaCIKICAgICAgICAgICAgICAgICAgbWV0aG9kPSJHRVQiCiAgICAgICAgICAgICAgICAgIGlkPSJuYXYtc2VhcmNoLWZvcm0iCiAgICAgICAgICAgICAgICAgIGNsYXNzPSJsYW5kaW5nLXNlYXJjaC1mb3JtLW5hdiAgIj4KCiAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii8iIGNsYXNzPSJwdXJlLW1lbnUtaGVhZGluZyBwdXJlLW1lbnUtbGluayBkb2NzcnMtbG9nbyIgYXJpYS1sYWJlbD0iRG9jcy5ycyI+CiAgICAgICAgICAgICAgICAgICAgPHNwYW4gdGl0bGU9IkRvY3MucnMiPjxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1jdWJlcyAiIGFyaWEtaGlkZGVuPSJ0cnVlIj48L3NwYW4+PC9zcGFuPgogICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJ0aXRsZSI+RG9jcy5yczwvc3Bhbj4KICAgICAgICAgICAgICAgIDwvYT48ZGl2IGNsYXNzPSJzcGFjZXIiPjwvZGl2PgogICAgICAgICAgICAgICAgCiAgICAgICAgICAgICAgICAKCjx1bCBjbGFzcz0icHVyZS1tZW51LWxpc3QiPgogICAgICAgICAgICAgICAgICAgIDxsaSBjbGFzcz0icHVyZS1tZW51LWl0ZW0gcHVyZS1tZW51LWhhcy1jaGlsZHJlbiI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9IiMiIGNsYXNzPSJwdXJlLW1lbnUtbGluayIgYXJpYS1sYWJlbD0iZG9jcy5ycyI+ZG9jcy5yczwvYT4KICAgICAgICAgICAgICAgICAgICAgICAgPHVsIGNsYXNzPSJwdXJlLW1lbnUtY2hpbGRyZW4gYWxpZ25lZC1pY29ucyI+PGxpIGNsYXNzPSJwdXJlLW1lbnUtaXRlbSI+PGEgY2xhc3M9InB1cmUtbWVudS1saW5rIiBocmVmPSIvYWJvdXQiPjxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1jaXJjbGUtaW5mbyAiIGFyaWEtaGlkZGVuPSJ0cnVlIj48L3NwYW4+IEFib3V0IGRvY3MucnM8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9hYm91dC9iYWRnZXMiPjxzcGFuIGNsYXNzPSJmYSBmYS1icmFuZHMgZmEtZm9udGljb25zICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gQmFkZ2VzPC9hPjwvbGk+PGxpIGNsYXNzPSJwdXJlLW1lbnUtaXRlbSI+PGEgY2xhc3M9InB1cmUtbWVudS1saW5rIiBocmVmPSIvYWJvdXQvYnVpbGRzIj48c3BhbiBjbGFzcz0iZmEgZmEtc29saWQgZmEtZ2VhcnMgIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PC9zcGFuPiBCdWlsZHM8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9hYm91dC9tZXRhZGF0YSI+PHNwYW4gY2xhc3M9ImZhIGZhLXNvbGlkIGZhLXRhYmxlICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gTWV0YWRhdGE8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9hYm91dC9yZWRpcmVjdGlvbnMiPjxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1yb2FkICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gU2hvcnRoYW5kIFVSTHM8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9hYm91dC9kb3dubG9hZCI+PHNwYW4gY2xhc3M9ImZhIGZhLXNvbGlkIGZhLWRvd25sb2FkICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gRG93bmxvYWQ8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9hYm91dC9ydXN0ZG9jLWpzb24iPjxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1maWxlLWNvZGUgIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PC9zcGFuPiBSdXN0ZG9jIEpTT048L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Ii9yZWxlYXNlcy9xdWV1ZSI+PHNwYW4gY2xhc3M9ImZhIGZhLXNvbGlkIGZhLWdlYXJzICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gQnVpbGQgcXVldWU8L2E+PC9saT48bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Imh0dHBzOi8vZm91bmRhdGlvbi5ydXN0LWxhbmcub3JnL3BvbGljaWVzL3ByaXZhY3ktcG9saWN5LyNkb2NzLnJzIiB0YXJnZXQ9Il9ibGFuayI+PHNwYW4gY2xhc3M9ImZhIGZhLXNvbGlkIGZhLXNoaWVsZC1oYWx2ZWQgIiBhcmlhLWhpZGRlbj0idHJ1ZSI+PC9zcGFuPiBQcml2YWN5IHBvbGljeTwvYT48L2xpPgogICAgICAgICAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgICA8L3VsPgogICAgICAgICAgICAgICAgPHVsIGNsYXNzPSJwdXJlLW1lbnUtbGlzdCI+PGxpIGNsYXNzPSJwdXJlLW1lbnUtaXRlbSBwdXJlLW1lbnUtaGFzLWNoaWxkcmVuIj4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iIyIgY2xhc3M9InB1cmUtbWVudS1saW5rIiBhcmlhLWxhYmVsPSJSdXN0Ij5SdXN0PC9hPgogICAgICAgICAgICAgICAgICAgICAgICA8dWwgY2xhc3M9InB1cmUtbWVudS1jaGlsZHJlbiI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Imh0dHBzOi8vd3d3LnJ1c3QtbGFuZy5vcmcvIiB0YXJnZXQ9Il9ibGFuayI+UnVzdCB3ZWJzaXRlPC9hPjwvbGk+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Imh0dHBzOi8vZG9jLnJ1c3QtbGFuZy5vcmcvYm9vay8iIHRhcmdldD0iX2JsYW5rIj5UaGUgQm9vazwvYT48L2xpPgoKICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxsaSBjbGFzcz0icHVyZS1tZW51LWl0ZW0iPjxhIGNsYXNzPSJwdXJlLW1lbnUtbGluayIgaHJlZj0iaHR0cHM6Ly9kb2MucnVzdC1sYW5nLm9yZy9zdGQvIiB0YXJnZXQ9Il9ibGFuayI+U3RhbmRhcmQgTGlicmFyeSBBUEkgUmVmZXJlbmNlPC9hPjwvbGk+CgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpIGNsYXNzPSJwdXJlLW1lbnUtaXRlbSI+PGEgY2xhc3M9InB1cmUtbWVudS1saW5rIiBocmVmPSJodHRwczovL2RvYy5ydXN0LWxhbmcub3JnL3J1c3QtYnktZXhhbXBsZS8iIHRhcmdldD0iX2JsYW5rIj5SdXN0IGJ5IEV4YW1wbGU8L2E+PC9saT4KCiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8bGkgY2xhc3M9InB1cmUtbWVudS1pdGVtIj48YSBjbGFzcz0icHVyZS1tZW51LWxpbmsiIGhyZWY9Imh0dHBzOi8vZG9jLnJ1c3QtbGFuZy5vcmcvY2FyZ28vZ3VpZGUvIiB0YXJnZXQ9Il9ibGFuayI+VGhlIENhcmdvIEd1aWRlPC9hPjwvbGk+CgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGxpIGNsYXNzPSJwdXJlLW1lbnUtaXRlbSI+PGEgY2xhc3M9InB1cmUtbWVudS1saW5rIiBocmVmPSJodHRwczovL2RvYy5ydXN0LWxhbmcub3JnL25pZ2h0bHkvY2xpcHB5IiB0YXJnZXQ9Il9ibGFuayI+Q2xpcHB5IERvY3VtZW50YXRpb248L2E+PC9saT4KICAgICAgICAgICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgICAgICA8L2xpPgogICAgICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgICAgIAogICAgICAgICAgICAgICAgPGRpdiBpZD0ic2VhcmNoLWlucHV0LW5hdiI+CiAgICAgICAgICAgICAgICAgICAgPGxhYmVsIGZvcj0ibmF2LXNlYXJjaCI+CiAgICAgICAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1tYWduaWZ5aW5nLWdsYXNzICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4KICAgICAgICAgICAgICAgICAgICA8L2xhYmVsPgoKICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICAKICAgICAgICAgICAgICAgICAgICA8aW5wdXQgaWQ9Im5hdi1zZWFyY2giIG5hbWU9InF1ZXJ5IiB0eXBlPSJ0ZXh0IiBhcmlhLWxhYmVsPSJGaW5kIGNyYXRlIGJ5IHNlYXJjaCBxdWVyeSIgdGFiaW5kZXg9Ii0xIgogICAgICAgICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj0iRmluZCBjcmF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgPgogICAgICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICAgIDwvZm9ybT4KICAgICAgICA8L2Rpdj4KICAgIDwvZGl2Pgo8L2Rpdj48ZGl2IGNsYXNzPSJjb250YWluZXIgbGFuZGluZyI+CiAgICAgICAgPGgxIGNsYXNzPSJicmFuZCI+PHNwYW4gY2xhc3M9ImZhIGZhLXNvbGlkIGZhLWN1YmVzICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj4gRG9jcy5yczwvaDE+CgogICAgICAgIDxmb3JtIGFjdGlvbj0iL3JlbGVhc2VzL3NlYXJjaCIgbWV0aG9kPSJHRVQiIGNsYXNzPSJsYW5kaW5nLXNlYXJjaC1mb3JtIj4KICAgICAgICAgICAgPGRpdj4KICAgICAgICAgICAgICAgIDxpbnB1dCBjbGFzcz0ic2VhcmNoLWlucHV0IiBpZD0ic2VhcmNoIiBuYW1lPSJxdWVyeSIgdHlwZT0idGV4dCIgYXJpYS1sYWJlbD0iRmluZCBjcmF0ZSBieSBzZWFyY2ggcXVlcnkiCiAgICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9IlR5cGUgJ1MnIG9yICcvJyB0byBzZWFyY2giIGF1dG9mb2N1cz4KICAgICAgICAgICAgPC9kaXY+CgogICAgICAgICAgICA8ZGl2IGNsYXNzPSJidXR0b25zIj4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0ic3VibWl0IiBjbGFzcz0icHVyZS1idXR0b24gcHVyZS1idXR0b24tbm9ybWFsIj5TZWFyY2g8L2J1dHRvbj4KICAgICAgICAgICAgICAgIDxidXR0b24gdHlwZT0ic3VibWl0IiBjbGFzcz0icHVyZS1idXR0b24gcHVyZS1idXR0b24tbm9ybWFsIiBuYW1lPSJpLWFtLWZlZWxpbmctbHVja3kiIHZhbHVlPSIxIj4KICAgICAgICAgICAgICAgICAgICBJJ20gRmVlbGluZyBMdWNreQogICAgICAgICAgICAgICAgPC9idXR0b24+CiAgICAgICAgICAgIDwvZGl2PgogICAgICAgIDwvZm9ybT4KICAgIDwvZGl2PgoKICAgIDxkaXYgY2xhc3M9ImNvbnRhaW5lciI+CiAgICAgICAgPGRpdiBjbGFzcz0icmVjZW50LXJlbGVhc2VzLWNvbnRhaW5lciI+CiAgICAgICAgICAgIDxkaXYgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgPGEgaHJlZj0iL3JlbGVhc2VzIj4KICAgICAgICAgICAgICAgICAgICA8c3Ryb25nPlJlY2VudCBSZWxlYXNlczwvc3Ryb25nPgogICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgICAgPGEgaHJlZj0iL3JlbGVhc2VzL2ZlZWQiIHRpdGxlPSJBdG9tIGZlZWQiPjxzcGFuIGNsYXNzPSJmYSBmYS1zb2xpZCBmYS1zcXVhcmUtcnNzICIgYXJpYS1oaWRkZW49InRydWUiPjwvc3Bhbj48L2E+CiAgICAgICAgICAgIDwvZGl2PgoKICAgICAgICAgICAgPHVsPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2h5cGVyY2lyY3VpdC8wLjIuMC9oeXBlcmNpcmN1aXQvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5oeXBlcmNpcmN1aXQtMC4yLjA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5FeGFjdC1hd2FyZSBjaXJjdWl0IE1OQSBjYXJyaWVycyBhbmQgYWRhcHRlciByZXBvcnRzIGZvciB0aGUgSHlwZXIgZWNvc3lzdGVtPC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE3OjAxWiI+MiBzZWNvbmRzIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48bGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii9veGNfcGFyc2VyX25hcGkvMC4xMzIuMC9veGNfcGFyc2VyX25hcGkvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5veGNfcGFyc2VyX25hcGktMC4xMzIuMDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgY29sbGVjdGlvbiBvZiBKYXZhU2NyaXB0IHRvb2xzIHdyaXR0ZW4gaW4gUnVzdC48L2Rpdj48ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNC0yNCBwdXJlLXUtbWQtMy0yNCBkYXRlIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU9IjIwMjYtMDUtMThUMTE6MTY6NTZaIj43IHNlY29uZHMgYWdvPC9kaXY+PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICA8L2xpPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2d1aWxkZXItYWJzdHJhY3Rpb24vMC4xLjI0L2d1aWxkZXJfYWJzdHJhY3Rpb24vIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5ndWlsZGVyLWFic3RyYWN0aW9uLTAuMS4yNDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPm11bHRpLWV4Y2hhbmdlIGNyeXB0byB0cmFkaW5nIHRyYWl0PC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE2OjU1WiI+OCBzZWNvbmRzIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48bGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii9veGMvMC4xMzIuMC9veGMvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5veGMtMC4xMzIuMDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgY29sbGVjdGlvbiBvZiBKYXZhU2NyaXB0IHRvb2xzIHdyaXR0ZW4gaW4gUnVzdC48L2Rpdj48ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNC0yNCBwdXJlLXUtbWQtMy0yNCBkYXRlIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU9IjIwMjYtMDUtMThUMTE6MTY6NDlaIj4xNCBzZWNvbmRzIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48bGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii9veGNfbWluaWZ5X25hcGkvMC4xMzIuMC9veGNfbWluaWZ5X25hcGkvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5veGNfbWluaWZ5X25hcGktMC4xMzIuMDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgY29sbGVjdGlvbiBvZiBKYXZhU2NyaXB0IHRvb2xzIHdyaXR0ZW4gaW4gUnVzdC48L2Rpdj48ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNC0yNCBwdXJlLXUtbWQtMy0yNCBkYXRlIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU9IjIwMjYtMDUtMThUMTE6MTY6NDRaIj4xOSBzZWNvbmRzIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48bGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii9veGNfdHJhbnNmb3JtZXJfcGx1Z2lucy8wLjEzMi4wL294Y190cmFuc2Zvcm1lcl9wbHVnaW5zLyIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzPSJyZWxlYXNlIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtZyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTYtMjQgcHVyZS11LW1kLTUtMjQgbmFtZSI+b3hjX3RyYW5zZm9ybWVyX3BsdWdpbnMtMC4xMzIuMDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgY29sbGVjdGlvbiBvZiBKYXZhU2NyaXB0IHRvb2xzIHdyaXR0ZW4gaW4gUnVzdC48L2Rpdj48ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNC0yNCBwdXJlLXUtbWQtMy0yNCBkYXRlIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU9IjIwMjYtMDUtMThUMTE6MTY6MzhaIj4yNSBzZWNvbmRzIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48bGk+CiAgICAgICAgICAgICAgICAgICAgICAgIDxhIGhyZWY9Ii9mZmF2LzQuMy4xMi9mZmF2LyIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzPSJyZWxlYXNlIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtZyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTYtMjQgcHVyZS11LW1kLTUtMjQgbmFtZSI+ZmZhdi00LjMuMTI8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5TYWZlIEZGbXBlZyB3cmFwcGVyIChGRm1wZWcgNCBjb21wYXRpYmxlIGZvcmsgb2YgdGhlIGZmbXBlZy1uZXh0IGNyYXRlKTwvZGl2PjxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS00LTI0IHB1cmUtdS1tZC0zLTI0IGRhdGUiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aXRsZT0iMjAyNi0wNS0xOFQxMToxNjozMVoiPjMyIHNlY29uZHMgYWdvPC9kaXY+PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICA8L2xpPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2Jyb3dzZXItaW5mby8xLjAuMC9icm93c2VyX2luZm8vIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5icm93c2VyLWluZm8tMS4wLjA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5Dcm9zcy1wbGF0Zm9ybShwbGFubmVkKSBsaWJyYXJ5IHJldHJpZXZpbmcgYWN0aXZlIGJyb3dzZXIgVVJMIGFuZCBkZXRhaWxlZCBpbmZvcm1hdGlvbjwvZGl2PjxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS00LTI0IHB1cmUtdS1tZC0zLTI0IGRhdGUiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aXRsZT0iMjAyNi0wNS0xOFQxMToxNjoxNVoiPjQ4IHNlY29uZHMgYWdvPC9kaXY+PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICA8L2xpPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2NyYXRlL2thbmFkZS1iYWNrZW5kLzAuMTguMSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNsYXNzPSJyZWxlYXNlIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtZyI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTYtMjQgcHVyZS11LW1kLTUtMjQgbmFtZSI+a2FuYWRlLWJhY2tlbmQtMC4xOC4xPC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTE0LTI0IHB1cmUtdS1tZC0xNi0yNCBkZXNjcmlwdGlvbiI+YXh1bSArIFNRTGl0ZSBwcm9qZWN0aW9uIGJhY2tlbmQgZm9yIHRoZSBrYW5hZGUgZW5kcG9pbnQtbWFuYWdlbWVudCBzeXN0ZW0uIEhvc3RzIC9hcGkvKiBhbmQgdGhlIGVtYmVkZGVkIFNQQSBkYXNoYm9hcmQsIHByb2plY3RzIEpldFN0cmVhbSBzdHJlYW1zIGludG8gU1FMaXRlLCBkcml2ZXMgdGhlIGNyb24gc2NoZWR1bGVyPC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE2OjEzWiI+NTAgc2Vjb25kcyBhZ288L2Rpdj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgICAgICAgIDwvbGk+PGxpPgogICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvcGVyZm9ybWFuY2UtdGltaW5nLzAuMS4xL3BlcmZvcm1hbmNlX3RpbWluZy8iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzcz0icmVsZWFzZSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLWciPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS02LTI0IHB1cmUtdS1tZC01LTI0IG5hbWUiPnBlcmZvcm1hbmNlLXRpbWluZy0wLjEuMTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPlBlcmZvcm1hbmNlIG1lYXN1cmVtZW50IGxpYnJhcnkuIFN1cHBvcnRzIENQVSBjeWNsZSBhY2N1cmF0ZSBtZWFzdXJlbWVudCBmb3IgeDg2IHBsYXRmb3Jtcy4KPC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE2OjA4WiI+NTUgc2Vjb25kcyBhZ288L2Rpdj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgICAgICAgIDwvbGk+PGxpPgogICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvZG9yaWMvMC4xLjAvZG9yaWMvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5kb3JpYy0wLjEuMDwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgaGlnaGx5IHNpbXBsZSBhc3luY2hyb25vdXMgbG9nZ2luZyBsaWIgZm9yIFJ1c3QuPC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE2OjA1WiI+NTggc2Vjb25kcyBhZ288L2Rpdj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgICAgICAgIDwvbGk+PGxpPgogICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvY2hic19wYXNzd29yZF9jaGVja2VyLzAuMS4wL2NoYnNsaWIvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5jaGJzX3Bhc3N3b3JkX2NoZWNrZXItMC4xLjA8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5QYXNzd29yZCBTdHJlbmd0aCBDaGVja2VyPC9kaXY+PGRpdiBjbGFzcz0icHVyZS11LTEgcHVyZS11LXNtLTQtMjQgcHVyZS11LW1kLTMtMjQgZGF0ZSIKICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHRpdGxlPSIyMDI2LTA1LTE4VDExOjE1OjU2WiI+b25lIG1pbnV0ZSBhZ288L2Rpdj48L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgPC9hPgogICAgICAgICAgICAgICAgICAgIDwvbGk+PGxpPgogICAgICAgICAgICAgICAgICAgICAgICA8YSBocmVmPSIvYmFzZTY1NTM2LzEuMC4xL2Jhc2U2NTUzNi8iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzcz0icmVsZWFzZSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLWciPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS02LTI0IHB1cmUtdS1tZC01LTI0IG5hbWUiPmJhc2U2NTUzNi0xLjAuMTwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS0xNC0yNCBwdXJlLXUtbWQtMTYtMjQgZGVzY3JpcHRpb24iPkEgYmluYXJ5IGVuY29kaW5nIG9wdGltaXplZCBmb3IgVVRGLTMyL1VDUy00IGVuY29kZWQgdGV4dCBhbmQgVHdpdHRlcjwvZGl2PjxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS00LTI0IHB1cmUtdS1tZC0zLTI0IGRhdGUiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aXRsZT0iMjAyNi0wNS0xOFQxMToxNTo1MloiPm9uZSBtaW51dGUgYWdvPC9kaXY+PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICA8L2xpPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2JvdW5kZWRfdHlwZXMvMC4yLjEvYm91bmRlZF90eXBlcy8iCiAgICAgICAgICAgICAgICAgICAgICAgICAgICBjbGFzcz0icmVsZWFzZSI+CiAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLWciPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIDxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS02LTI0IHB1cmUtdS1tZC01LTI0IG5hbWUiPmJvdW5kZWRfdHlwZXMtMC4yLjE8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5Qcm92aWRlcyBhIHR5cGUgcmVwcmVzZW50aW5nIGJvdW5kZWQgaW50ZWdlcnMsIGltcGxlbWVudGVkIHVzaW5nIGNvbnN0IGdlbmVyaWNzLjwvZGl2PjxkaXYgY2xhc3M9InB1cmUtdS0xIHB1cmUtdS1zbS00LTI0IHB1cmUtdS1tZC0zLTI0IGRhdGUiCiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aXRsZT0iMjAyNi0wNS0xOFQxMToxNTo1MloiPm9uZSBtaW51dGUgYWdvPC9kaXY+PC9kaXY+CiAgICAgICAgICAgICAgICAgICAgICAgIDwvYT4KICAgICAgICAgICAgICAgICAgICA8L2xpPjxsaT4KICAgICAgICAgICAgICAgICAgICAgICAgPGEgaHJlZj0iL2NvcmRpYy8wLjEuNS9jb3JkaWMvIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xhc3M9InJlbGVhc2UiPgogICAgICAgICAgICAgICAgICAgICAgICAgICAgPGRpdiBjbGFzcz0icHVyZS1nIj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNi0yNCBwdXJlLXUtbWQtNS0yNCBuYW1lIj5jb3JkaWMtMC4xLjU8L2Rpdj4KICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tMTQtMjQgcHVyZS11LW1kLTE2LTI0IGRlc2NyaXB0aW9uIj5TcGVjaWFsIGZ1bmN0aW9ucyBmb3IgZml4ZWQtcG9pbnQgbnVtYmVycyB1c2luZyB0aGUgQ09SRElDIG1ldGhvZC48L2Rpdj48ZGl2IGNsYXNzPSJwdXJlLXUtMSBwdXJlLXUtc20tNC0yNCBwdXJlLXUtbWQtMy0yNCBkYXRlIgogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdGl0bGU9IjIwMjYtMDUtMThUMTE6MTU6NDlaIj5vbmUgbWludXRlIGFnbzwvZGl2PjwvZGl2PgogICAgICAgICAgICAgICAgICAgICAgICA8L2E+CiAgICAgICAgICAgICAgICAgICAgPC9saT48L3VsPgogICAgICAgIDwvZGl2PgogICAgPC9kaXY+PHNjcmlwdCBub25jZT0idzZlNHJHYWk1dUdJenFiRFBxRmkyWWRmdGVSd2pmcEhjQjlhWmZQd2xUSWlyd1BwIiB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiIHNyYz0iLy0vc3RhdGljL2tleWJvYXJkLmpzPzAtMC0wLWU1MDE1MmVkNDExYmI5MTM3NTNiMWRmZDIwM2YyMmNiODcxMWYwOTctMjAyNi0wNS0xNyI+PC9zY3JpcHQ+PC9ib2R5Pgo8L2h0bWw+",
+        "response_body_blake3": "ddccd0e61756e411d4911515d4f2b81b0f90e4ad41db8da7ae7f458e8bcdec44",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "17679"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": null,
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en",
+    "meta": {
+      "generator": "docs.rs 0.0.0 (e50152ed411bb913753b1dfd203f22cb8711f097 2026-05-17 )",
+      "viewport": "width=device-width, initial-scale=1"
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "41c8ad0f2f9dc569a4dedddbc2021afd343be808555a22a74ba29d5b607115ab",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 1,
+          "executed_with_error": 0,
+          "external_handled": 3,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Docs.rs",
+  "tree": {
+    "description": null,
+    "root": {
+      "byte_count": 227,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 1613,
+          "child_count": 0,
+          "children": [],
+          "heading": "Docs.rs",
+          "intro": "Search I'm Feeling Lucky Recent Releases hypercircuit-0.2.0 Exact-aware circuit MNA carriers and adapter reports for the Hyper ecosystem 2 seconds ago oxc_parser_napi-0.132.0 A collection of JavaScript tools written in Rust. 7 seconds ago guilder-abstraction-0.1.24 multi-exchange crypto trading trait 8 seconds ago oxc-0.132.0 A collection of JavaScript tools written in Rust. 14 seconds ago oxc_minify_napi-0.132.0 A collection of JavaScript tools written in Rust. 19 seconds ago oxc_transformer_plugins-0.132.0 A collection of JavaScript tools written in Rust. 25 seconds ago ffav-4.3.12 Safe FFmpeg wrapper (FFmpeg 4 compatible fork of the ffmpeg-next crate) 32 seconds ago browser-info-1.0.0 Cross-platform(planned) library retrieving active browser URL and detailed information 48 seconds ago kanade-backend-0.18.1 axum + SQLite projection backend for the kanade endpoint-management system. Hosts /api/* and the embedded SPA dashboard, projects JetStream streams into SQLite, drives the cron scheduler 50 seconds ago performance-timing-0.1.1 Performance measurement library. Supports CPU cycle accurate measurement for x86 platforms. 55 seconds ago doric-0.1.0 A highly simple asynchronous logging lib for Rust. 58 seconds ago chbs_password_checker-0.1.0 Password Strength Checker one minute ago base65536-1.0.1 A binary encoding optimized for UTF-32/UCS-4 encoded text and Twitter one minute ago bounded_types-0.2.1 Provides a type representing bounded integers, implemented using const generics. one minute ago cordic-0.1.5 Special functions for fixed-point numbers using the CORDIC method. one minute ago",
+          "level": 1,
+          "path": "/docs-rs",
+          "slug": "docs-rs",
+          "summary": "Docs.rs — Search I'm Feeling Lucky Recent Releases hypercircuit-0.2.0 Exact-aware circuit MNA carriers and ada…"
+        }
+      ],
+      "heading": null,
+      "intro": "Docs.rs docs.rs About docs.rs Badges Builds Metadata Shorthand URLs Download Rustdoc JSON Build queue Privacy policy Rust Rust website The Book Standard Library API Reference Rust by Example The Cargo Guide Clippy Documentation",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": "Docs.rs docs.rs About docs.rs Badges Builds Metadata Shorthand URLs Download Rustdoc JSON Build queu…"
+    },
+    "title": "Docs.rs",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

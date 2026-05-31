@@ -1,0 +1,86 @@
+{
+  "reference_target": "aarch64-apple-darwin (developer machine; CI matrix is the cross-arch proof)",
+  "entries": [
+    {
+      "cassette": "example_com",
+      "input_plat": "fixtures/example_com.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "f4168841559ad8539c6aa60ff204685c9155cf231a07cd6932e72b51c89a5c06",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (example_com)"
+    },
+    {
+      "cassette": "httpbin_html",
+      "input_plat": "fixtures/httpbin_html.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "43eb90c674033d81ddd3d7c7790fba468b4757bd9963a4e5d3c677e78e4867f8",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (httpbin_html)"
+    },
+    {
+      "cassette": "httpbin_forms_post",
+      "input_plat": "fixtures/httpbin_forms_post.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "336a1d9b6186a684afecb93d93b665df0be6b6a1f9395049069e82b34d9c3388",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (httpbin_forms_post)"
+    },
+    {
+      "cassette": "hacker_news",
+      "input_plat": "fixtures/hacker_news.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "0ea057a431d0c9dde525c682138bb3adb276620002d730722b6ce4d44d791b52",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (hacker_news)"
+    },
+    {
+      "cassette": "rust_lang",
+      "input_plat": "fixtures/rust_lang.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "88d10088e89f7c09d74dc477dd6131ce768c30f2300ab3321d07e0afe67dfef3",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (rust_lang)"
+    },
+    {
+      "cassette": "docs_rs",
+      "input_plat": "fixtures/docs_rs.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "41c8ad0f2f9dc569a4dedddbc2021afd343be808555a22a74ba29d5b607115ab",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (docs_rs)"
+    },
+    {
+      "cassette": "iana_reserved",
+      "input_plat": "fixtures/iana_reserved.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "dae69ff27e363c5bd84b4eebad675902fb25039c13a3123185da46cd1210386f",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (iana_reserved)"
+    },
+    {
+      "cassette": "wikipedia_html",
+      "input_plat": "fixtures/wikipedia_html.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "818517e8c0911476be69e0900b5ff7d3be914beb67d717701a247bec75c65279",
+      "hydrated": false,
+      "note": "static fetch + html5ever/scraper parse path (wikipedia_html)"
+    },
+    {
+      "cassette": "hydrated_spa",
+      "input_plat": "fixtures/hydrated_spa.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "719ebb6a7d1341a96161996bdb338ee69ba8b30d5f2744c9feacb55c38cc1a2d",
+      "hydrated": true,
+      "note": "JS-hydrated: fetch()+Math.random+Date.now+UTC Date routed through plat_hash"
+    }
+  ]
+}

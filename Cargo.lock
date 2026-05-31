@@ -940,6 +940,7 @@ dependencies = [
  "serde",
  "serde_jcs",
  "serde_json",
+ "socket2",
  "tempfile",
  "tokio",
  "url",

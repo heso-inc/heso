@@ -1,0 +1,716 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "href": "/"
+      },
+      "ref": "@e0",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/tools/install"
+      },
+      "name": "Install",
+      "ref": "@e1",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/learn"
+      },
+      "name": "Learn",
+      "ref": "@e2",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://play.rust-lang.org/"
+      },
+      "name": "Playground",
+      "ref": "@e3",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/tools"
+      },
+      "name": "Tools",
+      "ref": "@e4",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/governance"
+      },
+      "name": "Governance",
+      "ref": "@e5",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/funding"
+      },
+      "name": "Funding",
+      "ref": "@e6",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/community"
+      },
+      "name": "Community",
+      "ref": "@e7",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://blog.rust-lang.org/"
+      },
+      "name": "Blog",
+      "ref": "@e8",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "id": "language-nav"
+      },
+      "name": "English (en-US) Español (es) Français (fr) Italiano (it) 日本語 (ja) Português (pt-BR) Русский (ru) Türkçe (tr) 简体中文 (zh-CN…",
+      "ref": "@e9",
+      "role": "combobox",
+      "section": "/",
+      "tag": "select"
+    },
+    {
+      "attrs": {
+        "href": "/learn/get-started"
+      },
+      "name": "Get Started",
+      "ref": "@e10",
+      "role": "link",
+      "section": "/rust/a-language-empowering-everyone-to-build",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://blog.rust-lang.org/releases/latest"
+      },
+      "name": "Version 1.95.0",
+      "ref": "@e11",
+      "role": "link",
+      "section": "/rust/a-language-empowering-everyone-to-build",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://blog.rust-lang.org/2018/03/12/roadmap.html"
+      },
+      "name": "the 2018 roadmap",
+      "ref": "@e12",
+      "role": "link",
+      "section": "/rust/build-it-in-rust",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/what/cli"
+      },
+      "name": "Building Tools",
+      "ref": "@e13",
+      "role": "link",
+      "section": "/rust/build-it-in-rust/command-line",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/what/wasm"
+      },
+      "name": "Writing Web Apps",
+      "ref": "@e14",
+      "role": "link",
+      "section": "/rust/build-it-in-rust/webassembly",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/what/networking"
+      },
+      "name": "Working On Servers",
+      "ref": "@e15",
+      "role": "link",
+      "section": "/rust/build-it-in-rust/networking",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/what/embedded"
+      },
+      "name": "Starting With Embedded",
+      "ref": "@e16",
+      "role": "link",
+      "section": "/rust/build-it-in-rust/embedded",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "learn"
+      },
+      "name": "Read the book",
+      "ref": "@e17",
+      "role": "link",
+      "section": "/rust/get-involved/read-rust",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.youtube.com/channel/UCaYhcUwRBNscFNUKTjgPFiA"
+      },
+      "name": "Watch the Videos",
+      "ref": "@e18",
+      "role": "link",
+      "section": "/rust/get-involved/watch-rust",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://rustc-dev-guide.rust-lang.org/getting-started.html"
+      },
+      "name": "Read Contribution Guide",
+      "ref": "@e19",
+      "role": "link",
+      "section": "/rust/get-involved/contribute-code",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://thanks.rust-lang.org/"
+      },
+      "name": "See individual contributors",
+      "ref": "@e20",
+      "role": "link",
+      "section": "/rust/thanks/individuals",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://foundation.rust-lang.org/members"
+      },
+      "name": "See Foundation members",
+      "ref": "@e21",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/learn"
+      },
+      "name": "Documentation",
+      "ref": "@e22",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/get-help",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "http://forge.rust-lang.org"
+      },
+      "name": "Rust Forge (Contributor Documentation)",
+      "ref": "@e23",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/get-help",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://users.rust-lang.org"
+      },
+      "name": "Ask a Question on the Users Forum",
+      "ref": "@e24",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/get-help",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "id": "language-footer"
+      },
+      "name": "English (en-US) Español (es) Français (fr) Italiano (it) 日本語 (ja) Português (pt-BR) Русский (ru) Türkçe (tr) 简体中文 (zh-CN…",
+      "ref": "@e25",
+      "role": "combobox",
+      "section": "/rust/thanks/corporate-sponsors/get-help",
+      "tag": "select"
+    },
+    {
+      "attrs": {
+        "href": "/policies/code-of-conduct"
+      },
+      "name": "Code of Conduct",
+      "ref": "@e26",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/policies/licenses"
+      },
+      "name": "Licenses",
+      "ref": "@e27",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://foundation.rust-lang.org/policies/logo-policy-and-media-guide/"
+      },
+      "name": "Logo Policy and Media Guide",
+      "ref": "@e28",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/policies/security"
+      },
+      "name": "Security Disclosures",
+      "ref": "@e29",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://foundation.rust-lang.org/policies/privacy-policy/"
+      },
+      "name": "Privacy Notice",
+      "ref": "@e30",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "/policies"
+      },
+      "name": "All Policies",
+      "ref": "@e31",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/terms-and-policies",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://social.rust-lang.org/@rust",
+        "rel": "me",
+        "target": "_blank"
+      },
+      "ref": "@e32",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://bsky.app/profile/rust-lang.org",
+        "rel": "me",
+        "target": "_blank"
+      },
+      "ref": "@e33",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.youtube.com/channel/UCaYhcUwRBNscFNUKTjgPFiA",
+        "target": "_blank"
+      },
+      "ref": "@e34",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/rust-lang",
+        "target": "_blank"
+      },
+      "ref": "@e35",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/rust-lang/www.rust-lang.org/issues/new/choose",
+        "target": "_blank"
+      },
+      "name": "File an issue!",
+      "ref": "@e36",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://prev.rust-lang.org"
+      },
+      "name": "previous website",
+      "ref": "@e37",
+      "role": "link",
+      "section": "/rust/thanks/corporate-sponsors/social",
+      "tag": "a"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuLVVTIj4KICA8aGVhZD4KICAgIDxtZXRhIGNoYXJzZXQ9InV0Zi04Ij4KICAgIDx0aXRsZT4KICAgICAgICAgICAgUnVzdCBQcm9ncmFtbWluZyBMYW5ndWFnZQogICAgICAgIDwvdGl0bGU+CiAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLGluaXRpYWwtc2NhbGU9MS4wIj4KICAgIDxtZXRhIG5hbWU9ImRlc2NyaXB0aW9uIiBjb250ZW50PSJBIGxhbmd1YWdlIGVtcG93ZXJpbmcgZXZlcnlvbmUgdG8gYnVpbGQgcmVsaWFibGUgYW5kIGVmZmljaWVudCBzb2Z0d2FyZS4iPgoKICAgIDwhLS0gVHdpdHRlciBjYXJkIC0tPgogICAgPG1ldGEgbmFtZT0idHdpdHRlcjpjYXJkIiBjb250ZW50PSJzdW1tYXJ5Ij4KICAgIDxtZXRhIG5hbWU9InR3aXR0ZXI6c2l0ZSIgY29udGVudD0iQHJ1c3RsYW5nIj4KICAgIDxtZXRhIG5hbWU9InR3aXR0ZXI6Y3JlYXRvciIgY29udGVudD0iQHJ1c3RsYW5nIj4KICAgIDxtZXRhIG5hbWU9InR3aXR0ZXI6dGl0bGUiIGNvbnRlbnQ9IiI+CiAgICA8bWV0YSBuYW1lPSJ0d2l0dGVyOmRlc2NyaXB0aW9uIiBjb250ZW50PSJBIGxhbmd1YWdlIGVtcG93ZXJpbmcgZXZlcnlvbmUgdG8gYnVpbGQgcmVsaWFibGUgYW5kIGVmZmljaWVudCBzb2Z0d2FyZS4iPgogICAgPG1ldGEgbmFtZT0idHdpdHRlcjppbWFnZSIgY29udGVudD0iaHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy9zdGF0aWMvaW1hZ2VzL3J1c3Qtc29jaWFsLmpwZyI+CgogICAgPCEtLSBGYWNlYm9vayBPcGVuR3JhcGggLS0+CiAgICA8bWV0YSBwcm9wZXJ0eT0ib2c6dGl0bGUiIGNvbnRlbnQ9IiIgLz4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzpkZXNjcmlwdGlvbiIgY29udGVudD0iQSBsYW5ndWFnZSBlbXBvd2VyaW5nIGV2ZXJ5b25lIHRvIGJ1aWxkIHJlbGlhYmxlIGFuZCBlZmZpY2llbnQgc29mdHdhcmUuIj4KICAgIDxtZXRhIHByb3BlcnR5PSJvZzppbWFnZSIgY29udGVudD0iaHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy9zdGF0aWMvaW1hZ2VzL3J1c3Qtc29jaWFsLXdpZGUuanBnIiAvPgogICAgPG1ldGEgcHJvcGVydHk9Im9nOnR5cGUiIGNvbnRlbnQ9IndlYnNpdGUiIC8+CiAgICA8bWV0YSBwcm9wZXJ0eT0ib2c6bG9jYWxlIiBjb250ZW50PSJlbl9VUyIgLz4KCiAgICA8IS0tIHN0eWxlcyAtLT4KICAgIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0iL3N0YXRpYy9zdHlsZXMvYTExeS1kYXJrLmNzcyIvPgogICAgPGxpbmsgcmVsPSJzdHlsZXNoZWV0IiBocmVmPSIvc3RhdGljL3N0eWxlcy92ZW5kb3JfMTA4ODA2OTA0NDIwNzA2Mzk5NjcuY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Ii9zdGF0aWMvc3R5bGVzL2ZvbnRzXzgwNDk4NzExMDMwODMwMTExMjUuY3NzIi8+CiAgICA8bGluayByZWw9InN0eWxlc2hlZXQiIGhyZWY9Ii9zdGF0aWMvc3R5bGVzL2FwcF8xNzc3NDE0MzA3NjA4ODU4NjgwMi5jc3MiLz4KCiAgICA8IS0tIGZhdmljb24gLS0+CiAgICA8bGluayByZWw9ImFwcGxlLXRvdWNoLWljb24iIHNpemVzPSIxODB4MTgwIiBocmVmPSIvc3RhdGljL2ltYWdlcy9hcHBsZS10b3VjaC1pY29uLnBuZz92PW5nSlc4akdBbVIiPgogICAgPGxpbmsgcmVsPSJpY29uIiBzaXplcz0iMTZ4MTYiIHR5cGU9ImltYWdlL3BuZyIgaHJlZj0iL3N0YXRpYy9pbWFnZXMvZmF2aWNvbi0xNngxNi5wbmciPgogICAgPGxpbmsgcmVsPSJpY29uIiBzaXplcz0iMzJ4MzIiIHR5cGU9ImltYWdlL3BuZyIgaHJlZj0iL3N0YXRpYy9pbWFnZXMvZmF2aWNvbi0zMngzMi5wbmciPgogICAgPGxpbmsgcmVsPSJpY29uIiB0eXBlPSJpbWFnZS9zdmcreG1sIiBocmVmPSIvc3RhdGljL2ltYWdlcy9mYXZpY29uLnN2ZyI+CiAgICA8bGluayByZWw9Im1hbmlmZXN0IiBocmVmPSIvc3RhdGljL2ltYWdlcy9zaXRlLndlYm1hbmlmZXN0P3Y9bmdKVzhqR0FtUiI+CiAgICA8bGluayByZWw9Im1hc2staWNvbiIgaHJlZj0iL3N0YXRpYy9pbWFnZXMvc2FmYXJpLXBpbm5lZC10YWIuc3ZnP3Y9bmdKVzhqR0FtUiIgY29sb3I9IiMwMDAwMDAiPgogICAgPG1ldGEgbmFtZT0ibXNhcHBsaWNhdGlvbi1UaWxlQ29sb3IiIGNvbnRlbnQ9IiNmZmZmZmYiPgogICAgPG1ldGEgbmFtZT0ibXNhcHBsaWNhdGlvbi1jb25maWciIGNvbnRlbnQ9Ii9zdGF0aWMvaW1hZ2VzL2Jyb3dzZXJjb25maWcueG1sP3Y9bmdKVzhqR0FtUiI+CiAgICA8bWV0YSBuYW1lPSJ0aGVtZS1jb2xvciIgY29udGVudD0iI2ZmZmZmZiI+CgogICAgICAgIDwhLS0gbG9jYWxlcyAtLT4KPGxpbmsgcmVsPSJhbHRlcm5hdGUiIGhyZWY9Imh0dHBzOi8vd3d3LnJ1c3QtbGFuZy5vcmcvZW4tVVMiIGhyZWZsYW5nPSJlbi1VUyI+CjxsaW5rIHJlbD0iYWx0ZXJuYXRlIiBocmVmPSJodHRwczovL3d3dy5ydXN0LWxhbmcub3JnL2VzIiBocmVmbGFuZz0iZXMiPgo8bGluayByZWw9ImFsdGVybmF0ZSIgaHJlZj0iaHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy9mciIgaHJlZmxhbmc9ImZyIj4KPGxpbmsgcmVsPSJhbHRlcm5hdGUiIGhyZWY9Imh0dHBzOi8vd3d3LnJ1c3QtbGFuZy5vcmcvaXQiIGhyZWZsYW5nPSJpdCI+CjxsaW5rIHJlbD0iYWx0ZXJuYXRlIiBocmVmPSJodHRwczovL3d3dy5ydXN0LWxhbmcub3JnL2phIiBocmVmbGFuZz0iamEiPgo8bGluayByZWw9ImFsdGVybmF0ZSIgaHJlZj0iaHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy9wdC1CUiIgaHJlZmxhbmc9InB0LUJSIj4KPGxpbmsgcmVsPSJhbHRlcm5hdGUiIGhyZWY9Imh0dHBzOi8vd3d3LnJ1c3QtbGFuZy5vcmcvcnUiIGhyZWZsYW5nPSJydSI+CjxsaW5rIHJlbD0iYWx0ZXJuYXRlIiBocmVmPSJodHRwczovL3d3dy5ydXN0LWxhbmcub3JnL3RyIiBocmVmbGFuZz0idHIiPgo8bGluayByZWw9ImFsdGVybmF0ZSIgaHJlZj0iaHR0cHM6Ly93d3cucnVzdC1sYW5nLm9yZy96aC1DTiIgaHJlZmxhbmc9InpoLUNOIj4KPGxpbmsgcmVsPSJhbHRlcm5hdGUiIGhyZWY9Imh0dHBzOi8vd3d3LnJ1c3QtbGFuZy5vcmcvemgtVFciIGhyZWZsYW5nPSJ6aC1UVyI+CjxsaW5rIHJlbD0iYWx0ZXJuYXRlIiBocmVmPSJodHRwczovL3d3dy5ydXN0LWxhbmcub3JnLyIgaHJlZmxhbmc9IngtZGVmYXVsdCI+CgogICAgPHNjcmlwdCB0eXBlPSJ0ZXh0L2phdmFzY3JpcHQiPgogICAgICB3aW5kb3cuUlVTVF9CQVNFX1VSTCA9ICIiOwogICAgPC9zY3JpcHQ+CgogICAgPCEtLSBDdXN0b20gSGlnaGxpZ2h0IHBhY2sgd2l0aDogUnVzdCwgTWFya2Rvd24sIFRPTUwsIEJhc2gsIEpTT04sIFlBTUwsCiAgICAgICAgIGFuZCBwbGFpbnRleHQuIC0tPgogICAgPHNjcmlwdCBzcmM9Ii9zdGF0aWMvc2NyaXB0cy9oaWdobGlnaHQucGFjay5qcyIgZGVmZXI+PC9zY3JpcHQ+CiAgICA8c2NyaXB0IHNyYz0iL3N0YXRpYy9zY3JpcHRzL2luaXQuanMiIGRlZmVyPjwvc2NyaXB0PgogIDwvaGVhZD4KICA8Ym9keT4KICAgIDxuYXYgY2xhc3M9ImZsZXggZmxleC1yb3cganVzdGlmeS1jZW50ZXIganVzdGlmeS1lbmQtbCBpdGVtcy1jZW50ZXIgZmxleC13cmFwIHBoMiBwbDMtbnMgcHIzLW5zIHBiMyI+CiAgICAgIDxkaXYgY2xhc3M9ImJyYW5kIGZsZXgtYXV0byB3LTEwMCB3LWF1dG8tbCBzZWxmLXN0YXJ0IHRjIHRsLWwiPgogICAgICAgIDxhIGhyZWY9Ii8iIGNsYXNzPSJicmFuZCI+CiAgICAgICAgICA8aW1nIGNsYXNzPSJ2LW1pZCBtbDAtbCIgYWx0PSJSdXN0IExvZ28iIHNyYz0iL3N0YXRpYy9pbWFnZXMvcnVzdC1sb2dvLWJsay5zdmciPgogICAgICAgIDwvYT4KICAgICAgPC9kaXY+CiAgICAKICAgICAgPHVsIGNsYXNzPSJuYXYgbGlzdCB3LTEwMCB3LWF1dG8tbCBmbGV4IGZsZXgtbm9uZSBmbGV4LXJvdyBmbGV4LXdyYXAganVzdGlmeS1jZW50ZXIganVzdGlmeS1lbmQtbCBpdGVtcy1jZW50ZXIgcHYyIHBoMCBwaDQtbnMiPgogICAgICAgIDxsaSBjbGFzcz0idGMgcHYyIHBoMiBwaDQtbnMgZmxleC0yMC1zIj48YSBocmVmPSIvdG9vbHMvaW5zdGFsbCI+SW5zdGFsbDwvYT48L2xpPgogICAgICAgIDxsaSBjbGFzcz0idGMgcHYyIHBoMiBwaDQtbnMgZmxleC0yMC1zIj48YSBocmVmPSIvbGVhcm4iPkxlYXJuPC9hPjwvbGk+CiAgICAgICAgPGxpIGNsYXNzPSJ0YyBwdjIgcGgyIHBoNC1ucyBmbGV4LTIwLXMiPjxhIGhyZWY9Imh0dHBzOi8vcGxheS5ydXN0LWxhbmcub3JnLyI+UGxheWdyb3VuZDwvYT48L2xpPgogICAgICAgIDxsaSBjbGFzcz0idGMgcHYyIHBoMiBwaDQtbnMgZmxleC0yMC1zIj48YSBocmVmPSIvdG9vbHMiPlRvb2xzPC9hPjwvbGk+CiAgICAgICAgPGxpIGNsYXNzPSJ0YyBwdjIgcGgyIHBoNC1ucyBmbGV4LTIwLXMiPjxhIGhyZWY9Ii9nb3Zlcm5hbmNlIj5Hb3Zlcm5hbmNlPC9hPjwvbGk+CiAgICAgICAgPGxpIGNsYXNzPSJ0YyBwdjIgcGgyIHBoNC1ucyBmbGV4LTIwLXMiPjxhIGhyZWY9Ii9mdW5kaW5nIj5GdW5kaW5nPC9hPjwvbGk+CiAgICAgICAgPGxpIGNsYXNzPSJ0YyBwdjIgcGgyIHBoNC1ucyBmbGV4LTIwLXMiPjxhIGhyZWY9Ii9jb21tdW5pdHkiPkNvbW11bml0eTwvYT48L2xpPgogICAgICAgIDxsaSBjbGFzcz0idGMgcHYyIHBoMiBwaDQtbnMgZmxleC0yMC1zIj48YSBocmVmPSJodHRwczovL2Jsb2cucnVzdC1sYW5nLm9yZy8iPkJsb2c8L2E+PC9saT4KICAgICAgPC91bD4KICAgIAogICAgICA8ZGl2IGNsYXNzPSIgdy0xMDAgdy1hdXRvLWwgZmxleC1ub25lIGZsZXgganVzdGlmeS1jZW50ZXIgcHY0IHB2LTAtbCBsYW5ndWFnZXMiPgogICAgICAgIDxkaXYgY2xhc3M9InNlbGVjdCI+CiAgICAgICAgICA8bGFiZWwgZm9yPSJsYW5ndWFnZS1uYXYiIGNsYXNzPSJoaWRkZW4iPkxhbmd1YWdlPC9sYWJlbD4KICAgICAgICAgIDxzZWxlY3QgaWQ9Imxhbmd1YWdlLW5hdiIgZGF0YS1jdXJyZW50LWxhbmc9ImVuLVVTIj4KICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0iRW5nbGlzaCAoZW4tVVMpIiB2YWx1ZT0iZW4tVVMiPkVuZ2xpc2ggKGVuLVVTKTwvb3B0aW9uPgogICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSJFc3Bhw7FvbCAoZXMpIiB2YWx1ZT0iZXMiPkVzcGHDsW9sIChlcyk8L29wdGlvbj4KICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0iRnJhbsOnYWlzIChmcikiIHZhbHVlPSJmciI+RnJhbsOnYWlzIChmcik8L29wdGlvbj4KICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0iSXRhbGlhbm8gKGl0KSIgdmFsdWU9Iml0Ij5JdGFsaWFubyAoaXQpPC9vcHRpb24+CiAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9IuaXpeacrOiqniAoamEpIiB2YWx1ZT0iamEiPuaXpeacrOiqniAoamEpPC9vcHRpb24+CiAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9IlBvcnR1Z3XDqnMgKHB0LUJSKSIgdmFsdWU9InB0LUJSIj5Qb3J0dWd1w6pzIChwdC1CUik8L29wdGlvbj4KICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0i0KDRg9GB0YHQutC40LkgKHJ1KSIgdmFsdWU9InJ1Ij7QoNGD0YHRgdC60LjQuSAocnUpPC9vcHRpb24+CiAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9IlTDvHJrw6dlICh0cikiIHZhbHVlPSJ0ciI+VMO8cmvDp2UgKHRyKTwvb3B0aW9uPgogICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSLnroDkvZPkuK3mlocgKHpoLUNOKSIgdmFsdWU9InpoLUNOIj7nroDkvZPkuK3mlocgKHpoLUNOKTwvb3B0aW9uPgogICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSLmraPpq5TkuK3mlocgKHpoLVRXKSIgdmFsdWU9InpoLVRXIj7mraPpq5TkuK3mlocgKHpoLVRXKTwvb3B0aW9uPgogICAgICAgICAgPC9zZWxlY3Q+CiAgICAgICAgPC9kaXY+CiAgICAgIDwvZGl2PgogICAgCiAgICA8L25hdj4KICAgIDxtYWluPjxoZWFkZXIgY2xhc3M9Im10MyBtYjYgdy0xMDAgbXctbm9uZSBwaDMgbXc4LW0gbXc5LWwgY2VudGVyIj4KICA8ZGl2IGNsYXNzPSJmbGV4IGZsZXgtY29sdW1uIGZsZXgtcm93LWwiPgogICAgPGRpdiBjbGFzcz0idy03MC1sIG13OC1sIj4KICAgICAgPGgxPlJ1c3Q8L2gxPgogICAgICA8aDIgY2xhc3M9Im10NCBtYjAgZjIgZjEtbnMiPgogICAgICAgIEEgbGFuZ3VhZ2UgZW1wb3dlcmluZyBldmVyeW9uZSA8YnIgY2xhc3M9J2RuIGRiLW5zJz4gdG8gYnVpbGQgcmVsaWFibGUgYW5kIGVmZmljaWVudCBzb2Z0d2FyZS4KICAgICAgPC9oMj4KICAgIDwvZGl2PgogICAgPGRpdiBjbGFzcz0idy0zMC1sIGZsZXgtY29sdW1uIHBsMC1sIHByMC1sIHBsMyBwcjMiPgogICAgICA8YSBjbGFzcz0iYnV0dG9uIGJ1dHRvbi1kb3dubG9hZCBwaDQgbXQwIHctMTAwIiBocmVmPSIvbGVhcm4vZ2V0LXN0YXJ0ZWQiPgogICAgICAgIEdldCBTdGFydGVkCiAgICAgIDwvYT4KICAgICAgPHAgY2xhc3M9InRjIGYzIGYyLWwgbXQzIj4KICAgICAgICA8YSBocmVmPSJodHRwczovL2Jsb2cucnVzdC1sYW5nLm9yZy9yZWxlYXNlcy9sYXRlc3QiIGNsYXNzPSJkb3dubG9hZC1saW5rIj5WZXJzaW9uIDEuOTUuMDwvYT4KICAgICAgPC9wPgogICAgPC9kaXY+CiAgPC9kaXY+CjwvaGVhZGVyPgoKPHNlY3Rpb24gaWQ9Imxhbmd1YWdlLXZhbHVlcyIgY2xhc3M9ImdyZWVuIj4KICA8ZGl2IGNsYXNzPSJ3LTEwMCBtdy1ub25lIHBoMyBtdzgtbSBtdzktbCBjZW50ZXIgZjMiPgogICAgPGhlYWRlciBjbGFzcz0icGIwIj4KICAgICAgPGgyPgogICAgICAgIFdoeSBSdXN0PwogICAgICA8L2gyPgogICAgICA8ZGl2IGNsYXNzPSJoaWdobGlnaHQiPjwvZGl2PgogICAgPC9oZWFkZXI+CiAgICA8ZGl2IGNsYXNzPSJmbGV4LW5vbmUgZmxleC1sIj4KICAgICAgPHNlY3Rpb24gY2xhc3M9InctMTAwIHB2MiBwdjAtbCBtdDQiPgogICAgICAgIDxoMyBjbGFzcz0iZjIgZjEtbCI+UGVyZm9ybWFuY2U8L2gzPgogICAgICAgIDxwIGNsYXNzPSJmMyBsaC1jb3B5Ij4KICAgICAgICAgIFJ1c3QgaXMgYmxhemluZ2x5IGZhc3QgYW5kIG1lbW9yeS1lZmZpY2llbnQ6IHdpdGggbm8gcnVudGltZSBvcgpnYXJiYWdlIGNvbGxlY3RvciwgaXQgY2FuIHBvd2VyIHBlcmZvcm1hbmNlLWNyaXRpY2FsIHNlcnZpY2VzLCBydW4gb24KZW1iZWRkZWQgZGV2aWNlcywgYW5kIGVhc2lseSBpbnRlZ3JhdGUgd2l0aCBvdGhlciBsYW5ndWFnZXMuCiAgICAgICAgPC9wPgogICAgICA8L3NlY3Rpb24+CiAgICAgIDxzZWN0aW9uIGNsYXNzPSJ3LTEwMCBwdjIgcHYwLWwgbXQ0IG1oNS1sIj4KICAgICAgICA8aDMgY2xhc3M9ImYyIGYxLWwiPlJlbGlhYmlsaXR5PC9oMz4KICAgICAgICA8cCBjbGFzcz0iZjMgbGgtY29weSI+CiAgICAgICAgICBSdXN04oCZcyByaWNoIHR5cGUgc3lzdGVtIGFuZCBvd25lcnNoaXAgbW9kZWwgZ3VhcmFudGVlIG1lbW9yeS1zYWZldHkKYW5kIHRocmVhZC1zYWZldHkgJm1kYXNoOyBlbmFibGluZyB5b3UgdG8gZWxpbWluYXRlIG1hbnkgY2xhc3NlcyBvZgpidWdzIGF0IGNvbXBpbGUtdGltZS4KICAgICAgICA8L3A+CiAgICAgIDwvc2VjdGlvbj4KICAgICAgPHNlY3Rpb24gY2xhc3M9InctMTAwIHB2MiBwdjAtbCBtdDQiPgogICAgICAgIDxoMyBjbGFzcz0iZjIgZjEtbCI+UHJvZHVjdGl2aXR5PC9oMz4KICAgICAgICA8cCBjbGFzcz0iZjMgbGgtY29weSI+CiAgICAgICAgICBSdXN0IGhhcyBncmVhdCBkb2N1bWVudGF0aW9uLCBhIGZyaWVuZGx5IGNvbXBpbGVyIHdpdGggdXNlZnVsIGVycm9yCm1lc3NhZ2VzLCBhbmQgdG9wLW5vdGNoIHRvb2xpbmcgJm1kYXNoOyBhbiBpbnRlZ3JhdGVkIHBhY2thZ2UgbWFuYWdlcgphbmQgYnVpbGQgdG9vbCwgc21hcnQgbXVsdGktZWRpdG9yIHN1cHBvcnQgd2l0aCBhdXRvLWNvbXBsZXRpb24gYW5kCnR5cGUgaW5zcGVjdGlvbnMsIGFuIGF1dG8tZm9ybWF0dGVyLCBhbmQgbW9yZS4KICAgICAgICA8L3A+CiAgICAgIDwvc2VjdGlvbj4KCiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgo8c2VjdGlvbiBjbGFzcz0icHVycGxlIj4KICA8ZGl2IGNsYXNzPSJ3LTEwMCBtdy1ub25lIHBoMyBtdzgtbSBtdzktbCBjZW50ZXIgZjMiPgogICAgPGhlYWRlcj4KICAgICAgPGgyPgogICAgICAgIEJ1aWxkIGl0IGluIFJ1c3QKICAgICAgPC9oMj4KICAgICAgPGRpdiBjbGFzcz0iaGlnaGxpZ2h0Ij48L2Rpdj4KICAgIDwvaGVhZGVyPgoKICAgIDxkaXYgY2xhc3M9ImZsZXgtbm9uZSBmbGV4LWwgZmxleC1yb3ciPgogICAgICA8cCBjbGFzcz0iZmxleC1ncm93LTEgcGIyIj4KICAgICAgICBJbiAyMDE4LCB0aGUgUnVzdCBjb21tdW5pdHkgZGVjaWRlZCB0byBpbXByb3ZlIHRoZSBwcm9ncmFtbWluZyBleHBlcmllbmNlCmZvciBhIGZldyBkaXN0aW5jdCBkb21haW5zIChzZWUgPGEKaHJlZj0iaHR0cHM6Ly9ibG9nLnJ1c3QtbGFuZy5vcmcvMjAxOC8wMy8xMi9yb2FkbWFwLmh0bWwiPnRoZSAyMDE4CnJvYWRtYXA8L2E+KS4gRm9yIHRoZXNlLCB5b3UgY2FuIGZpbmQgbWFueSBoaWdoLXF1YWxpdHkgY3JhdGVzIGFuZCBzb21lCmF3ZXNvbWUgZ3VpZGVzIG9uIGhvdyB0byBnZXQgc3RhcnRlZC4KICAgICAgPC9wPgogICAgPC9kaXY+CgogICAgPGRpdiBjbGFzcz0iZmxleC1ub25lIGZsZXgtbCBmbGV4LXJvdyI+CiAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1yb3cgZmxleC1jb2x1bW4tbCBqdXN0aWZ5LWJldHdlZW4tbCBtdzggbWVhc3VyZS13aWRlLWwgdy0xMDAgbXQ1IG10Mi1sIj4KICAgICAgICA8ZGl2IGNsYXNzPSJ2LXRvcCB0Yy1sIj4KICAgICAgICAgIDxpbWcgc3JjPSIvc3RhdGljL2ltYWdlcy9jbGkuc3ZnIiBhbHQ9InRlcm1pbmFsIgogICAgICAgICAgICAgICBjbGFzcz0ibXczIG13NC1ucyIvPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9InYtdG9wIHBsNCBwbDAtbCBwdDAgcHQzLWwgbWVhc3VyZS13aWRlLWwgZmxleC1sIGZsZXgtY29sdW1uLWwgZmxleC1hdXRvLWwganVzdGlmeS1iZXR3ZWVuLWwiPgogICAgICAgICAgPGgzIGNsYXNzPSJ0Yy1sIj4KICAgICAgICAgICAgQ29tbWFuZCBMaW5lCiAgICAgICAgICA8L2gzPgogICAgICAgICAgPHAgY2xhc3M9ImZsZXgtZ3Jvdy0xIj4KICAgICAgICAgICAgV2hpcCB1cCBhIENMSSB0b29sIHF1aWNrbHkgd2l0aCBSdXN04oCZcyByb2J1c3QgZWNvc3lzdGVtLgpSdXN0IGhlbHBzIHlvdSBtYWludGFpbiB5b3VyIGFwcCB3aXRoIGNvbmZpZGVuY2UgYW5kIGRpc3RyaWJ1dGUgaXQgd2l0aCBlYXNlLgogICAgICAgICAgPC9wPgogICAgICAgICAgPGEgaHJlZj0iL3doYXQvY2xpIiBjbGFzcz0iYnV0dG9uIGJ1dHRvbi1zZWNvbmRhcnkiPkJ1aWxkaW5nIFRvb2xzPC9hPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1yb3cgZmxleC1jb2x1bW4tbCBqdXN0aWZ5LWJldHdlZW4tbCBtdzggbWVhc3VyZS13aWRlLWwgdy0xMDAgbXQ1IG10Mi1sIHBsNC1sIj4KICAgICAgICA8ZGl2IGNsYXNzPSJ2LXRvcCB0Yy1sIj4KICAgICAgICAgIDxpbWcgc3JjPSIvc3RhdGljL2ltYWdlcy93ZWJhc3NlbWJseS5zdmciIGFsdD0iZ2VhciB3aXRoIHB1enpsZSBwaWVjZSBlbGVtZW50cyIKICAgICAgICAgICAgICAgY2xhc3M9Im13MyBtdzQtbnMiLz4KICAgICAgICA8L2Rpdj4KICAgICAgICA8ZGl2IGNsYXNzPSJ2LXRvcCBwbDQgcGwwLWwgcHQwIHB0My1sIG1lYXN1cmUtd2lkZS1sIGZsZXgtbCBmbGV4LWNvbHVtbi1sIGZsZXgtYXV0by1sIGp1c3RpZnktYmV0d2Vlbi1sIj4KICAgICAgICAgIDxoMyBjbGFzcz0idGMtbCI+CiAgICAgICAgICAgIFdlYkFzc2VtYmx5CiAgICAgICAgICA8L2gzPgogICAgICAgICAgPHAgY2xhc3M9ImZsZXgtZ3Jvdy0xIj4KICAgICAgICAgIFVzZSBSdXN0IHRvIHN1cGVyY2hhcmdlIHlvdXIgSmF2YVNjcmlwdCwgb25lIG1vZHVsZSBhdCBhIHRpbWUuClB1Ymxpc2ggdG8gbnBtLCBidW5kbGUgd2l0aCB3ZWJwYWNrLCBhbmQgeW914oCZcmUgb2ZmIHRvIHRoZSByYWNlcy4KICAgICAgICAgIDwvcD4KICAgICAgICAgIDxhIGhyZWY9Ii93aGF0L3dhc20iIGNsYXNzPSJidXR0b24gYnV0dG9uLXNlY29uZGFyeSI+V3JpdGluZyBXZWIgQXBwczwvYT4KICAgICAgICA8L2Rpdj4KICAgICAgPC9kaXY+CgogICAgICA8ZGl2IGNsYXNzPSJmbGV4IGZsZXgtcm93IGZsZXgtY29sdW1uLWwganVzdGlmeS1iZXR3ZWVuLWwgbXc4IG1lYXN1cmUtd2lkZS1sIHctMTAwIG10NSBtdDItbCBwbDQtbCI+CiAgICAgICAgPGRpdiBjbGFzcz0idi10b3AgdGMtbCI+CiAgICAgICAgICA8aW1nIHNyYz0iL3N0YXRpYy9pbWFnZXMvbmV0d29ya2luZy5zdmciIGFsdD0iYSBjbG91ZCB3aXRoIG5vZGVzIgogICAgICAgICAgICAgICBjbGFzcz0ibXczIG13NC1ucyIvPgogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9InYtdG9wIHBsNCBwbDAtbCBwdDAgcHQzLWwgbWVhc3VyZS13aWRlLWwgZmxleC1sIGZsZXgtY29sdW1uLWwgZmxleC1hdXRvLWwganVzdGlmeS1iZXR3ZWVuLWwiPgogICAgICAgICAgPGgzIGNsYXNzPSJ0Yy1sIj4KICAgICAgICAgICAgTmV0d29ya2luZwogICAgICAgICAgPC9oMz4KICAgICAgICAgIDxwIGNsYXNzPSJmbGV4LWdyb3ctMSI+CiAgICAgICAgICAgIFByZWRpY3RhYmxlIHBlcmZvcm1hbmNlLiBUaW55IHJlc291cmNlIGZvb3RwcmludC4gUm9jay1zb2xpZCByZWxpYWJpbGl0eS4KUnVzdCBpcyBncmVhdCBmb3IgbmV0d29yayBzZXJ2aWNlcy4KICAgICAgICAgIDwvcD4KICAgICAgICAgIDxhIGhyZWY9Ii93aGF0L25ldHdvcmtpbmciIGNsYXNzPSJidXR0b24gYnV0dG9uLXNlY29uZGFyeSI+V29ya2luZyBPbiBTZXJ2ZXJzPC9hPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KCiAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1yb3cgZmxleC1jb2x1bW4tbCBqdXN0aWZ5LWJldHdlZW4tbCBtdzggbWVhc3VyZS13aWRlLWwgdy0xMDAgbXQ1IG10Mi1sIHBsNC1sIj4KICAgICAgICA8ZGl2IGNsYXNzPSJ2LXRvcCB0Yy1sIj4KICAgICAgICAgIDxpbWcgc3JjPSIvc3RhdGljL2ltYWdlcy9lbWJlZGRlZC5zdmciIGFsdD0iYW4gZW1iZWRkZWQgZGV2aWNlIGNoaXAiCiAgICAgICAgICAgICAgIGNsYXNzPSJtdzMgbXc0LW5zIi8+CiAgICAgICAgPC9kaXY+CiAgICAgICAgPGRpdiBjbGFzcz0idi10b3AgcGw0IHBsMC1sIHB0MCBwdDMtbCBtZWFzdXJlLXdpZGUtbCBmbGV4LWwgZmxleC1jb2x1bW4tbCBmbGV4LWF1dG8tbCBqdXN0aWZ5LWJldHdlZW4tbCI+CiAgICAgICAgICA8aDMgY2xhc3M9InRjLWwiPgogICAgICAgICAgICBFbWJlZGRlZAogICAgICAgICAgPC9oMz4KICAgICAgICAgIDxwIGNsYXNzPSJmbGV4LWdyb3ctMSI+CiAgICAgICAgICAgIFRhcmdldGluZyBsb3ctcmVzb3VyY2UgZGV2aWNlcz8KTmVlZCBsb3ctbGV2ZWwgY29udHJvbCB3aXRob3V0IGdpdmluZyB1cCBoaWdoLWxldmVsIGNvbnZlbmllbmNlcz8KUnVzdCBoYXMgeW91IGNvdmVyZWQuCiAgICAgICAgICA8L3A+CiAgICAgICAgICA8YSBocmVmPSIvd2hhdC9lbWJlZGRlZCIgY2xhc3M9ImJ1dHRvbiBidXR0b24tc2Vjb25kYXJ5Ij5TdGFydGluZyBXaXRoIEVtYmVkZGVkPC9hPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZGl2PgogIDwvZGl2Pgo8L3NlY3Rpb24+CjxzZWN0aW9uIGNsYXNzPSJ3aGl0ZSBwcm9kdWN0aW9uIj4KICA8ZGl2IGNsYXNzPSJ3LTEwMCBtdy1ub25lIHBoMyBtdzgtbSBtdzktbCBjZW50ZXIiPgogICAgPGhlYWRlcj4KICAgICAgPGgyPlJ1c3QgaW4gcHJvZHVjdGlvbjwvaDI+CiAgICAgIDxkaXYgY2xhc3M9ImhpZ2hsaWdodCI+PC9kaXY+CiAgICA8L2hlYWRlcj4KICAgIDxkaXYgY2xhc3M9ImRlc2NyaXB0aW9uIj4KICAgICAgPHAgY2xhc3M9ImxoLWNvcHkgZjIiPgogICAgICAgIEh1bmRyZWRzIG9mIGNvbXBhbmllcyBhcm91bmQgdGhlIHdvcmxkIGFyZSB1c2luZyBSdXN0IGluIHByb2R1Y3Rpb24KdG9kYXkgZm9yIGZhc3QsIGxvdy1yZXNvdXJjZSwgY3Jvc3MtcGxhdGZvcm0gc29sdXRpb25zLiA8c3Ryb25nPkZyb20gc3RhcnR1cHMgdG8gbGFyZ2UKY29ycG9yYXRpb25zLCBmcm9tIGVtYmVkZGVkIGRldmljZXMgdG8gc2NhbGFibGUgd2ViIHNlcnZpY2VzLCBSdXN0IGlzIGEgZ3JlYXQgZml0Ljwvc3Ryb25nPgogICAgICA8L3A+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgo8c2VjdGlvbiBjbGFzcz0iZ2V0LWludm9sdmVkIHJlZCI+CiAgPGRpdiBjbGFzcz0idy0xMDAgbXctbm9uZSBwaDMgbXc4LW0gbXc5LWwgY2VudGVyIGYzIj4KICAgIDxoZWFkZXI+CiAgICAgIDxoMj5HZXQgaW52b2x2ZWQ8L2gyPgogICAgICA8ZGl2IGNsYXNzPSJoaWdobGlnaHQiPjwvZGl2PgogICAgPC9oZWFkZXI+CiAgICA8ZGl2IGNsYXNzPSJmbGV4IGZsZXgtY29sdW1uIGZsZXgtcm93LWwiPgogICAgICA8ZGl2IGlkPSJyZWFkLXJ1c3QiIGNsYXNzPSJtdy01MC1sIG1yNC1sIHB0MCBmbGV4IGZsZXgtY29sdW1uIGp1c3RpZnktYmV0d2Vlbi1sIj4KICAgICAgICA8aDM+UmVhZCBSdXN0PC9oMz4KICAgICAgICA8cCBjbGFzcz0iZmxleC1ncm93LTEiPldlIGxvdmUgZG9jdW1lbnRhdGlvbiEgVGFrZSBhIGxvb2sgYXQgdGhlIGJvb2tzIGF2YWlsYWJsZSBvbmxpbmUsIGFzIHdlbGwgYXMga2V5IGJsb2cgcG9zdHMgYW5kIHVzZXIgZ3VpZGVzLjwvcD4KICAgICAgICA8YSBocmVmPSJsZWFybiIgY2xhc3M9ImJ1dHRvbiBidXR0b24tc2Vjb25kYXJ5Ij5SZWFkIHRoZSBib29rPC9hPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBpZD0id2F0Y2gtcnVzdCIgY2xhc3M9Im13LTUwLWwgcHQzIHB0MC1sIGZsZXggZmxleC1jb2x1bW4ganVzdGlmeS1iZXR3ZWVuLWwiPgogICAgICAgIDxoMz5XYXRjaCBSdXN0PC9oMz4KICAgICAgICA8cCBjbGFzcz0iZmxleC1ncm93LTEiPlRoZSBSdXN0IGNvbW11bml0eSBoYXMgYSBkZWRpY2F0ZWQgWW91VHViZSBjaGFubmVsIGNvbGxlY3RpbmcgYSBodWdlIHJhbmdlIG9mIHByZXNlbnRhdGlvbnMgYW5kCnR1dG9yaWFscy48L3A+CiAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQ2FZaGNVd1JCTnNjRk5VS1RqZ1BGaUEiIGNsYXNzPSJidXR0b24gYnV0dG9uLXNlY29uZGFyeSI+V2F0Y2ggdGhlIFZpZGVvczwvYT4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICAgIDxkaXYgY2xhc3M9InB0MyI+CiAgICAgIDxoMz5Db250cmlidXRlIGNvZGU8L2gzPgogICAgICA8cD4KICAgICAgUnVzdCBpcyB0cnVseSBhIGNvbW11bml0eSBlZmZvcnQsIGFuZCB3ZSB3ZWxjb21lIGNvbnRyaWJ1dGlvbiBmcm9tIGhvYmJ5aXN0cyBhbmQgcHJvZHVjdGlvbiB1c2VycywgZnJvbQpuZXdjb21lcnMgYW5kIHNlYXNvbmVkIHByb2Zlc3Npb25hbHMuIENvbWUgaGVscCB1cyBtYWtlIHRoZSBSdXN0IGV4cGVyaWVuY2UgZXZlbiBiZXR0ZXIhCiAgICAgIDwvcD4KICAgICAgPGEgaHJlZj0iaHR0cHM6Ly9ydXN0Yy1kZXYtZ3VpZGUucnVzdC1sYW5nLm9yZy9nZXR0aW5nLXN0YXJ0ZWQuaHRtbCIgY2xhc3M9ImJ1dHRvbiBidXR0b24tc2Vjb25kYXJ5Ij4KICAgICAgICBSZWFkIENvbnRyaWJ1dGlvbiBHdWlkZQogICAgICA8L2E+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgo8c2VjdGlvbiBjbGFzcz0id2hpdGUgdGhhbmtzIj4KICA8ZGl2IGNsYXNzPSJ3LTEwMCBtdy1ub25lIHBoMyBtdzgtbSBtdzktbCBjZW50ZXIiPgogICAgPGhlYWRlcj4KICAgICAgPGgyPlRoYW5rczwvaDI+CiAgICAgIDxkaXYgY2xhc3M9ImhpZ2hsaWdodCI+PC9kaXY+CiAgICA8L2hlYWRlcj4KICAgIDxkaXYgY2xhc3M9ImRlc2NyaXB0aW9uIj4KICAgICAgPHAgY2xhc3M9ImxoLWNvcHkgZjIiPgogICAgICAgIFJ1c3Qgd291bGQgbm90IGV4aXN0IHdpdGhvdXQgdGhlIGdlbmVyb3VzIGNvbnRyaWJ1dGlvbnMgb2YgdGltZSwgd29yaywgYW5kIHJlc291cmNlcyBmcm9tIGluZGl2aWR1YWxzIGFuZCBjb21wYW5pZXMuIFdlIGFyZSB2ZXJ5IGdyYXRlZnVsIGZvciB0aGUgc3VwcG9ydCEKICAgICAgPC9wPgogICAgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJmbGV4IGZsZXgtY29sdW1uIGZsZXgtcm93LWwiPgogICAgICA8ZGl2IGlkPSJpbmRpdmlkdWFsLWNvZGUiIGNsYXNzPSJtdy01MC1sIG1yNC1sIHB0MCBmbGV4IGZsZXgtY29sdW1uIGp1c3RpZnktYmV0d2Vlbi1sIj4KICAgICAgICA8aDM+SW5kaXZpZHVhbHM8L2gzPgogICAgICAgIDxwIGNsYXNzPSJmbGV4LWdyb3ctMSI+UnVzdCBpcyBhIGNvbW11bml0eSBwcm9qZWN0IGFuZCBpcyB2ZXJ5IHRoYW5rZnVsIGZvciB0aGUgbWFueSBjb21tdW5pdHkgY29udHJpYnV0aW9ucyBpdCByZWNlaXZlcy48L3A+CiAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly90aGFua3MucnVzdC1sYW5nLm9yZy8iIGNsYXNzPSJidXR0b24gYnV0dG9uLXNlY29uZGFyeSI+U2VlIGluZGl2aWR1YWwgY29udHJpYnV0b3JzPC9hPgogICAgICA8L2Rpdj4KICAgICAgPGRpdiBpZD0iY29tcGFueS1zcG9uc29yc2hpcHMiIGNsYXNzPSJtdy01MC1sIHB0MyBwdDAtbCBmbGV4IGZsZXgtY29sdW1uIGp1c3RpZnktYmV0d2Vlbi1sIj4KICAgICAgICA8aDM+Q29ycG9yYXRlIHNwb25zb3JzPC9oMz4KICAgICAgICA8cCBjbGFzcz0iZmxleC1ncm93LTEiPlRoZSBSdXN0IHByb2plY3QgcmVjZWl2ZXMgc3VwcG9ydCBmcm9tIGNvbXBhbmllcyB0aHJvdWdoIHRoZSBSdXN0IEZvdW5kYXRpb24uPC9wPgogICAgICAgIDxhIGhyZWY9Imh0dHBzOi8vZm91bmRhdGlvbi5ydXN0LWxhbmcub3JnL21lbWJlcnMiIGNsYXNzPSJidXR0b24gYnV0dG9uLXNlY29uZGFyeSI+U2VlIEZvdW5kYXRpb24gbWVtYmVyczwvYT4KICAgICAgPC9kaXY+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgoKICAgIDwvbWFpbj4KICAgIDxmb290ZXI+CiAgICAgIDxkaXYgY2xhc3M9InctMTAwIG13LW5vbmUgcGgzIG13OC1tIG13OS1sIGNlbnRlciBmMyI+CiAgICAgICAgPGRpdiBjbGFzcz0iZmxleCBmbGV4LWNvbHVtbiBmbGV4LXJvdy1sIHB2MC1sIj4KICAgICAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1jb2x1bW4gbXc4IHctMTAwIG1lYXN1cmUtd2lkZS1sIHB2MiBwdjUtbSBwdjItbnMgcGg0LW0gcGg0LWwiIGlkPSJnZXQtaGVscCI+CiAgICAgICAgICAgIDxoND5HZXQgaGVscCE8L2g0PgogICAgICAgICAgICA8dWw+CiAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9sZWFybiI+RG9jdW1lbnRhdGlvbjwvYT48L2xpPgogICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwOi8vZm9yZ2UucnVzdC1sYW5nLm9yZyI+UnVzdCBGb3JnZSAoQ29udHJpYnV0b3IgRG9jdW1lbnRhdGlvbik8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iaHR0cHM6Ly91c2Vycy5ydXN0LWxhbmcub3JnIj5Bc2sgYSBRdWVzdGlvbiBvbiB0aGUgVXNlcnMgRm9ydW08L2E+PC9saT4KICAgICAgICAgICAgPC91bD4KICAgICAgICAgICAgPGRpdiBjbGFzcz0ibGFuZ3VhZ2VzIj4KICAgICAgICAgICAgICA8ZGl2IGNsYXNzPSJzZWxlY3QiPgogICAgICAgICAgICAgICAgPGxhYmVsIGZvcj0ibGFuZ3VhZ2UtZm9vdGVyIiBjbGFzcz0iaGlkZGVuIj5MYW5ndWFnZTwvbGFiZWw+CiAgICAgICAgICAgICAgICA8c2VsZWN0IGlkPSJsYW5ndWFnZS1mb290ZXIiPgogICAgICAgICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSJFbmdsaXNoIChlbi1VUykiIHZhbHVlPSJlbi1VUyI+RW5nbGlzaCAoZW4tVVMpPC9vcHRpb24+CiAgICAgICAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9IkVzcGHDsW9sIChlcykiIHZhbHVlPSJlcyI+RXNwYcOxb2wgKGVzKTwvb3B0aW9uPgogICAgICAgICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSJGcmFuw6dhaXMgKGZyKSIgdmFsdWU9ImZyIj5GcmFuw6dhaXMgKGZyKTwvb3B0aW9uPgogICAgICAgICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSJJdGFsaWFubyAoaXQpIiB2YWx1ZT0iaXQiPkl0YWxpYW5vIChpdCk8L29wdGlvbj4KICAgICAgICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0i5pel5pys6KqeIChqYSkiIHZhbHVlPSJqYSI+5pel5pys6KqeIChqYSk8L29wdGlvbj4KICAgICAgICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0iUG9ydHVndcOqcyAocHQtQlIpIiB2YWx1ZT0icHQtQlIiPlBvcnR1Z3XDqnMgKHB0LUJSKTwvb3B0aW9uPgogICAgICAgICAgICAgICAgICA8b3B0aW9uIHRpdGxlPSLQoNGD0YHRgdC60LjQuSAocnUpIiB2YWx1ZT0icnUiPtCg0YPRgdGB0LrQuNC5IChydSk8L29wdGlvbj4KICAgICAgICAgICAgICAgICAgPG9wdGlvbiB0aXRsZT0iVMO8cmvDp2UgKHRyKSIgdmFsdWU9InRyIj5Uw7xya8OnZSAodHIpPC9vcHRpb24+CiAgICAgICAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9IueugOS9k+S4reaWhyAoemgtQ04pIiB2YWx1ZT0iemgtQ04iPueugOS9k+S4reaWhyAoemgtQ04pPC9vcHRpb24+CiAgICAgICAgICAgICAgICAgIDxvcHRpb24gdGl0bGU9Iuato+mrlOS4reaWhyAoemgtVFcpIiB2YWx1ZT0iemgtVFciPuato+mrlOS4reaWhyAoemgtVFcpPC9vcHRpb24+CiAgICAgICAgICAgICAgICA8L3NlbGVjdD4KICAgICAgICAgICAgICA8L2Rpdj4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1jb2x1bW4gbXc4IHctMTAwIG1lYXN1cmUtd2lkZS1sIHB2MiBwdjUtbSBwdjItbnMgcGg0LW0gcGg0LWwiPgogICAgICAgICAgICA8aDQ+VGVybXMgYW5kIHBvbGljaWVzPC9oND4KICAgICAgICAgICAgPHVsPgogICAgICAgICAgICAgIDxsaT48YSBocmVmPSIvcG9saWNpZXMvY29kZS1vZi1jb25kdWN0Ij5Db2RlIG9mIENvbmR1Y3Q8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL3BvbGljaWVzL2xpY2Vuc2VzIj5MaWNlbnNlczwvYT48L2xpPgogICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2ZvdW5kYXRpb24ucnVzdC1sYW5nLm9yZy9wb2xpY2llcy9sb2dvLXBvbGljeS1hbmQtbWVkaWEtZ3VpZGUvIj5Mb2dvIFBvbGljeSBhbmQgTWVkaWEgR3VpZGU8L2E+PC9saT4KICAgICAgICAgICAgICA8bGk+PGEgaHJlZj0iL3BvbGljaWVzL3NlY3VyaXR5Ij5TZWN1cml0eSBEaXNjbG9zdXJlczwvYT48L2xpPgogICAgICAgICAgICAgIDxsaT48YSBocmVmPSJodHRwczovL2ZvdW5kYXRpb24ucnVzdC1sYW5nLm9yZy9wb2xpY2llcy9wcml2YWN5LXBvbGljeS8iPlByaXZhY3kgTm90aWNlPC9hPgogICAgICAgICAgICAgIDwvbGk+CiAgICAgICAgICAgICAgPGxpPjxhIGhyZWY9Ii9wb2xpY2llcyI+QWxsIFBvbGljaWVzPC9hPjwvbGk+CiAgICAgICAgICAgIDwvdWw+CiAgICAgICAgICA8L2Rpdj4KICAgICAgICAgIDxkaXYgY2xhc3M9ImZsZXggZmxleC1jb2x1bW4gbXc4IHctMTAwIG1lYXN1cmUtd2lkZS1sIHB2MiBwdjUtbSBwdjItbnMgcGg0LW0gcGg0LWwiPgogICAgICAgICAgICA8aDQ+U29jaWFsPC9oND4KICAgICAgICAgICAgPGRpdiBjbGFzcz0iZmxleCBmbGV4LXJvdyBmbGV4LXdyYXAgaXRlbXMtY2VudGVyIj4KICAgICAgICAgICAgICA8YSByZWw9Im1lIiBocmVmPSJodHRwczovL3NvY2lhbC5ydXN0LWxhbmcub3JnL0BydXN0IiB0YXJnZXQ9Il9ibGFuayI+PGltZyBzcmM9Ii9zdGF0aWMvaW1hZ2VzL21hc3RvZG9uLnN2ZyIKICAgICAgICAgICAgICAgICAgYWx0PSJNYXN0b2RvbiIgdGl0bGU9Ik1hc3RvZG9uIiAvPjwvYT4KICAgICAgICAgICAgICA8YSByZWw9Im1lIiBocmVmPSJodHRwczovL2Jza3kuYXBwL3Byb2ZpbGUvcnVzdC1sYW5nLm9yZyIgdGFyZ2V0PSJfYmxhbmsiPjxpbWcKICAgICAgICAgICAgICAgICAgc3JjPSIvc3RhdGljL2ltYWdlcy9ibHVlc2t5LnN2ZyIgYWx0PSJCbHVlc2t5IiB0aXRsZT0iQmx1ZXNreSIgLz48L2E+CiAgICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly93d3cueW91dHViZS5jb20vY2hhbm5lbC9VQ2FZaGNVd1JCTnNjRk5VS1RqZ1BGaUEiIHRhcmdldD0iX2JsYW5rIj48aW1nIGNsYXNzPSJwdjIiCiAgICAgICAgICAgICAgICAgIHNyYz0iL3N0YXRpYy9pbWFnZXMveW91dHViZS5zdmciIGFsdD0ieW91dHViZSBsb2dvIiB0aXRsZT0iWW91VHViZSIgLz48L2E+CiAgICAgICAgICAgICAgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL3J1c3QtbGFuZyIgdGFyZ2V0PSJfYmxhbmsiPjxpbWcgc3JjPSIvc3RhdGljL2ltYWdlcy9naXRodWIuc3ZnIiBhbHQ9ImdpdGh1YiBsb2dvIgogICAgICAgICAgICAgICAgICB0aXRsZT0iR2l0SHViIiAvPjwvYT4KICAgICAgICAgICAgPC9kaXY+CiAgICAgICAgICA8L2Rpdj4KICAgIAogICAgICAgIDwvZGl2PgogICAgICAgIDxkaXYgY2xhc3M9ImF0dHJpYnV0aW9uIj4KICAgICAgICAgIDxwPgogICAgICAgICAgICBNYWludGFpbmVkIGJ5IHRoZSBSdXN0IFRlYW0uIFNlZSBhIGJ1Zz8KPGEgdGFyZ2V0PSJfYmxhbmsiIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9ydXN0LWxhbmcvd3d3LnJ1c3QtbGFuZy5vcmcvaXNzdWVzL25ldy9jaG9vc2UiPkZpbGUgYW4gaXNzdWUhPC9hPgogICAgICAgICAgPC9wPgogICAgICAgICAgPHA+V2ViIHNpdGUgYnVpbHQgZXZlcnkgZGF5IGF0IDIyOjAwIFVUQzwvcD4KICAgICAgICAgIDxwPkxvb2tpbmcgZm9yIHRoZSA8YSBocmVmPSJodHRwczovL3ByZXYucnVzdC1sYW5nLm9yZyI+cHJldmlvdXMgd2Vic2l0ZTwvYT4/PC9wPgogICAgICAgIDwvZGl2PgogICAgICA8L2Rpdj4KICAgIDwvZm9vdGVyPgogICAgPHNjcmlwdCBzcmM9Ii9zdGF0aWMvc2NyaXB0cy9sYW5ndWFnZXMuanMiPjwvc2NyaXB0PgogIDwvYm9keT4KPC9odG1sPgo=",
+        "response_body_blake3": "eb5a00b9997033e52b671225e8c4a1d4dd064036487358e90011d0f86dbdd983",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "18686"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": "A language empowering everyone to build reliable and efficient software.",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "icons": [
+      "/static/images/apple-touch-icon.png?v=ngJW8jGAmR",
+      "/static/images/favicon-16x16.png",
+      "/static/images/favicon-32x32.png",
+      "/static/images/favicon.svg"
+    ],
+    "lang": "en-US",
+    "meta": {
+      "description": "A language empowering everyone to build reliable and efficient software.",
+      "msapplication-TileColor": "#ffffff",
+      "msapplication-config": "/static/images/browserconfig.xml?v=ngJW8jGAmR",
+      "theme-color": "#ffffff",
+      "viewport": "width=device-width,initial-scale=1.0"
+    },
+    "opengraph": {
+      "description": "A language empowering everyone to build reliable and efficient software.",
+      "image": "https://www.rust-lang.org/static/images/rust-social-wide.jpg",
+      "locale": "en_US",
+      "type": "website"
+    },
+    "twitter": {
+      "card": "summary",
+      "creator": "@rustlang",
+      "description": "A language empowering everyone to build reliable and efficient software.",
+      "image": "https://www.rust-lang.org/static/images/rust-social.jpg",
+      "site": "@rustlang"
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "88d10088e89f7c09d74dc477dd6131ce768c30f2300ab3321d07e0afe67dfef3",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 1,
+          "executed_with_error": 0,
+          "external_handled": 3,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Rust Programming Language",
+  "tree": {
+    "description": "A language empowering everyone to build reliable and efficient software.",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 0,
+          "child_count": 6,
+          "children": [
+            {
+              "byte_count": 26,
+              "child_count": 0,
+              "children": [],
+              "heading": "A language empowering everyone to build reliable and efficient software.",
+              "intro": "Get Started Version 1.95.0",
+              "level": 2,
+              "path": "/rust/a-language-empowering-everyone-to-build",
+              "slug": "a-language-empowering-everyone-to-build",
+              "summary": "A language empowering everyone to build reliable and efficient software. — Get Started Version 1.95.0"
+            },
+            {
+              "byte_count": 0,
+              "child_count": 3,
+              "children": [
+                {
+                  "byte_count": 194,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Performance",
+                  "intro": "Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power performance-critical services, run on embedded devices, and easily integrate with other languages.",
+                  "level": 3,
+                  "path": "/rust/why-rust/performance",
+                  "slug": "performance",
+                  "summary": "Performance — Rust is blazingly fast and memory-efficient: with no runtime or garbage collector, it can power perf…"
+                },
+                {
+                  "byte_count": 155,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Reliability",
+                  "intro": "Rust’s rich type system and ownership model guarantee memory-safety and thread-safety — enabling you to eliminate many classes of bugs at compile-time.",
+                  "level": 3,
+                  "path": "/rust/why-rust/reliability",
+                  "slug": "reliability",
+                  "summary": "Reliability — Rust’s rich type system and ownership model guarantee memory-safety and thread-safety — enabling you…"
+                },
+                {
+                  "byte_count": 248,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Productivity",
+                  "intro": "Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling — an integrated package manager and build tool, smart multi-editor support with auto-completion and type inspections, an auto-formatter, and more.",
+                  "level": 3,
+                  "path": "/rust/why-rust/productivity",
+                  "slug": "productivity",
+                  "summary": "Productivity — Rust has great documentation, a friendly compiler with useful error messages, and top-notch tooling …"
+                }
+              ],
+              "heading": "Why Rust?",
+              "intro": "",
+              "level": 2,
+              "path": "/rust/why-rust",
+              "slug": "why-rust",
+              "summary": "Why Rust?"
+            },
+            {
+              "byte_count": 221,
+              "child_count": 4,
+              "children": [
+                {
+                  "byte_count": 151,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Command Line",
+                  "intro": "Whip up a CLI tool quickly with Rust’s robust ecosystem. Rust helps you maintain your app with confidence and distribute it with ease. Building Tools",
+                  "level": 3,
+                  "path": "/rust/build-it-in-rust/command-line",
+                  "slug": "command-line",
+                  "summary": "Command Line — Whip up a CLI tool quickly with Rust’s robust ecosystem. Rust helps you maintain your app with confi…"
+                },
+                {
+                  "byte_count": 147,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "WebAssembly",
+                  "intro": "Use Rust to supercharge your JavaScript, one module at a time. Publish to npm, bundle with webpack, and you’re off to the races. Writing Web Apps",
+                  "level": 3,
+                  "path": "/rust/build-it-in-rust/webassembly",
+                  "slug": "webassembly",
+                  "summary": "WebAssembly — Use Rust to supercharge your JavaScript, one module at a time. Publish to npm, bundle with webpack, …"
+                },
+                {
+                  "byte_count": 128,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Networking",
+                  "intro": "Predictable performance. Tiny resource footprint. Rock-solid reliability. Rust is great for network services. Working On Servers",
+                  "level": 3,
+                  "path": "/rust/build-it-in-rust/networking",
+                  "slug": "networking",
+                  "summary": "Networking — Predictable performance. Tiny resource footprint. Rock-solid reliability. Rust is great for network …"
+                },
+                {
+                  "byte_count": 142,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Embedded",
+                  "intro": "Targeting low-resource devices? Need low-level control without giving up high-level conveniences? Rust has you covered. Starting With Embedded",
+                  "level": 3,
+                  "path": "/rust/build-it-in-rust/embedded",
+                  "slug": "embedded",
+                  "summary": "Embedded — Targeting low-resource devices? Need low-level control without giving up high-level conveniences? Ru…"
+                }
+              ],
+              "heading": "Build it in Rust",
+              "intro": "In 2018, the Rust community decided to improve the programming experience for a few distinct domains (see the 2018 roadmap ). For these, you can find many high-quality crates and some awesome guides on how to get started.",
+              "level": 2,
+              "path": "/rust/build-it-in-rust",
+              "slug": "build-it-in-rust",
+              "summary": "Build it in Rust — In 2018, the Rust community decided to improve the programming experience for a few distinct domains…"
+            },
+            {
+              "byte_count": 229,
+              "child_count": 0,
+              "children": [],
+              "heading": "Rust in production",
+              "intro": "Hundreds of companies around the world are using Rust in production today for fast, low-resource, cross-platform solutions. From startups to large corporations, from embedded devices to scalable web services, Rust is a great fit.",
+              "level": 2,
+              "path": "/rust/rust-in-production",
+              "slug": "rust-in-production",
+              "summary": "Rust in production — Hundreds of companies around the world are using Rust in production today for fast, low-resource, cr…"
+            },
+            {
+              "byte_count": 0,
+              "child_count": 3,
+              "children": [
+                {
+                  "byte_count": 122,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Read Rust",
+                  "intro": "We love documentation! Take a look at the books available online, as well as key blog posts and user guides. Read the book",
+                  "level": 3,
+                  "path": "/rust/get-involved/read-rust",
+                  "slug": "read-rust",
+                  "summary": "Read Rust — We love documentation! Take a look at the books available online, as well as key blog posts and user…"
+                },
+                {
+                  "byte_count": 123,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Watch Rust",
+                  "intro": "The Rust community has a dedicated YouTube channel collecting a huge range of presentations and tutorials. Watch the Videos",
+                  "level": 3,
+                  "path": "/rust/get-involved/watch-rust",
+                  "slug": "watch-rust",
+                  "summary": "Watch Rust — The Rust community has a dedicated YouTube channel collecting a huge range of presentations and tuto…"
+                },
+                {
+                  "byte_count": 216,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Contribute code",
+                  "intro": "Rust is truly a community effort, and we welcome contribution from hobbyists and production users, from newcomers and seasoned professionals. Come help us make the Rust experience even better! Read Contribution Guide",
+                  "level": 3,
+                  "path": "/rust/get-involved/contribute-code",
+                  "slug": "contribute-code",
+                  "summary": "Contribute code — Rust is truly a community effort, and we welcome contribution from hobbyists and production users, f…"
+                }
+              ],
+              "heading": "Get involved",
+              "intro": "",
+              "level": 2,
+              "path": "/rust/get-involved",
+              "slug": "get-involved",
+              "summary": "Get involved"
+            },
+            {
+              "byte_count": 154,
+              "child_count": 2,
+              "children": [
+                {
+                  "byte_count": 126,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Individuals",
+                  "intro": "Rust is a community project and is very thankful for the many community contributions it receives. See individual contributors",
+                  "level": 3,
+                  "path": "/rust/thanks/individuals",
+                  "slug": "individuals",
+                  "summary": "Individuals — Rust is a community project and is very thankful for the many community contributions it receives. S…"
+                },
+                {
+                  "byte_count": 100,
+                  "child_count": 0,
+                  "children": [],
+                  "heading": "Corporate sponsors",
+                  "intro": "The Rust project receives support from companies through the Rust Foundation. See Foundation members",
+                  "level": 3,
+                  "path": "/rust/thanks/corporate-sponsors",
+                  "slug": "corporate-sponsors",
+                  "summary": "Corporate sponsors — The Rust project receives support from companies through the Rust Foundation. See Foundation members"
+                }
+              ],
+              "heading": "Thanks",
+              "intro": "Rust would not exist without the generous contributions of time, work, and resources from individuals and companies. We are very grateful for the support!",
+              "level": 2,
+              "path": "/rust/thanks",
+              "slug": "thanks",
+              "summary": "Thanks — Rust would not exist without the generous contributions of time, work, and resources from individual…"
+            }
+          ],
+          "heading": "Rust",
+          "intro": "",
+          "level": 1,
+          "path": "/rust",
+          "slug": "rust",
+          "summary": "Rust"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Rust Programming Language",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

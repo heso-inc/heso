@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Heso Determinism — Hydrated SPA Fixture</title>
+  <meta name="description" content="A JS-hydrated page that exercises every QuickJS determinism fence routed through plat_hash.">
+</head>
+<body>
+  <main id="app"><h1>Loading</h1></main>
+  <script>
+  // This fixture is the determinism harness's only JS-hydrated cassette.
+  // It deliberately touches every QuickStop-NG determinism fence so that
+  // a regression in any one of them (seeded ChaCha20 RNG, virtual clock,
+  // pinned UTC timezone) shows up as a divergent plat_hash across the
+  // K fresh replay processes:
+  //
+  //   * Math.random()        -> ChaCha20 stream seeded from the plat seed
+  //   * crypto.randomUUID()  -> same seeded stream (pure-JS shim)
+  //   * Date.now()           -> virtual clock (starts at 0, no wall time)
+  //   * new Date(0).toISOString() / getHours() -> UTC-pinned accessors
+  //   * fetch().then(...)     -> async microtask hydration drained on the
+  //                             virtual-clock fixed point, recorded into
+  //                             the cassette so `run` replays it offline.
+  //
+  // The fetch URL is absolute, built from `location.origin`, because the
+  // JS fetch shim's RELATIVE-URL base resolution is a known separate bug
+  // (a bare `/data.json` rejects with "fetch: builder error"). Deriving
+  // the origin from `location` keeps this fixture about determinism, not
+  // URL resolution, while letting the corpus generator serve it on any
+  // ephemeral port (the origin is rewritten to a canonical host in the
+  // checked-in plat).
+  (function () {
+    var app = document.getElementById('app');
+    var rand = Math.random();
+    var uuid = (typeof crypto !== 'undefined' && crypto.randomUUID)
+      ? crypto.randomUUID()
+      : 'no-crypto';
+    var now = Date.now();
+    var iso = new Date(0).toISOString();
+    var hours = new Date(0).getHours();
+    var origin = (typeof location !== 'undefined' && location.origin)
+      ? location.origin
+      : 'http://127.0.0.1';
+    fetch(origin + '/data.json')
+      .then(function (resp) { return resp.json(); })
+      .then(function (data) {
+        var h2 = document.createElement('h2');
+        h2.id = 'rendered';
+        h2.textContent = data.label;
+        app.appendChild(h2);
+
+        var dl = document.createElement('dl');
+        dl.id = 'fences';
+        function row(k, v) {
+          var dt = document.createElement('dt'); dt.textContent = k;
+          var dd = document.createElement('dd'); dd.textContent = String(v);
+          dl.appendChild(dt); dl.appendChild(dd);
+        }
+        row('rand', rand.toFixed(12));
+        row('uuid', uuid);
+        row('now', now);
+        row('iso', iso);
+        row('hours', hours);
+        row('items', (data.items || []).join(','));
+        app.appendChild(dl);
+
+        var h1 = app.querySelector('h1');
+        if (h1) { h1.textContent = 'Hydrated'; }
+      })
+      .catch(function (e) {
+        console.error('hydration fetch failed', e && e.message);
+      });
+  })();
+  </script>
+</body>
+</html>

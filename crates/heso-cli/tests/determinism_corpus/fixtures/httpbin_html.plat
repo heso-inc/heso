@@ -1,0 +1,102 @@
+{
+  "actions": [],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFET0NUWVBFIGh0bWw+CjxodG1sPgogIDxoZWFkPgogIDwvaGVhZD4KICA8Ym9keT4KICAgICAgPGgxPkhlcm1hbiBNZWx2aWxsZSAtIE1vYnktRGljazwvaDE+CgogICAgICA8ZGl2PgogICAgICAgIDxwPgogICAgICAgICAgQXZhaWxpbmcgaGltc2VsZiBvZiB0aGUgbWlsZCwgc3VtbWVyLWNvb2wgd2VhdGhlciB0aGF0IG5vdyByZWlnbmVkIGluIHRoZXNlIGxhdGl0dWRlcywgYW5kIGluIHByZXBhcmF0aW9uIGZvciB0aGUgcGVjdWxpYXJseSBhY3RpdmUgcHVyc3VpdHMgc2hvcnRseSB0byBiZSBhbnRpY2lwYXRlZCwgUGVydGgsIHRoZSBiZWdyaW1lZCwgYmxpc3RlcmVkIG9sZCBibGFja3NtaXRoLCBoYWQgbm90IHJlbW92ZWQgaGlzIHBvcnRhYmxlIGZvcmdlIHRvIHRoZSBob2xkIGFnYWluLCBhZnRlciBjb25jbHVkaW5nIGhpcyBjb250cmlidXRvcnkgd29yayBmb3IgQWhhYidzIGxlZywgYnV0IHN0aWxsIHJldGFpbmVkIGl0IG9uIGRlY2ssIGZhc3QgbGFzaGVkIHRvIHJpbmdib2x0cyBieSB0aGUgZm9yZW1hc3Q7IGJlaW5nIG5vdyBhbG1vc3QgaW5jZXNzYW50bHkgaW52b2tlZCBieSB0aGUgaGVhZHNtZW4sIGFuZCBoYXJwb29uZWVycywgYW5kIGJvd3NtZW4gdG8gZG8gc29tZSBsaXR0bGUgam9iIGZvciB0aGVtOyBhbHRlcmluZywgb3IgcmVwYWlyaW5nLCBvciBuZXcgc2hhcGluZyB0aGVpciB2YXJpb3VzIHdlYXBvbnMgYW5kIGJvYXQgZnVybml0dXJlLiBPZnRlbiBoZSB3b3VsZCBiZSBzdXJyb3VuZGVkIGJ5IGFuIGVhZ2VyIGNpcmNsZSwgYWxsIHdhaXRpbmcgdG8gYmUgc2VydmVkOyBob2xkaW5nIGJvYXQtc3BhZGVzLCBwaWtlLWhlYWRzLCBoYXJwb29ucywgYW5kIGxhbmNlcywgYW5kIGplYWxvdXNseSB3YXRjaGluZyBoaXMgZXZlcnkgc29vdHkgbW92ZW1lbnQsIGFzIGhlIHRvaWxlZC4gTmV2ZXJ0aGVsZXNzLCB0aGlzIG9sZCBtYW4ncyB3YXMgYSBwYXRpZW50IGhhbW1lciB3aWVsZGVkIGJ5IGEgcGF0aWVudCBhcm0uIE5vIG11cm11ciwgbm8gaW1wYXRpZW5jZSwgbm8gcGV0dWxhbmNlIGRpZCBjb21lIGZyb20gaGltLiBTaWxlbnQsIHNsb3csIGFuZCBzb2xlbW47IGJvd2luZyBvdmVyIHN0aWxsIGZ1cnRoZXIgaGlzIGNocm9uaWNhbGx5IGJyb2tlbiBiYWNrLCBoZSB0b2lsZWQgYXdheSwgYXMgaWYgdG9pbCB3ZXJlIGxpZmUgaXRzZWxmLCBhbmQgdGhlIGhlYXZ5IGJlYXRpbmcgb2YgaGlzIGhhbW1lciB0aGUgaGVhdnkgYmVhdGluZyBvZiBoaXMgaGVhcnQuIEFuZCBzbyBpdCB3YXMu4oCUTW9zdCBtaXNlcmFibGUhIEEgcGVjdWxpYXIgd2FsayBpbiB0aGlzIG9sZCBtYW4sIGEgY2VydGFpbiBzbGlnaHQgYnV0IHBhaW5mdWwgYXBwZWFyaW5nIHlhd2luZyBpbiBoaXMgZ2FpdCwgaGFkIGF0IGFuIGVhcmx5IHBlcmlvZCBvZiB0aGUgdm95YWdlIGV4Y2l0ZWQgdGhlIGN1cmlvc2l0eSBvZiB0aGUgbWFyaW5lcnMuIEFuZCB0byB0aGUgaW1wb3J0dW5pdHkgb2YgdGhlaXIgcGVyc2lzdGVkIHF1ZXN0aW9uaW5ncyBoZSBoYWQgZmluYWxseSBnaXZlbiBpbjsgYW5kIHNvIGl0IGNhbWUgdG8gcGFzcyB0aGF0IGV2ZXJ5IG9uZSBub3cga25ldyB0aGUgc2hhbWVmdWwgc3Rvcnkgb2YgaGlzIHdyZXRjaGVkIGZhdGUuIEJlbGF0ZWQsIGFuZCBub3QgaW5ub2NlbnRseSwgb25lIGJpdHRlciB3aW50ZXIncyBtaWRuaWdodCwgb24gdGhlIHJvYWQgcnVubmluZyBiZXR3ZWVuIHR3byBjb3VudHJ5IHRvd25zLCB0aGUgYmxhY2tzbWl0aCBoYWxmLXN0dXBpZGx5IGZlbHQgdGhlIGRlYWRseSBudW1ibmVzcyBzdGVhbGluZyBvdmVyIGhpbSwgYW5kIHNvdWdodCByZWZ1Z2UgaW4gYSBsZWFuaW5nLCBkaWxhcGlkYXRlZCBiYXJuLiBUaGUgaXNzdWUgd2FzLCB0aGUgbG9zcyBvZiB0aGUgZXh0cmVtaXRpZXMgb2YgYm90aCBmZWV0LiBPdXQgb2YgdGhpcyByZXZlbGF0aW9uLCBwYXJ0IGJ5IHBhcnQsIGF0IGxhc3QgY2FtZSBvdXQgdGhlIGZvdXIgYWN0cyBvZiB0aGUgZ2xhZG5lc3MsIGFuZCB0aGUgb25lIGxvbmcsIGFuZCBhcyB5ZXQgdW5jYXRhc3Ryb3BoaWVkIGZpZnRoIGFjdCBvZiB0aGUgZ3JpZWYgb2YgaGlzIGxpZmUncyBkcmFtYS4gSGUgd2FzIGFuIG9sZCBtYW4sIHdobywgYXQgdGhlIGFnZSBvZiBuZWFybHkgc2l4dHksIGhhZCBwb3N0cG9uZWRseSBlbmNvdW50ZXJlZCB0aGF0IHRoaW5nIGluIHNvcnJvdydzIHRlY2huaWNhbHMgY2FsbGVkIHJ1aW4uIEhlIGhhZCBiZWVuIGFuIGFydGlzYW4gb2YgZmFtZWQgZXhjZWxsZW5jZSwgYW5kIHdpdGggcGxlbnR5IHRvIGRvOyBvd25lZCBhIGhvdXNlIGFuZCBnYXJkZW47IGVtYnJhY2VkIGEgeW91dGhmdWwsIGRhdWdodGVyLWxpa2UsIGxvdmluZyB3aWZlLCBhbmQgdGhyZWUgYmxpdGhlLCBydWRkeSBjaGlsZHJlbjsgZXZlcnkgU3VuZGF5IHdlbnQgdG8gYSBjaGVlcmZ1bC1sb29raW5nIGNodXJjaCwgcGxhbnRlZCBpbiBhIGdyb3ZlLiBCdXQgb25lIG5pZ2h0LCB1bmRlciBjb3ZlciBvZiBkYXJrbmVzcywgYW5kIGZ1cnRoZXIgY29uY2VhbGVkIGluIGEgbW9zdCBjdW5uaW5nIGRpc2d1aXNlbWVudCwgYSBkZXNwZXJhdGUgYnVyZ2xhciBzbGlkIGludG8gaGlzIGhhcHB5IGhvbWUsIGFuZCByb2JiZWQgdGhlbSBhbGwgb2YgZXZlcnl0aGluZy4gQW5kIGRhcmtlciB5ZXQgdG8gdGVsbCwgdGhlIGJsYWNrc21pdGggaGltc2VsZiBkaWQgaWdub3JhbnRseSBjb25kdWN0IHRoaXMgYnVyZ2xhciBpbnRvIGhpcyBmYW1pbHkncyBoZWFydC4gSXQgd2FzIHRoZSBCb3R0bGUgQ29uanVyb3IhIFVwb24gdGhlIG9wZW5pbmcgb2YgdGhhdCBmYXRhbCBjb3JrLCBmb3J0aCBmbGV3IHRoZSBmaWVuZCwgYW5kIHNocml2ZWxsZWQgdXAgaGlzIGhvbWUuIE5vdywgZm9yIHBydWRlbnQsIG1vc3Qgd2lzZSwgYW5kIGVjb25vbWljIHJlYXNvbnMsIHRoZSBibGFja3NtaXRoJ3Mgc2hvcCB3YXMgaW4gdGhlIGJhc2VtZW50IG9mIGhpcyBkd2VsbGluZywgYnV0IHdpdGggYSBzZXBhcmF0ZSBlbnRyYW5jZSB0byBpdDsgc28gdGhhdCBhbHdheXMgaGFkIHRoZSB5b3VuZyBhbmQgbG92aW5nIGhlYWx0aHkgd2lmZSBsaXN0ZW5lZCB3aXRoIG5vIHVuaGFwcHkgbmVydm91c25lc3MsIGJ1dCB3aXRoIHZpZ29yb3VzIHBsZWFzdXJlLCB0byB0aGUgc3RvdXQgcmluZ2luZyBvZiBoZXIgeW91bmctYXJtZWQgb2xkIGh1c2JhbmQncyBoYW1tZXI7IHdob3NlIHJldmVyYmVyYXRpb25zLCBtdWZmbGVkIGJ5IHBhc3NpbmcgdGhyb3VnaCB0aGUgZmxvb3JzIGFuZCB3YWxscywgY2FtZSB1cCB0byBoZXIsIG5vdCB1bnN3ZWV0bHksIGluIGhlciBudXJzZXJ5OyBhbmQgc28sIHRvIHN0b3V0IExhYm9yJ3MgaXJvbiBsdWxsYWJ5LCB0aGUgYmxhY2tzbWl0aCdzIGluZmFudHMgd2VyZSByb2NrZWQgdG8gc2x1bWJlci4gT2gsIHdvZSBvbiB3b2UhIE9oLCBEZWF0aCwgd2h5IGNhbnN0IHRob3Ugbm90IHNvbWV0aW1lcyBiZSB0aW1lbHk/IEhhZHN0IHRob3UgdGFrZW4gdGhpcyBvbGQgYmxhY2tzbWl0aCB0byB0aHlzZWxmIGVyZSBoaXMgZnVsbCBydWluIGNhbWUgdXBvbiBoaW0sIHRoZW4gaGFkIHRoZSB5b3VuZyB3aWRvdyBoYWQgYSBkZWxpY2lvdXMgZ3JpZWYsIGFuZCBoZXIgb3JwaGFucyBhIHRydWx5IHZlbmVyYWJsZSwgbGVnZW5kYXJ5IHNpcmUgdG8gZHJlYW0gb2YgaW4gdGhlaXIgYWZ0ZXIgeWVhcnM7IGFuZCBhbGwgb2YgdGhlbSBhIGNhcmUta2lsbGluZyBjb21wZXRlbmN5LgogICAgICAgIDwvcD4KICAgICAgPC9kaXY+CiAgPC9ib2R5Pgo8L2h0bWw+",
+        "response_body_blake3": "e53c0b7b4e29e756d148265774ecd6881fe204d4d0ec47ef656713632fd69226",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "3741"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable forge to the hold again, after concluding his contributory work for Ahab's leg, but still retained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly invoked by the headsmen, and harpooneers, and bowsmen to do some little job for them; altering, or repairing, or new shaping their various weapons and boat furniture.",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {},
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "43eb90c674033d81ddd3d7c7790fba468b4757bd9963a4e5d3c677e78e4867f8",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "",
+  "tree": {
+    "description": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable forge to the hold again, after concluding his contributory work for Ahab's leg, but still retained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly invoked by the headsmen, and harpooneers, and bowsmen to do some little job for them; altering, or repairing, or new shaping their various weapons and boat furniture.",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 3568,
+          "child_count": 0,
+          "children": [],
+          "heading": "Herman Melville - Moby-Dick",
+          "intro": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered old blacksmith, had not removed his portable forge to the hold again, after concluding his contributory work for Ahab's leg, but still retained it on deck, fast lashed to ringbolts by the foremast; being now almost incessantly invoked by the headsmen, and harpooneers, and bowsmen to do some little job for them; altering, or repairing, or new shaping their various weapons and boat furniture. Often he would be surrounded by an eager circle, all waiting to be served; holding boat-spades, pike-heads, harpoons, and lances, and jealously watching his every sooty movement, as he toiled. Nevertheless, this old man's was a patient hammer wielded by a patient arm. No murmur, no impatience, no petulance did come from him. Silent, slow, and solemn; bowing over still further his chronically broken back, he toiled away, as if toil were life itself, and the heavy beating of his hammer the heavy beating of his heart. And so it was.—Most miserable! A peculiar walk in this old man, a certain slight but painful appearing yawing in his gait, had at an early period of the voyage excited the curiosity of the mariners. And to the importunity of their persisted questionings he had finally given in; and so it came to pass that every one now knew the shameful story of his wretched fate. Belated, and not innocently, one bitter winter's midnight, on the road running between two country towns, the blacksmith half-stupidly felt the deadly numbness stealing over him, and sought refuge in a leaning, dilapidated barn. The issue was, the loss of the extremities of both feet. Out of this revelation, part by part, at last came out the four acts of the gladness, and the one long, and as yet uncatastrophied fifth act of the grief of his life's drama. He was an old man, who, at the age of nearly sixty, had postponedly encountered that thing in sorrow's technicals called ruin. He had been an artisan of famed excellence, and with plenty to do; owned a house and garden; embraced a youthful, daughter-like, loving wife, and three blithe, ruddy children; every Sunday went to a cheerful-looking church, planted in a grove. But one night, under cover of darkness, and further concealed in a most cunning disguisement, a desperate burglar slid into his happy home, and robbed them all of everything. And darker yet to tell, the blacksmith himself did ignorantly conduct this burglar into his family's heart. It was the Bottle Conjuror! Upon the opening of that fatal cork, forth flew the fiend, and shrivelled up his home. Now, for prudent, most wise, and economic reasons, the blacksmith's shop was in the basement of his dwelling, but with a separate entrance to it; so that always had the young and loving healthy wife listened with no unhappy nervousness, but with vigorous pleasure, to the stout ringing of her young-armed old husband's hammer; whose reverberations, muffled by passing through the floors and walls, came up to her, not unsweetly, in her nursery; and so, to stout Labor's iron lullaby, the blacksmith's infants were rocked to slumber. Oh, woe on woe! Oh, Death, why canst thou not sometimes be timely? Hadst thou taken this old blacksmith to thyself ere his full ruin came upon him, then had the young widow had a delicious grief, and her orphans a truly venerable, legendary sire to dream of in their after years; and all of them a care-killing competency.",
+          "level": 1,
+          "path": "/herman-melville-moby-dick",
+          "slug": "herman-melville-moby-dick",
+          "summary": "Herman Melville - Moby-Dick — Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in prepar…"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

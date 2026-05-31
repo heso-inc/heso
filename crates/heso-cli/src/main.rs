@@ -3387,19 +3387,18 @@ pub(crate) struct ScrollSummary {
 ///   to be near-interactive; longer than this and the caller should
 ///   be using a different abstraction (a streaming loop, an
 ///   incremental crawler).
-/// - `DOM_QUIET_MS = 200` — the "no mutations for X" window that
-///   marks the DOM as quiet. 200 ms is the Playwright-derived
-///   industry-standard quiet window for "auto-wait" loops; see
-///   `https://www.browserstack.com/guide/playwright-waitforloadstate`
-///   (network-idle uses 500 ms; we use 200 ms because we're not
-///   waiting on network here, just on a click-handler's synchronous
-///   mutations to settle).
-/// - `PER_STEP_TIMEOUT_MS = 2_000` — hard cap on a single iteration's
-///   quiet-wait. Bounds worst-case latency per step.
+///
+/// Per-iteration DOM settling no longer uses a wall-clock quiet window:
+/// [`wait_dom_quiet`] delegates to [`settle_dom_deterministic`], which
+/// pumps jobs and advances the VIRTUAL clock to a fixed point (see
+/// [`SETTLE_MAX_ROUNDS`] / [`SETTLE_VIRTUAL_TICK_MS`]). The old
+/// `DOM_QUIET_MS` / `PER_STEP_TIMEOUT_MS` wall-clock knobs were removed
+/// because racing async hydration against `Instant::now()` made the
+/// captured DOM — which reaches signed plat bytes — host-timing
+/// dependent. `MAX_ELAPSED_MS` survives only as the auto-scroll click
+/// loop's outer hard-abort ceiling, not as a settle condition.
 const MAX_ITERATIONS: usize = 10;
 const MAX_ELAPSED_MS: u128 = 15_000;
-const DOM_QUIET_MS: u64 = 200;
-const PER_STEP_TIMEOUT_MS: u64 = 2_000;
 
 /// `read --complete`'s load loop. Mutates `session` (via clicks +
 /// IO flushes), updates `lazy_hints`, `actions`, `console`, and
@@ -3516,39 +3515,88 @@ pub(crate) fn run_auto_scroll_loop(
     }
 }
 
-/// Wait for the DOM to be quiet — no new HTML for `DOM_QUIET_MS`, with
-/// a `PER_STEP_TIMEOUT_MS` ceiling. Pumps the JS engine's microtask /
-/// fetch-job queue every iteration so async load-more handlers actually
-/// progress.
+/// Number of virtual-clock settle rounds attempted by
+/// [`settle_dom_deterministic`] before it gives up. Each round pumps
+/// pending jobs and advances the virtual clock by
+/// [`SETTLE_VIRTUAL_TICK_MS`]; the loop exits early the moment the DOM
+/// snapshot stops changing across a round, so the cap only bites on a
+/// page that mutates the DOM forever (a runaway `setInterval`). It is a
+/// fixed iteration budget, not a wall-clock budget, so the captured DOM
+/// is a deterministic function of (seed, cassette) and replays
+/// byte-identically across processes and hosts.
+const SETTLE_MAX_ROUNDS: usize = 256;
+
+/// Virtual milliseconds advanced per [`settle_dom_deterministic`] round.
+/// Drives `setTimeout`/`setInterval`-scheduled hydration off the virtual
+/// clock so a `fetch().then()` that defers its DOM write behind a timer
+/// still lands inside the settle window — without ever reading wall time.
+const SETTLE_VIRTUAL_TICK_MS: u64 = 16;
+
+/// Drive async hydration to a deterministic fixed point using ONLY the
+/// virtual clock — no wall-clock `elapsed()` anywhere in the loop.
 ///
-/// Returns once either:
-/// - the snapshot has not changed for `DOM_QUIET_MS` of wall time, or
-/// - `PER_STEP_TIMEOUT_MS` total has elapsed (hard ceiling).
-pub(crate) fn wait_dom_quiet(session: &mut heso_engine_js::JsSession) {
-    let step_start = std::time::Instant::now();
-    let tick = std::time::Duration::from_millis(25);
+/// On every round we pump the engine's pending jobs (microtasks +
+/// cassette-served `fetch()` callbacks via [`JsEngine::run_pending_jobs`])
+/// and advance the virtual clock one fixed tick (so timer-scheduled
+/// hydration fires), then re-snapshot the DOM. The loop terminates the
+/// instant a round produces the same snapshot it started with (the
+/// fixed point), or after [`SETTLE_MAX_ROUNDS`] rounds for a page that
+/// never quiesces. Because the termination condition is the snapshot
+/// hash plus a fixed round/tick budget — not a host-timing-dependent
+/// `Instant::now()` race — the settled DOM that flows into the signed
+/// plat body is reproducible: the same plat replays to the same
+/// `plat_hash` in K fresh processes and across architectures. This is
+/// the settle the determinism conformance harness depends on; the old
+/// wall-clock `wait_dom_quiet` raced the 200ms quiet window against the
+/// host scheduler and could capture a different DOM (and therefore a
+/// different signature) per run.
+pub(crate) fn settle_dom_deterministic(session: &mut heso_engine_js::JsSession) {
     let mut last_hash = html_snapshot_key(&session.document_html());
-    let mut quiet_since = std::time::Instant::now();
-    loop {
-        let elapsed = step_start.elapsed().as_millis() as u64;
-        if elapsed >= PER_STEP_TIMEOUT_MS {
+    for _ in 0..SETTLE_MAX_ROUNDS {
+        // Pump pending jobs (microtasks, cassette fetch callbacks, due
+        // timers). Errors here are non-fatal — they only indicate the
+        // engine returned an exception while running queued work, which
+        // the outer caller will see in `console` on the next drain.
+        let drained = session.engine().run_pending_jobs().unwrap_or(0);
+        let pending_timers = session.engine().pending_timers();
+        let h = html_snapshot_key(&session.document_html());
+
+        // Fixed point: the snapshot is stable AND there is no deferred
+        // work left to fire. For a static page (no fetch, no timer) this
+        // is true on the FIRST round, so we return WITHOUT advancing the
+        // virtual clock — `Date.now()` read by a later step still starts
+        // at 0, preserving the existing clock contract.
+        if h == last_hash && drained == 0 && pending_timers == 0 {
             return;
         }
-        // Pump pending jobs (microtasks, fetch callbacks). Errors here
-        // are non-fatal — they only indicate the engine returned an
-        // exception while running queued work, which the outer caller
-        // will see in `console` on the next drain.
-        let _ = session.engine().run_pending_jobs();
-        let snapshot = session.document_html();
-        let h = html_snapshot_key(&snapshot);
-        if h != last_hash {
-            last_hash = h;
-            quiet_since = std::time::Instant::now();
-        } else if quiet_since.elapsed().as_millis() as u64 >= DOM_QUIET_MS {
-            return;
+
+        // Work remains. If a timer is pending (e.g. a `setTimeout`-deferred
+        // render), advance the virtual clock one fixed tick so it becomes
+        // due; `advance_clock` also drains the microtasks the fired timers
+        // enqueue. We only advance when a timer is actually waiting, so the
+        // clock moves the minimum amount the page's own scheduling requires
+        // — deterministically, never off wall time.
+        if pending_timers > 0 {
+            let _ = session.engine().advance_clock(SETTLE_VIRTUAL_TICK_MS);
         }
-        std::thread::sleep(tick);
+        last_hash = html_snapshot_key(&session.document_html());
     }
+}
+
+/// Wait for the DOM to be quiet — no new HTML across the settle budget.
+///
+/// This now delegates to [`settle_dom_deterministic`]: it pumps the JS
+/// engine's microtask / fetch-job queue and advances the VIRTUAL clock
+/// (never wall time) until the DOM reaches a fixed point or a fixed
+/// round budget elapses. The previous implementation terminated on
+/// `Instant::now()` (a `DOM_QUIET_MS` quiet window under a
+/// `PER_STEP_TIMEOUT_MS` ceiling); because async hydration could land
+/// inside-vs-after that wall window depending on the host scheduler, the
+/// captured DOM — which reaches signed plat bytes on the
+/// `read --complete` path — was not guaranteed byte-stable across runs.
+/// Settling on the virtual-clock fixed point removes that divergence.
+pub(crate) fn wait_dom_quiet(session: &mut heso_engine_js::JsSession) {
+    settle_dom_deterministic(session);
 }
 
 /// Number of hex chars from the BLAKE3 digest used as the change-detect
@@ -3691,6 +3739,17 @@ fn starts_with_section(child: &str, form: &str) -> bool {
 /// agent-facing JSON shape, dropping `HttpOnly` cookies (invisible to
 /// `document.cookie` per WHATWG HTML §6.1) and de-duplicating by name —
 /// earlier entries win, so callers order their slices accordingly.
+///
+/// The emitted array is sorted by `(name, domain, path)` before it is
+/// returned. The jar half of the input (`cookies_from_jar`) iterates in
+/// `cookie_store`'s `HashMap` order, which is randomised per process by
+/// the default `RandomState` seed — so a request matching 2+ cookies
+/// would otherwise emit a different array order each run and, because
+/// this value reaches the signed plat body (`body["cookies"]`), a
+/// different `plat_hash` and signature on every invocation. Dedup keeps
+/// first-wins (response cookies stay authoritative); the final sort
+/// makes the order a deterministic function of the cookie set, not of
+/// HashMap iteration order, so the same page replays byte-identically.
 fn render_cookies<'a>(
     url_host: &str,
     cookies: impl IntoIterator<Item = &'a heso_engine_fetch::ResponseCookie>,
@@ -3722,6 +3781,16 @@ fn render_cookies<'a>(
             "host_only": host_only,
         }));
     }
+    out.sort_by(|a, b| {
+        let key = |v: &serde_json::Value| {
+            (
+                v["name"].as_str().unwrap_or_default().to_owned(),
+                v["domain"].as_str().unwrap_or_default().to_owned(),
+                v["path"].as_str().unwrap_or_default().to_owned(),
+            )
+        };
+        key(a).cmp(&key(b))
+    });
     serde_json::Value::Array(out)
 }
 
@@ -7192,6 +7261,23 @@ pub(crate) async fn execute_step_session(
                     .navigate(&page.body_html, current_url.clone())
                     .map_err(|e| format!("js session navigate failed: {e}"))?,
             };
+            // Settle async hydration deterministically before the DOM
+            // snapshot is taken. Scripts ran synchronously above, but a
+            // `fetch().then(mutate-DOM)` (or a `setTimeout`-deferred
+            // render) is still pending on the job/timer queues at this
+            // point. Draining it on the VIRTUAL clock (never wall time)
+            // makes the captured DOM — and therefore the stamped
+            // `plat_hash` and signature — a deterministic function of
+            // (seed, cassette): the same page replays byte-identically
+            // in K fresh processes. It also lets the Recording cassette
+            // capture the JS-side `fetch()` requests so `run` can replay
+            // them; without it an async-hydrated page would snapshot its
+            // pre-hydration DOM and drop the JS fetch from the cassette.
+            if let Some(sess) = session.as_mut() {
+                settle_dom_deterministic(sess);
+                *current_actions =
+                    heso_engine_fetch::extract_actions_from_html(&sess.document_html());
+            }
             let mut obj = serde_json::json!({
                 "op": "open",
                 "navigated_to": current_url.to_string(),

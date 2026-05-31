@@ -1,0 +1,142 @@
+{
+  "actions": [],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiPgogIDx0aXRsZT5IZXNvIERldGVybWluaXNtIOKAlCBIeWRyYXRlZCBTUEEgRml4dHVyZTwvdGl0bGU+CiAgPG1ldGEgbmFtZT0iZGVzY3JpcHRpb24iIGNvbnRlbnQ9IkEgSlMtaHlkcmF0ZWQgcGFnZSB0aGF0IGV4ZXJjaXNlcyBldmVyeSBRdWlja0pTIGRldGVybWluaXNtIGZlbmNlIHJvdXRlZCB0aHJvdWdoIHBsYXRfaGFzaC4iPgo8L2hlYWQ+Cjxib2R5PgogIDxtYWluIGlkPSJhcHAiPjxoMT5Mb2FkaW5nPC9oMT48L21haW4+CiAgPHNjcmlwdD4KICAvLyBUaGlzIGZpeHR1cmUgaXMgdGhlIGRldGVybWluaXNtIGhhcm5lc3MncyBvbmx5IEpTLWh5ZHJhdGVkIGNhc3NldHRlLgogIC8vIEl0IGRlbGliZXJhdGVseSB0b3VjaGVzIGV2ZXJ5IFF1aWNrU3RvcC1ORyBkZXRlcm1pbmlzbSBmZW5jZSBzbyB0aGF0CiAgLy8gYSByZWdyZXNzaW9uIGluIGFueSBvbmUgb2YgdGhlbSAoc2VlZGVkIENoYUNoYTIwIFJORywgdmlydHVhbCBjbG9jaywKICAvLyBwaW5uZWQgVVRDIHRpbWV6b25lKSBzaG93cyB1cCBhcyBhIGRpdmVyZ2VudCBwbGF0X2hhc2ggYWNyb3NzIHRoZQogIC8vIEsgZnJlc2ggcmVwbGF5IHByb2Nlc3NlczoKICAvLwogIC8vICAgKiBNYXRoLnJhbmRvbSgpICAgICAgICAtPiBDaGFDaGEyMCBzdHJlYW0gc2VlZGVkIGZyb20gdGhlIHBsYXQgc2VlZAogIC8vICAgKiBjcnlwdG8ucmFuZG9tVVVJRCgpICAtPiBzYW1lIHNlZWRlZCBzdHJlYW0gKHB1cmUtSlMgc2hpbSkKICAvLyAgICogRGF0ZS5ub3coKSAgICAgICAgICAgLT4gdmlydHVhbCBjbG9jayAoc3RhcnRzIGF0IDAsIG5vIHdhbGwgdGltZSkKICAvLyAgICogbmV3IERhdGUoMCkudG9JU09TdHJpbmcoKSAvIGdldEhvdXJzKCkgLT4gVVRDLXBpbm5lZCBhY2Nlc3NvcnMKICAvLyAgICogZmV0Y2goKS50aGVuKC4uLikgICAgIC0+IGFzeW5jIG1pY3JvdGFzayBoeWRyYXRpb24gZHJhaW5lZCBvbiB0aGUKICAvLyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmlydHVhbC1jbG9jayBmaXhlZCBwb2ludCwgcmVjb3JkZWQgaW50bwogIC8vICAgICAgICAgICAgICAgICAgICAgICAgICAgICB0aGUgY2Fzc2V0dGUgc28gYHJ1bmAgcmVwbGF5cyBpdCBvZmZsaW5lLgogIC8vCiAgLy8gVGhlIGZldGNoIFVSTCBpcyBhYnNvbHV0ZSwgYnVpbHQgZnJvbSBgbG9jYXRpb24ub3JpZ2luYCwgYmVjYXVzZSB0aGUKICAvLyBKUyBmZXRjaCBzaGltJ3MgUkVMQVRJVkUtVVJMIGJhc2UgcmVzb2x1dGlvbiBpcyBhIGtub3duIHNlcGFyYXRlIGJ1ZwogIC8vIChhIGJhcmUgYC9kYXRhLmpzb25gIHJlamVjdHMgd2l0aCAiZmV0Y2g6IGJ1aWxkZXIgZXJyb3IiKS4gRGVyaXZpbmcKICAvLyB0aGUgb3JpZ2luIGZyb20gYGxvY2F0aW9uYCBrZWVwcyB0aGlzIGZpeHR1cmUgYWJvdXQgZGV0ZXJtaW5pc20sIG5vdAogIC8vIFVSTCByZXNvbHV0aW9uLCB3aGlsZSBsZXR0aW5nIHRoZSBjb3JwdXMgZ2VuZXJhdG9yIHNlcnZlIGl0IG9uIGFueQogIC8vIGVwaGVtZXJhbCBwb3J0ICh0aGUgb3JpZ2luIGlzIHJld3JpdHRlbiB0byBhIGNhbm9uaWNhbCBob3N0IGluIHRoZQogIC8vIGNoZWNrZWQtaW4gcGxhdCkuCiAgKGZ1bmN0aW9uICgpIHsKICAgIHZhciBhcHAgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnYXBwJyk7CiAgICB2YXIgcmFuZCA9IE1hdGgucmFuZG9tKCk7CiAgICB2YXIgdXVpZCA9ICh0eXBlb2YgY3J5cHRvICE9PSAndW5kZWZpbmVkJyAmJiBjcnlwdG8ucmFuZG9tVVVJRCkKICAgICAgPyBjcnlwdG8ucmFuZG9tVVVJRCgpCiAgICAgIDogJ25vLWNyeXB0byc7CiAgICB2YXIgbm93ID0gRGF0ZS5ub3coKTsKICAgIHZhciBpc28gPSBuZXcgRGF0ZSgwKS50b0lTT1N0cmluZygpOwogICAgdmFyIGhvdXJzID0gbmV3IERhdGUoMCkuZ2V0SG91cnMoKTsKICAgIHZhciBvcmlnaW4gPSAodHlwZW9mIGxvY2F0aW9uICE9PSAndW5kZWZpbmVkJyAmJiBsb2NhdGlvbi5vcmlnaW4pCiAgICAgID8gbG9jYXRpb24ub3JpZ2luCiAgICAgIDogJ2h0dHA6Ly8xMjcuMC4wLjEnOwogICAgZmV0Y2gob3JpZ2luICsgJy9kYXRhLmpzb24nKQogICAgICAudGhlbihmdW5jdGlvbiAocmVzcCkgeyByZXR1cm4gcmVzcC5qc29uKCk7IH0pCiAgICAgIC50aGVuKGZ1bmN0aW9uIChkYXRhKSB7CiAgICAgICAgdmFyIGgyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnaDInKTsKICAgICAgICBoMi5pZCA9ICdyZW5kZXJlZCc7CiAgICAgICAgaDIudGV4dENvbnRlbnQgPSBkYXRhLmxhYmVsOwogICAgICAgIGFwcC5hcHBlbmRDaGlsZChoMik7CgogICAgICAgIHZhciBkbCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ2RsJyk7CiAgICAgICAgZGwuaWQgPSAnZmVuY2VzJzsKICAgICAgICBmdW5jdGlvbiByb3coaywgdikgewogICAgICAgICAgdmFyIGR0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZHQnKTsgZHQudGV4dENvbnRlbnQgPSBrOwogICAgICAgICAgdmFyIGRkID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnZGQnKTsgZGQudGV4dENvbnRlbnQgPSBTdHJpbmcodik7CiAgICAgICAgICBkbC5hcHBlbmRDaGlsZChkdCk7IGRsLmFwcGVuZENoaWxkKGRkKTsKICAgICAgICB9CiAgICAgICAgcm93KCdyYW5kJywgcmFuZC50b0ZpeGVkKDEyKSk7CiAgICAgICAgcm93KCd1dWlkJywgdXVpZCk7CiAgICAgICAgcm93KCdub3cnLCBub3cpOwogICAgICAgIHJvdygnaXNvJywgaXNvKTsKICAgICAgICByb3coJ2hvdXJzJywgaG91cnMpOwogICAgICAgIHJvdygnaXRlbXMnLCAoZGF0YS5pdGVtcyB8fCBbXSkuam9pbignLCcpKTsKICAgICAgICBhcHAuYXBwZW5kQ2hpbGQoZGwpOwoKICAgICAgICB2YXIgaDEgPSBhcHAucXVlcnlTZWxlY3RvcignaDEnKTsKICAgICAgICBpZiAoaDEpIHsgaDEudGV4dENvbnRlbnQgPSAnSHlkcmF0ZWQnOyB9CiAgICAgIH0pCiAgICAgIC5jYXRjaChmdW5jdGlvbiAoZSkgewogICAgICAgIGNvbnNvbGUuZXJyb3IoJ2h5ZHJhdGlvbiBmZXRjaCBmYWlsZWQnLCBlICYmIGUubWVzc2FnZSk7CiAgICAgIH0pOwogIH0pKCk7CiAgPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo=",
+        "response_body_blake3": "b71eef6398d8666f8f41ece0a963e1a20ed83b50a2c16cd6539343aa1adda0ed",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "3101"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      },
+      {
+        "final_url": "http://heso.invalid/data.json",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "eyJsYWJlbCI6Imh5ZHJhdGVkLW9rIiwiaXRlbXMiOlsiYWxwaGEiLCJiZXRhIiwiZ2FtbWEiXX0K",
+        "response_body_blake3": "1a6fc060c63b816c95de7eae606257856af06f4d628dc1819ffaf2be193530bb",
+        "response_headers": [
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "57"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/data.json"
+      }
+    ]
+  },
+  "description": "A JS-hydrated page that exercises every QuickJS determinism fence routed through plat_hash.",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en",
+    "meta": {
+      "description": "A JS-hydrated page that exercises every QuickJS determinism fence routed through plat_hash."
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "719ebb6a7d1341a96161996bdb338ee69ba8b30d5f2744c9feacb55c38cc1a2d",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 1,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Heso Determinism — Hydrated SPA Fixture",
+  "tree": {
+    "description": "A JS-hydrated page that exercises every QuickJS determinism fence routed through plat_hash.",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 0,
+          "child_count": 1,
+          "children": [
+            {
+              "byte_count": 127,
+              "child_count": 0,
+              "children": [],
+              "heading": "hydrated-ok",
+              "intro": "rand 0.024366309519 uuid fbdc2fe5-3c1c-407f-8543-162591bdba0e now 0 iso 1970-01-01T00:00:00.000Z hours 0 items alpha,beta,gamma",
+              "level": 2,
+              "path": "/hydrated/hydrated-ok",
+              "slug": "hydrated-ok",
+              "summary": "hydrated-ok — rand 0.024366309519 uuid fbdc2fe5-3c1c-407f-8543-162591bdba0e now 0 iso 1970-01-01T00:00:00.000Z hou…"
+            }
+          ],
+          "heading": "Hydrated",
+          "intro": "",
+          "level": 1,
+          "path": "/hydrated",
+          "slug": "hydrated",
+          "summary": "Hydrated"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Heso Determinism — Hydrated SPA Fixture",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

@@ -69,6 +69,12 @@ tempfile = "3"
 # integration tests to drive multi-step write workflows (fill / submit /
 # eval / navigate) against a hermetic HTTP server. Apache-2.0.
 wiremock = "0.6"
+# socket2: the determinism corpus generator's fixed-port server sets
+# SO_REUSEADDR/SO_REUSEPORT so re-binding the same loopback port across
+# back-to-back generation runs doesn't trip `TIME_WAIT` ("Address already
+# in use" / "error sending request"). Already in the lockfile transitively
+# via reqwest/tokio — no new external crate enters the build graph.
+socket2 = "0.6"
 
 [lints.rust]
 unsafe_code = "forbid"

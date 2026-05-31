@@ -1,0 +1,118 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "href": "https://iana.org/domains/example"
+      },
+      "name": "Learn more",
+      "ref": "@e0",
+      "role": "link",
+      "section": "/example-domain",
+      "tag": "a"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+PGh0bWwgbGFuZz0iZW4iPjxoZWFkPjx0aXRsZT5FeGFtcGxlIERvbWFpbjwvdGl0bGU+PG1ldGEgbmFtZT0idmlld3BvcnQiIGNvbnRlbnQ9IndpZHRoPWRldmljZS13aWR0aCwgaW5pdGlhbC1zY2FsZT0xIj48c3R5bGU+Ym9keXtiYWNrZ3JvdW5kOiNlZWU7d2lkdGg6NjB2dzttYXJnaW46MTV2aCBhdXRvO2ZvbnQtZmFtaWx5OnN5c3RlbS11aSxzYW5zLXNlcmlmfWgxe2ZvbnQtc2l6ZToxLjVlbX1kaXZ7b3BhY2l0eTowLjh9YTpsaW5rLGE6dmlzaXRlZHtjb2xvcjojMzQ4fTwvc3R5bGU+PC9oZWFkPjxib2R5PjxkaXY+PGgxPkV4YW1wbGUgRG9tYWluPC9oMT48cD5UaGlzIGRvbWFpbiBpcyBmb3IgdXNlIGluIGRvY3VtZW50YXRpb24gZXhhbXBsZXMgd2l0aG91dCBuZWVkaW5nIHBlcm1pc3Npb24uIEF2b2lkIHVzZSBpbiBvcGVyYXRpb25zLjwvcD48cD48YSBocmVmPSJodHRwczovL2lhbmEub3JnL2RvbWFpbnMvZXhhbXBsZSI+TGVhcm4gbW9yZTwvYT48L3A+PC9kaXY+PC9ib2R5PjwvaHRtbD4K",
+        "response_body_blake3": "6629699095a7057f217b5eafa21c7326a10474fcc2f632dc20cdd3f58a8d4238",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html"
+          ],
+          [
+            "content-length",
+            "528"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": "This domain is for use in documentation examples without needing permission.",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en",
+    "meta": {
+      "viewport": "width=device-width, initial-scale=1"
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "f4168841559ad8539c6aa60ff204685c9155cf231a07cd6932e72b51c89a5c06",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Example Domain",
+  "tree": {
+    "description": "This domain is for use in documentation examples without needing permission.",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 112,
+          "child_count": 0,
+          "children": [],
+          "heading": "Example Domain",
+          "intro": "This domain is for use in documentation examples without needing permission. Avoid use in operations. Learn more",
+          "level": 1,
+          "path": "/example-domain",
+          "slug": "example-domain",
+          "summary": "Example Domain — This domain is for use in documentation examples without needing permission. Avoid use in operations…"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Example Domain",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

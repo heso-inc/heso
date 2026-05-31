@@ -26,3 +26,12 @@ jobs:
         run: cargo test -p heso-engine-fetch plat::tests
       - name: Stateful RPC guard
         run: cargo test -p heso-cli --test serve_stateful_rpc
+      # LEG 1 hero proof: K=16 fresh processes per cassette must reproduce
+      # the pinned plat_hash byte-identically (single-host determinism).
+      # The cross-arch matrix lives in determinism-matrix.yml.
+      - name: Build heso-verify (ground-truth verifier)
+        run: cargo build -p heso-verify --bin heso-verify
+      - name: Determinism conformance guard
+        run: cargo test -p heso-cli --test determinism_conformance
+      - name: Cookie-order determinism guard
+        run: cargo test -p heso-cli --test cookie_order_determinism

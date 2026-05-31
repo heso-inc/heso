@@ -1,0 +1,2415 @@
+{
+  "actions": [
+    {
+      "attrs": {
+        "href": "https://news.ycombinator.com"
+      },
+      "ref": "@e0",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "news"
+      },
+      "name": "Hacker News",
+      "ref": "@e1",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "newest"
+      },
+      "name": "new",
+      "ref": "@e2",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "front"
+      },
+      "name": "past",
+      "ref": "@e3",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "newcomments"
+      },
+      "name": "comments",
+      "ref": "@e4",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "ask"
+      },
+      "name": "ask",
+      "ref": "@e5",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "show"
+      },
+      "name": "show",
+      "ref": "@e6",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "jobs"
+      },
+      "name": "jobs",
+      "ref": "@e7",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "submit",
+        "rel": "nofollow"
+      },
+      "name": "submit",
+      "ref": "@e8",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "login?goto=news"
+      },
+      "name": "login",
+      "ref": "@e9",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48177300&how=up&goto=news",
+        "id": "up_48177300"
+      },
+      "ref": "@e10",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "http://www.csl.sri.com/users/neumann/psos.pdf"
+      },
+      "name": "The foundations of a provably secure operating system (PSOS) (1979) [pdf]",
+      "ref": "@e11",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=sri.com"
+      },
+      "name": "sri.com",
+      "ref": "@e12",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=rurban"
+      },
+      "name": "rurban",
+      "ref": "@e13",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177300"
+      },
+      "name": "1 hour ago",
+      "ref": "@e14",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48177300&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e15",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177300"
+      },
+      "name": "11 comments",
+      "ref": "@e16",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48173429&how=up&goto=news",
+        "id": "up_48173429"
+      },
+      "ref": "@e17",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://gencad.github.io/"
+      },
+      "name": "GenCAD",
+      "ref": "@e18",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=gencad.github.io"
+      },
+      "name": "gencad.github.io",
+      "ref": "@e19",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=dagenix"
+      },
+      "name": "dagenix",
+      "ref": "@e20",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173429"
+      },
+      "name": "13 hours ago",
+      "ref": "@e21",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48173429&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e22",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173429"
+      },
+      "name": "86 comments",
+      "ref": "@e23",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48177228&how=up&goto=news",
+        "id": "up_48177228"
+      },
+      "ref": "@e24",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://indiepixel.de/blog/posts/where-are-the-vibecoded-photoshops/"
+      },
+      "name": "Where Are the Vibecoded Photoshops?",
+      "ref": "@e25",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=indiepixel.de"
+      },
+      "name": "indiepixel.de",
+      "ref": "@e26",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=gizmo64k"
+      },
+      "name": "gizmo64k",
+      "ref": "@e27",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177228"
+      },
+      "name": "1 hour ago",
+      "ref": "@e28",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48177228&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e29",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177228"
+      },
+      "name": "78 comments",
+      "ref": "@e30",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48177107&how=up&goto=news",
+        "id": "up_48177107"
+      },
+      "ref": "@e31",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.nbcnews.com/video/multiple-commencement-speakers-booed-for-ai-comments-during-graduation-speeches-263486021518"
+      },
+      "name": "Multiple commencement speakers booed for AI comments during graduation speeches",
+      "ref": "@e32",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=nbcnews.com"
+      },
+      "name": "nbcnews.com",
+      "ref": "@e33",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=wrxd"
+      },
+      "name": "wrxd",
+      "ref": "@e34",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177107"
+      },
+      "name": "2 hours ago",
+      "ref": "@e35",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48177107&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e36",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177107"
+      },
+      "name": "44 comments",
+      "ref": "@e37",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48155450&how=up&goto=news",
+        "id": "up_48155450"
+      },
+      "ref": "@e38",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.scientificamerican.com/article/strange-crystals-found-inside-wreckage-from-the-first-nuclear-bomb-test/"
+      },
+      "name": "Crystals found inside wreckage from the first nuclear bomb test",
+      "ref": "@e39",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=scientificamerican.com"
+      },
+      "name": "scientificamerican.com",
+      "ref": "@e40",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=jumploops"
+      },
+      "name": "jumploops",
+      "ref": "@e41",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48155450"
+      },
+      "name": "8 hours ago",
+      "ref": "@e42",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48155450&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e43",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48155450"
+      },
+      "name": "33 comments",
+      "ref": "@e44",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48175140&how=up&goto=news",
+        "id": "up_48175140"
+      },
+      "ref": "@e45",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.noemamag.com/there-is-no-hard-problem-of-consciousness/"
+      },
+      "name": "It is time to give up the dualism introduced by the debate on consciousness",
+      "ref": "@e46",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=noemamag.com"
+      },
+      "name": "noemamag.com",
+      "ref": "@e47",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=ahalbert4"
+      },
+      "name": "ahalbert4",
+      "ref": "@e48",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48175140"
+      },
+      "name": "8 hours ago",
+      "ref": "@e49",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48175140&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e50",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48175140"
+      },
+      "name": "274 comments",
+      "ref": "@e51",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48168668&how=up&goto=news",
+        "id": "up_48168668"
+      },
+      "ref": "@e52",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/tech4bot/rk3562deb"
+      },
+      "name": "I turned a $80 RK3562 Android tablet into a Debian Linux workstation",
+      "ref": "@e53",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/tech4bot"
+      },
+      "name": "github.com/tech4bot",
+      "ref": "@e54",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=tech4bot"
+      },
+      "name": "tech4bot",
+      "ref": "@e55",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168668"
+      },
+      "name": "21 hours ago",
+      "ref": "@e56",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48168668&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e57",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168668"
+      },
+      "name": "174 comments",
+      "ref": "@e58",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48152754&how=up&goto=news",
+        "id": "up_48152754"
+      },
+      "ref": "@e59",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://askanastronaut.issinrealtime.org/"
+      },
+      "name": "Ask an Astronaut: 333 hours of Q&A footage with astronauts",
+      "ref": "@e60",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=issinrealtime.org"
+      },
+      "name": "issinrealtime.org",
+      "ref": "@e61",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=gaws"
+      },
+      "name": "gaws",
+      "ref": "@e62",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48152754"
+      },
+      "name": "14 hours ago",
+      "ref": "@e63",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48152754&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e64",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48152754"
+      },
+      "name": "12 comments",
+      "ref": "@e65",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48166856&how=up&goto=news",
+        "id": "up_48166856"
+      },
+      "ref": "@e66",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/ERufian/ksharp"
+      },
+      "name": "kharp – k version 3 Language Interpreter in C#",
+      "ref": "@e67",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/erufian"
+      },
+      "name": "github.com/erufian",
+      "ref": "@e68",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=tosh"
+      },
+      "name": "tosh",
+      "ref": "@e69",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48166856"
+      },
+      "name": "6 hours ago",
+      "ref": "@e70",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48166856&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e71",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48166856"
+      },
+      "name": "4 comments",
+      "ref": "@e72",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48151251&how=up&goto=news",
+        "id": "up_48151251"
+      },
+      "ref": "@e73",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://jank-lang.org/blog/2026-05-08-optimization/"
+      },
+      "name": "Jank now has its own custom IR",
+      "ref": "@e74",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=jank-lang.org"
+      },
+      "name": "jank-lang.org",
+      "ref": "@e75",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=DASD"
+      },
+      "name": "DASD",
+      "ref": "@e76",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48151251"
+      },
+      "name": "13 hours ago",
+      "ref": "@e77",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48151251&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e78",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48151251"
+      },
+      "name": "28 comments",
+      "ref": "@e79",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48169874&how=up&goto=news",
+        "id": "up_48169874"
+      },
+      "ref": "@e80",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/MinishLab/semble"
+      },
+      "name": "Show HN: Semble – Code search for agents that uses 98% fewer tokens than grep",
+      "ref": "@e81",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/minishlab"
+      },
+      "name": "github.com/minishlab",
+      "ref": "@e82",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=Bibabomas"
+      },
+      "name": "Bibabomas",
+      "ref": "@e83",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48169874"
+      },
+      "name": "19 hours ago",
+      "ref": "@e84",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48169874&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e85",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48169874"
+      },
+      "name": "116 comments",
+      "ref": "@e86",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48173268&how=up&goto=news",
+        "id": "up_48173268"
+      },
+      "ref": "@e87",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.metalevel.at/prolog/horror"
+      },
+      "name": "Prolog Coding Horror",
+      "ref": "@e88",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=metalevel.at"
+      },
+      "name": "metalevel.at",
+      "ref": "@e89",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=RohanAdwankar"
+      },
+      "name": "RohanAdwankar",
+      "ref": "@e90",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173268"
+      },
+      "name": "13 hours ago",
+      "ref": "@e91",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48173268&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e92",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173268"
+      },
+      "name": "60 comments",
+      "ref": "@e93",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48160964&how=up&goto=news",
+        "id": "up_48160964"
+      },
+      "ref": "@e94",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://bartoszmilewski.com/2026/05/16/profunctor-equipment-in-haskell/"
+      },
+      "name": "Profunctor Equipment in Haskell",
+      "ref": "@e95",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=bartoszmilewski.com"
+      },
+      "name": "bartoszmilewski.com",
+      "ref": "@e96",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=g0xA52A2A"
+      },
+      "name": "g0xA52A2A",
+      "ref": "@e97",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48160964"
+      },
+      "name": "7 hours ago",
+      "ref": "@e98",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48160964&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e99",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48160964"
+      },
+      "name": "4 comments",
+      "ref": "@e100",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48173962&how=up&goto=news",
+        "id": "up_48173962"
+      },
+      "ref": "@e101",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://hellmood.111mb.de//wake_up_16b_writeup.html"
+      },
+      "name": "WriteUp: 16 Bytes of x86 that turn Matrix rain into sound",
+      "ref": "@e102",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=111mb.de"
+      },
+      "name": "111mb.de",
+      "ref": "@e103",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=HellMood"
+      },
+      "name": "HellMood",
+      "ref": "@e104",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173962"
+      },
+      "name": "12 hours ago",
+      "ref": "@e105",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48173962&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e106",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173962"
+      },
+      "name": "31 comments",
+      "ref": "@e107",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48157229&how=up&goto=news",
+        "id": "up_48157229"
+      },
+      "ref": "@e108",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://sites.math.rutgers.edu/~zeilberg/Opinion82.html"
+      },
+      "name": "A Good Lemma Is Worth a Thousand Theorems (2007)",
+      "ref": "@e109",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=rutgers.edu"
+      },
+      "name": "rutgers.edu",
+      "ref": "@e110",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=susam"
+      },
+      "name": "susam",
+      "ref": "@e111",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48157229"
+      },
+      "name": "11 hours ago",
+      "ref": "@e112",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48157229&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e113",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48157229"
+      },
+      "name": "13 comments",
+      "ref": "@e114",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48165980&how=up&goto=news",
+        "id": "up_48165980"
+      },
+      "ref": "@e115",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://electrek.co/2026/05/14/tesla-solar-roof-promise-vs-reality-pivot-panels/"
+      },
+      "name": "Tesla Solar Roof is on life support as it pivot to panels",
+      "ref": "@e116",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=electrek.co"
+      },
+      "name": "electrek.co",
+      "ref": "@e117",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=celsoazevedo"
+      },
+      "name": "celsoazevedo",
+      "ref": "@e118",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48165980"
+      },
+      "name": "1 day ago",
+      "ref": "@e119",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48165980&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e120",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48165980"
+      },
+      "name": "275 comments",
+      "ref": "@e121",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48176762&how=up&goto=news",
+        "id": "up_48176762"
+      },
+      "ref": "@e122",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.reddit.com/r/pasadena/s/94BHlkE84r"
+      },
+      "name": "Why is Google Maps back to showing old satellite images of Altadena?",
+      "ref": "@e123",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=reddit.com"
+      },
+      "name": "reddit.com",
+      "ref": "@e124",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=tgrowazay"
+      },
+      "name": "tgrowazay",
+      "ref": "@e125",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48176762"
+      },
+      "name": "2 hours ago",
+      "ref": "@e126",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48176762&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e127",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48176762"
+      },
+      "name": "16 comments",
+      "ref": "@e128",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48155936&how=up&goto=news",
+        "id": "up_48155936"
+      },
+      "ref": "@e129",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.rogerebert.com/streaming/magical-realism-nothern-exposure-25-years-later"
+      },
+      "name": "Magical Realism: “Northern Exposure” 25 Years Later (2015)",
+      "ref": "@e130",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=rogerebert.com"
+      },
+      "name": "rogerebert.com",
+      "ref": "@e131",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=walterbell"
+      },
+      "name": "walterbell",
+      "ref": "@e132",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48155936"
+      },
+      "name": "16 hours ago",
+      "ref": "@e133",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48155936&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e134",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48155936"
+      },
+      "name": "52 comments",
+      "ref": "@e135",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48150690&how=up&goto=news",
+        "id": "up_48150690"
+      },
+      "ref": "@e136",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.wired.com/story/build-a-radio-wave-detector-with-balls-of-aluminum-foil/"
+      },
+      "name": "Build a Radio Wave Detector with Balls of Aluminum Foil",
+      "ref": "@e137",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=wired.com"
+      },
+      "name": "wired.com",
+      "ref": "@e138",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=Brajeshwar"
+      },
+      "name": "Brajeshwar",
+      "ref": "@e139",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48150690"
+      },
+      "name": "7 hours ago",
+      "ref": "@e140",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48150690&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e141",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48150690"
+      },
+      "name": "5 comments",
+      "ref": "@e142",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48173468&how=up&goto=news",
+        "id": "up_48173468"
+      },
+      "ref": "@e143",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://idahonews.com/news/local/two-f-18-fighter-jets-have-crashed-during-an-airshow-at-mountain-home-air-force-base"
+      },
+      "name": "Two EA-18 fighter jets collide at Mountain Home airshow, pilots ejected safely",
+      "ref": "@e144",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=idahonews.com"
+      },
+      "name": "idahonews.com",
+      "ref": "@e145",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=ChrisArchitect"
+      },
+      "name": "ChrisArchitect",
+      "ref": "@e146",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173468"
+      },
+      "name": "13 hours ago",
+      "ref": "@e147",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48173468&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e148",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48173468"
+      },
+      "name": "201 comments",
+      "ref": "@e149",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48148351&how=up&goto=news",
+        "id": "up_48148351"
+      },
+      "ref": "@e150",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/El-EnderJ/NeoCalculator",
+        "rel": "nofollow"
+      },
+      "name": "Graphing Scientific Calculator Based on the ESP32",
+      "ref": "@e151",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/el-enderj"
+      },
+      "name": "github.com/el-enderj",
+      "ref": "@e152",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=uticus"
+      },
+      "name": "uticus",
+      "ref": "@e153",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48148351"
+      },
+      "name": "3 hours ago",
+      "ref": "@e154",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48148351&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e155",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48148351"
+      },
+      "name": "1 comment",
+      "ref": "@e156",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48168485&how=up&goto=news",
+        "id": "up_48168485"
+      },
+      "ref": "@e157",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/alternbits/awesome-cuda-books"
+      },
+      "name": "CUDA Books",
+      "ref": "@e158",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/alternbits"
+      },
+      "name": "github.com/alternbits",
+      "ref": "@e159",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=dariubs"
+      },
+      "name": "dariubs",
+      "ref": "@e160",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168485"
+      },
+      "name": "22 hours ago",
+      "ref": "@e161",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48168485&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e162",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168485"
+      },
+      "name": "50 comments",
+      "ref": "@e163",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48177716&how=up&goto=news",
+        "id": "up_48177716"
+      },
+      "ref": "@e164",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://spacedaily.com/nasa-still-maintains-some-of-the-voyager-spacecraft-code-in-a-1970s-era-programming-language-that-almost-nobody-on-earth-fully-understands-anymore-and-the-handful-of-engineers-who-do-are-now-in-their/",
+        "rel": "nofollow"
+      },
+      "name": "NASA still maintains some of the Voyager spacecraft code from the 70s era",
+      "ref": "@e165",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=spacedaily.com"
+      },
+      "name": "spacedaily.com",
+      "ref": "@e166",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=redbell"
+      },
+      "name": "redbell",
+      "ref": "@e167",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177716"
+      },
+      "name": "31 minutes ago",
+      "ref": "@e168",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48177716&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e169",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48177716"
+      },
+      "name": "1 comment",
+      "ref": "@e170",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48140556&how=up&goto=news",
+        "id": "up_48140556"
+      },
+      "ref": "@e171",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.airships.net/hindenburg-smoking-room/"
+      },
+      "name": "Hindenburg’s Smoking Room",
+      "ref": "@e172",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=airships.net"
+      },
+      "name": "airships.net",
+      "ref": "@e173",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=crescit_eundo"
+      },
+      "name": "crescit_eundo",
+      "ref": "@e174",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48140556"
+      },
+      "name": "22 hours ago",
+      "ref": "@e175",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48140556&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e176",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48140556"
+      },
+      "name": "165 comments",
+      "ref": "@e177",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48147091&how=up&goto=news",
+        "id": "up_48147091"
+      },
+      "ref": "@e178",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://unplannedobsolescence.com/blog/prolog-basics-pokemon/"
+      },
+      "name": "Prolog Basics Explained with Pokémon",
+      "ref": "@e179",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=unplannedobsolescence.com"
+      },
+      "name": "unplannedobsolescence.com",
+      "ref": "@e180",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=birdculture"
+      },
+      "name": "birdculture",
+      "ref": "@e181",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48147091"
+      },
+      "name": "1 day ago",
+      "ref": "@e182",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48147091&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e183",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48147091"
+      },
+      "name": "41 comments",
+      "ref": "@e184",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48168221&how=up&goto=news",
+        "id": "up_48168221"
+      },
+      "ref": "@e185",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://frederickvanbrabant.com/blog/2026-05-15-i-dont-think-ai-will-make-your-processes-go-faster/"
+      },
+      "name": "I don't think AI will make your processes go faster",
+      "ref": "@e186",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=frederickvanbrabant.com"
+      },
+      "name": "frederickvanbrabant.com",
+      "ref": "@e187",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=TheEdonian"
+      },
+      "name": "TheEdonian",
+      "ref": "@e188",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168221"
+      },
+      "name": "23 hours ago",
+      "ref": "@e189",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48168221&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e190",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168221"
+      },
+      "name": "410 comments",
+      "ref": "@e191",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48141960&how=up&goto=news",
+        "id": "up_48141960"
+      },
+      "ref": "@e192",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.science.org/content/article/scientists-id-corkscrew-killer-behind-gruesome-seal-deaths"
+      },
+      "name": "Cannibalistic attacks between gray seals leave telltale “corkscrew” injuries",
+      "ref": "@e193",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=science.org"
+      },
+      "name": "science.org",
+      "ref": "@e194",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=gmays"
+      },
+      "name": "gmays",
+      "ref": "@e195",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48141960"
+      },
+      "name": "16 hours ago",
+      "ref": "@e196",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48141960&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e197",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48141960"
+      },
+      "name": "30 comments",
+      "ref": "@e198",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48133293&how=up&goto=news",
+        "id": "up_48133293"
+      },
+      "ref": "@e199",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://en.wikipedia.org/wiki/High-entropy_alloy"
+      },
+      "name": "High-Entropy Alloy",
+      "ref": "@e200",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=wikipedia.org"
+      },
+      "name": "wikipedia.org",
+      "ref": "@e201",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=leonidasrup"
+      },
+      "name": "leonidasrup",
+      "ref": "@e202",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48133293"
+      },
+      "name": "23 hours ago",
+      "ref": "@e203",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48133293&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e204",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48133293"
+      },
+      "name": "23 comments",
+      "ref": "@e205",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48168159&how=up&goto=news",
+        "id": "up_48168159"
+      },
+      "ref": "@e206",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.bbc.com/future/article/20260514-how-hallucinogenic-ibogaine-helps-veterans-overcome-ptsd"
+      },
+      "name": "Trials on veterans suggest ibogaine could provide a new treatment for PTSD",
+      "ref": "@e207",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=bbc.com"
+      },
+      "name": "bbc.com",
+      "ref": "@e208",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=bushwart"
+      },
+      "name": "bushwart",
+      "ref": "@e209",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168159"
+      },
+      "name": "23 hours ago",
+      "ref": "@e210",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48168159&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e211",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48168159"
+      },
+      "name": "106 comments",
+      "ref": "@e212",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "vote?id=48149461&how=up&goto=news",
+        "id": "up_48149461"
+      },
+      "ref": "@e213",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/ABGEO/mezz"
+      },
+      "name": "Show HN: Mezz, a curl-able WiFi sandbox for IoT pentesting",
+      "ref": "@e214",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "from?site=github.com/abgeo"
+      },
+      "name": "github.com/abgeo",
+      "ref": "@e215",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "user?id=ABGEO"
+      },
+      "name": "ABGEO",
+      "ref": "@e216",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48149461"
+      },
+      "name": "9 hours ago",
+      "ref": "@e217",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "hide?id=48149461&goto=news"
+      },
+      "name": "hide",
+      "ref": "@e218",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "item?id=48149461"
+      },
+      "name": "7 comments",
+      "ref": "@e219",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "?p=2",
+        "rel": "next"
+      },
+      "name": "More",
+      "ref": "@e220",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "newsguidelines.html"
+      },
+      "name": "Guidelines",
+      "ref": "@e221",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "newsfaq.html"
+      },
+      "name": "FAQ",
+      "ref": "@e222",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "lists"
+      },
+      "name": "Lists",
+      "ref": "@e223",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://github.com/HackerNews/API"
+      },
+      "name": "API",
+      "ref": "@e224",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "security.html"
+      },
+      "name": "Security",
+      "ref": "@e225",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.ycombinator.com/legal/"
+      },
+      "name": "Legal",
+      "ref": "@e226",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "https://www.ycombinator.com/apply/"
+      },
+      "name": "Apply to YC",
+      "ref": "@e227",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "href": "mailto:hn@ycombinator.com"
+      },
+      "name": "Contact",
+      "ref": "@e228",
+      "role": "link",
+      "section": "/",
+      "tag": "a"
+    },
+    {
+      "attrs": {
+        "action": "//hn.algolia.com/",
+        "method": "get"
+      },
+      "name": "Search:",
+      "ref": "@e229",
+      "role": "form",
+      "section": "/",
+      "tag": "form"
+    },
+    {
+      "attrs": {
+        "name": "q",
+        "type": "text"
+      },
+      "name": "q",
+      "ref": "@e230",
+      "role": "textbox",
+      "section": "/",
+      "tag": "input"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PGh0bWwgbGFuZz0iZW4iIG9wPSJuZXdzIj48aGVhZD48bWV0YSBuYW1lPSJyZWZlcnJlciIgY29udGVudD0ib3JpZ2luIj48bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+PGxpbmsgcmVsPSJzdHlsZXNoZWV0IiB0eXBlPSJ0ZXh0L2NzcyIgaHJlZj0ibmV3cy5jc3M/S252T1BoaGVYUGV3aTVJVUt5WnMiPjxsaW5rIHJlbD0iaWNvbiIgaHJlZj0ieTE4LnN2ZyI+PGxpbmsgcmVsPSJhbHRlcm5hdGUiIHR5cGU9ImFwcGxpY2F0aW9uL3Jzcyt4bWwiIHRpdGxlPSJSU1MiIGhyZWY9InJzcyI+PHRpdGxlPkhhY2tlciBOZXdzPC90aXRsZT48L2hlYWQ+PGJvZHk+PGNlbnRlcj48dGFibGUgaWQ9ImhubWFpbiIgYm9yZGVyPSIwIiBjZWxscGFkZGluZz0iMCIgY2VsbHNwYWNpbmc9IjAiIHdpZHRoPSI4NSUiIGJnY29sb3I9IiNmNmY2ZWYiPjx0cj48dGQgYmdjb2xvcj0iI2ZmNjYwMCI+PHRhYmxlIGJvcmRlcj0iMCIgY2VsbHBhZGRpbmc9IjAiIGNlbGxzcGFjaW5nPSIwIiB3aWR0aD0iMTAwJSIgc3R5bGU9InBhZGRpbmc6MnB4Ij48dHI+PHRkIHN0eWxlPSJ3aWR0aDoxOHB4O3BhZGRpbmctcmlnaHQ6NHB4Ij48YSBocmVmPSJodHRwczovL25ld3MueWNvbWJpbmF0b3IuY29tIj48aW1nIHNyYz0ieTE4LnN2ZyIgd2lkdGg9IjE4IiBoZWlnaHQ9IjE4IiBzdHlsZT0iYm9yZGVyOjFweCB3aGl0ZSBzb2xpZDsgZGlzcGxheTpibG9jayI+PC9hPjwvdGQ+PHRkIHN0eWxlPSJsaW5lLWhlaWdodDoxMnB0OyBoZWlnaHQ6MTBweDsiPjxzcGFuIGNsYXNzPSJwYWdldG9wIj48YiBjbGFzcz0iaG5uYW1lIj48YSBocmVmPSJuZXdzIj5IYWNrZXIgTmV3czwvYT48L2I+PGEgaHJlZj0ibmV3ZXN0Ij5uZXc8L2E+IHwgPGEgaHJlZj0iZnJvbnQiPnBhc3Q8L2E+IHwgPGEgaHJlZj0ibmV3Y29tbWVudHMiPmNvbW1lbnRzPC9hPiB8IDxhIGhyZWY9ImFzayI+YXNrPC9hPiB8IDxhIGhyZWY9InNob3ciPnNob3c8L2E+IHwgPGEgaHJlZj0iam9icyI+am9iczwvYT4gfCA8YSBocmVmPSJzdWJtaXQiIHJlbD0ibm9mb2xsb3ciPnN1Ym1pdDwvYT48L3NwYW4+PC90ZD48dGQgc3R5bGU9InRleHQtYWxpZ246cmlnaHQ7cGFkZGluZy1yaWdodDo0cHg7Ij48c3BhbiBjbGFzcz0icGFnZXRvcCI+PGEgaHJlZj0ibG9naW4/Z290bz1uZXdzIj5sb2dpbjwvYT48L3NwYW4+PC90ZD48L3RyPjwvdGFibGU+PC90ZD48L3RyPjx0ciBzdHlsZT0naGVpZ2h0OjEwcHgnLz48dHIgaWQ9ImJpZ2JveCI+PHRkPjx0YWJsZSBib3JkZXI9IjAiIGNlbGxwYWRkaW5nPSIwIiBjZWxsc3BhY2luZz0iMCI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTc3MzAwIj48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MS48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTc3MzAwJyBocmVmPSd2b3RlP2lkPTQ4MTc3MzAwJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwOi8vd3d3LmNzbC5zcmkuY29tL3VzZXJzL25ldW1hbm4vcHNvcy5wZGYiPlRoZSBmb3VuZGF0aW9ucyBvZiBhIHByb3ZhYmx5IHNlY3VyZSBvcGVyYXRpbmcgc3lzdGVtIChQU09TKSAoMTk3OSkgW3BkZl08L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9c3JpLmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPnNyaS5jb208L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNzczMDAiPjM3IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1ydXJiYW4iIGNsYXNzPSJobnVzZXIiPnJ1cmJhbjwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMThUMDk6NDA6NTEgMTc3OTA5NzI1MSI+PGEgaHJlZj0iaXRlbT9pZD00ODE3NzMwMCI+MSBob3VyIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNzczMDAiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTc3MzAwJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE3NzMwMCI+MTEmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNzM0MjkiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4yLjwvc3Bhbj48L3RkPjx0ZCB2YWxpZ249InRvcCIgY2xhc3M9InZvdGVsaW5rcyI+PGNlbnRlcj48YSBpZD0ndXBfNDgxNzM0MjknIGhyZWY9J3ZvdGU/aWQ9NDgxNzM0MjkmYW1wO2hvdz11cCZhbXA7Z290bz1uZXdzJz48ZGl2IGNsYXNzPSd2b3RlYXJyb3cnIHRpdGxlPSd1cHZvdGUnPjwvZGl2PjwvYT48L2NlbnRlcj48L3RkPjx0ZCBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJ0aXRsZWxpbmUiPjxhIGhyZWY9Imh0dHBzOi8vZ2VuY2FkLmdpdGh1Yi5pby8iPkdlbkNBRDwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1nZW5jYWQuZ2l0aHViLmlvIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+Z2VuY2FkLmdpdGh1Yi5pbzwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE3MzQyOSI+MzQxIHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1kYWdlbml4IiBjbGFzcz0iaG51c2VyIj5kYWdlbml4PC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xN1QyMTo0MDozNSAxNzc5MDU0MDM1Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTczNDI5Ij4xMyBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTczNDI5Ij48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE3MzQyOSZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzM0MjkiPjg2Jm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTc3MjI4Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+My48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTc3MjI4JyBocmVmPSd2b3RlP2lkPTQ4MTc3MjI4JmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2luZGllcGl4ZWwuZGUvYmxvZy9wb3N0cy93aGVyZS1hcmUtdGhlLXZpYmVjb2RlZC1waG90b3Nob3BzLyI+V2hlcmUgQXJlIHRoZSBWaWJlY29kZWQgUGhvdG9zaG9wcz88L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9aW5kaWVwaXhlbC5kZSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPmluZGllcGl4ZWwuZGU8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNzcyMjgiPjEwNCBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9Z2l6bW82NGsiIGNsYXNzPSJobnVzZXIiPmdpem1vNjRrPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xOFQwOToyODo1NiAxNzc5MDk2NTM2Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTc3MjI4Ij4xIGhvdXIgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE3NzIyOCI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNzcyMjgmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTc3MjI4Ij43OCZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE3NzEwNyI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjQuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE3NzEwNycgaHJlZj0ndm90ZT9pZD00ODE3NzEwNyZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cubmJjbmV3cy5jb20vdmlkZW8vbXVsdGlwbGUtY29tbWVuY2VtZW50LXNwZWFrZXJzLWJvb2VkLWZvci1haS1jb21tZW50cy1kdXJpbmctZ3JhZHVhdGlvbi1zcGVlY2hlcy0yNjM0ODYwMjE1MTgiPk11bHRpcGxlIGNvbW1lbmNlbWVudCBzcGVha2VycyBib29lZCBmb3IgQUkgY29tbWVudHMgZHVyaW5nIGdyYWR1YXRpb24gc3BlZWNoZXM8L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9bmJjbmV3cy5jb20iPjxzcGFuIGNsYXNzPSJzaXRlc3RyIj5uYmNuZXdzLmNvbTwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE3NzEwNyI+NzUgcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPXdyeGQiIGNsYXNzPSJobnVzZXIiPndyeGQ8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE4VDA5OjEyOjEwIDE3NzkwOTU1MzAiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzcxMDciPjIgaG91cnMgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE3NzEwNyI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNzcxMDcmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTc3MTA3Ij40NCZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE1NTQ1MCI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjUuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE1NTQ1MCcgaHJlZj0ndm90ZT9pZD00ODE1NTQ1MCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cuc2NpZW50aWZpY2FtZXJpY2FuLmNvbS9hcnRpY2xlL3N0cmFuZ2UtY3J5c3RhbHMtZm91bmQtaW5zaWRlLXdyZWNrYWdlLWZyb20tdGhlLWZpcnN0LW51Y2xlYXItYm9tYi10ZXN0LyI+Q3J5c3RhbHMgZm91bmQgaW5zaWRlIHdyZWNrYWdlIGZyb20gdGhlIGZpcnN0IG51Y2xlYXIgYm9tYiB0ZXN0PC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPXNjaWVudGlmaWNhbWVyaWNhbi5jb20iPjxzcGFuIGNsYXNzPSJzaXRlc3RyIj5zY2llbnRpZmljYW1lcmljYW4uY29tPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTU1NDUwIj45MSBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9anVtcGxvb3BzIiBjbGFzcz0iaG51c2VyIj5qdW1wbG9vcHM8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE1VDIzOjU0OjMzIDE3Nzg4ODkyNzMiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNTU0NTAiPjggaG91cnMgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE1NTQ1MCI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNTU0NTAmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTU1NDUwIj4zMyZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE3NTE0MCI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjYuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE3NTE0MCcgaHJlZj0ndm90ZT9pZD00ODE3NTE0MCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cubm9lbWFtYWcuY29tL3RoZXJlLWlzLW5vLWhhcmQtcHJvYmxlbS1vZi1jb25zY2lvdXNuZXNzLyI+SXQgaXMgdGltZSB0byBnaXZlIHVwIHRoZSBkdWFsaXNtIGludHJvZHVjZWQgYnkgdGhlIGRlYmF0ZSBvbiBjb25zY2lvdXNuZXNzPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPW5vZW1hbWFnLmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPm5vZW1hbWFnLmNvbTwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE3NTE0MCI+MTA3IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1haGFsYmVydDQiIGNsYXNzPSJobnVzZXIiPmFoYWxiZXJ0NDwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMThUMDI6NTk6MzQgMTc3OTA3MzE3NCI+PGEgaHJlZj0iaXRlbT9pZD00ODE3NTE0MCI+OCBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTc1MTQwIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE3NTE0MCZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzUxNDAiPjI3NCZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE2ODY2OCI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjcuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE2ODY2OCcgaHJlZj0ndm90ZT9pZD00ODE2ODY2OCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL3RlY2g0Ym90L3JrMzU2MmRlYiI+SSB0dXJuZWQgYSAkODAgUkszNTYyIEFuZHJvaWQgdGFibGV0IGludG8gYSBEZWJpYW4gTGludXggd29ya3N0YXRpb248L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9Z2l0aHViLmNvbS90ZWNoNGJvdCI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPmdpdGh1Yi5jb20vdGVjaDRib3Q8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNjg2NjgiPjM4MCBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9dGVjaDRib3QiIGNsYXNzPSJobnVzZXIiPnRlY2g0Ym90PC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xN1QxMzoxNjoyNyAxNzc5MDIzNzg3Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTY4NjY4Ij4yMSBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTY4NjY4Ij48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE2ODY2OCZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNjg2NjgiPjE3NCZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE1Mjc1NCI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjguPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE1Mjc1NCcgaHJlZj0ndm90ZT9pZD00ODE1Mjc1NCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9hc2thbmFzdHJvbmF1dC5pc3NpbnJlYWx0aW1lLm9yZy8iPkFzayBhbiBBc3Ryb25hdXQ6IDMzMyBob3VycyBvZiBRJmFtcDtBIGZvb3RhZ2Ugd2l0aCBhc3Ryb25hdXRzPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPWlzc2lucmVhbHRpbWUub3JnIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+aXNzaW5yZWFsdGltZS5vcmc8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNTI3NTQiPjE1NSBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9Z2F3cyIgY2xhc3M9ImhudXNlciI+Z2F3czwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTVUMTk6MjU6NDMgMTc3ODg3MzE0MyI+PGEgaHJlZj0iaXRlbT9pZD00ODE1Mjc1NCI+MTQgaG91cnMgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE1Mjc1NCI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNTI3NTQmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTUyNzU0Ij4xMiZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE2Njg1NiI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjkuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE2Njg1NicgaHJlZj0ndm90ZT9pZD00ODE2Njg1NiZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0VSdWZpYW4va3NoYXJwIj5raGFycCDigJMgayB2ZXJzaW9uIDMgTGFuZ3VhZ2UgSW50ZXJwcmV0ZXIgaW4gQyM8L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9Z2l0aHViLmNvbS9lcnVmaWFuIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+Z2l0aHViLmNvbS9lcnVmaWFuPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTY2ODU2Ij4zNCBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9dG9zaCIgY2xhc3M9ImhudXNlciI+dG9zaDwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTdUMDc6NDQ6MTYgMTc3OTAwMzg1NiI+PGEgaHJlZj0iaXRlbT9pZD00ODE2Njg1NiI+NiBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTY2ODU2Ij48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE2Njg1NiZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNjY4NTYiPjQmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNTEyNTEiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4xMC48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTUxMjUxJyBocmVmPSd2b3RlP2lkPTQ4MTUxMjUxJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2phbmstbGFuZy5vcmcvYmxvZy8yMDI2LTA1LTA4LW9wdGltaXphdGlvbi8iPkphbmsgbm93IGhhcyBpdHMgb3duIGN1c3RvbSBJUjwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1qYW5rLWxhbmcub3JnIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+amFuay1sYW5nLm9yZzwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE1MTI1MSI+MTU0IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1EQVNEIiBjbGFzcz0iaG51c2VyIj5EQVNEPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xNVQxNzoxNzowNCAxNzc4ODY1NDI0Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTUxMjUxIj4xMyBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTUxMjUxIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE1MTI1MSZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNTEyNTEiPjI4Jm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTY5ODc0Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MTEuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE2OTg3NCcgaHJlZj0ndm90ZT9pZD00ODE2OTg3NCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL01pbmlzaExhYi9zZW1ibGUiPlNob3cgSE46IFNlbWJsZSDigJMgQ29kZSBzZWFyY2ggZm9yIGFnZW50cyB0aGF0IHVzZXMgOTglIGZld2VyIHRva2VucyB0aGFuIGdyZXA8L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9Z2l0aHViLmNvbS9taW5pc2hsYWIiPjxzcGFuIGNsYXNzPSJzaXRlc3RyIj5naXRodWIuY29tL21pbmlzaGxhYjwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE2OTg3NCI+MzQ3IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1CaWJhYm9tYXMiIGNsYXNzPSJobnVzZXIiPkJpYmFib21hczwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTdUMTU6Mzc6MDcgMTc3OTAzMjIyNyI+PGEgaHJlZj0iaXRlbT9pZD00ODE2OTg3NCI+MTkgaG91cnMgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE2OTg3NCI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNjk4NzQmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTY5ODc0Ij4xMTYmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNzMyNjgiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4xMi48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTczMjY4JyBocmVmPSd2b3RlP2lkPTQ4MTczMjY4JmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL3d3dy5tZXRhbGV2ZWwuYXQvcHJvbG9nL2hvcnJvciI+UHJvbG9nIENvZGluZyBIb3Jyb3I8L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9bWV0YWxldmVsLmF0Ij48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+bWV0YWxldmVsLmF0PC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTczMjY4Ij4xNDggcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPVJvaGFuQWR3YW5rYXIiIGNsYXNzPSJobnVzZXIiPlJvaGFuQWR3YW5rYXI8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE3VDIxOjE1OjUxIDE3NzkwNTI1NTEiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzMyNjgiPjEzIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNzMyNjgiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTczMjY4JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE3MzI2OCI+NjAmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNjA5NjQiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4xMy48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTYwOTY0JyBocmVmPSd2b3RlP2lkPTQ4MTYwOTY0JmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2JhcnRvc3ptaWxld3NraS5jb20vMjAyNi8wNS8xNi9wcm9mdW5jdG9yLWVxdWlwbWVudC1pbi1oYXNrZWxsLyI+UHJvZnVuY3RvciBFcXVpcG1lbnQgaW4gSGFza2VsbDwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1iYXJ0b3N6bWlsZXdza2kuY29tIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+YmFydG9zem1pbGV3c2tpLmNvbTwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE2MDk2NCI+MjYgcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPWcweEE1MkEyQSIgY2xhc3M9ImhudXNlciI+ZzB4QTUyQTJBPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xNlQxNToxODoyMyAxNzc4OTQ0NzAzIj48YSBocmVmPSJpdGVtP2lkPTQ4MTYwOTY0Ij43IGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNjA5NjQiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTYwOTY0JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE2MDk2NCI+NCZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE3Mzk2MiI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjE0Ljwvc3Bhbj48L3RkPjx0ZCB2YWxpZ249InRvcCIgY2xhc3M9InZvdGVsaW5rcyI+PGNlbnRlcj48YSBpZD0ndXBfNDgxNzM5NjInIGhyZWY9J3ZvdGU/aWQ9NDgxNzM5NjImYW1wO2hvdz11cCZhbXA7Z290bz1uZXdzJz48ZGl2IGNsYXNzPSd2b3RlYXJyb3cnIHRpdGxlPSd1cHZvdGUnPjwvZGl2PjwvYT48L2NlbnRlcj48L3RkPjx0ZCBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJ0aXRsZWxpbmUiPjxhIGhyZWY9Imh0dHBzOi8vaGVsbG1vb2QuMTExbWIuZGUvL3dha2VfdXBfMTZiX3dyaXRldXAuaHRtbCI+V3JpdGVVcDogMTYgQnl0ZXMgb2YgeDg2IHRoYXQgdHVybiBNYXRyaXggcmFpbiBpbnRvIHNvdW5kPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPTExMW1iLmRlIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+MTExbWIuZGU8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNzM5NjIiPjE1MCBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9SGVsbE1vb2QiIGNsYXNzPSJobnVzZXIiPkhlbGxNb29kPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xN1QyMzoxMDowOSAxNzc5MDU5NDA5Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTczOTYyIj4xMiBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTczOTYyIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE3Mzk2MiZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzM5NjIiPjMxJm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTU3MjI5Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MTUuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE1NzIyOScgaHJlZj0ndm90ZT9pZD00ODE1NzIyOSZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9zaXRlcy5tYXRoLnJ1dGdlcnMuZWR1L356ZWlsYmVyZy9PcGluaW9uODIuaHRtbCI+QSBHb29kIExlbW1hIElzIFdvcnRoIGEgVGhvdXNhbmQgVGhlb3JlbXMgKDIwMDcpPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPXJ1dGdlcnMuZWR1Ij48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+cnV0Z2Vycy5lZHU8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNTcyMjkiPjY1IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1zdXNhbSIgY2xhc3M9ImhudXNlciI+c3VzYW08L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE2VDA1OjU2OjQxIDE3Nzg5MTEwMDEiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNTcyMjkiPjExIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNTcyMjkiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTU3MjI5JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE1NzIyOSI+MTMmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNjU5ODAiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4xNi48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTY1OTgwJyBocmVmPSd2b3RlP2lkPTQ4MTY1OTgwJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2VsZWN0cmVrLmNvLzIwMjYvMDUvMTQvdGVzbGEtc29sYXItcm9vZi1wcm9taXNlLXZzLXJlYWxpdHktcGl2b3QtcGFuZWxzLyI+VGVzbGEgU29sYXIgUm9vZiBpcyBvbiBsaWZlIHN1cHBvcnQgYXMgaXQgcGl2b3QgdG8gcGFuZWxzPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPWVsZWN0cmVrLmNvIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+ZWxlY3RyZWsuY288L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNjU5ODAiPjI3MSBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9Y2Vsc29hemV2ZWRvIiBjbGFzcz0iaG51c2VyIj5jZWxzb2F6ZXZlZG88L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE3VDA0OjA5OjUyIDE3Nzg5OTA5OTIiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNjU5ODAiPjEgZGF5IGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNjU5ODAiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTY1OTgwJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE2NTk4MCI+Mjc1Jm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTc2NzYyIj48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MTcuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE3Njc2MicgaHJlZj0ndm90ZT9pZD00ODE3Njc2MiZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cucmVkZGl0LmNvbS9yL3Bhc2FkZW5hL3MvOTRCSGxrRTg0ciI+V2h5IGlzIEdvb2dsZSBNYXBzIGJhY2sgdG8gc2hvd2luZyBvbGQgc2F0ZWxsaXRlIGltYWdlcyBvZiBBbHRhZGVuYT88L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9cmVkZGl0LmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPnJlZGRpdC5jb208L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNzY3NjIiPjMyIHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD10Z3Jvd2F6YXkiIGNsYXNzPSJobnVzZXIiPnRncm93YXpheTwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMThUMDg6MTk6MjEgMTc3OTA5MjM2MSI+PGEgaHJlZj0iaXRlbT9pZD00ODE3Njc2MiI+MiBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTc2NzYyIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE3Njc2MiZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzY3NjIiPjE2Jm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTU1OTM2Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MTguPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE1NTkzNicgaHJlZj0ndm90ZT9pZD00ODE1NTkzNiZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cucm9nZXJlYmVydC5jb20vc3RyZWFtaW5nL21hZ2ljYWwtcmVhbGlzbS1ub3RoZXJuLWV4cG9zdXJlLTI1LXllYXJzLWxhdGVyIj5NYWdpY2FsIFJlYWxpc206IOKAnE5vcnRoZXJuIEV4cG9zdXJl4oCdIDI1IFllYXJzIExhdGVyICgyMDE1KTwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1yb2dlcmViZXJ0LmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPnJvZ2VyZWJlcnQuY29tPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTU1OTM2Ij4xMTkgcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPXdhbHRlcmJlbGwiIGNsYXNzPSJobnVzZXIiPndhbHRlcmJlbGw8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE2VDAxOjI1OjI5IDE3Nzg4OTQ3MjkiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNTU5MzYiPjE2IGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNTU5MzYiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTU1OTM2JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE1NTkzNiI+NTImbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNTA2OTAiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4xOS48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTUwNjkwJyBocmVmPSd2b3RlP2lkPTQ4MTUwNjkwJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL3d3dy53aXJlZC5jb20vc3RvcnkvYnVpbGQtYS1yYWRpby13YXZlLWRldGVjdG9yLXdpdGgtYmFsbHMtb2YtYWx1bWludW0tZm9pbC8iPkJ1aWxkIGEgUmFkaW8gV2F2ZSBEZXRlY3RvciB3aXRoIEJhbGxzIG9mIEFsdW1pbnVtIEZvaWw8L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9d2lyZWQuY29tIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+d2lyZWQuY29tPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTUwNjkwIj4xNyBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9QnJhamVzaHdhciIgY2xhc3M9ImhudXNlciI+QnJhamVzaHdhcjwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTVUMTY6MzY6MzAgMTc3ODg2Mjk5MCI+PGEgaHJlZj0iaXRlbT9pZD00ODE1MDY5MCI+NyBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTUwNjkwIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE1MDY5MCZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNTA2OTAiPjUmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNzM0NjgiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4yMC48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTczNDY4JyBocmVmPSd2b3RlP2lkPTQ4MTczNDY4JmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2lkYWhvbmV3cy5jb20vbmV3cy9sb2NhbC90d28tZi0xOC1maWdodGVyLWpldHMtaGF2ZS1jcmFzaGVkLWR1cmluZy1hbi1haXJzaG93LWF0LW1vdW50YWluLWhvbWUtYWlyLWZvcmNlLWJhc2UiPlR3byBFQS0xOCBmaWdodGVyIGpldHMgY29sbGlkZSBhdCBNb3VudGFpbiBIb21lIGFpcnNob3csIHBpbG90cyBlamVjdGVkIHNhZmVseTwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1pZGFob25ld3MuY29tIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+aWRhaG9uZXdzLmNvbTwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE3MzQ2OCI+MjAyIHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1DaHJpc0FyY2hpdGVjdCIgY2xhc3M9ImhudXNlciI+Q2hyaXNBcmNoaXRlY3Q8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE3VDIxOjQ1OjMwIDE3NzkwNTQzMzAiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNzM0NjgiPjEzIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNzM0NjgiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTczNDY4JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE3MzQ2OCI+MjAxJm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTQ4MzUxIj48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjEuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE0ODM1MScgaHJlZj0ndm90ZT9pZD00ODE0ODM1MSZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL0VsLUVuZGVySi9OZW9DYWxjdWxhdG9yIiByZWw9Im5vZm9sbG93Ij5HcmFwaGluZyBTY2llbnRpZmljIENhbGN1bGF0b3IgQmFzZWQgb24gdGhlIEVTUDMyPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPWdpdGh1Yi5jb20vZWwtZW5kZXJqIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+Z2l0aHViLmNvbS9lbC1lbmRlcmo8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNDgzNTEiPjQgcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPXV0aWN1cyIgY2xhc3M9ImhudXNlciI+dXRpY3VzPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xNVQxMzoyOTo1MiAxNzc4ODUxNzkyIj48YSBocmVmPSJpdGVtP2lkPTQ4MTQ4MzUxIj4zIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNDgzNTEiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTQ4MzUxJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE0ODM1MSI+MSZuYnNwO2NvbW1lbnQ8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTY4NDg1Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjIuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE2ODQ4NScgaHJlZj0ndm90ZT9pZD00ODE2ODQ4NSZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL2FsdGVybmJpdHMvYXdlc29tZS1jdWRhLWJvb2tzIj5DVURBIEJvb2tzPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPWdpdGh1Yi5jb20vYWx0ZXJuYml0cyI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPmdpdGh1Yi5jb20vYWx0ZXJuYml0czwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE2ODQ4NSI+MjAxIHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1kYXJpdWJzIiBjbGFzcz0iaG51c2VyIj5kYXJpdWJzPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xN1QxMjo1MjowNiAxNzc5MDIyMzI2Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTY4NDg1Ij4yMiBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTY4NDg1Ij48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE2ODQ4NSZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNjg0ODUiPjUwJm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTc3NzE2Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjMuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE3NzcxNicgaHJlZj0ndm90ZT9pZD00ODE3NzcxNiZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9zcGFjZWRhaWx5LmNvbS9uYXNhLXN0aWxsLW1haW50YWlucy1zb21lLW9mLXRoZS12b3lhZ2VyLXNwYWNlY3JhZnQtY29kZS1pbi1hLTE5NzBzLWVyYS1wcm9ncmFtbWluZy1sYW5ndWFnZS10aGF0LWFsbW9zdC1ub2JvZHktb24tZWFydGgtZnVsbHktdW5kZXJzdGFuZHMtYW55bW9yZS1hbmQtdGhlLWhhbmRmdWwtb2YtZW5naW5lZXJzLXdoby1kby1hcmUtbm93LWluLXRoZWlyLyIgcmVsPSJub2ZvbGxvdyI+TkFTQSBzdGlsbCBtYWludGFpbnMgc29tZSBvZiB0aGUgVm95YWdlciBzcGFjZWNyYWZ0IGNvZGUgZnJvbSB0aGUgNzBzIGVyYTwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1zcGFjZWRhaWx5LmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPnNwYWNlZGFpbHkuY29tPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTc3NzE2Ij40IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1yZWRiZWxsIiBjbGFzcz0iaG51c2VyIj5yZWRiZWxsPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xOFQxMDo0Mzo1NiAxNzc5MTAxMDM2Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTc3NzE2Ij4zMSBtaW51dGVzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNzc3MTYiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTc3NzE2JmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE3NzcxNiI+MSZuYnNwO2NvbW1lbnQ8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTQwNTU2Ij48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjQuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE0MDU1NicgaHJlZj0ndm90ZT9pZD00ODE0MDU1NiZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cuYWlyc2hpcHMubmV0L2hpbmRlbmJ1cmctc21va2luZy1yb29tLyI+SGluZGVuYnVyZ+KAmXMgU21va2luZyBSb29tPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPWFpcnNoaXBzLm5ldCI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPmFpcnNoaXBzLm5ldDwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE0MDU1NiI+MjA4IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1jcmVzY2l0X2V1bmRvIiBjbGFzcz0iaG51c2VyIj5jcmVzY2l0X2V1bmRvPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xNFQyMDowODoxMiAxNzc4Nzg5MjkyIj48YSBocmVmPSJpdGVtP2lkPTQ4MTQwNTU2Ij4yMiBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTQwNTU2Ij48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE0MDU1NiZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNDA1NTYiPjE2NSZuYnNwO2NvbW1lbnRzPC9hPjwvc3Bhbj48L3RkPjwvdHI+PHRyIGNsYXNzPSJzcGFjZXIiIHN0eWxlPSJoZWlnaHQ6NXB4Ij48L3RyPjx0ciBjbGFzcz0iYXRoaW5nIHN1Ym1pc3Npb24iIGlkPSI0ODE0NzA5MSI+PHRkIGFsaWduPSJyaWdodCIgdmFsaWduPSJ0b3AiIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InJhbmsiPjI1Ljwvc3Bhbj48L3RkPjx0ZCB2YWxpZ249InRvcCIgY2xhc3M9InZvdGVsaW5rcyI+PGNlbnRlcj48YSBpZD0ndXBfNDgxNDcwOTEnIGhyZWY9J3ZvdGU/aWQ9NDgxNDcwOTEmYW1wO2hvdz11cCZhbXA7Z290bz1uZXdzJz48ZGl2IGNsYXNzPSd2b3RlYXJyb3cnIHRpdGxlPSd1cHZvdGUnPjwvZGl2PjwvYT48L2NlbnRlcj48L3RkPjx0ZCBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJ0aXRsZWxpbmUiPjxhIGhyZWY9Imh0dHBzOi8vdW5wbGFubmVkb2Jzb2xlc2NlbmNlLmNvbS9ibG9nL3Byb2xvZy1iYXNpY3MtcG9rZW1vbi8iPlByb2xvZyBCYXNpY3MgRXhwbGFpbmVkIHdpdGggUG9rw6ltb248L2E+PHNwYW4gY2xhc3M9InNpdGViaXQgY29taGVhZCI+ICg8YSBocmVmPSJmcm9tP3NpdGU9dW5wbGFubmVkb2Jzb2xlc2NlbmNlLmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPnVucGxhbm5lZG9ic29sZXNjZW5jZS5jb208L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNDcwOTEiPjI1OCBwb2ludHM8L3NwYW4+IGJ5IDxhIGhyZWY9InVzZXI/aWQ9YmlyZGN1bHR1cmUiIGNsYXNzPSJobnVzZXIiPmJpcmRjdWx0dXJlPC9hPiA8c3BhbiBjbGFzcz0iYWdlIiB0aXRsZT0iMjAyNi0wNS0xNVQxMTowMjoxNCAxNzc4ODQyOTM0Ij48YSBocmVmPSJpdGVtP2lkPTQ4MTQ3MDkxIj4xIGRheSBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTQ3MDkxIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE0NzA5MSZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNDcwOTEiPjQxJm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTY4MjIxIj48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjYuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE2ODIyMScgaHJlZj0ndm90ZT9pZD00ODE2ODIyMSZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly9mcmVkZXJpY2t2YW5icmFiYW50LmNvbS9ibG9nLzIwMjYtMDUtMTUtaS1kb250LXRoaW5rLWFpLXdpbGwtbWFrZS15b3VyLXByb2Nlc3Nlcy1nby1mYXN0ZXIvIj5JIGRvbiYjeDI3O3QgdGhpbmsgQUkgd2lsbCBtYWtlIHlvdXIgcHJvY2Vzc2VzIGdvIGZhc3RlcjwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1mcmVkZXJpY2t2YW5icmFiYW50LmNvbSI+PHNwYW4gY2xhc3M9InNpdGVzdHIiPmZyZWRlcmlja3ZhbmJyYWJhbnQuY29tPC9zcGFuPjwvYT4pPC9zcGFuPjwvc3Bhbj48L3RkPjwvdHI+PHRyPjx0ZCBjb2xzcGFuPSIyIj48L3RkPjx0ZCBjbGFzcz0ic3VidGV4dCI+PHNwYW4gY2xhc3M9InN1YmxpbmUiPjxzcGFuIGNsYXNzPSJzY29yZSIgaWQ9InNjb3JlXzQ4MTY4MjIxIj42MDggcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPVRoZUVkb25pYW4iIGNsYXNzPSJobnVzZXIiPlRoZUVkb25pYW48L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE3VDEyOjEzOjQ1IDE3NzkwMjAwMjUiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNjgyMjEiPjIzIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNjgyMjEiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTY4MjIxJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE2ODIyMSI+NDEwJm5ic3A7Y29tbWVudHM8L2E+PC9zcGFuPjwvdGQ+PC90cj48dHIgY2xhc3M9InNwYWNlciIgc3R5bGU9ImhlaWdodDo1cHgiPjwvdHI+PHRyIGNsYXNzPSJhdGhpbmcgc3VibWlzc2lvbiIgaWQ9IjQ4MTQxOTYwIj48dGQgYWxpZ249InJpZ2h0IiB2YWxpZ249InRvcCIgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0icmFuayI+MjcuPC9zcGFuPjwvdGQ+PHRkIHZhbGlnbj0idG9wIiBjbGFzcz0idm90ZWxpbmtzIj48Y2VudGVyPjxhIGlkPSd1cF80ODE0MTk2MCcgaHJlZj0ndm90ZT9pZD00ODE0MTk2MCZhbXA7aG93PXVwJmFtcDtnb3RvPW5ld3MnPjxkaXYgY2xhc3M9J3ZvdGVhcnJvdycgdGl0bGU9J3Vwdm90ZSc+PC9kaXY+PC9hPjwvY2VudGVyPjwvdGQ+PHRkIGNsYXNzPSJ0aXRsZSI+PHNwYW4gY2xhc3M9InRpdGxlbGluZSI+PGEgaHJlZj0iaHR0cHM6Ly93d3cuc2NpZW5jZS5vcmcvY29udGVudC9hcnRpY2xlL3NjaWVudGlzdHMtaWQtY29ya3NjcmV3LWtpbGxlci1iZWhpbmQtZ3J1ZXNvbWUtc2VhbC1kZWF0aHMiPkNhbm5pYmFsaXN0aWMgYXR0YWNrcyBiZXR3ZWVuIGdyYXkgc2VhbHMgbGVhdmUgdGVsbHRhbGUg4oCcY29ya3NjcmV34oCdIGluanVyaWVzPC9hPjxzcGFuIGNsYXNzPSJzaXRlYml0IGNvbWhlYWQiPiAoPGEgaHJlZj0iZnJvbT9zaXRlPXNjaWVuY2Uub3JnIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+c2NpZW5jZS5vcmc8L3NwYW4+PC9hPik8L3NwYW4+PC9zcGFuPjwvdGQ+PC90cj48dHI+PHRkIGNvbHNwYW49IjIiPjwvdGQ+PHRkIGNsYXNzPSJzdWJ0ZXh0Ij48c3BhbiBjbGFzcz0ic3VibGluZSI+PHNwYW4gY2xhc3M9InNjb3JlIiBpZD0ic2NvcmVfNDgxNDE5NjAiPjY5IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1nbWF5cyIgY2xhc3M9ImhudXNlciI+Z21heXM8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE0VDIyOjEyOjQ1IDE3Nzg3OTY3NjUiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxNDE5NjAiPjE2IGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxNDE5NjAiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTQxOTYwJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODE0MTk2MCI+MzAmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxMzMyOTMiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4yOC48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTMzMjkzJyBocmVmPSd2b3RlP2lkPTQ4MTMzMjkzJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2VuLndpa2lwZWRpYS5vcmcvd2lraS9IaWdoLWVudHJvcHlfYWxsb3kiPkhpZ2gtRW50cm9weSBBbGxveTwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT13aWtpcGVkaWEub3JnIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+d2lraXBlZGlhLm9yZzwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODEzMzI5MyI+MTM5IHBvaW50czwvc3Bhbj4gYnkgPGEgaHJlZj0idXNlcj9pZD1sZW9uaWRhc3J1cCIgY2xhc3M9ImhudXNlciI+bGVvbmlkYXNydXA8L2E+IDxzcGFuIGNsYXNzPSJhZ2UiIHRpdGxlPSIyMDI2LTA1LTE0VDEwOjA4OjA0IDE3Nzg3NTMyODQiPjxhIGhyZWY9Iml0ZW0/aWQ9NDgxMzMyOTMiPjIzIGhvdXJzIGFnbzwvYT48L3NwYW4+IDxzcGFuIGlkPSJ1bnZfNDgxMzMyOTMiPjwvc3Bhbj4gfCA8YSBocmVmPSJoaWRlP2lkPTQ4MTMzMjkzJmFtcDtnb3RvPW5ld3MiPmhpZGU8L2E+IHwgPGEgaHJlZj0iaXRlbT9pZD00ODEzMzI5MyI+MjMmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNjgxNTkiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4yOS48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTY4MTU5JyBocmVmPSd2b3RlP2lkPTQ4MTY4MTU5JmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL3d3dy5iYmMuY29tL2Z1dHVyZS9hcnRpY2xlLzIwMjYwNTE0LWhvdy1oYWxsdWNpbm9nZW5pYy1pYm9nYWluZS1oZWxwcy12ZXRlcmFucy1vdmVyY29tZS1wdHNkIj5UcmlhbHMgb24gdmV0ZXJhbnMgc3VnZ2VzdCBpYm9nYWluZSBjb3VsZCBwcm92aWRlIGEgbmV3IHRyZWF0bWVudCBmb3IgUFRTRDwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1iYmMuY29tIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+YmJjLmNvbTwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE2ODE1OSI+OTggcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPWJ1c2h3YXJ0IiBjbGFzcz0iaG51c2VyIj5idXNod2FydDwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTdUMTI6MDM6MDQgMTc3OTAxOTM4NCI+PGEgaHJlZj0iaXRlbT9pZD00ODE2ODE1OSI+MjMgaG91cnMgYWdvPC9hPjwvc3Bhbj4gPHNwYW4gaWQ9InVudl80ODE2ODE1OSI+PC9zcGFuPiB8IDxhIGhyZWY9ImhpZGU/aWQ9NDgxNjgxNTkmYW1wO2dvdG89bmV3cyI+aGlkZTwvYT4gfCA8YSBocmVmPSJpdGVtP2lkPTQ4MTY4MTU5Ij4xMDYmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9ImF0aGluZyBzdWJtaXNzaW9uIiBpZD0iNDgxNDk0NjEiPjx0ZCBhbGlnbj0icmlnaHQiIHZhbGlnbj0idG9wIiBjbGFzcz0idGl0bGUiPjxzcGFuIGNsYXNzPSJyYW5rIj4zMC48L3NwYW4+PC90ZD48dGQgdmFsaWduPSJ0b3AiIGNsYXNzPSJ2b3RlbGlua3MiPjxjZW50ZXI+PGEgaWQ9J3VwXzQ4MTQ5NDYxJyBocmVmPSd2b3RlP2lkPTQ4MTQ5NDYxJmFtcDtob3c9dXAmYW1wO2dvdG89bmV3cyc+PGRpdiBjbGFzcz0ndm90ZWFycm93JyB0aXRsZT0ndXB2b3RlJz48L2Rpdj48L2E+PC9jZW50ZXI+PC90ZD48dGQgY2xhc3M9InRpdGxlIj48c3BhbiBjbGFzcz0idGl0bGVsaW5lIj48YSBocmVmPSJodHRwczovL2dpdGh1Yi5jb20vQUJHRU8vbWV6eiI+U2hvdyBITjogTWV6eiwgYSBjdXJsLWFibGUgV2lGaSBzYW5kYm94IGZvciBJb1QgcGVudGVzdGluZzwvYT48c3BhbiBjbGFzcz0ic2l0ZWJpdCBjb21oZWFkIj4gKDxhIGhyZWY9ImZyb20/c2l0ZT1naXRodWIuY29tL2FiZ2VvIj48c3BhbiBjbGFzcz0ic2l0ZXN0ciI+Z2l0aHViLmNvbS9hYmdlbzwvc3Bhbj48L2E+KTwvc3Bhbj48L3NwYW4+PC90ZD48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9InN1YnRleHQiPjxzcGFuIGNsYXNzPSJzdWJsaW5lIj48c3BhbiBjbGFzcz0ic2NvcmUiIGlkPSJzY29yZV80ODE0OTQ2MSI+MjIgcG9pbnRzPC9zcGFuPiBieSA8YSBocmVmPSJ1c2VyP2lkPUFCR0VPIiBjbGFzcz0iaG51c2VyIj5BQkdFTzwvYT4gPHNwYW4gY2xhc3M9ImFnZSIgdGl0bGU9IjIwMjYtMDUtMTVUMTQ6NTM6NTMgMTc3ODg1NjgzMyI+PGEgaHJlZj0iaXRlbT9pZD00ODE0OTQ2MSI+OSBob3VycyBhZ288L2E+PC9zcGFuPiA8c3BhbiBpZD0idW52XzQ4MTQ5NDYxIj48L3NwYW4+IHwgPGEgaHJlZj0iaGlkZT9pZD00ODE0OTQ2MSZhbXA7Z290bz1uZXdzIj5oaWRlPC9hPiB8IDxhIGhyZWY9Iml0ZW0/aWQ9NDgxNDk0NjEiPjcmbmJzcDtjb21tZW50czwvYT48L3NwYW4+PC90ZD48L3RyPjx0ciBjbGFzcz0ic3BhY2VyIiBzdHlsZT0iaGVpZ2h0OjVweCI+PC90cj48dHIgY2xhc3M9Im1vcmVzcGFjZSIgc3R5bGU9ImhlaWdodDoxMHB4Ij48L3RyPjx0cj48dGQgY29sc3Bhbj0iMiI+PC90ZD48dGQgY2xhc3M9J3RpdGxlJz48YSBocmVmPSc/cD0yJyBjbGFzcz0nbW9yZWxpbmsnIHJlbD0nbmV4dCc+TW9yZTwvYT48L3RkPjwvdHI+PC90YWJsZT48L3RkPjwvdHI+PHRyPjx0ZD48aW1nIHNyYz0icy5naWYiIGhlaWdodD0iMTAiIHdpZHRoPSIwIj48dGFibGUgd2lkdGg9IjEwMCUiIGNlbGxzcGFjaW5nPSIwIiBjZWxscGFkZGluZz0iMSI+PHRyPjx0ZCBiZ2NvbG9yPSIjZmY2NjAwIj48L3RkPjwvdHI+PC90YWJsZT48YnI+CjxjZW50ZXI+PHNwYW4gY2xhc3M9InljbGlua3MiPjxhIGhyZWY9Im5ld3NndWlkZWxpbmVzLmh0bWwiPkd1aWRlbGluZXM8L2E+IHwgPGEgaHJlZj0ibmV3c2ZhcS5odG1sIj5GQVE8L2E+IHwgPGEgaHJlZj0ibGlzdHMiPkxpc3RzPC9hPiB8IDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9IYWNrZXJOZXdzL0FQSSI+QVBJPC9hPiB8IDxhIGhyZWY9InNlY3VyaXR5Lmh0bWwiPlNlY3VyaXR5PC9hPiB8IDxhIGhyZWY9Imh0dHBzOi8vd3d3Lnljb21iaW5hdG9yLmNvbS9sZWdhbC8iPkxlZ2FsPC9hPiB8IDxhIGhyZWY9Imh0dHBzOi8vd3d3Lnljb21iaW5hdG9yLmNvbS9hcHBseS8iPkFwcGx5IHRvIFlDPC9hPiB8IDxhIGhyZWY9Im1haWx0bzpobkB5Y29tYmluYXRvci5jb20iPkNvbnRhY3Q8L2E+PC9zcGFuPjxicj48YnI+Cjxmb3JtIG1ldGhvZD0iZ2V0IiBhY3Rpb249Ii8vaG4uYWxnb2xpYS5jb20vIj5TZWFyY2g6IDxpbnB1dCB0eXBlPSJ0ZXh0IiBuYW1lPSJxIiBzaXplPSIxNyIgYXV0b2NvcnJlY3Q9Im9mZiIgc3BlbGxjaGVjaz0iZmFsc2UiIGF1dG9jYXBpdGFsaXplPSJvZmYiIGF1dG9jb21wbGV0ZT0ib2ZmIj48L2Zvcm0+PC9jZW50ZXI+PC90ZD48L3RyPjwvdGFibGU+PC9jZW50ZXI+PC9ib2R5PjxzY3JpcHQgdHlwZT0idGV4dC9qYXZhc2NyaXB0IiBzcmM9ImhuLmpzP0tudk9QaGhlWFBld2k1SVVLeVpzIj48L3NjcmlwdD48L2h0bWw+",
+        "response_body_blake3": "7e66e523d716542d2d6d8c767bf50457d783d36a4b4366f4270a1b417c471910",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "35334"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "description": null,
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "icons": [
+      "y18.svg"
+    ],
+    "lang": "en",
+    "meta": {
+      "referrer": "origin",
+      "viewport": "width=device-width, initial-scale=1.0"
+    }
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "0ea057a431d0c9dde525c682138bb3adb276620002d730722b6ce4d44d791b52",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 1,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Hacker News",
+  "tree": {
+    "description": null,
+    "root": {
+      "byte_count": 4133,
+      "child_count": 0,
+      "children": [],
+      "heading": null,
+      "intro": "Hacker News new | past | comments | ask | show | jobs | submit login 1. The foundations of a provably secure operating system (PSOS) (1979) [pdf] ( sri.com ) 37 points by rurban 1 hour ago | hide | 11 comments 2. GenCAD ( gencad.github.io ) 341 points by dagenix 13 hours ago | hide | 86 comments 3. Where Are the Vibecoded Photoshops? ( indiepixel.de ) 104 points by gizmo64k 1 hour ago | hide | 78 comments 4. Multiple commencement speakers booed for AI comments during graduation speeches ( nbcnews.com ) 75 points by wrxd 2 hours ago | hide | 44 comments 5. Crystals found inside wreckage from the first nuclear bomb test ( scientificamerican.com ) 91 points by jumploops 8 hours ago | hide | 33 comments 6. It is time to give up the dualism introduced by the debate on consciousness ( noemamag.com ) 107 points by ahalbert4 8 hours ago | hide | 274 comments 7. I turned a $80 RK3562 Android tablet into a Debian Linux workstation ( github.com/tech4bot ) 380 points by tech4bot 21 hours ago | hide | 174 comments 8. Ask an Astronaut: 333 hours of Q&A footage with astronauts ( issinrealtime.org ) 155 points by gaws 14 hours ago | hide | 12 comments 9. kharp – k version 3 Language Interpreter in C# ( github.com/erufian ) 34 points by tosh 6 hours ago | hide | 4 comments 10. Jank now has its own custom IR ( jank-lang.org ) 154 points by DASD 13 hours ago | hide | 28 comments 11. Show HN: Semble – Code search for agents that uses 98% fewer tokens than grep ( github.com/minishlab ) 347 points by Bibabomas 19 hours ago | hide | 116 comments 12. Prolog Coding Horror ( metalevel.at ) 148 points by RohanAdwankar 13 hours ago | hide | 60 comments 13. Profunctor Equipment in Haskell ( bartoszmilewski.com ) 26 points by g0xA52A2A 7 hours ago | hide | 4 comments 14. WriteUp: 16 Bytes of x86 that turn Matrix rain into sound ( 111mb.de ) 150 points by HellMood 12 hours ago | hide | 31 comments 15. A Good Lemma Is Worth a Thousand Theorems (2007) ( rutgers.edu ) 65 points by susam 11 hours ago | hide | 13 comments 16. Tesla Solar Roof is on life support as it pivot to panels ( electrek.co ) 271 points by celsoazevedo 1 day ago | hide | 275 comments 17. Why is Google Maps back to showing old satellite images of Altadena? ( reddit.com ) 32 points by tgrowazay 2 hours ago | hide | 16 comments 18. Magical Realism: “Northern Exposure” 25 Years Later (2015) ( rogerebert.com ) 119 points by walterbell 16 hours ago | hide | 52 comments 19. Build a Radio Wave Detector with Balls of Aluminum Foil ( wired.com ) 17 points by Brajeshwar 7 hours ago | hide | 5 comments 20. Two EA-18 fighter jets collide at Mountain Home airshow, pilots ejected safely ( idahonews.com ) 202 points by ChrisArchitect 13 hours ago | hide | 201 comments 21. Graphing Scientific Calculator Based on the ESP32 ( github.com/el-enderj ) 4 points by uticus 3 hours ago | hide | 1 comment 22. CUDA Books ( github.com/alternbits ) 201 points by dariubs 22 hours ago | hide | 50 comments 23. NASA still maintains some of the Voyager spacecraft code from the 70s era ( spacedaily.com ) 4 points by redbell 31 minutes ago | hide | 1 comment 24. Hindenburg’s Smoking Room ( airships.net ) 208 points by crescit_eundo 22 hours ago | hide | 165 comments 25. Prolog Basics Explained with Pokémon ( unplannedobsolescence.com ) 258 points by birdculture 1 day ago | hide | 41 comments 26. I don't think AI will make your processes go faster ( frederickvanbrabant.com ) 608 points by TheEdonian 23 hours ago | hide | 410 comments 27. Cannibalistic attacks between gray seals leave telltale “corkscrew” injuries ( science.org ) 69 points by gmays 16 hours ago | hide | 30 comments 28. High-Entropy Alloy ( wikipedia.org ) 139 points by leonidasrup 23 hours ago | hide | 23 comments 29. Trials on veterans suggest ibogaine could provide a new treatment for PTSD ( bbc.com ) 98 points by bushwart 23 hours ago | hide | 106 comments 30. Show HN: Mezz, a curl-able WiFi sandbox for IoT pentesting ( github.com/abgeo ) 22 points by ABGEO 9 hours ago | hide | 7 comments More Guidelines | FAQ | Lists | API | Security | Legal | Apply to YC | Contact Search:",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": "Hacker News new | past | comments | ask | show | jobs | submit login 1. The foundations of a provabl…"
+    },
+    "title": "Hacker News",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}
