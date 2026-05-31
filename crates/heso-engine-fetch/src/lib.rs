@@ -1350,6 +1350,18 @@ impl FetchPage {
             "tree": self.tree,
             "actions": self.actions,
             "http_status": self.http_status,
+            // Provenance of which engine produced these bytes. An object
+            // (not a bare string) so future provenance sub-fields can be
+            // added without a second breaking change. `version` is sourced
+            // from `CARGO_PKG_VERSION` — a SOURCE-STABLE compile-time
+            // constant, never a git SHA or build timestamp, so two builds
+            // of the same source reproduce a byte-identical plat
+            // (HESO/1.0 §4 determinism). Ordinary field; covered by
+            // `plat_hash` like everything else in this body.
+            "engine": {
+                "name": "heso",
+                "version": env!("CARGO_PKG_VERSION"),
+            },
             // The RNG seed the run executed under (default 0). Recorded
             // so a plat is self-describingly reproducible — an
             // independent verifier replays under this seed and gets the
