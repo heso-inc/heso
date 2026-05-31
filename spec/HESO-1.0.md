@@ -11,6 +11,48 @@ re-execute a plan and produce a byte-identical hash.
 
 This file is a stub. **The canonical spec lives at <https://heso.ca/spec>.**
 
+## Trust model — what a plat proves
+
+HESO/1.0 does **not** prove that a web resource told the truth. No protocol
+can: a server may serve different bytes to different callers and lie in its
+own response, and a transport proof (zkTLS, a TEE attestation) only binds the
+bytes the server chose to emit, not their honesty. HESO/1.0 deliberately makes
+a narrower, durable claim — **accountability + replay** — on three legs.
+
+**LEG 1 (the hero) — the record.** A plat embeds a **cassette** of every HTTP
+exchange the run touched, plus the plan and the observation. Any party re-runs
+those recorded bytes through a conformant engine and MUST obtain a
+**byte-identical** plat (the same `plat_hash`). This is the verifiable core: it
+requires no notary, no network, no clock, and no trust in the implementation,
+and it catches a lying summarizer — an engine that claims an observation the
+recorded bytes do not support. Its load-bearing claim is **determinism**,
+specified in [§ Determinism](#determinism--the-load-bearing-claim-of-leg-1-the-record--replay-leg)
+and enforced by the conformance harness.
+
+**LEG 2 — operator binding.** A plat is signed by an operator identity key,
+producing non-repudiable **attribution**: "operator key `K` made this claim, at
+time `T`." This closes repudiation, cross-notary replay, downgrade-to-unsigned,
+and forging-under-another-identity. It is **attribution, not authorization**,
+and it is **not** a claim that the `plat_hash` is the authentic capture of the
+URL — a different operator may honestly record a different version of the same
+page. Attribution assigns liability; it does not certify content. Receivers pin
+trusted signers via `verify --trusted-keys` (§3.9, §4.6).
+
+**LEG 3 — the notary (secondary): the liveness / time anchor.** An optional,
+independent party MAY attest that a URL was **live and served something at time
+T**. A HESO/1.0 notary performs **zero content comparison**: it fetches its own
+byte stream — which differs from the operator's cassette by design (`Date`,
+`Set-Cookie`, CDN request-IDs) — and attests only liveness and time, never that
+the operator's plat is the truth of the URL. It is a time anchor, not a hero.
+
+**"We do not prove truth" is a feature, not a gap.** Every durable
+accountability primitive on the internet — a notary public, Certificate
+Transparency, C2PA content credentials, signed audit logs, signed git commits —
+is load-bearing *precisely because* it binds attribution + time +
+tamper-evidence and refuses to certify truth. HESO/1.0 is the same shape for
+agent web runs: the record (Leg 1) is the verifiable hero, attribution (Leg 2)
+assigns the liability, and the notary (Leg 3) anchors liveness in time.
+
 ## Core verbs (HESO/1.0)
 
 A conformant implementation MUST dispatch the following verbs. Detailed

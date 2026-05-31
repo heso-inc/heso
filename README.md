@@ -6,6 +6,8 @@ A Rust runtime that lets an agent touch the web — fetch, JavaScript, DOM, form
 
 Every run can be **stamped** into a *plat* — a replay file holding the plan that ran, the page observation, and the recorded network cassette, all hashed together and **signed by default** with your identity key. `heso run` re-executes the plat off-network and the resulting `plat_hash` is byte-identical to the original. `heso verify` recomputes the hash, checks the signature, and always shows you who signed it. Hand the artifact to anyone: they replay it off-network, confirm it's unchanged, and see who signed it.
 
+heso does not try to prove a website is honest — nothing can, and pretending otherwise is the trap. What it proves is **accountability and replay**: a recorded run that anyone can re-execute to a byte-identical result, signed by the operator who produced it. That is the whole pitch, and it leads with the record. See **[What heso proves](#what-heso-proves)**.
+
 Capabilities return JSON. Failures come back as structured data (`partial: true`, `bot_challenge`, cassette miss), not opaque browser crashes. One Rust binary; no Chromium, no Node.
 
 <!-- heso:perf:start -->
@@ -23,6 +25,7 @@ A 50-second real recording — an LLM agent (Gemini) drives heso to find and com
 
 ## Contents
 
+- [What heso proves](#what-heso-proves)
 - [Install](#install)
 - [What it can do](#what-it-can-do)
 - [What it can't do](#what-it-cant-do)
@@ -39,6 +42,46 @@ A 50-second real recording — an LLM agent (Gemini) drives heso to find and com
 - [Building from source](#building-from-source)
 - [Status](#status)
 - [License](#license)
+
+## What heso proves
+
+The point is **not truth**. No tool can prove a website is honest — not zkTLS, not a TEE, not heso. A server can serve different bytes to different callers, lie in its own response, and sign that lie perfectly. Anyone selling "proof the page told the truth" is selling something that does not exist.
+
+What heso proves is **accountability + replay**. It stands on three legs, and one of them carries the weight.
+
+### Leg 1 — the record (the hero): cassette + deterministic replay
+
+A plat carries a **cassette** — every HTTP exchange the run touched — plus the plan and the observation. Hand it to anyone. They re-run the *recorded bytes* through the engine and get a **byte-identical** plat: the same `plat_hash`, to the byte.
+
+This is the verifiable core, and it needs **no notary, no network, no clock, no trust in heso**. It catches the failure that actually bites agents — a **lying summarizer** that claims a page said something it did not. The recorded bytes are right there; replay either reproduces the claimed observation or it does not. The artifact re-hashes to the recorded value, or it is tampered. That is the whole proof, and it is local.
+
+The load-bearing claim under Leg 1 is **determinism**: the same `(seed, cassette)` must produce the same bytes on every machine, every time, or replay proves nothing. That claim is now backed by a conformance harness — **K = 16 fresh OS processes** re-run each cassette and must agree byte-for-byte with a pinned `expected_plat_hash`, including a JS-hydrated cassette that drives the QuickJS entropy/clock fences through the hash (`crates/heso-cli/tests/determinism_conformance.rs`, corpus at `crates/heso-cli/tests/determinism_corpus/manifest.json`). Cross-architecture byte-identity is enforced by a CI matrix over `{x86_64,aarch64} × {linux,macos}` (`.github/workflows/determinism-matrix.yml`); any divergence is a release blocker. The mechanism is specified in [`spec/HESO-1.0.md`](spec/HESO-1.0.md).
+
+### Leg 2 — operator binding: attribution, not authorization
+
+Every plat is **signed by default** with an operator identity key. This closes **repudiation**: "operator key `K` made this claim, at time `T`," non-repudiably. It also closes cross-notary replay, downgrade-to-unsigned, and forging-under-another-identity — `heso verify` pins the signer trust-on-first-use and refuses a different signer for the same lineage.
+
+Be exact about what this is and is not. It is **attribution** — *who* stood behind the bytes. It is **not authorization** (the key is not a permission), and it is **not** proof that the `plat_hash` is the authentic capture of that URL (a different operator could honestly capture a different version of the same page). Attribution assigns liability; it does not certify content.
+
+### Leg 3 — the notary: the liveness / time anchor (secondary)
+
+Optionally, an independent party — a **notary** — confirms the URL was **live and served something at time T**. That is its entire job: a liveness and time anchor.
+
+It does **zero content comparison**. By design the notary fetches its own byte stream (`Date`, `Set-Cookie`, CDN request-IDs differ on every fetch), so its bytes will never equal the operator's cassette and it does not try to. It says "the URL was reachable then," not "the operator's plat is the truth of that URL." It is the anchor in the drawer, never the headline.
+
+### "We do not prove truth" is a feature
+
+Refusing to claim truth is not a gap — it is what makes the model load-bearing. Every durable accountability system on the internet works this way:
+
+| System | What it actually binds |
+|---|---|
+| Notary public | a signature happened, before this person, at this time — not that the document is true |
+| Certificate Transparency | this cert was logged at this time — not that the site is trustworthy |
+| C2PA / content credentials | this asset came from this signer through these edits — not that the photo is real |
+| Signed audit logs | these events were recorded in this order under this key — not that they were good decisions |
+| Git commit signing | this commit came from this key — not that the code is correct |
+
+Each is trusted **precisely because** it assigns liability via attribution + time + tamper-evidence, and never pretends to certify truth. heso is the same shape for agent web runs: **the record (Leg 1) is the hero, attribution (Leg 2) assigns the liability, and the notary (Leg 3) anchors liveness in time.** Truth is not on the table, and that is the point.
 
 ## Install
 
@@ -115,6 +158,8 @@ heso run out.plat > replay.plat           # plat → plat (off-network, byte-ide
 heso replay out.plat                      # plat → step log (pure read, no execution)
 heso replay --plan out.plat > plan-again.json    # plat → plan (edit, restamp)
 ```
+
+This byte-identical replay is **Leg 1 — the record**, the hero of the trust model ([What heso proves](#what-heso-proves)): the verifiable core that catches a lying summarizer with no notary, no network, and no trust in heso, backed by the K = 16 determinism conformance harness.
 
 The plat's `plat_hash` (BLAKE3 over canonical JSON via RFC 8785) commits to the plan, the observed content, the recorded seed, AND the embedded cassette. Two different `<url>` inputs always produce different `plat_hash` values — the URL is part of the hashed canonical bytes, and a regression test in `crates/heso-engine-fetch/src/plat.rs::tests` pins that invariant against future drift. A `plat_hash` identifies one capture, not a URL — re-stamp the same page and the hash changes, because the signed cassette pins the exact bytes the server sent (`Date`, `Set-Cookie`, CDN request-IDs included).
 
@@ -262,6 +307,8 @@ heso eval-js --seed 42 'Math.random()'   # 0.514049295765024
 ```
 
 ## Tamper-evidence
+
+This is **Leg 2 — operator binding** in concrete terms (see [What heso proves](#what-heso-proves)). It is **attribution** — *who* signed these bytes, and the fact that they are unchanged since signing. It is not authorization, and not a claim that the signed plat is the authentic truth of the URL.
 
 Every plat heso stamps is **signed by default**. `open`, `read`, `stamp`, and `run` add an inline `sig` field carrying an Ed25519 signature over the plat's canonical bytes, using a local identity key (auto-created on first use at `heso-local-data/identity.key`). The signature sits next to `plat_hash` and leaves the rest of the JSON untouched, so every consumer that reads the body keeps working.
 
