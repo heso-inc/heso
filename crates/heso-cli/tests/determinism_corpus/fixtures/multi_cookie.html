@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Heso Determinism — Multi-Cookie Fixture</title>
+</head>
+<body>
+  <!--
+    The page body is deliberately trivial. The determinism hazard this
+    fixture exercises lives entirely in the RESPONSE: the corpus
+    generator serves it with SIX `Set-Cookie` headers in reverse-sorted
+    name order (c6..c1), all host-only and `Path=/`, mirroring
+    cookie_order_determinism.rs's route.
+
+    `cmd_run`/`cmd_stamp` reconstruct those cookies from the cassette's
+    recorded `response_headers` and emit a `cookies` array sorted by
+    `(name, domain, path)` via `render_cookies`. That sort — the fix
+    under test — is what makes the array (and therefore `plat_hash`) a
+    deterministic function of the cookie SET rather than of HashMap
+    iteration order. Reverting the sort flips the array order per
+    process across the K=16 replay processes and reddens this fixture in
+    the MAIN conformance corpus.
+  -->
+  <h1>multi cookie page</h1>
+</body>
+</html>

@@ -173,6 +173,8 @@ fn determinism_conformance_corpus_is_byte_identical_across_16_processes() {
     let mut drift_notes: Vec<String> = Vec::new();
     let mut proven = 0usize;
     let mut saw_hydrated = false;
+    let mut saw_data_attrs = false;
+    let mut saw_settle_chain = false;
 
     for entry in &manifest.entries {
         match conformance_for(entry, &running_id) {
@@ -180,6 +182,12 @@ fn determinism_conformance_corpus_is_byte_identical_across_16_processes() {
                 proven += 1;
                 if entry.hydrated {
                     saw_hydrated = true;
+                }
+                if entry.has_data_attrs {
+                    saw_data_attrs = true;
+                }
+                if entry.requires_settle {
+                    saw_settle_chain = true;
                 }
             }
             Err(drift) => drift_notes.push(drift),
@@ -217,6 +225,24 @@ fn determinism_conformance_corpus_is_byte_identical_across_16_processes() {
         saw_hydrated,
         "corpus proved {proven} cassettes but NONE was JS-hydrated — the QuickJS determinism \
          path is unproven; the hydrated_spa cassette must be in the corpus"
+    );
+
+    // Coverage guards for the three plat-byte hazards this corpus was
+    // extended to cover (mirroring the saw_hydrated guard above). A
+    // regenerate that silently dropped data_attr_heavy or
+    // chained_settle_spa would otherwise leave the BTreeMap-order /
+    // settle-loop fixes unexercised by the MAIN corpus with no loud
+    // signal.
+    assert!(
+        saw_data_attrs,
+        "corpus proved {proven} cassettes but NONE carried data_attrs — the data_attrs \
+         BTreeMap-ordering hazard is unproven; the data_attr_heavy cassette must be in the corpus"
+    );
+    assert!(
+        saw_settle_chain,
+        "corpus proved {proven} cassettes but NONE required the settle loop's chained-timer \
+         advance branch — the async-settle hazard is unproven; the chained_settle_spa cassette \
+         must be in the corpus"
     );
 
     eprintln!(

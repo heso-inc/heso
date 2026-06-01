@@ -173,6 +173,8 @@ fn determinism_generate_corpus() {
             engine_id: engine_id(),
             expected_plat_hash: hash,
             hydrated: false,
+            has_data_attrs: false,
+            requires_settle: false,
             note: format!("static fetch + html5ever/scraper parse path ({slug})"),
         });
     }
@@ -231,7 +233,168 @@ fn determinism_generate_corpus() {
             engine_id: engine_id(),
             expected_plat_hash: hash,
             hydrated: true,
+            has_data_attrs: false,
+            requires_settle: false,
             note: "JS-hydrated: fetch()+Math.random+Date.now+UTC Date routed through plat_hash".to_owned(),
+        });
+    }
+
+    // ---- data_attr_heavy: BTreeMap data-attr ordering through plat_hash ----
+    {
+        let html = std::fs::read(corpus_path("fixtures/data_attr_heavy.html"))
+            .expect("read data_attr_heavy fixture");
+        server.set_routes(vec![Route::html("/", "text/html; charset=utf-8", html)]);
+        let stamped = stamp_open(&origin);
+
+        // The data-attrs must have landed in the stamped body, or this
+        // fixture proves nothing.
+        let v0: serde_json::Value = serde_json::from_slice(&stamped).expect("plat json");
+        assert!(
+            v0.get("data_attrs").map(|d| d.is_object()).unwrap_or(false),
+            "data_attr_heavy must emit a non-empty `data_attrs` object (extract regressed?)"
+        );
+
+        let plat = canonicalize_and_recompute(&stamped, &origin);
+        let hash = plat_hash_of(&plat);
+        let rel = "fixtures/data_attr_heavy.plat".to_owned();
+        std::fs::write(corpus_path(&rel), &plat).expect("write data_attr_heavy plat");
+        entries.push(ManifestEntry {
+            cassette: "data_attr_heavy".to_owned(),
+            input_plat: rel,
+            seed: 0,
+            engine_id: engine_id(),
+            expected_plat_hash: hash,
+            hydrated: false,
+            has_data_attrs: true,
+            requires_settle: false,
+            note: "many JSON-shaped data-* attrs routed through body[data_attrs] into plat_hash \
+                   (path coverage; object-key ORDER is not a hazard — serde_jcs sorts keys, so \
+                   the BTreeMap->HashMap mutation does NOT redden this; see the fixture comment)"
+                .to_owned(),
+        });
+    }
+
+    // ---- chained_settle_spa: chained non-zero timers REQUIRE the settle
+    // loop's virtual-clock advance branch ----
+    {
+        let html = std::fs::read(corpus_path("fixtures/chained_settle_spa.html"))
+            .expect("read chained_settle_spa fixture");
+        let data = std::fs::read(corpus_path("fixtures/chained_settle_spa_data.json"))
+            .expect("read chained_settle_spa data");
+        server.set_routes(vec![
+            Route::html("/", "text/html; charset=utf-8", html),
+            Route::html("/chained_settle_spa_data.json", "application/json", data),
+        ]);
+        let stamped = stamp_open(&origin);
+
+        // The chained 50ms timers must ALL have fired through the settle
+        // loop. The terminal stage (`stage3` + the `Hydrated` h1) is
+        // produced ONLY by the innermost `finalize` timer, so its presence
+        // in the captured DOM proves the whole chain fired across multiple
+        // virtual-clock advances. (The `data-hydration` attribute is a
+        // plain non-JSON `data-*` value, which the plat does not surface —
+        // only the rendered text does — so we assert on the text.) If the
+        // virtual-clock advance branch ever regresses, the DOM is captured
+        // at a pre-finalize stage and this assert catches it at bless time.
+        let snapshot = String::from_utf8_lossy(&stamped);
+        assert!(
+            snapshot.contains("stage3") && snapshot.contains("Hydrated"),
+            "chained_settle_spa must settle to the terminal `stage3` + `Hydrated` content \
+             (the chained non-zero timers did not all fire — settle loop regressed?)"
+        );
+        let v0: serde_json::Value = serde_json::from_slice(&stamped).expect("plat json");
+        let records = v0
+            .pointer("/cassette/records")
+            .and_then(|r| r.as_array())
+            .expect("cassette records");
+        assert_eq!(
+            records.len(),
+            2,
+            "chained_settle_spa must capture page + JS fetch; got {} records",
+            records.len()
+        );
+
+        let plat = canonicalize_and_recompute(&stamped, &origin);
+        let hash = plat_hash_of(&plat);
+        let rel = "fixtures/chained_settle_spa.plat".to_owned();
+        std::fs::write(corpus_path(&rel), &plat).expect("write chained_settle_spa plat");
+        entries.push(ManifestEntry {
+            cassette: "chained_settle_spa".to_owned(),
+            input_plat: rel,
+            seed: 0,
+            engine_id: engine_id(),
+            expected_plat_hash: hash,
+            hydrated: true,
+            has_data_attrs: false,
+            requires_settle: true,
+            note: "JS-hydrated via a CHAIN of non-zero (50ms) timers — requires the settle \
+                   loop's virtual-clock advance_clock branch to reach data-hydration=complete"
+                .to_owned(),
+        });
+    }
+
+    // ---- multi_cookie: response Set-Cookie order routed into the signed
+    // replay body via render_cookies' (name,domain,path) sort ----
+    {
+        let html = std::fs::read(corpus_path("fixtures/multi_cookie.html"))
+            .expect("read multi_cookie fixture");
+        // Six cookies whose names sorted ascending are c1..c6; emit the
+        // Set-Cookie headers in DESCENDING name order so neither header
+        // order nor jar insertion order matches the expected sorted
+        // output. All host-only, Path=/, mirroring
+        // cookie_order_determinism.rs's route.
+        let mut headers: Vec<(String, String)> = Vec::new();
+        for n in (1..=6).rev() {
+            headers.push((
+                "Set-Cookie".to_owned(),
+                format!("c{n}=v_c{n}; Path=/"),
+            ));
+        }
+        server.set_routes(vec![Route {
+            path: "/".to_owned(),
+            content_type: "text/html; charset=utf-8".to_owned(),
+            body: html,
+            extra_headers: headers,
+        }]);
+        let stamped = stamp_open(&origin);
+
+        // The stamped plat's body MUST carry a `cookies` array sorted
+        // c1..c6 (the R1-prod cookie-routing + the render_cookies sort).
+        // If cookies were not routed into the run/stamp body at all, this
+        // fixture would prove nothing — assert it lands sorted.
+        let v0: serde_json::Value = serde_json::from_slice(&stamped).expect("plat json");
+        let names: Vec<String> = v0
+            .get("cookies")
+            .and_then(|c| c.as_array())
+            .map(|a| {
+                a.iter()
+                    .filter_map(|c| c.get("name").and_then(|n| n.as_str()).map(str::to_owned))
+                    .collect()
+            })
+            .unwrap_or_default();
+        assert_eq!(
+            names,
+            vec!["c1", "c2", "c3", "c4", "c5", "c6"],
+            "multi_cookie's stamped body.cookies must be sorted c1..c6 (cookie routing or the \
+             (name,domain,path) sort regressed?); got {names:?}"
+        );
+
+        let plat = canonicalize_and_recompute(&stamped, &origin);
+        let hash = plat_hash_of(&plat);
+        let rel = "fixtures/multi_cookie.plat".to_owned();
+        std::fs::write(corpus_path(&rel), &plat).expect("write multi_cookie plat");
+        entries.push(ManifestEntry {
+            cassette: "multi_cookie".to_owned(),
+            input_plat: rel,
+            seed: 0,
+            engine_id: engine_id(),
+            expected_plat_hash: hash,
+            hydrated: false,
+            has_data_attrs: false,
+            requires_settle: false,
+            note: "six response Set-Cookie headers (reverse-sorted) routed into the signed \
+                   replay body and sorted (name,domain,path) by render_cookies"
+                .to_owned(),
         });
     }
 

@@ -8,6 +8,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "f4168841559ad8539c6aa60ff204685c9155cf231a07cd6932e72b51c89a5c06",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (example_com)"
     },
     {
@@ -17,6 +19,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "43eb90c674033d81ddd3d7c7790fba468b4757bd9963a4e5d3c677e78e4867f8",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (httpbin_html)"
     },
     {
@@ -26,6 +30,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "336a1d9b6186a684afecb93d93b665df0be6b6a1f9395049069e82b34d9c3388",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (httpbin_forms_post)"
     },
     {
@@ -35,6 +41,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "0ea057a431d0c9dde525c682138bb3adb276620002d730722b6ce4d44d791b52",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (hacker_news)"
     },
     {
@@ -44,6 +52,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "88d10088e89f7c09d74dc477dd6131ce768c30f2300ab3321d07e0afe67dfef3",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (rust_lang)"
     },
     {
@@ -53,6 +63,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "41c8ad0f2f9dc569a4dedddbc2021afd343be808555a22a74ba29d5b607115ab",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (docs_rs)"
     },
     {
@@ -62,6 +74,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "dae69ff27e363c5bd84b4eebad675902fb25039c13a3123185da46cd1210386f",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (iana_reserved)"
     },
     {
@@ -71,6 +85,8 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "818517e8c0911476be69e0900b5ff7d3be914beb67d717701a247bec75c65279",
       "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "static fetch + html5ever/scraper parse path (wikipedia_html)"
     },
     {
@@ -80,7 +96,42 @@
       "engine_id": "heso@0.3.0",
       "expected_plat_hash": "719ebb6a7d1341a96161996bdb338ee69ba8b30d5f2744c9feacb55c38cc1a2d",
       "hydrated": true,
+      "has_data_attrs": false,
+      "requires_settle": false,
       "note": "JS-hydrated: fetch()+Math.random+Date.now+UTC Date routed through plat_hash"
+    },
+    {
+      "cassette": "data_attr_heavy",
+      "input_plat": "fixtures/data_attr_heavy.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "147f41b6276ef872b26c55909d5a7aadb388eb4bff16c354b0c856c159ebbcc4",
+      "hydrated": false,
+      "has_data_attrs": true,
+      "requires_settle": false,
+      "note": "many JSON-shaped data-* attrs routed through body[data_attrs] into plat_hash (path coverage; object-key ORDER is not a hazard — serde_jcs sorts keys, so the BTreeMap->HashMap mutation does NOT redden this; see the fixture comment)"
+    },
+    {
+      "cassette": "chained_settle_spa",
+      "input_plat": "fixtures/chained_settle_spa.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "ea043a47b05fe2e89ef2f15373f68f4a44791f21822310bf6dce11ca1b7b1120",
+      "hydrated": true,
+      "has_data_attrs": false,
+      "requires_settle": true,
+      "note": "JS-hydrated via a CHAIN of non-zero (50ms) timers — requires the settle loop's virtual-clock advance_clock branch to reach data-hydration=complete"
+    },
+    {
+      "cassette": "multi_cookie",
+      "input_plat": "fixtures/multi_cookie.plat",
+      "seed": 0,
+      "engine_id": "heso@0.3.0",
+      "expected_plat_hash": "8e398b8b22a58a2483bf9653c1c4db8396d77f18699dd5938bc6ceee96653f27",
+      "hydrated": false,
+      "has_data_attrs": false,
+      "requires_settle": false,
+      "note": "six response Set-Cookie headers (reverse-sorted) routed into the signed replay body and sorted (name,domain,path) by render_cookies"
     }
   ]
 }

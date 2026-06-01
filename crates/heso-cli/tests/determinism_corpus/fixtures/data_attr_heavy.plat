@@ -1,0 +1,259 @@
+{
+  "actions": [
+    {
+      "name": "config",
+      "ref": "@e0",
+      "role": "button",
+      "section": "/",
+      "tag": "button"
+    },
+    {
+      "name": "cfg form",
+      "ref": "@e1",
+      "role": "form",
+      "section": "/",
+      "tag": "form"
+    }
+  ],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiPgogIDx0aXRsZT5IZXNvIERldGVybWluaXNtIOKAlCBEYXRhLUF0dHIgSGVhdnkgRml4dHVyZTwvdGl0bGU+CjwvaGVhZD4KPGJvZHk+CiAgPCEtLQogICAgVGhpcyBmaXh0dXJlIHN0cmVzc2VzIHRoZSBgZGF0YV9hdHRyc2AgZXh0cmFjdGlvbiBwYXRoCiAgICAoaGVzby1lbmdpbmUtZmV0Y2gvc3JjL2RhdGFfYXR0cnMucnMpIHRocm91Z2ggdGhlIHNpZ25lZCBgcGxhdF9oYXNoYC4KICAgIEl0IGNhcnJpZXMgbWFueSBlbGVtZW50cyB3aXRoIG5vbi1lbXB0eSBKU09OLXNoYXBlZCBgZGF0YS0qYAogICAgYXR0cmlidXRlcyB3aG9zZSBhdHRyaWJ1dGUgTkFNRVMgYXJlIGRlbGliZXJhdGVseSBOT1QgaW4gZG9jdW1lbnQKICAgIG9yZGVyIChkYXRhLXplYnJhLXByb3BzIGFwcGVhcnMgYmVmb3JlIGRhdGEtYWxwaGEtY2ZnLCBldGMuKSwgcmVwZWF0cwogICAgYGRhdGEtaXRlbWAgYWNyb3NzIHNldmVyYWwgZWxlbWVudHMsIGFuZCBuZXN0cyBvYmplY3RzL2FycmF5cyDigJQgc28gdGhlCiAgICBmdWxsIGBkYXRhX2F0dHJzOjpleHRyYWN0YCAtPiBgYm9keVsiZGF0YV9hdHRycyJdYCBibG9iIGxhbmRzIGluIHRoZQogICAgaGFzaCB3aXRoIG5vIGV4Y2x1c2lvbi4gSXQgaXMgdGhlIE9OTFkgY29ycHVzIGZpeHR1cmUgdGhhdCByb3V0ZXMgYQogICAgcmljaCBgZGF0YV9hdHRyc2AgcGF5bG9hZCB0aHJvdWdoIHRoZSBLPTE2IHJlcGxheSBoYXNoLCBhbmQgdGhlCiAgICBgc2F3X2RhdGFfYXR0cnNgIGd1YXJkIGluIHRoZSBjb25mb3JtYW5jZSBoYXJuZXNzIGtlZXBzIGEgZnV0dXJlCiAgICByZWdlbmVyYXRlIGZyb20gc2lsZW50bHkgZHJvcHBpbmcgdGhhdCBjb3ZlcmFnZS4KCiAgICBIT05FU1QgU0NPUEUgTk9URTogdGhlIGBkYXRhX2F0dHJzOjpleHRyYWN0YCBCVHJlZU1hcC12cy1IYXNoTWFwIGtleQogICAgT1JERVIgaXMgTk9UIGl0c2VsZiBhIGBwbGF0X2hhc2hgIGhhemFyZCwgYmVjYXVzZSB0aGUgY2Fub25pY2FsaXplcgogICAgKGBzZXJkZV9qY3M6OnRvX3ZlY2ApIHNvcnRzIGV2ZXJ5IEpTT04gb2JqZWN0J3Mga2V5cyByZWN1cnNpdmVseQogICAgYmVmb3JlIGhhc2hpbmcg4oCUIHNvIHN3YXBwaW5nIHRoZSBCVHJlZU1hcCBmb3IgYSBIYXNoTWFwIGRvZXMgTk9UCiAgICByZWRkZW4gdGhpcyBmaXh0dXJlICh2ZXJpZmllZCBlbXBpcmljYWxseSkuIFRoZSBzdHJ1Y3R1cmFsIHByb3RlY3Rpb24KICAgIGhlcmUgaXMgSkNTIGNhbm9uaWNhbGl6YXRpb24sIG5vdCB0aGUgY29udGFpbmVyIHR5cGUuIFRoaXMgZml4dHVyZSdzCiAgICBqb2IgaXMgZGF0YV9hdHRycyBQQVRIIGNvdmVyYWdlIHRocm91Z2ggdGhlIHNpZ25lZCBoYXNoLCBub3QgYQogICAgcmVkZGVuLW9uLW11dGF0aW9uIHByb29mIG9mIGFuIG9iamVjdC1rZXktb3JkZXJpbmcgYnVnIHRoYXQgSkNTCiAgICBhbHJlYWR5IGVsaW1pbmF0ZXMuIChDb250YWluZXItb3JkZXIgaGF6YXJkcyB0aGF0IERPIHJlYWNoIHRoZSBoYXNoCiAgICBsaXZlIGJlaGluZCBvcmRlcmVkIGFycmF5cyDigJQgc2VlIG11bHRpX2Nvb2tpZSdzIGNvb2tpZVtdIGFycmF5LikKCiAgICBWYWx1ZXMgYXJlIG9iamVjdHMgLyBub24tZW1wdHkgYXJyYXlzIHNvIGBpc19tZWFuaW5nZnVsX3BheWxvYWRgCiAgICBrZWVwcyB0aGVtOyB0aGVyZSBhcmUgPj0gNiBkaXN0aW5jdCBhdHRyaWJ1dGUga2V5cy4KICAtLT4KICA8bWFpbiBpZD0iYXBwIj4KICAgIDxzZWN0aW9uIGRhdGEtemVicmEtcHJvcHM9J3sieiI6MSwidGhlbWUiOiJkYXJrIiwiaXRlbXMiOlszLDIsMV19Jz56ZWJyYTwvc2VjdGlvbj4KICAgIDxkaXYgZGF0YS1hbHBoYS1jZmc9J3siYWxwaGEiOnRydWUsIm5lc3RlZCI6eyJrIjoidiIsImFyciI6WzEsMl19fSc+YWxwaGE8L2Rpdj4KICAgIDxhcnRpY2xlIGRhdGEtbWFuZ28taXRlbT0neyJpZCI6Im0tMSIsInRhZ3MiOlsicmlwZSIsInN3ZWV0Il19Jz5tYW5nbzwvYXJ0aWNsZT4KICAgIDxkaXYgZGF0YS1yZWFjdC1wcm9wcz0neyJ0aGVtZSI6ImxpZ2h0IiwiY291bnQiOjcsImZsYWdzIjp7ImJldGEiOnRydWV9fSc+cmVhY3Q8L2Rpdj4KICAgIDxidXR0b24gZGF0YS1jb250cm9sbGVyLWNvbmZpZz0neyJjb250cm9sbGVyIjoibW9kYWwiLCJzaXplIjoibGciLCJvcHRzIjpbImEiLCJiIiwiYyJdfSc+Y29uZmlnPC9idXR0b24+CiAgICA8dWwgZGF0YS1vbWVnYS1saXN0PSdbeyJpZCI6MX0seyJpZCI6Mn0seyJpZCI6M31dJz5vbWVnYTwvdWw+CiAgICA8bGkgZGF0YS1pdGVtPSd7ImlkIjoxLCJuYW1lIjoib25lIn0nPml0ZW0gb25lPC9saT4KICAgIDxsaSBkYXRhLWl0ZW09J3siaWQiOjIsIm5hbWUiOiJ0d28ifSc+aXRlbSB0d288L2xpPgogICAgPGxpIGRhdGEtaXRlbT0neyJpZCI6MywibmFtZSI6InRocmVlIn0nPml0ZW0gdGhyZWU8L2xpPgogICAgPGZvcm0gZGF0YS1jZmc9J3sidGhlbWUiOnsicHJpbWFyeSI6IiNmZmYiLCJmb250cyI6WyJhIiwiYiJdfSwiZmxhZ3MiOnsieCI6dHJ1ZSwieSI6ZmFsc2V9fSc+Y2ZnIGZvcm08L2Zvcm0+CiAgICA8c3BhbiBkYXRhLWJldGEtbWV0YT0neyJ2IjoyLCJsYWJlbHMiOlsieCIsInkiLCJ6Il19Jz5iZXRhPC9zcGFuPgogICAgPG5hdiBkYXRhLW5hdi1zdGF0ZT0neyJvcGVuIjp0cnVlLCJjcnVtYnMiOlsiaG9tZSIsImRvY3MiLCJhcGkiXX0nPm5hdjwvbmF2PgogIDwvbWFpbj4KPC9ib2R5Pgo8L2h0bWw+Cg==",
+        "response_body_blake3": "1d6e713c15f3e43b72d072ad4475ad58ed1c27bb8cb5ffccf7b78c5b801e09ea",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "2746"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "data_attrs": {
+    "data-alpha-cfg": [
+      {
+        "tag": "div",
+        "value": {
+          "alpha": true,
+          "nested": {
+            "arr": [
+              1,
+              2
+            ],
+            "k": "v"
+          }
+        }
+      }
+    ],
+    "data-beta-meta": [
+      {
+        "tag": "span",
+        "value": {
+          "labels": [
+            "x",
+            "y",
+            "z"
+          ],
+          "v": 2
+        }
+      }
+    ],
+    "data-cfg": [
+      {
+        "tag": "form",
+        "value": {
+          "flags": {
+            "x": true,
+            "y": false
+          },
+          "theme": {
+            "fonts": [
+              "a",
+              "b"
+            ],
+            "primary": "#fff"
+          }
+        }
+      }
+    ],
+    "data-controller-config": [
+      {
+        "tag": "button",
+        "value": {
+          "controller": "modal",
+          "opts": [
+            "a",
+            "b",
+            "c"
+          ],
+          "size": "lg"
+        }
+      }
+    ],
+    "data-item": [
+      {
+        "tag": "li",
+        "value": {
+          "id": 1,
+          "name": "one"
+        }
+      },
+      {
+        "tag": "li",
+        "value": {
+          "id": 2,
+          "name": "two"
+        }
+      },
+      {
+        "tag": "li",
+        "value": {
+          "id": 3,
+          "name": "three"
+        }
+      }
+    ],
+    "data-mango-item": [
+      {
+        "tag": "article",
+        "value": {
+          "id": "m-1",
+          "tags": [
+            "ripe",
+            "sweet"
+          ]
+        }
+      }
+    ],
+    "data-nav-state": [
+      {
+        "tag": "nav",
+        "value": {
+          "crumbs": [
+            "home",
+            "docs",
+            "api"
+          ],
+          "open": true
+        }
+      }
+    ],
+    "data-omega-list": [
+      {
+        "tag": "ul",
+        "value": [
+          {
+            "id": 1
+          },
+          {
+            "id": 2
+          },
+          {
+            "id": 3
+          }
+        ]
+      }
+    ],
+    "data-react-props": [
+      {
+        "tag": "div",
+        "value": {
+          "count": 7,
+          "flags": {
+            "beta": true
+          },
+          "theme": "light"
+        }
+      }
+    ],
+    "data-zebra-props": [
+      {
+        "tag": "section",
+        "value": {
+          "items": [
+            3,
+            2,
+            1
+          ],
+          "theme": "dark",
+          "z": 1
+        }
+      }
+    ]
+  },
+  "description": null,
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en"
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "147f41b6276ef872b26c55909d5a7aadb388eb4bff16c354b0c856c159ebbcc4",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Heso Determinism — Data-Attr Heavy Fixture",
+  "tree": {
+    "description": null,
+    "root": {
+      "byte_count": 79,
+      "child_count": 0,
+      "children": [],
+      "heading": null,
+      "intro": "zebra alpha mango react config omega item one item two item three cfg form beta",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": "zebra alpha mango react config omega item one item two item three cfg form beta"
+    },
+    "title": "Heso Determinism — Data-Attr Heavy Fixture",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

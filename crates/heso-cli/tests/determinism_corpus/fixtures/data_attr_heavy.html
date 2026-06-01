@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Heso Determinism — Data-Attr Heavy Fixture</title>
+</head>
+<body>
+  <!--
+    This fixture stresses the `data_attrs` extraction path
+    (heso-engine-fetch/src/data_attrs.rs) through the signed `plat_hash`.
+    It carries many elements with non-empty JSON-shaped `data-*`
+    attributes whose attribute NAMES are deliberately NOT in document
+    order (data-zebra-props appears before data-alpha-cfg, etc.), repeats
+    `data-item` across several elements, and nests objects/arrays — so the
+    full `data_attrs::extract` -> `body["data_attrs"]` blob lands in the
+    hash with no exclusion. It is the ONLY corpus fixture that routes a
+    rich `data_attrs` payload through the K=16 replay hash, and the
+    `saw_data_attrs` guard in the conformance harness keeps a future
+    regenerate from silently dropping that coverage.
+
+    HONEST SCOPE NOTE: the `data_attrs::extract` BTreeMap-vs-HashMap key
+    ORDER is NOT itself a `plat_hash` hazard, because the canonicalizer
+    (`serde_jcs::to_vec`) sorts every JSON object's keys recursively
+    before hashing — so swapping the BTreeMap for a HashMap does NOT
+    redden this fixture (verified empirically). The structural protection
+    here is JCS canonicalization, not the container type. This fixture's
+    job is data_attrs PATH coverage through the signed hash, not a
+    redden-on-mutation proof of an object-key-ordering bug that JCS
+    already eliminates. (Container-order hazards that DO reach the hash
+    live behind ordered arrays — see multi_cookie's cookie[] array.)
+
+    Values are objects / non-empty arrays so `is_meaningful_payload`
+    keeps them; there are >= 6 distinct attribute keys.
+  -->
+  <main id="app">
+    <section data-zebra-props='{"z":1,"theme":"dark","items":[3,2,1]}'>zebra</section>
+    <div data-alpha-cfg='{"alpha":true,"nested":{"k":"v","arr":[1,2]}}'>alpha</div>
+    <article data-mango-item='{"id":"m-1","tags":["ripe","sweet"]}'>mango</article>
+    <div data-react-props='{"theme":"light","count":7,"flags":{"beta":true}}'>react</div>
+    <button data-controller-config='{"controller":"modal","size":"lg","opts":["a","b","c"]}'>config</button>
+    <ul data-omega-list='[{"id":1},{"id":2},{"id":3}]'>omega</ul>
+    <li data-item='{"id":1,"name":"one"}'>item one</li>
+    <li data-item='{"id":2,"name":"two"}'>item two</li>
+    <li data-item='{"id":3,"name":"three"}'>item three</li>
+    <form data-cfg='{"theme":{"primary":"#fff","fonts":["a","b"]},"flags":{"x":true,"y":false}}'>cfg form</form>
+    <span data-beta-meta='{"v":2,"labels":["x","y","z"]}'>beta</span>
+    <nav data-nav-state='{"open":true,"crumbs":["home","docs","api"]}'>nav</nav>
+  </main>
+</body>
+</html>

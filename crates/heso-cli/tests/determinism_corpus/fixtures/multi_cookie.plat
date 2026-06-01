@@ -1,0 +1,172 @@
+{
+  "actions": [],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiPgogIDx0aXRsZT5IZXNvIERldGVybWluaXNtIOKAlCBNdWx0aS1Db29raWUgRml4dHVyZTwvdGl0bGU+CjwvaGVhZD4KPGJvZHk+CiAgPCEtLQogICAgVGhlIHBhZ2UgYm9keSBpcyBkZWxpYmVyYXRlbHkgdHJpdmlhbC4gVGhlIGRldGVybWluaXNtIGhhemFyZCB0aGlzCiAgICBmaXh0dXJlIGV4ZXJjaXNlcyBsaXZlcyBlbnRpcmVseSBpbiB0aGUgUkVTUE9OU0U6IHRoZSBjb3JwdXMKICAgIGdlbmVyYXRvciBzZXJ2ZXMgaXQgd2l0aCBTSVggYFNldC1Db29raWVgIGhlYWRlcnMgaW4gcmV2ZXJzZS1zb3J0ZWQKICAgIG5hbWUgb3JkZXIgKGM2Li5jMSksIGFsbCBob3N0LW9ubHkgYW5kIGBQYXRoPS9gLCBtaXJyb3JpbmcKICAgIGNvb2tpZV9vcmRlcl9kZXRlcm1pbmlzbS5ycydzIHJvdXRlLgoKICAgIGBjbWRfcnVuYC9gY21kX3N0YW1wYCByZWNvbnN0cnVjdCB0aG9zZSBjb29raWVzIGZyb20gdGhlIGNhc3NldHRlJ3MKICAgIHJlY29yZGVkIGByZXNwb25zZV9oZWFkZXJzYCBhbmQgZW1pdCBhIGBjb29raWVzYCBhcnJheSBzb3J0ZWQgYnkKICAgIGAobmFtZSwgZG9tYWluLCBwYXRoKWAgdmlhIGByZW5kZXJfY29va2llc2AuIFRoYXQgc29ydCDigJQgdGhlIGZpeAogICAgdW5kZXIgdGVzdCDigJQgaXMgd2hhdCBtYWtlcyB0aGUgYXJyYXkgKGFuZCB0aGVyZWZvcmUgYHBsYXRfaGFzaGApIGEKICAgIGRldGVybWluaXN0aWMgZnVuY3Rpb24gb2YgdGhlIGNvb2tpZSBTRVQgcmF0aGVyIHRoYW4gb2YgSGFzaE1hcAogICAgaXRlcmF0aW9uIG9yZGVyLiBSZXZlcnRpbmcgdGhlIHNvcnQgZmxpcHMgdGhlIGFycmF5IG9yZGVyIHBlcgogICAgcHJvY2VzcyBhY3Jvc3MgdGhlIEs9MTYgcmVwbGF5IHByb2Nlc3NlcyBhbmQgcmVkZGVucyB0aGlzIGZpeHR1cmUgaW4KICAgIHRoZSBNQUlOIGNvbmZvcm1hbmNlIGNvcnB1cy4KICAtLT4KICA8aDE+bXVsdGkgY29va2llIHBhZ2U8L2gxPgo8L2JvZHk+CjwvaHRtbD4K",
+        "response_body_blake3": "32227747166b9de11a75f8624f450a4dbefa7b67ea4bb50ae7d3b839e59a2e55",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "1035"
+          ],
+          [
+            "connection",
+            "close"
+          ],
+          [
+            "set-cookie",
+            "c6=v_c6; Path=/"
+          ],
+          [
+            "set-cookie",
+            "c5=v_c5; Path=/"
+          ],
+          [
+            "set-cookie",
+            "c4=v_c4; Path=/"
+          ],
+          [
+            "set-cookie",
+            "c3=v_c3; Path=/"
+          ],
+          [
+            "set-cookie",
+            "c2=v_c2; Path=/"
+          ],
+          [
+            "set-cookie",
+            "c1=v_c1; Path=/"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      }
+    ]
+  },
+  "cookies": [
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c1",
+      "path": "/",
+      "value": "v_c1"
+    },
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c2",
+      "path": "/",
+      "value": "v_c2"
+    },
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c3",
+      "path": "/",
+      "value": "v_c3"
+    },
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c4",
+      "path": "/",
+      "value": "v_c4"
+    },
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c5",
+      "path": "/",
+      "value": "v_c5"
+    },
+    {
+      "domain": "heso.invalid",
+      "host_only": true,
+      "name": "c6",
+      "path": "/",
+      "value": "v_c6"
+    }
+  ],
+  "description": null,
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en"
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "8e398b8b22a58a2483bf9653c1c4db8396d77f18699dd5938bc6ceee96653f27",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 0,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Heso Determinism — Multi-Cookie Fixture",
+  "tree": {
+    "description": null,
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 0,
+          "child_count": 0,
+          "children": [],
+          "heading": "multi cookie page",
+          "intro": "",
+          "level": 1,
+          "path": "/multi-cookie-page",
+          "slug": "multi-cookie-page",
+          "summary": "multi cookie page"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Heso Determinism — Multi-Cookie Fixture",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

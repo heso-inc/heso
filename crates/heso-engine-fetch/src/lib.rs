@@ -1139,6 +1139,53 @@ fn snapshot_response_cookies(response: &reqwest::Response) -> Vec<ResponseCookie
         .collect()
 }
 
+/// Reconstruct the [`ResponseCookie`]s a recorded response set, parsing
+/// the `Set-Cookie` header values out of a replayed cassette record's
+/// `response_headers`.
+///
+/// **Why this exists.** On the LIVE path, `reqwest::Response::cookies()`
+/// hands us pre-parsed cookies ([`snapshot_response_cookies`]). On the
+/// REPLAY path (`heso run`) there is no `reqwest::Response` — the engine
+/// reads a cassette record, whose `response_headers` carry the original
+/// `Set-Cookie` lines verbatim. To route the cookie set into the
+/// re-stamped plat body (so the cookie-ordering determinism hazard
+/// reaches the MAIN replay `plat_hash`, not only the read-surface side
+/// test), we re-parse those header strings here.
+///
+/// **Determinism.** Header names are matched case-insensitively against
+/// `set-cookie`; every value is parsed by the SAME RFC 6265 parser
+/// (`cookie::Cookie::parse`, re-exported as [`cookie_store::RawCookie`])
+/// that the live jar uses, and the host-only / http-only / secure flags
+/// are derived identically to [`snapshot_response_cookies`]. The returned
+/// `Vec` preserves header order; the agent-facing renderer
+/// (`render_cookies` in the CLI) sorts by `(name, domain, path)` and
+/// drops `HttpOnly`, so the final array is a deterministic function of
+/// the cookie SET, independent of header order or any HashMap iteration
+/// order. Unparseable `Set-Cookie` lines are skipped (they could not have
+/// populated the live jar either), keeping replay faithful to live.
+pub fn response_cookies_from_headers(
+    response_headers: &[(String, String)],
+) -> Vec<ResponseCookie> {
+    response_headers
+        .iter()
+        .filter(|(name, _)| name.eq_ignore_ascii_case("set-cookie"))
+        .filter_map(|(_, raw)| cookie_store::RawCookie::parse(raw.as_str()).ok())
+        .map(|c| {
+            let domain = c.domain().map(str::to_owned);
+            let host_only = domain.as_deref().is_none_or(str::is_empty);
+            ResponseCookie {
+                name: c.name().to_owned(),
+                value: c.value().to_owned(),
+                domain,
+                path: c.path().map(str::to_owned),
+                host_only,
+                http_only: matches!(c.http_only(), Some(true)),
+                secure: matches!(c.secure(), Some(true)),
+            }
+        })
+        .collect()
+}
+
 /// Snapshot the cookies in `jar` that match `url`, as [`ResponseCookie`]s.
 ///
 /// Where [`snapshot_response_cookies`] captures only the `Set-Cookie`
@@ -1957,5 +2004,72 @@ mod tests {
         assert_eq!(session.value, "abc");
         // No `Domain=` attribute → host-only per RFC 6265 §5.3 step 6.
         assert!(session.host_only, "expected host-only cookie: {session:?}");
+    }
+
+    /// `response_cookies_from_headers` is the replay-side reconstruction
+    /// used by `heso run`/`stamp` to route cassette `Set-Cookie` lines
+    /// into the signed plat body. It must (a) match `set-cookie`
+    /// case-insensitively, (b) parse name/value/path/host_only/http_only
+    /// like the live snapshot, and (c) skip unparseable lines. Order is
+    /// preserved here (the CLI's `render_cookies` does the deterministic
+    /// `(name,domain,path)` sort + HttpOnly drop on top).
+    #[test]
+    fn response_cookies_from_headers_parses_set_cookie_lines() {
+        let headers = vec![
+            ("content-type".to_owned(), "text/html".to_owned()),
+            ("Set-Cookie".to_owned(), "c2=v_c2; Path=/".to_owned()),
+            ("set-cookie".to_owned(), "c1=v_c1; Path=/; HttpOnly".to_owned()),
+            (
+                "SET-COOKIE".to_owned(),
+                "c3=v_c3; Domain=example.com; Path=/x; Secure".to_owned(),
+            ),
+            ("set-cookie".to_owned(), "   not a cookie   ".to_owned()),
+        ];
+        let cookies = response_cookies_from_headers(&headers);
+        // Header order preserved; the unparseable line is dropped.
+        let names: Vec<&str> = cookies.iter().map(|c| c.name.as_str()).collect();
+        assert_eq!(names, vec!["c2", "c1", "c3"]);
+
+        let c1 = cookies.iter().find(|c| c.name == "c1").unwrap();
+        assert!(c1.http_only, "c1 carried HttpOnly");
+        assert!(c1.host_only, "c1 had no Domain= → host-only");
+
+        let c3 = cookies.iter().find(|c| c.name == "c3").unwrap();
+        assert_eq!(c3.domain.as_deref(), Some("example.com"));
+        assert_eq!(c3.path.as_deref(), Some("/x"));
+        assert!(c3.secure, "c3 carried Secure");
+        assert!(!c3.host_only, "c3 had an explicit Domain= → not host-only");
+    }
+
+    /// The same header set always reconstructs the same cookies, and
+    /// rendering through the CLI sort (simulated here) is independent of
+    /// header order — the property the `multi_cookie` corpus fixture
+    /// pins end-to-end.
+    #[test]
+    fn response_cookies_from_headers_is_order_stable() {
+        let mut fwd = vec![("content-type".to_owned(), "text/html".to_owned())];
+        for n in 1..=6 {
+            fwd.push(("set-cookie".to_owned(), format!("c{n}=v_c{n}; Path=/")));
+        }
+        let mut rev = vec![("content-type".to_owned(), "text/html".to_owned())];
+        for n in (1..=6).rev() {
+            rev.push(("set-cookie".to_owned(), format!("c{n}=v_c{n}; Path=/")));
+        }
+        let mut a: Vec<String> = response_cookies_from_headers(&fwd)
+            .into_iter()
+            .map(|c| c.name)
+            .collect();
+        let mut b: Vec<String> = response_cookies_from_headers(&rev)
+            .into_iter()
+            .map(|c| c.name)
+            .collect();
+        // Reconstruction preserves header order (forward vs reverse here),
+        // so the SET is identical but the sequence differs — exactly the
+        // hazard `render_cookies`' sort neutralizes downstream.
+        assert_ne!(a, b, "forward and reverse header orders should differ pre-sort");
+        a.sort();
+        b.sort();
+        assert_eq!(a, b, "same cookie SET regardless of header order");
+        assert_eq!(a, vec!["c1", "c2", "c3", "c4", "c5", "c6"]);
     }
 }

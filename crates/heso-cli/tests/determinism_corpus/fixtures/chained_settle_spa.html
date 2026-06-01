@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Heso Determinism — Chained-Settle SPA Fixture</title>
+</head>
+<body>
+  <main id="app" data-hydration="pending"><h1>Loading</h1></main>
+  <script>
+  // This fixture is LOAD-BEARING for the determinism settle loop. Unlike
+  // `hydrated_spa.html` (a single resolved-fetch microtask, ZERO timers),
+  // this page hydrates through a CHAIN of NON-ZERO (50ms) setTimeout
+  // stages. Each delay (50ms) exceeds SETTLE_VIRTUAL_TICK_MS (16ms), so
+  // `run_pending_jobs` alone leaves every stage PENDING — only
+  // `settle_dom_deterministic`'s `if pending_timers > 0 { advance_clock(
+  // SETTLE_VIRTUAL_TICK_MS) }` branch fires them, across MULTIPLE virtual
+  // ticks. No-op'ing that branch (a bare `run_pending_jobs`) leaves the
+  // captured DOM at the pre-timer stage, so the pinned `plat_hash` stops
+  // reproducing and this fixture reddens in the MAIN conformance corpus.
+  // The existing `hydrated_spa` fixture (single microtask, no timers)
+  // STILL passes under that mutation — which is exactly why this chained
+  // fixture is needed.
+  //
+  // The fetch URL is absolute, built from `location.origin`, because the
+  // JS fetch shim's RELATIVE-URL base resolution is a known separate bug
+  // (a bare `/chained_settle_spa_data.json` rejects). Deriving the origin
+  // from `location` keeps this about the settle loop, not URL resolution.
+  (function () {
+    var app = document.getElementById('app');
+    var origin = (typeof location !== 'undefined' && location.origin)
+      ? location.origin
+      : 'http://127.0.0.1';
+
+    function stage(name) {
+      var p = document.createElement('p');
+      p.className = 'stage';
+      p.textContent = name;
+      app.appendChild(p);
+    }
+
+    function finalize() {
+      stage('stage3');
+      var h1 = app.querySelector('h1');
+      if (h1) { h1.textContent = 'Hydrated'; }
+      // The terminal signal the generator asserts at bless time and the
+      // proof that ALL chained timers fired.
+      app.setAttribute('data-hydration', 'complete');
+    }
+
+    fetch(origin + '/chained_settle_spa_data.json')
+      .then(function (resp) { return resp.json(); })
+      .then(function (data) {
+        // Stage 1 lands in a resolved-fetch microtask.
+        stage(data.label);
+        app.setAttribute('data-hydration', 'stage1');
+        // Stage 2 -> stage 3 -> finalize, each a NON-ZERO timer so the
+        // settle loop must advance the virtual clock multiple ticks.
+        setTimeout(function () {
+          stage('stage2');
+          app.setAttribute('data-hydration', 'stage2');
+          setTimeout(function () {
+            app.setAttribute('data-hydration', 'stage3-pending');
+            setTimeout(finalize, 50);
+          }, 50);
+        }, 50);
+      })
+      .catch(function (e) {
+        console.error('chained hydration fetch failed', e && e.message);
+      });
+  })();
+  </script>
+</body>
+</html>

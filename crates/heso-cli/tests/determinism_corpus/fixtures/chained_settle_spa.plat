@@ -1,0 +1,127 @@
+{
+  "actions": [],
+  "cassette": {
+    "records": [
+      {
+        "final_url": "http://heso.invalid/",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "PCFkb2N0eXBlIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KPGhlYWQ+CiAgPG1ldGEgY2hhcnNldD0idXRmLTgiPgogIDx0aXRsZT5IZXNvIERldGVybWluaXNtIOKAlCBDaGFpbmVkLVNldHRsZSBTUEEgRml4dHVyZTwvdGl0bGU+CjwvaGVhZD4KPGJvZHk+CiAgPG1haW4gaWQ9ImFwcCIgZGF0YS1oeWRyYXRpb249InBlbmRpbmciPjxoMT5Mb2FkaW5nPC9oMT48L21haW4+CiAgPHNjcmlwdD4KICAvLyBUaGlzIGZpeHR1cmUgaXMgTE9BRC1CRUFSSU5HIGZvciB0aGUgZGV0ZXJtaW5pc20gc2V0dGxlIGxvb3AuIFVubGlrZQogIC8vIGBoeWRyYXRlZF9zcGEuaHRtbGAgKGEgc2luZ2xlIHJlc29sdmVkLWZldGNoIG1pY3JvdGFzaywgWkVSTyB0aW1lcnMpLAogIC8vIHRoaXMgcGFnZSBoeWRyYXRlcyB0aHJvdWdoIGEgQ0hBSU4gb2YgTk9OLVpFUk8gKDUwbXMpIHNldFRpbWVvdXQKICAvLyBzdGFnZXMuIEVhY2ggZGVsYXkgKDUwbXMpIGV4Y2VlZHMgU0VUVExFX1ZJUlRVQUxfVElDS19NUyAoMTZtcyksIHNvCiAgLy8gYHJ1bl9wZW5kaW5nX2pvYnNgIGFsb25lIGxlYXZlcyBldmVyeSBzdGFnZSBQRU5ESU5HIOKAlCBvbmx5CiAgLy8gYHNldHRsZV9kb21fZGV0ZXJtaW5pc3RpY2AncyBgaWYgcGVuZGluZ190aW1lcnMgPiAwIHsgYWR2YW5jZV9jbG9jaygKICAvLyBTRVRUTEVfVklSVFVBTF9USUNLX01TKSB9YCBicmFuY2ggZmlyZXMgdGhlbSwgYWNyb3NzIE1VTFRJUExFIHZpcnR1YWwKICAvLyB0aWNrcy4gTm8tb3AnaW5nIHRoYXQgYnJhbmNoIChhIGJhcmUgYHJ1bl9wZW5kaW5nX2pvYnNgKSBsZWF2ZXMgdGhlCiAgLy8gY2FwdHVyZWQgRE9NIGF0IHRoZSBwcmUtdGltZXIgc3RhZ2UsIHNvIHRoZSBwaW5uZWQgYHBsYXRfaGFzaGAgc3RvcHMKICAvLyByZXByb2R1Y2luZyBhbmQgdGhpcyBmaXh0dXJlIHJlZGRlbnMgaW4gdGhlIE1BSU4gY29uZm9ybWFuY2UgY29ycHVzLgogIC8vIFRoZSBleGlzdGluZyBgaHlkcmF0ZWRfc3BhYCBmaXh0dXJlIChzaW5nbGUgbWljcm90YXNrLCBubyB0aW1lcnMpCiAgLy8gU1RJTEwgcGFzc2VzIHVuZGVyIHRoYXQgbXV0YXRpb24g4oCUIHdoaWNoIGlzIGV4YWN0bHkgd2h5IHRoaXMgY2hhaW5lZAogIC8vIGZpeHR1cmUgaXMgbmVlZGVkLgogIC8vCiAgLy8gVGhlIGZldGNoIFVSTCBpcyBhYnNvbHV0ZSwgYnVpbHQgZnJvbSBgbG9jYXRpb24ub3JpZ2luYCwgYmVjYXVzZSB0aGUKICAvLyBKUyBmZXRjaCBzaGltJ3MgUkVMQVRJVkUtVVJMIGJhc2UgcmVzb2x1dGlvbiBpcyBhIGtub3duIHNlcGFyYXRlIGJ1ZwogIC8vIChhIGJhcmUgYC9jaGFpbmVkX3NldHRsZV9zcGFfZGF0YS5qc29uYCByZWplY3RzKS4gRGVyaXZpbmcgdGhlIG9yaWdpbgogIC8vIGZyb20gYGxvY2F0aW9uYCBrZWVwcyB0aGlzIGFib3V0IHRoZSBzZXR0bGUgbG9vcCwgbm90IFVSTCByZXNvbHV0aW9uLgogIChmdW5jdGlvbiAoKSB7CiAgICB2YXIgYXBwID0gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2FwcCcpOwogICAgdmFyIG9yaWdpbiA9ICh0eXBlb2YgbG9jYXRpb24gIT09ICd1bmRlZmluZWQnICYmIGxvY2F0aW9uLm9yaWdpbikKICAgICAgPyBsb2NhdGlvbi5vcmlnaW4KICAgICAgOiAnaHR0cDovLzEyNy4wLjAuMSc7CgogICAgZnVuY3Rpb24gc3RhZ2UobmFtZSkgewogICAgICB2YXIgcCA9IGRvY3VtZW50LmNyZWF0ZUVsZW1lbnQoJ3AnKTsKICAgICAgcC5jbGFzc05hbWUgPSAnc3RhZ2UnOwogICAgICBwLnRleHRDb250ZW50ID0gbmFtZTsKICAgICAgYXBwLmFwcGVuZENoaWxkKHApOwogICAgfQoKICAgIGZ1bmN0aW9uIGZpbmFsaXplKCkgewogICAgICBzdGFnZSgnc3RhZ2UzJyk7CiAgICAgIHZhciBoMSA9IGFwcC5xdWVyeVNlbGVjdG9yKCdoMScpOwogICAgICBpZiAoaDEpIHsgaDEudGV4dENvbnRlbnQgPSAnSHlkcmF0ZWQnOyB9CiAgICAgIC8vIFRoZSB0ZXJtaW5hbCBzaWduYWwgdGhlIGdlbmVyYXRvciBhc3NlcnRzIGF0IGJsZXNzIHRpbWUgYW5kIHRoZQogICAgICAvLyBwcm9vZiB0aGF0IEFMTCBjaGFpbmVkIHRpbWVycyBmaXJlZC4KICAgICAgYXBwLnNldEF0dHJpYnV0ZSgnZGF0YS1oeWRyYXRpb24nLCAnY29tcGxldGUnKTsKICAgIH0KCiAgICBmZXRjaChvcmlnaW4gKyAnL2NoYWluZWRfc2V0dGxlX3NwYV9kYXRhLmpzb24nKQogICAgICAudGhlbihmdW5jdGlvbiAocmVzcCkgeyByZXR1cm4gcmVzcC5qc29uKCk7IH0pCiAgICAgIC50aGVuKGZ1bmN0aW9uIChkYXRhKSB7CiAgICAgICAgLy8gU3RhZ2UgMSBsYW5kcyBpbiBhIHJlc29sdmVkLWZldGNoIG1pY3JvdGFzay4KICAgICAgICBzdGFnZShkYXRhLmxhYmVsKTsKICAgICAgICBhcHAuc2V0QXR0cmlidXRlKCdkYXRhLWh5ZHJhdGlvbicsICdzdGFnZTEnKTsKICAgICAgICAvLyBTdGFnZSAyIC0+IHN0YWdlIDMgLT4gZmluYWxpemUsIGVhY2ggYSBOT04tWkVSTyB0aW1lciBzbyB0aGUKICAgICAgICAvLyBzZXR0bGUgbG9vcCBtdXN0IGFkdmFuY2UgdGhlIHZpcnR1YWwgY2xvY2sgbXVsdGlwbGUgdGlja3MuCiAgICAgICAgc2V0VGltZW91dChmdW5jdGlvbiAoKSB7CiAgICAgICAgICBzdGFnZSgnc3RhZ2UyJyk7CiAgICAgICAgICBhcHAuc2V0QXR0cmlidXRlKCdkYXRhLWh5ZHJhdGlvbicsICdzdGFnZTInKTsKICAgICAgICAgIHNldFRpbWVvdXQoZnVuY3Rpb24gKCkgewogICAgICAgICAgICBhcHAuc2V0QXR0cmlidXRlKCdkYXRhLWh5ZHJhdGlvbicsICdzdGFnZTMtcGVuZGluZycpOwogICAgICAgICAgICBzZXRUaW1lb3V0KGZpbmFsaXplLCA1MCk7CiAgICAgICAgICB9LCA1MCk7CiAgICAgICAgfSwgNTApOwogICAgICB9KQogICAgICAuY2F0Y2goZnVuY3Rpb24gKGUpIHsKICAgICAgICBjb25zb2xlLmVycm9yKCdjaGFpbmVkIGh5ZHJhdGlvbiBmZXRjaCBmYWlsZWQnLCBlICYmIGUubWVzc2FnZSk7CiAgICAgIH0pOwogIH0pKCk7CiAgPC9zY3JpcHQ+CjwvYm9keT4KPC9odG1sPgo=",
+        "response_body_blake3": "700504af9f83a03d79df2b4ce91c10d874014080809436c4650fe9f9f7361dd3",
+        "response_headers": [
+          [
+            "content-type",
+            "text/html; charset=utf-8"
+          ],
+          [
+            "content-length",
+            "2945"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/"
+      },
+      {
+        "final_url": "http://heso.invalid/chained_settle_spa_data.json",
+        "method": "GET",
+        "request_body_b64": "",
+        "response_body_b64": "eyJsYWJlbCI6ImNoYWluLXN0YXJ0In0K",
+        "response_body_blake3": "17390a3ef1e9d36aba279c06ba05a01cbd45646f29f77617ebbc2f62b3501da9",
+        "response_headers": [
+          [
+            "content-type",
+            "application/json"
+          ],
+          [
+            "content-length",
+            "24"
+          ],
+          [
+            "connection",
+            "close"
+          ]
+        ],
+        "status": 200,
+        "url": "http://heso.invalid/chained_settle_spa_data.json"
+      }
+    ]
+  },
+  "description": "chain-start",
+  "engine": {
+    "name": "heso",
+    "version": "0.3.0"
+  },
+  "http_status": 200,
+  "input_url": "http://heso.invalid/",
+  "metadata": {
+    "lang": "en"
+  },
+  "plan": [
+    {
+      "url": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "plat_hash": "ea043a47b05fe2e89ef2f15373f68f4a44791f21822310bf6dce11ca1b7b1120",
+  "seed": 0,
+  "steps": [
+    {
+      "action": {
+        "url": "http://heso.invalid/",
+        "verb": "open"
+      },
+      "finished_at": "1970-01-01T00:00:00.001Z",
+      "index": 0,
+      "observed": {
+        "http_status": 200,
+        "navigated_to": "http://heso.invalid/",
+        "op": "open",
+        "scripts": {
+          "executed": 1,
+          "executed_with_error": 0,
+          "external_handled": 0,
+          "skipped_non_script_type": 0
+        }
+      },
+      "started_at": "1970-01-01T00:00:00.000Z",
+      "status": "ok",
+      "url_after": "http://heso.invalid/",
+      "url_before": "http://heso.invalid/",
+      "verb": "open"
+    }
+  ],
+  "title": "Heso Determinism — Chained-Settle SPA Fixture",
+  "tree": {
+    "description": "chain-start",
+    "root": {
+      "byte_count": 0,
+      "child_count": 1,
+      "children": [
+        {
+          "byte_count": 25,
+          "child_count": 0,
+          "children": [],
+          "heading": "Hydrated",
+          "intro": "chain-start stage2 stage3",
+          "level": 1,
+          "path": "/hydrated",
+          "slug": "hydrated",
+          "summary": "Hydrated — chain-start stage2 stage3"
+        }
+      ],
+      "heading": null,
+      "intro": "",
+      "level": 0,
+      "path": "/",
+      "slug": "",
+      "summary": ""
+    },
+    "title": "Heso Determinism — Chained-Settle SPA Fixture",
+    "url": "http://heso.invalid/"
+  },
+  "url": "http://heso.invalid/"
+}

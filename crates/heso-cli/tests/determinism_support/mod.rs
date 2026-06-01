@@ -419,6 +419,21 @@ pub struct ManifestEntry {
     /// the QuickJS determinism path yields a stable `plat_hash` across
     /// fresh processes.
     pub hydrated: bool,
+    /// True for the fixture that carries JSON-shaped `data-*` attributes
+    /// routed through `body["data_attrs"]` (the `data_attrs::extract`
+    /// BTreeMap ordering proof). The conformance harness asserts at least
+    /// one entry has this set so a regenerate cannot silently drop the
+    /// data-attr coverage. `#[serde(default)]` for pre-existing entries.
+    #[serde(default)]
+    pub has_data_attrs: bool,
+    /// True for the fixture whose hydration REQUIRES the settle loop's
+    /// virtual-clock `advance_clock` branch — a chain of non-zero timers
+    /// that `run_pending_jobs` alone never fires. The harness asserts at
+    /// least one entry has this set so a regenerate cannot silently drop
+    /// the async-settle coverage. `#[serde(default)]` for pre-existing
+    /// entries.
+    #[serde(default)]
+    pub requires_settle: bool,
     /// Short note on what this cassette stresses (for the manifest reader).
     pub note: String,
 }

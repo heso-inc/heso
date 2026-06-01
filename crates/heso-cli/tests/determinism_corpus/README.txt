@@ -99,6 +99,47 @@ harness and asserts the same pinned hashes on
   hydrated cassette ever flaps across the 16 processes, that flap **is** the
   bug — file it; do not paper over it with retries.
 
+## Hazard-coverage fixtures (which fixture covers which fix)
+
+Three fixtures extend the corpus to cover specific plat-byte hazards. Each
+names the production fix it pins and whether reverting that fix REDDENS the
+MAIN corpus (the `assert_eq` pin mismatch / distinct-hash assert):
+
+- `multi_cookie` — the response `cookies[]` array. The corpus generator
+  serves six `Set-Cookie` headers in reverse-sorted name order; `cmd_run`/
+  `cmd_stamp` reconstruct them from the cassette's recorded
+  `response_headers` (`response_cookies_from_headers`) and `render_cookies`
+  sorts by `(name, domain, path)`. The cookies land in the SIGNED replay
+  body (`body["cookies"]`). **Reverting the `render_cookies` sort REDDENS
+  `multi_cookie`** (verified: the array follows header order, so the pinned
+  hash stops reproducing). This is the run-corpus counterpart of the
+  read-surface `cookie_order_determinism.rs` side test.
+
+- `chained_settle_spa` — the settle loop's virtual-clock advance branch. A
+  CHAIN of non-zero (50 ms) `setTimeout` stages that `run_pending_jobs`
+  alone never fires; only `settle_dom_deterministic`'s
+  `if pending_timers > 0 { advance_clock(SETTLE_VIRTUAL_TICK_MS) }` branch
+  drives them across multiple virtual ticks. **No-op'ing that branch
+  REDDENS `chained_settle_spa`** (verified) while the single-microtask
+  `hydrated_spa` fixture stays green — which is exactly why the chained
+  fixture is needed.
+
+- `data_attr_heavy` — the `data_attrs::extract` -> `body["data_attrs"]`
+  path through the signed hash (the only corpus fixture carrying a rich
+  `data_attrs` blob). **HONEST CAVEAT:** the BTreeMap-vs-HashMap key ORDER
+  is NOT a `plat_hash` hazard, because `serde_jcs::to_vec` sorts every JSON
+  object's keys recursively before hashing — so the `BTreeMap -> HashMap`
+  mutation does NOT redden this fixture (verified empirically). The
+  structural protection for object-key order is JCS canonicalization, not
+  the container type. This fixture is data_attrs PATH coverage (guarded by
+  `saw_data_attrs` against silent removal), not a redden-on-mutation proof.
+  Container-order hazards that DO reach the hash live behind ordered ARRAYS
+  (see `multi_cookie`'s `cookies[]`), which JCS does NOT reorder.
+
+The conformance harness asserts `saw_data_attrs` and `saw_settle_chain`
+(alongside `saw_hydrated`) so a regenerate that silently dropped one of
+these fixtures fails loud.
+
 ## Determinism depends on the vendored QuickJS fork
 
 If a stock `rquickjs-sys` ever resolves instead of the vendored

@@ -3803,6 +3803,71 @@ pub(crate) fn collect_response_cookies(page: &heso_engine_fetch::FetchPage) -> s
     render_cookies(&url_host, &page.response_cookies)
 }
 
+/// Populate `page.response_cookies` from the cassette record that served
+/// the page's final navigated URL, reconstructing the cookies from that
+/// record's recorded `Set-Cookie` headers.
+///
+/// `run`/`stamp` build the output `FetchPage` via
+/// [`heso_engine_fetch::FetchPage::from_html`] with an EMPTY
+/// `response_cookies` slice (the post-execution DOM carries no live
+/// `reqwest::Response`). Without this step the signed replay body would
+/// drop the response cookies entirely, so the cookie-ordering
+/// determinism hazard (the `(name,domain,path)` sort in
+/// [`render_cookies`]) would never reach the MAIN replay `plat_hash` —
+/// only the `read --include cookies` side surface. We pick the record
+/// whose `final_url` (then `url`) matches the page's final URL so a
+/// multi-step plan attributes cookies to the page that actually served,
+/// falling back to the last record (the most-recently navigated) when no
+/// URL matches.
+fn inject_cookies_from_cassette(
+    page: &mut heso_engine_fetch::FetchPage,
+    cassette: Option<&serde_json::Value>,
+) {
+    let Some(records) = cassette
+        .and_then(|c| c.get("records"))
+        .and_then(|r| r.as_array())
+    else {
+        return;
+    };
+    let final_url = page.url().as_str().to_owned();
+    let pick = records
+        .iter()
+        .rev()
+        .find(|rec| {
+            rec.get("final_url").and_then(|v| v.as_str()) == Some(final_url.as_str())
+                || rec.get("url").and_then(|v| v.as_str()) == Some(final_url.as_str())
+        })
+        .or_else(|| records.last());
+    let Some(rec) = pick else { return };
+    let headers: Vec<(String, String)> = rec
+        .get("response_headers")
+        .and_then(|h| h.as_array())
+        .map(|arr| {
+            arr.iter()
+                .filter_map(|pair| {
+                    let p = pair.as_array()?;
+                    Some((p.first()?.as_str()?.to_owned(), p.get(1)?.as_str()?.to_owned()))
+                })
+                .collect()
+        })
+        .unwrap_or_default();
+    page.response_cookies = heso_engine_fetch::response_cookies_from_headers(&headers);
+}
+
+/// The deterministic `cookies` array to inject into a `run`/`stamp` plat
+/// body, or `None` when the page set no (non-HttpOnly) cookies. Returning
+/// `None` for the cookie-free case keeps every existing fixture's body
+/// byte-identical — the field only appears when there is something to
+/// emit, exactly like `data_attrs`/`inline_data` in
+/// [`heso_engine_fetch::FetchPage::plat_body_base`].
+fn cookies_body_field(page: &heso_engine_fetch::FetchPage) -> Option<serde_json::Value> {
+    let rendered = collect_response_cookies(page);
+    match rendered.as_array() {
+        Some(a) if !a.is_empty() => Some(rendered),
+        _ => None,
+    }
+}
+
 /// Cookies visible to the page after hydration: the response
 /// `Set-Cookie` headers merged with the live jar, so anything the
 /// page's JS wrote via `document.cookie` is surfaced too. The response
@@ -6231,7 +6296,19 @@ async fn stamp_to_plat(
     // self-describingly reproducible (HESO/1.0 §4). `run_plan` uses
     // `seed.unwrap_or(0)`; record the same resolved value.
     page.seed = seed.unwrap_or(0);
+    // Mirror `cmd_run`: route the navigated response's cookies into the
+    // signed plat body so a stamped plat carries the same deterministic
+    // `cookies` array its replay (`heso run`) will reproduce. The fresh
+    // cassette's records carry the `Set-Cookie` lines verbatim.
+    let stamped_cassette = {
+        let guard = cassette.lock().unwrap_or_else(|p| p.into_inner());
+        serde_json::to_value(&*guard).ok()
+    };
+    inject_cookies_from_cassette(&mut page, stamped_cassette.as_ref());
     let mut body = page.plat_body_base();
+    if let Some(cookies) = cookies_body_field(&page) {
+        body["cookies"] = cookies;
+    }
     if !outcome.ok {
         if let Some(obj) = body.as_object_mut() {
             obj.insert(
@@ -6762,7 +6839,19 @@ async fn cmd_run(args: &[String]) -> ExitCode {
     // stamp -> run plat_hash byte-identical (the cassette_replay.rs
     // contract).
     page.seed = effective_seed;
+    // Route the navigated response's cookies into the signed replay body.
+    // The cassette records carry the original `Set-Cookie` lines in their
+    // `response_headers`; reconstruct the `ResponseCookie`s for the record
+    // that served the final navigated URL and emit a deterministic,
+    // HttpOnly-filtered, `(name,domain,path)`-sorted `cookies` array. This
+    // is what makes the cookie-ordering determinism hazard reach the MAIN
+    // replay `plat_hash` (not only the `read --include cookies` side test).
+    // `stamp` mirrors this below so a stamped plat and its replay agree.
+    inject_cookies_from_cassette(&mut page, value.get("cassette"));
     let mut body = page.plat_body_base();
+    if let Some(cookies) = cookies_body_field(&page) {
+        body["cookies"] = cookies;
+    }
     if !outcome.ok {
         if let Some(obj) = body.as_object_mut() {
             obj.insert(
