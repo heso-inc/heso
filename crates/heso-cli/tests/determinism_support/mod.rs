@@ -452,8 +452,10 @@ pub struct ManifestEntry {
 #[derive(Debug, Clone, serde::Serialize, serde::Deserialize)]
 pub struct Manifest {
     /// Reference target the pinned hashes were generated on. Single-host
-    /// K-process determinism is proven here; cross-arch byte-identity is
-    /// the CI matrix's job (see the corpus README).
+    /// K-process determinism is proven here; the aarch64<->x86_64 macOS pair
+    /// is proven locally by `determinism_cross_arch.rs` (x86_64-via-Rosetta);
+    /// the linux + native-x86_64-macOS legs are the CI matrix's job (see the
+    /// corpus README).
     pub reference_target: String,
     /// The corpus entries.
     pub entries: Vec<ManifestEntry>,

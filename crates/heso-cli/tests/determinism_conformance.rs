@@ -39,13 +39,17 @@
 //! independence, NOT a second independent canonicalizer (both sides share
 //! serde_jcs, see point 4). And it is single-host: K=16 on ONE machine
 //! proves determinism across RandomState + allocator entropy + process
-//! boundaries on THIS (arch, OS, toolchain) only. It does NOT prove
-//! cross-architecture / cross-OS byte-identity — that is the CI matrix's
-//! job (see `tests/determinism_corpus/README.txt` and
-//! `.github/workflows/determinism-matrix.yml`). Once that matrix is
-//! observed green across all four targets, any divergence is a release
-//! blocker; until then cross-arch byte-identity is an asserted design
-//! goal, not yet a proof.
+//! boundaries on THIS (arch, OS, toolchain) only. By itself it does NOT
+//! prove cross-architecture / cross-OS byte-identity. The aarch64<->x86_64
+//! macOS pair IS now proven locally by `tests/determinism_cross_arch.rs`
+//! (cross-build x86_64 `heso`, EXECUTE under Rosetta, assert the SAME pinned
+//! arm64 hashes — foreign-ISA execution on one host); the linux legs and the
+//! native-x86_64-macos leg remain the CI matrix's job (see
+//! `tests/determinism_corpus/README.txt` and
+//! `.github/workflows/determinism-matrix.yml`). Once that matrix is observed
+//! green across all four native targets, any divergence is a release
+//! blocker; until then those legs are an asserted design goal, not yet a
+//! proof.
 
 #[path = "determinism_support/mod.rs"]
 mod support;

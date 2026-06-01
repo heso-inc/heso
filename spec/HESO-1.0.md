@@ -115,9 +115,15 @@ per-cassette `expected_plat_hash` manifest
 (`crates/heso-cli/tests/determinism_corpus/manifest.json`), including one
 JS-hydrated cassette that drives the QuickJS fences through `plat_hash`.
 Fresh processes are mandatory: they vary the HashMap `RandomState` seed and
-allocator layout that an in-process loop would hide. Cross-architecture
-byte-identity is **not** claimed from one machine — it is enforced by a CI
-matrix over `{x86_64,aarch64} × {linux,macos}`
+allocator layout that an in-process loop would hide. The aarch64<->x86_64
+**macOS** pair is additionally **proven locally**: a gated test
+(`crates/heso-cli/tests/determinism_cross_arch.rs`) cross-builds `heso` for
+`x86_64-apple-darwin` and executes it under Rosetta on the arm64 host,
+asserting every cassette reproduces the SAME pinned native-arm64
+`plat_hash` (foreign-ISA execution, not cross-compilation, not cross-OS).
+The **linux** legs and the **native** x86_64-macOS leg are **not** claimed
+from one machine — they are enforced by a CI matrix over
+`{x86_64,aarch64} × {linux,macos}` plus the Rosetta cross-arch leg
 (`.github/workflows/determinism-matrix.yml`); any matrix divergence is a
 release blocker.
 

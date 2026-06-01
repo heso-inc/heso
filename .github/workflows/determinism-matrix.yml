@@ -20,8 +20,16 @@ name: Determinism Matrix
 # All cargo invocations are `--locked` so a Cargo.lock drift cannot
 # silently change the produced bytes.
 #
-# Honesty: cross-arch byte-identity is an asserted design goal until this
-# matrix is OBSERVED GREEN across all four targets. Once green, any
+# A FIFTH job ("Rosetta cross-arch") runs on the aarch64-darwin runner and
+# additionally proves the aarch64<->x86_64 macOS pair on a SINGLE host: it
+# cross-builds the x86_64 `heso` and EXECUTES it under Rosetta 2, asserting
+# every replay reproduces the pinned native-arm64 plat_hash. That is the
+# exact local proof in determinism_cross_arch.rs, lifted into CI — foreign-
+# ISA EXECUTION, still not cross-OS.
+#
+# Honesty: the x86_64-via-Rosetta leg is PROVEN locally and in this job; the
+# four NATIVE legs (linux x2, macos x2) remain asserted-design-goal until
+# this matrix is OBSERVED GREEN across all of them. Once green, any
 # divergence here is a RELEASE BLOCKER (the pinned bytes stopped being
 # reproducible across the matrix), not a warning.
 #
@@ -91,3 +99,41 @@ jobs:
       # The cookie-ordering regression (Hazard 1) must also hold per arch.
       - name: Cookie-order determinism regression
         run: cargo test --locked -p heso-cli --test cookie_order_determinism -- --nocapture
+
+  # FIFTH leg: aarch64<->x86_64 macOS byte-identity on a SINGLE host via
+  # Rosetta 2. The aarch64-darwin runner cross-builds the x86_64 `heso` and
+  # EXECUTES it under Rosetta, asserting every cassette reproduces the pinned
+  # native-arm64 plat_hash. Foreign-ISA EXECUTION (not cross-compilation of
+  # the result, not cross-OS) — the exact local proof from
+  # determinism_cross_arch.rs, lifted into CI. macos-latest is Apple silicon
+  # with Rosetta available; the test skips clean if a future image drops it.
+  cross-arch-rosetta:
+    name: Rosetta cross-arch (aarch64 host)
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.90"
+          # The host is aarch64-apple-darwin; we ALSO need the x86_64 std so
+          # the cross-build can produce the foreign-ISA binary Rosetta runs.
+          targets: x86_64-apple-darwin
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: determinism-cross-arch-rosetta
+      # Ensure Rosetta 2 is installed on the runner (no-op if already present)
+      # so the x86_64 Mach-O can execute. The test also probes for it and
+      # skips clean if absent, but installing here makes the proof actually
+      # RUN rather than skip.
+      - name: Install Rosetta 2
+        run: softwareupdate --install-rosetta --agree-to-license || true
+      # HESO_CROSS_ARCH=1 opts in to the otherwise-#[ignore]d gate; --ignored
+      # runs it. The test cross-builds x86_64 `heso` (slow, cold) then runs
+      # every cassette under Rosetta and asserts byte-identity to the pinned
+      # native-arm64 hashes. `--locked` pins the lockfile.
+      - name: Cross-arch determinism (x86_64-via-Rosetta vs pinned arm64)
+        env:
+          HESO_CROSS_ARCH: "1"
+        run: >-
+          cargo test --locked -p heso-cli --test determinism_cross_arch
+          -- --ignored --nocapture

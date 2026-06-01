@@ -65,8 +65,8 @@ volatile origin to the canonical host, recomputes the hash, and rewrites
 
 **K = 16 fresh processes on ONE machine proves determinism across HashMap
 `RandomState` + allocator entropy + process boundaries on THAT (arch, OS,
-toolchain) only.** It does **not** prove cross-architecture / cross-OS
-byte-identity.
+toolchain) only.** By itself it does **not** prove cross-architecture /
+cross-OS byte-identity.
 
 Cross-arch byte-identity depends on `rand_chacha` (ChaCha20, chosen over
 the non-portable `StdRng` precisely for cross-host portability),
@@ -74,18 +74,42 @@ the non-portable `StdRng` precisely for cross-host portability),
 QuickStop-NG (hesojs) fork all producing identical bytes on
 aarch64-vs-x86_64 and macOS-vs-Linux.
 
-We deliver: (1) this K-process harness, (2) the pinned hashes generated on
-a named reference target (`manifest.json#reference_target`), and (3) a CI
-matrix (`.github/workflows/determinism-matrix.yml`) that runs the same
-harness and asserts the same pinned hashes on
-`{x86_64-linux, aarch64-linux, x86_64-macos, aarch64-macos}`.
+What is **PROVEN** vs **PENDING** right now:
 
-> **Single-host K-process determinism is proven here; cross-arch
-> byte-identity is enforced by the CI matrix, and any matrix divergence is
-> a release blocker, not a warning.** Until that matrix is green across all
-> four targets, cross-arch determinism is an **asserted design goal** backed
-> by ChaCha20/JCS/BLAKE3 portability — **not** a proof. Do not let any doc
-> overclaim it from one developer machine.
+- **aarch64 native (this host): PROVEN** — the K=16 harness above.
+- **x86_64-via-Rosetta on an aarch64 macOS host: PROVEN locally** by
+  `tests/determinism_cross_arch.rs`. It cross-builds `heso` for
+  `x86_64-apple-darwin` and EXECUTES it under Rosetta 2, asserting every
+  cassette reproduces the SAME pinned native-arm64 `plat_hash`. Same host,
+  foreign ISA — that equality is the aarch64<->x86_64 byte-identity proof
+  for the macOS pair. It is foreign-ISA **execution**, NOT cross-compilation
+  of the result, and NOT a different OS or a native x86_64 host. The test is
+  `#[ignore]`d and additionally gated behind `HESO_CROSS_ARCH=1` (the
+  x86_64 cross-build is a multi-minute cold build); it **skips clean**
+  (prints why, never fails) when Rosetta or the x86_64 toolchain is absent.
+  Run it with:
+  `HESO_CROSS_ARCH=1 cargo test -p heso-cli --test determinism_cross_arch -- --ignored --nocapture`.
+- **x86_64-linux, aarch64-linux, NATIVE x86_64-macos: PENDING CI-green** —
+  these legs are the CI matrix's job (`.github/workflows/determinism-matrix.yml`),
+  which runs the same K-process harness per native target plus the
+  Rosetta cross-arch leg above. They are not proven from one developer Mac.
+
+We deliver: (1) this K-process harness, (2) the pinned hashes generated on
+a named reference target (`manifest.json#reference_target`), (3) the local
+x86_64-via-Rosetta proof (`determinism_cross_arch.rs`), and (4) a CI matrix
+(`.github/workflows/determinism-matrix.yml`) that runs the same harness and
+asserts the same pinned hashes on
+`{x86_64-linux, aarch64-linux, x86_64-macos, aarch64-macos}` plus the
+Rosetta cross-arch leg on the aarch64-macos runner.
+
+> **Single-host K-process determinism is proven here; the
+> aarch64<->x86_64 macOS pair is proven locally via Rosetta; the linux legs
+> and the native-x86_64-macos leg are enforced by the CI matrix, and any
+> matrix divergence is a release blocker, not a warning.** Until that matrix
+> is green across all four native targets, those legs are an **asserted
+> design goal** backed by ChaCha20/JCS/BLAKE3 portability — **not** a proof.
+> Do not let any doc overclaim cross-OS or linux byte-identity from one
+> developer machine.
 
 ## Known live hazards the harness EXPOSES (treat a flap as the bug)
 
