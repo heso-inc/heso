@@ -134,6 +134,29 @@ fn try_canonical_bytes_with(value: &Value, strip: &[&str]) -> Result<Vec<u8>, Ca
     serde_jcs::to_vec(&cleaned).map_err(|e| CanonError(e.to_string()))
 }
 
+/// **Conformance-only** strip-free RFC 8785 (JCS) canonicalizer.
+///
+/// Canonicalizes `value` byte-for-byte with **no** [`HASH_REGION_STRIP`] /
+/// [`SIGNING_INPUT_STRIP`] removal — the raw JCS bytes of the value
+/// exactly as given. This exists so the RFC 8785 conformance vectors (see
+/// `tests/rfc8785_conformance.rs`) can be checked against the
+/// independent, spec-derived expected bytes even when a vector's
+/// top-level object legitimately contains a key named `plat_hash` or
+/// `sig` (which the hash/sign canonicalizers would otherwise strip,
+/// corrupting the vector).
+///
+/// # MUST NEVER be used on a hash or sign path
+///
+/// The hash region ([`canonical_bytes`]) and signing input
+/// ([`canonical_bytes_signing`]) MUST keep their strip — a body cannot
+/// hash its own digest nor sign over its own signature. This function
+/// performs no strip and is for conformance testing the canonicalizer
+/// itself, nothing else.
+#[doc(hidden)]
+pub fn canonicalize_raw(value: &Value) -> Result<Vec<u8>, CanonError> {
+    serde_jcs::to_vec(value).map_err(|e| CanonError(e.to_string()))
+}
+
 /// Canonical-JSON bytes of `value` over the **hash region** — top-level
 /// `plat_hash` and `sig` removed — the fallible form of
 /// [`canonical_bytes`].
