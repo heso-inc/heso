@@ -19,19 +19,33 @@
 //!     only if all 16 `plat_hash`es are byte-identical regardless.
 //!  3. Asserts all K hashes are byte-identical to each other AND to the
 //!     pinned `expected_plat_hash`.
-//!  4. Cross-checks every process's plat against the dependency-free
-//!     `heso-verify` recompute (BLAKE3 over serde_jcs canonical bytes,
-//!     zero engine deps). If `heso run`'s self-reported hash and
-//!     `heso-verify`'s independent recompute ever disagree, that is a
-//!     producer/verifier canonicalization split — fail loud.
+//!  4. Cross-checks every process's plat against the `heso-verify`
+//!     recompute (BLAKE3 over serde_jcs canonical bytes). This is NOT an
+//!     independent canonicalizer: `heso run` and `heso-verify` reach the
+//!     SAME `serde_jcs` (the engine depends DOWN on `heso-verify`), so a
+//!     JCS *spec* bug — wrong number formatting, wrong key sort — is
+//!     SHARED by both sides and is INVISIBLE to this cross-check. That
+//!     class of bug is closed elsewhere, by the spec-derived RFC-8785
+//!     vectors in `crates/heso-verify/tests/rfc8785_conformance.rs`. What
+//!     this cross-check DOES catch is a producer/verifier *wiring* split:
+//!     one binary strips/includes a field the other does not, or hashes a
+//!     different region. If `heso run`'s self-reported hash and
+//!     `heso-verify`'s recompute disagree, fail loud.
 //!
-//! HONESTY: K=16 fresh processes on ONE machine proves determinism
-//! across HashMap RandomState + allocator entropy + process boundaries on
-//! THIS (arch, OS, toolchain). It does NOT prove cross-architecture /
-//! cross-OS byte-identity — that is the CI matrix's job (see
-//! `tests/determinism_corpus/README.txt` and
-//! `.github/workflows/determinism-matrix.yml`). Any matrix divergence is a
-//! release blocker, not a warning.
+//! HONESTY: the real independence proven here is the OS-process boundary —
+//! K=16 fresh processes each get a new HashMap/HashSet `RandomState` seed
+//! and a fresh allocator layout, which is exactly what surfaces a hidden
+//! HashMap-order-into-signed-bytes bug. That is a process/entropy
+//! independence, NOT a second independent canonicalizer (both sides share
+//! serde_jcs, see point 4). And it is single-host: K=16 on ONE machine
+//! proves determinism across RandomState + allocator entropy + process
+//! boundaries on THIS (arch, OS, toolchain) only. It does NOT prove
+//! cross-architecture / cross-OS byte-identity — that is the CI matrix's
+//! job (see `tests/determinism_corpus/README.txt` and
+//! `.github/workflows/determinism-matrix.yml`). Once that matrix is
+//! observed green across all four targets, any divergence is a release
+//! blocker; until then cross-arch byte-identity is an asserted design
+//! goal, not yet a proof.
 
 #[path = "determinism_support/mod.rs"]
 mod support;
@@ -116,17 +130,22 @@ fn conformance_for(entry: &ManifestEntry, running_id: &str) -> Result<(), String
         ];
         let h = run_replay_hash_with_env(&plat, entry.seed, &env);
 
-        // (4) ground-truth cross-check: the dependency-free verifier must
-        // agree with the engine's self-reported hash for THIS plat. (The
-        // input plat is byte-identical across processes, so verifying it
-        // once per process is sufficient and catches a producer/verifier
-        // canonicalization split.)
+        // (4) producer/verifier WIRING cross-check: `heso-verify` must
+        // agree with the engine's self-reported hash for THIS plat. NOTE
+        // this is NOT an independent canonicalizer — both sides reach the
+        // SAME serde_jcs, so a JCS spec bug is shared and invisible here
+        // (that is closed by heso-verify/tests/rfc8785_conformance.rs).
+        // What it catches is a wiring split: one side strips/includes a
+        // field or hashes a different region than the other. (The input
+        // plat is byte-identical across processes, so verifying it once
+        // per process is sufficient.)
         let recompute = verify_recompute_hash(&plat);
         assert_eq!(
             recompute,
             entry.expected_plat_hash,
-            "heso-verify independently recomputed a different plat_hash than the pinned one for \
-             `{}` (producer/verifier canonicalization split?)",
+            "heso-verify recomputed a different plat_hash than the pinned one for \
+             `{}` (producer/verifier WIRING split — one side strips/includes a field or hashes \
+             a different region; NOT a JCS spec bug, which both shared sides would miss)",
             entry.cassette
         );
 
@@ -291,8 +310,10 @@ fn run_once(plat: &Path, seed: u64) -> String {
     v["plat_hash"].as_str().expect("plat_hash").to_owned()
 }
 
-/// The dependency-free verifier binary must exist alongside `heso`; the
-/// harness's ground-truth cross-check depends on it.
+/// The `heso-verify` binary must exist alongside `heso`; the harness's
+/// producer/verifier WIRING cross-check depends on it. (It shares serde_jcs
+/// with the engine, so it is not an independent canonicalizer — see the
+/// module doc, point 4.)
 #[test]
 fn heso_verify_binary_is_available() {
     assert!(

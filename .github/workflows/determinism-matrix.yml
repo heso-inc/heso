@@ -1,6 +1,6 @@
 name: Determinism Matrix
 
-# Cross-architecture / cross-OS enforcement of LEG 1 (record / replay).
+# Cross-architecture / cross-OS gate for LEG 1 (record / replay).
 #
 # The single-host K-process harness (tests/determinism_conformance.rs)
 # proves byte-identical replay across HashMap RandomState + allocator
@@ -11,10 +11,19 @@ name: Determinism Matrix
 # aarch64-vs-x86_64 and macOS-vs-Linux.
 #
 # This workflow runs the SAME harness — asserting the SAME pinned
-# per-cassette plat_hashes from the checked-in manifest — on all four
-# release targets. ANY divergence here is a RELEASE BLOCKER, not a
-# warning: it means the pinned bytes are not reproducible across the
-# matrix, so the cross-arch determinism claim is not yet honest.
+# per-cassette plat_hashes from the checked-in manifest — on four runners,
+# EACH ON ITS OWN NATIVE TARGET (x86_64-linux on ubuntu-latest,
+# aarch64-linux on ubuntu-24.04-arm, x86_64-darwin on macos-13,
+# aarch64-darwin on macos-latest). This is a HOST build+test per runner,
+# i.e. PER-NATIVE-TARGET reproduction across the four arch/OS combos — it
+# is NOT cross-compilation, and it does not execute a foreign-arch binary.
+# All cargo invocations are `--locked` so a Cargo.lock drift cannot
+# silently change the produced bytes.
+#
+# Honesty: cross-arch byte-identity is an asserted design goal until this
+# matrix is OBSERVED GREEN across all four targets. Once green, any
+# divergence here is a RELEASE BLOCKER (the pinned bytes stopped being
+# reproducible across the matrix), not a warning.
 #
 # See crates/heso-cli/tests/determinism_corpus/README.txt.
 
@@ -57,17 +66,28 @@ jobs:
       - uses: dtolnay/rust-toolchain@master
         with:
           toolchain: "1.90"
+          # The runner IS this target, so no `--target` is passed to cargo:
+          # we build+test NATIVELY (a foreign-arch cross-compile could not be
+          # executed here anyway). The target name is declared for clarity
+          # and for the per-target job name only.
           targets: ${{ matrix.target }}
-      # heso-verify is the dependency-free ground-truth verifier the
-      # harness cross-checks every replay against. Build it up front so
-      # the harness finds it beside `heso`.
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: determinism-${{ matrix.target }}
+      # heso-verify is the verifier the harness cross-checks every replay
+      # against (same serde_jcs as the engine — this catches a producer/
+      # verifier WIRING split, not a JCS spec bug; that is closed by
+      # heso-verify's rfc8785_conformance vectors). Build it up front so the
+      # harness finds it beside `heso`. `--locked` pins the lockfile so a
+      # Cargo.lock drift cannot silently change the produced bytes.
       - name: Build heso-verify
-        run: cargo build -p heso-verify --bin heso-verify
+        run: cargo build --locked -p heso-verify --bin heso-verify
       # The gate: K=16 fresh processes per cassette must all reproduce the
-      # SAME pinned plat_hash from the manifest, on THIS target. A mismatch
-      # with a matching engine_id is a real cross-arch determinism bug.
-      - name: Determinism conformance (K=16 fresh processes)
-        run: cargo test -p heso-cli --test determinism_conformance -- --nocapture
+      # SAME pinned plat_hash from the manifest, NATIVELY on THIS target. A
+      # mismatch with a matching engine_id is a real cross-arch determinism
+      # bug (one of the four native targets diverged from the pinned bytes).
+      - name: Determinism conformance (K=16 fresh processes, native target)
+        run: cargo test --locked -p heso-cli --test determinism_conformance -- --nocapture
       # The cookie-ordering regression (Hazard 1) must also hold per arch.
       - name: Cookie-order determinism regression
-        run: cargo test -p heso-cli --test cookie_order_determinism -- --nocapture
+        run: cargo test --locked -p heso-cli --test cookie_order_determinism -- --nocapture
