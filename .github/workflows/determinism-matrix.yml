@@ -137,3 +137,38 @@ jobs:
         run: >-
           cargo test --locked -p heso-cli --test determinism_cross_arch
           -- --ignored --nocapture
+
+  # SIXTH leg: in-container Linux determinism via Docker + QEMU emulation.
+  # Builds `heso` inside rust:1.90-bookworm for linux/amd64 + linux/arm64 (the
+  # workspace mounted read-only, CARGO_TARGET_DIR=/tmp/target) and asserts
+  # every cassette reproduces the pinned native-arm64 plat_hash. This is
+  # BELT-AND-SUSPENDERS: native x86_64-linux is ALREADY covered by the
+  # `determinism` matrix's ubuntu-latest leg, so this job's value-add is the
+  # EMULATED linux/arm64 leg next to it (and a same-host two-arch byte-
+  # identity check) — it is the exact local proof from
+  # determinism_docker_linux.rs, lifted into CI. It runs on a stock x86_64
+  # ubuntu runner with docker/setup-qemu-action providing the foreign-arch
+  # binfmt handler; the test skips THAT platform clean if an emulator is
+  # missing and skips the whole job clean if the daemon is unreachable.
+  docker-linux-emulated:
+    name: Docker-Linux emulated (amd64 + arm64)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@master
+        with:
+          toolchain: "1.90"
+      # Register the QEMU/binfmt handlers so `docker run --platform
+      # linux/arm64` can execute the foreign-arch image on this x86_64 host.
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      # HESO_DOCKER_DETERMINISM=1 opts in to the otherwise-#[ignore]d gate;
+      # --ignored runs it. The test builds heso INSIDE the container per
+      # platform and asserts byte-identity to the pinned native-arm64 hashes.
+      # `--locked` pins the lockfile.
+      - name: Docker-Linux determinism (in-container amd64 + arm64 vs pinned arm64)
+        env:
+          HESO_DOCKER_DETERMINISM: "1"
+        run: >-
+          cargo test --locked -p heso-cli --test determinism_docker_linux
+          -- --ignored --nocapture

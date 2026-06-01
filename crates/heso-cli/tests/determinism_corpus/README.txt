@@ -89,18 +89,42 @@ What is **PROVEN** vs **PENDING** right now:
   (prints why, never fails) when Rosetta or the x86_64 toolchain is absent.
   Run it with:
   `HESO_CROSS_ARCH=1 cargo test -p heso-cli --test determinism_cross_arch -- --ignored --nocapture`.
-- **x86_64-linux, aarch64-linux, NATIVE x86_64-macos: PENDING CI-green** —
-  these legs are the CI matrix's job (`.github/workflows/determinism-matrix.yml`),
-  which runs the same K-process harness per native target plus the
-  Rosetta cross-arch leg above. They are not proven from one developer Mac.
+- **x86_64-linux + aarch64-linux via Docker: LOCALLY PROVABLE** (not yet
+  proven on this host — the daemon was down when this was written) by
+  `tests/determinism_docker_linux.rs`. When a Docker daemon is reachable it
+  builds `heso` INSIDE a `rust:1.90-bookworm` container (the tag tracks
+  `rust-toolchain.toml`'s `channel = "1.90"`) for `linux/amd64` and
+  `linux/arm64` — the workspace mounted READ-ONLY at `/heso` with
+  `CARGO_TARGET_DIR=/tmp/target` so the host tree is untouched — and asserts
+  every cassette reproduces the SAME pinned native-arm64 `plat_hash`.
+  `linux/arm64` is native on Apple silicon; `linux/amd64` runs under
+  QEMU/binfmt emulation. The test is `#[ignore]`d and additionally gated
+  behind `HESO_DOCKER_DETERMINISM=1` (the in-container builds are
+  multi-minute cold builds); it **skips clean** (prints why, never fails)
+  when Docker is absent, the daemon is down, or an emulator for the
+  non-native platform is missing (that skips THAT platform only). Run it
+  with:
+  `HESO_DOCKER_DETERMINISM=1 cargo test -p heso-cli --test determinism_docker_linux -- --ignored --nocapture`.
+  This is **provable when a daemon is available** — it is NOT marked proven:
+  nothing ran green on the authoring host (Docker daemon down), and the
+  always-on authority for the Linux legs stays the native CI matrix below.
+- **NATIVE x86_64-macos: PENDING CI-green** — this leg is the CI matrix's
+  job (`.github/workflows/determinism-matrix.yml`, the `macos-13` runner).
+  It is genuinely untestable on this arm64 host: Rosetta is a translator and
+  Docker here runs a Linux VM, so there is no native macOS-x86_64 surface to
+  exercise locally. Not proven from one developer Mac.
 
 We deliver: (1) this K-process harness, (2) the pinned hashes generated on
 a named reference target (`manifest.json#reference_target`), (3) the local
-x86_64-via-Rosetta proof (`determinism_cross_arch.rs`), and (4) a CI matrix
+x86_64-via-Rosetta proof (`determinism_cross_arch.rs`), (4) the local
+Docker-Linux proof for `{linux/amd64, linux/arm64}`
+(`determinism_docker_linux.rs`, provable when a daemon is available, skips
+clean otherwise), and (5) a CI matrix
 (`.github/workflows/determinism-matrix.yml`) that runs the same harness and
 asserts the same pinned hashes on
 `{x86_64-linux, aarch64-linux, x86_64-macos, aarch64-macos}` plus the
-Rosetta cross-arch leg on the aarch64-macos runner.
+Rosetta cross-arch leg and the emulated Docker-Linux leg on the
+aarch64-macos / ubuntu runners.
 
 > **Single-host K-process determinism is proven here; the
 > aarch64<->x86_64 macOS pair is proven locally via Rosetta; the linux legs
