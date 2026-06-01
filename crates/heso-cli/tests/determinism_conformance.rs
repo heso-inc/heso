@@ -246,16 +246,25 @@ fn determinism_conformance_corpus_is_byte_identical_across_16_processes() {
          path is unproven; the hydrated_spa cassette must be in the corpus"
     );
 
-    // Coverage guards for the three plat-byte hazards this corpus was
-    // extended to cover (mirroring the saw_hydrated guard above). A
-    // regenerate that silently dropped data_attr_heavy or
-    // chained_settle_spa would otherwise leave the BTreeMap-order /
-    // settle-loop fixes unexercised by the MAIN corpus with no loud
-    // signal.
+    // Coverage guards for the extended corpus (mirroring the saw_hydrated
+    // guard above). A regenerate that silently dropped data_attr_heavy or
+    // chained_settle_spa would otherwise leave the data_attrs path / the
+    // settle-loop fix unexercised by the MAIN corpus with no loud signal.
+    //
+    // NOTE on data_attrs: this guards PATH coverage, not a redden-on-
+    // mutation proof. The `data_attrs::extract` BTreeMap-vs-HashMap key
+    // ORDER is NOT a plat_hash hazard — serde_jcs sorts every JSON
+    // object's keys recursively before hashing, so swapping the container
+    // does not move the hash (verified empirically; see the fixture
+    // comment and README). The fixture exists so the rich data_attrs blob
+    // is routed through the signed K=16 replay hash at all; the guard just
+    // stops a regenerate from silently deleting that breadth.
     assert!(
         saw_data_attrs,
         "corpus proved {proven} cassettes but NONE carried data_attrs — the data_attrs \
-         BTreeMap-ordering hazard is unproven; the data_attr_heavy cassette must be in the corpus"
+         extraction path is unexercised through the signed hash; the data_attr_heavy cassette \
+         must be in the corpus (PATH coverage; object-key ORDER is not itself a hazard — JCS \
+         sorts keys)"
     );
     assert!(
         saw_settle_chain,

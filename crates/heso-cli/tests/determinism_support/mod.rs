@@ -34,10 +34,20 @@ pub fn heso_bin() -> PathBuf {
     PathBuf::from(env!("CARGO_BIN_EXE_heso"))
 }
 
-/// Absolute path to the dependency-free `heso-verify` binary — the
-/// ground-truth recompute of `plat_hash` (BLAKE3 over serde_jcs canonical
-/// bytes, zero engine deps). The harness cross-checks every replay
-/// against it so a producer/verifier canonicalization split fails loud.
+/// Absolute path to the dependency-free `heso-verify` binary — a SEPARATE
+/// recompute of `plat_hash` (BLAKE3 over serde_jcs canonical bytes, zero
+/// engine deps). It is NOT an independent canonicalizer: it shares the
+/// SAME `serde_jcs` the engine uses (the engine depends DOWN on
+/// `heso-verify`), so a JCS *conformance* bug — wrong number formatting,
+/// wrong key sort — is shared by both sides and INVISIBLE to this
+/// cross-check. That class of bug is closed separately by the spec-derived
+/// RFC-8785 vectors in `crates/heso-verify/tests/rfc8785_conformance.rs`.
+/// What the harness's cross-check against this binary DOES catch is a
+/// producer/verifier *wiring* split: one side strips/includes a field or
+/// hashes a different region than the other. The real independence in the
+/// conformance gate is the OS-process boundary (K fresh processes) plus
+/// those RFC-8785 vectors — a single shared canonicalizer cannot
+/// self-detect its own JCS bug.
 ///
 /// `heso-verify` lives in a sibling crate, so `CARGO_BIN_EXE_*` is not
 /// set for it and `cargo test -p heso-cli` does not auto-build it. We
@@ -487,7 +497,11 @@ pub fn run_replay_hash(plat: &Path, seed: u64) -> String {
 }
 
 /// Run the dependency-free `heso-verify <plat>` and return the hash it
-/// independently recomputes. Output format is `OK plat <hash>`.
+/// recomputes. This is a SEPARATE binary but NOT an independent
+/// canonicalizer — it shares `serde_jcs` with the engine, so the
+/// cross-check catches a producer/verifier WIRING split, not a JCS
+/// conformance bug (that is the RFC-8785 vectors' job; see
+/// [`heso_verify_bin`]). Output format is `OK plat <hash>`.
 pub fn verify_recompute_hash(plat: &Path) -> String {
     let out = Command::new(heso_verify_bin())
         .arg(plat.to_str().unwrap())
