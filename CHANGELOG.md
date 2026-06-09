@@ -4,6 +4,21 @@ All notable changes to heso are documented here. The format follows
 [Keep a Changelog 1.1.0](https://keepachangelog.com/en/1.1.0/); the
 project follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.1] - 2026-06-09
+
+### Changed
+
+- Docs: the README **Status** section described the hesojs determinism
+  engine swap (ADR 0030) as an upcoming change — it actually shipped in
+  `0.3.0`. Reworded to the current state. No code changes.
+
+### Added
+
+- First publish of the Python distribution under its current name
+  **`heso-runtime`** on PyPI (`pip install heso-runtime`). The import
+  name stays `heso`; the binary and the Node package (`@ixla/heso`) are
+  unchanged.
+
 ## [0.3.0] - 2026-05-31
 
 ### Changed

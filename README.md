@@ -64,7 +64,7 @@ powershell -ExecutionPolicy Bypass -c "irm https://github.com/heso-inc/heso/rele
 ```
 
 <!-- heso:version:start -->
-> Shipping `v0.3.0` for Windows-x64, Linux x64 + arm64, macOS x64 + arm64. `cargo-dist` builds every target on tag; npm/PyPI publish through the same workflow.
+> Shipping `v0.3.1` for Windows-x64, Linux x64 + arm64, macOS x64 + arm64. `cargo-dist` builds every target on tag; npm/PyPI publish through the same workflow.
 <!-- heso:version:end -->
 
 After install, `heso` is on `$PATH`:
@@ -429,7 +429,7 @@ No registration server, no central authority. **Dispatch is local-only** (spec �
 
 DNS ownership prevents anyone but you from claiming names *under your domain* — same anti-impersonation model as Java packages, Android application IDs, Maven groups, and OCI image labels. It does NOT solve typosquatting (`com.exarnple.foo` and `com.example.foo` are distinct names that look identical to a human reader). HESO/1.0 anchors trust on signing keys, not verb names: pin receivers to trusted signers via the existing `verify --trusted-keys` allowlist (spec §3.9, §4.6).
 
-Today, the reference implementation (this binary, `v0.3.0`) ships only the core verbs — typing `heso com.example.foo ...` exits with `unknown subcommand`. Extension verbs are a namespace, not yet a registered-impl surface in this binary; to dispatch one today you implement HESO/1.0 yourself, in any language. The spec is what makes that implementation possible.
+Today, the reference implementation (this binary, `v0.3.1`) ships only the core verbs — typing `heso com.example.foo ...` exits with `unknown subcommand`. Extension verbs are a namespace, not yet a registered-impl surface in this binary; to dispatch one today you implement HESO/1.0 yourself, in any language. The spec is what makes that implementation possible.
 
 ## Use as an agent skill
 
@@ -537,7 +537,7 @@ Requires Rust 1.90 (`rustup` from https://rustup.rs).
 
 ## Status
 
-`v0.3.0` is shipping on every registry. The engine, the verbs, and plat replay are stable enough to use — the spot checks on GitHub, Cloudflare, and friends come back clean, and the full test suite is required green on every release. This upcoming release moves the JS engine to the in-tree hesojs determinism fork (ADR 0030): `Date`/RNG bytes shift for a given seed, so `plat_hash` values change and plats stamped on the previous engine must be re-stamped. What may still shift before `v1.0` is the CLI surface: verb names, JSON field names, flag spellings. Pin the version if you embed it.
+`v0.3.1` is shipping on every registry. The engine, the verbs, and plat replay are stable enough to use — the spot checks on GitHub, Cloudflare, and friends come back clean, and the full test suite is required green on every release. The JS engine is the in-tree hesojs determinism fork (ADR 0030): determinism is injected at the C layer (clock / RNG / timezone sources) instead of JS-side monkey-patches. `plat_hash` values shifted at that cutover, so plats stamped on the older engine must be re-stamped to replay byte-identically. What may still shift before `v1.0` is the CLI surface: verb names, JSON field names, flag spellings. Pin the version if you embed it.
 
 ## License
 
