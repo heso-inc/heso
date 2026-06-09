@@ -138,7 +138,7 @@ heso unseal sealed.plat --extract          # verify, then print the inner plat b
 
 `seal` is the **stronger, opt-in** envelope. It produces a standalone `SealedPlat` JSON (`{alg, content, signature}`) that any holder of the envelope + the `heso` binary can verify offline — no key material, no network, no clock. (Plats already carry an inline signature by default; `seal` wraps the bare body in a separate, self-contained trust unit and strips any inline `sig` first so the envelope signs clean content.) Mint a key once with `heso identity init`; from then on the same key signs every plat. `unseal` checks the algorithm tag, the embedded `plat_hash`, and the Ed25519 signature in order, and refuses to silently treat an unknown `alg` as Ed25519.
 
-**Replay a published plat in one command.** Install `heso` (`uv tool install heso` / `pipx install heso` / `npm install -g @ixla/heso`), then:
+**Replay a published plat in one command.** Install `heso-runtime` (`uv tool install heso-runtime` / `pipx install heso-runtime` / `npm install -g @ixla/heso`), then:
 
 ```sh
 curl -sL https://github.com/heso-inc/heso/releases/download/v0.0.10/replay-demo-1-goldfinger.plat.json \
@@ -183,7 +183,7 @@ The sample plat ([`replay-demo-1-goldfinger.plat.json`](https://github.com/heso-
 
 ## Use as a library
 
-The Python (`heso`) and Node (`@ixla/heso`) packages each ship two faces of the same bundled binary: a CLI on `$PATH` and a programmatic API that spawns that binary under the hood and gives you back parsed JSON as native objects. No FFI, no Python extension module, no N-API addon — subprocess + JSON is the contract.
+The Python (`heso-runtime`) and Node (`@ixla/heso`) packages each ship two faces of the same bundled binary: a CLI on `$PATH` and a programmatic API that spawns that binary under the hood and gives you back parsed JSON as native objects. No FFI, no Python extension module, no N-API addon — subprocess + JSON is the contract.
 
 ```python
 # Python
@@ -545,4 +545,4 @@ MIT or Apache-2.0, your choice.
 
 ---
 
-Full docs: **[heso.ca/docs](https://www.heso.ca/docs)** · Site: **[heso.ca](https://www.heso.ca)** · npm: **[@ixla/heso](https://www.npmjs.com/package/@ixla/heso)** · PyPI: **[heso](https://pypi.org/project/heso/)**
+Full docs: **[heso.ca/docs](https://www.heso.ca/docs)** · Site: **[heso.ca](https://www.heso.ca)** · npm: **[@ixla/heso](https://www.npmjs.com/package/@ixla/heso)** · PyPI: **[heso-runtime](https://pypi.org/project/heso-runtime/)**
