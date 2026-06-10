@@ -2,12 +2,14 @@
 
 **Site:** [heso.ca](https://www.heso.ca) · **Docs:** [heso.ca/docs](https://www.heso.ca/docs) · **[npm](https://www.npmjs.com/package/@ixla/heso)** · **[PyPI](https://pypi.org/project/heso-runtime/)** · **[Releases](https://github.com/heso-inc/heso/releases)**
 
-> This repo also hosts the **open verifier for heso ActionReceipts** — the
-> signed receipts the [heso SDK](https://www.heso.ca) mints for AI-agent
-> actions. Anyone can verify a receipt offline with heso removed from the
-> loop. See [Verify ActionReceipts](#verify-actionreceipts-the-open-verifier).
+[heso](https://www.heso.ca) is runtime governance for AI agents: gate what an agent does under policy, pause the risky stuff for a human co-signature, and mint a signed **ActionReceipt** for every action — verifiable offline, by anyone, with heso removed from the loop.
 
-A Rust runtime that lets an agent touch the web — fetch, JavaScript, DOM, forms, clicks, sessions — and emits a signed, replayable record of the run.
+This repo is the open half of that story. It hosts two things:
+
+1. **The open verifier for ActionReceipts** — the MIT/Apache-licensed `heso-action` crate, the standalone `heso-verify-cli`, and the normative wire specs. It checks Ed25519 signatures, human approval co-signs, the BLAKE3 hash chain, and transparency-log inclusion proofs against publicly anchored checkpoints. See [Verify ActionReceipts](#verify-actionreceipts-the-open-verifier).
+2. **The heso agent-web runtime** — a single Rust binary that lets an agent touch the web — fetch, JavaScript, DOM, forms, clicks, sessions — and emits a signed, replayable record of the run. No Chromium, no Node.
+
+The rest of this README documents the runtime; the verifier has [its own section](#verify-actionreceipts-the-open-verifier) near the end.
 
 Every run can be **stamped** into a *plat* — a replay file holding the plan that ran, the page observation, and the recorded network cassette, all hashed together and **signed by default** with your identity key. `heso run` re-executes the plat off-network and the resulting `plat_hash` is byte-identical to the original. `heso verify` recomputes the hash, checks the signature, and always shows you who signed it. Hand the artifact to anyone: they replay it off-network, confirm it's unchanged, and see who signed it.
 
@@ -510,11 +512,14 @@ This repo carries the open, MIT/Apache-licensed verify path, so a receipt can
 be checked **with heso entirely removed from the loop**:
 
 - [`crates/heso-action`](crates/heso-action) — the verifier library
-  (canonicalization, signature + chain verification, golden vectors pinned
-  byte-identical to the producer suite).
+  (canonicalization, signature + chain verification, two-stage
+  transparency-log inclusion proofs against signed C2SP checkpoints, golden
+  vectors pinned byte-identical to the producer suite).
 - [`crates/heso-verify-cli`](crates/heso-verify-cli) — the standalone CLI:
   `heso-verify-cli <receipts.jsonl> <public_key_file>` → `VALID` / exit codes.
-  Vendored into every evidence bundle the SDK exports.
+  `--checkpoint` / `--log-key` / `--require-transparency` verify receipts
+  against the publicly anchored transparency log. Vendored into every
+  evidence bundle the SDK exports.
 - [`spec/ACTION-RECEIPT-2.0.md`](spec/ACTION-RECEIPT-2.0.md),
   [`spec/ACTION-RECEIPT-1.0.md`](spec/ACTION-RECEIPT-1.0.md),
   [`spec/TRANSPARENCY-1.0.md`](spec/TRANSPARENCY-1.0.md) — the normative wire
