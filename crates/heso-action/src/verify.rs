@@ -45,7 +45,15 @@
 //!    verified user authorization. A payment with NO binding is not failed here
 //!    (absence is the policy floor's concern at gate time). (Runs as step 6.7 in
 //!    the code, after trust-level re-derivation.)
-//! 9. (reserved) optional transparency — not enforced in this version.
+//! 9. optional transparency-log inclusion — enforced WHEN PRESENT, and REQUIRED
+//!    via [`crate::receipt::TransparencyRequirement`]. The plain [`open_receipt`]
+//!    does NOT check it (a `transparency[]` block lives outside the signed
+//!    content, so it never affected `action_hash` / a signature). The pinned-key
+//!    transparency gate runs only via [`open_receipt_with_transparency`]: each
+//!    [`crate::receipt::TransparencyProof`] is verified two-stage (leaf→org_root,
+//!    then top_leaf→top_root) against a C2SP checkpoint note signed by the pinned
+//!    LOG key, plus any witness cosignatures against pinned WITNESS keys. An empty
+//!    `transparency[]` stays Valid unless `Required` is in force.
 //!
 //! The trust level is then RE-DERIVED from which roles verified (operator only ⇒
 //! L0; operator + approver ⇒ L1); the embedded `content.trust_level` is NOT
@@ -74,7 +82,11 @@ use crate::ert::{DerivedClassification, SignedObservedFacts};
 use crate::receipt::{
     action_canonical_bytes, action_content_hash, multi_approver_canonical, multi_operator_canonical,
     ActionReceipt, AnchorRequirement, ApproverDecision, MultiApproval, RedactionMode,
-    SignatureEntry, TrustLevel,
+    SignatureEntry, TransparencyProof, TransparencyRequirement, TrustLevel,
+};
+use crate::transparency::{
+    leaf_value_from_action_hash, parse_signed_note, top_leaf_value, verify_inclusion,
+    verify_note_against_key, HASH_LEN,
 };
 
 /// The result of verifying an ActionReceipt.
@@ -188,6 +200,22 @@ pub enum ActionOutcome {
     /// then minted anchorless — fail closed at the VERIFIER (the SDK-side policy is
     /// bypassable; this signed requirement is not). FAIL CLOSED.
     AnchorRequired,
+    /// The receipt carries a `transparency[]` proof that could NOT be verified
+    /// against the pinned log key: a malformed C2SP checkpoint note, a checkpoint
+    /// not signed by the pinned log key, a stage-1 (leaf→org_root) or stage-2
+    /// (top_leaf→top_root) RFC-6962 inclusion proof that does not reproduce the
+    /// note's committed root, or — when witness keys are pinned — a cosignature
+    /// that does not verify. A PRESENT-but-unverifiable transparency claim fails
+    /// the receipt rather than being silently ignored. Carries a description.
+    /// (An ABSENT `transparency[]` is NOT this — it only fails when
+    /// [`crate::receipt::TransparencyRequirement::Required`] is in force, via
+    /// [`ActionOutcome::TransparencyRequired`].)
+    TransparencyUnverifiable(String),
+    /// The verifier was run with
+    /// [`crate::receipt::TransparencyRequirement::Required`] but the receipt
+    /// carries NO `transparency[]` inclusion proof. The relying party demanded a
+    /// log-inclusion proof and the receipt does not supply one. FAIL CLOSED.
+    TransparencyRequired,
 }
 
 impl ActionOutcome {
@@ -219,6 +247,10 @@ impl ActionOutcome {
                 format!("ThresholdNotMet:have={have},need={need}")
             }
             ActionOutcome::AnchorRequired => "AnchorRequired".to_string(),
+            ActionOutcome::TransparencyUnverifiable(m) => {
+                format!("TransparencyUnverifiable:{m}")
+            }
+            ActionOutcome::TransparencyRequired => "TransparencyRequired".to_string(),
         }
     }
 }
@@ -265,6 +297,14 @@ mod verdict_tag_golden {
             "ThresholdNotMet:have=1,need=2"
         );
         assert_eq!(ActionOutcome::AnchorRequired.verdict_tag(), "AnchorRequired");
+        assert_eq!(
+            ActionOutcome::TransparencyUnverifiable("t".into()).verdict_tag(),
+            "TransparencyUnverifiable:t"
+        );
+        assert_eq!(
+            ActionOutcome::TransparencyRequired.verdict_tag(),
+            "TransparencyRequired"
+        );
     }
 }
 
@@ -465,11 +505,227 @@ pub fn open_receipt(receipt: &ActionReceipt) -> ActionOutcome {
         return ActionOutcome::MandateRejected(msg);
     }
 
-    // Step 7 (reserved): optional transparency. Not enforced in v1.0 —
+    // Step 7: optional transparency-log inclusion. NOT checked on this path —
     // `transparency[]` lives outside the signed content, so it never affected
-    // `action_hash` or a signature anyway.
+    // `action_hash` or a signature, and a verifier with no pinned log key cannot
+    // (and must not) judge it. The pinned-key gate runs in
+    // `open_receipt_with_transparency`; it is enforced WHEN PRESENT and REQUIRED
+    // via `TransparencyRequirement`. An empty `transparency[]` stays Valid here.
 
     ActionOutcome::Valid(derived)
+}
+
+/// Verify an [`ActionReceipt`] AND its transparency-log inclusion proof(s)
+/// against caller-pinned keys.
+///
+/// Runs the full [`open_receipt`] gate first (a forged/tampered receipt fails for
+/// the clearer cryptographic reason BEFORE any transparency check). Then:
+///
+/// - If `transparency[]` is non-empty, EVERY [`TransparencyProof`] is verified
+///   against `log_pubkey` (and, when `witness_pubkeys` is non-empty, its
+///   cosignatures): the C2SP checkpoint note must be signed by the pinned log
+///   key, the stage-1 (leaf→org_root) and — when present — stage-2
+///   (top_leaf→top_root) RFC-6962 inclusion proofs must reproduce the note's
+///   committed root. Any failure ⇒ [`ActionOutcome::TransparencyUnverifiable`].
+/// - If `require == Some(Required)` and `transparency[]` is empty ⇒
+///   [`ActionOutcome::TransparencyRequired`].
+/// - An empty `transparency[]` with no requirement is left exactly as
+///   [`open_receipt`] returned it (additive — never weakens the base gate).
+///
+/// `log_pubkey` / `witness_pubkeys` are raw 32-byte Ed25519 keys passed by the
+/// relying party (CLI flags / library params), TOFU-pinned in the bundle — never
+/// resolved from a `KeyRegistry`.
+pub fn open_receipt_with_transparency(
+    receipt: &ActionReceipt,
+    log_pubkey: &[u8; 32],
+    witness_pubkeys: &[[u8; 32]],
+    require: Option<TransparencyRequirement>,
+) -> ActionOutcome {
+    let base = open_receipt(receipt);
+    if !matches!(base, ActionOutcome::Valid(_)) {
+        return base;
+    }
+
+    if receipt.transparency.is_empty() {
+        if require == Some(TransparencyRequirement::Required) {
+            return ActionOutcome::TransparencyRequired;
+        }
+        return base;
+    }
+
+    for proof in &receipt.transparency {
+        if let Err(msg) =
+            verify_transparency_proof(&receipt.content.action_hash, proof, log_pubkey, witness_pubkeys)
+        {
+            return ActionOutcome::TransparencyUnverifiable(msg);
+        }
+    }
+
+    base
+}
+
+/// Verify one [`TransparencyProof`] against the pinned log + witness keys.
+/// Returns `Err(reason)` on any failure, `Ok(())` when every stage checks out.
+fn verify_transparency_proof(
+    action_hash: &str,
+    proof: &TransparencyProof,
+    log_pubkey: &[u8; 32],
+    witness_pubkeys: &[[u8; 32]],
+) -> Result<(), String> {
+    // (1) The checkpoint must be a C2SP note signed by the pinned log key.
+    let note = parse_signed_note(&proof.checkpoint).map_err(|e| format!("checkpoint note: {e}"))?;
+    verify_note_against_key(&note, log_pubkey)
+        .map_err(|e| format!("checkpoint not signed by the pinned log key: {e}"))?;
+
+    // (2) Stage 1 — the receipt's leaf is in the org tree, yielding `org_root`.
+    let leaf = leaf_value_from_action_hash(action_hash)
+        .map_err(|_| "receipt action_hash is not 64 lowercase-hex".to_string())?;
+    let inclusion = decode_proof_nodes(&proof.inclusion_proof, "inclusion_proof")?;
+
+    // A single-tree proof (no second-stage fields) verifies stage 1 DIRECTLY
+    // against the note's root. A two-stage proof verifies stage 1 against the
+    // carried `org_root`, then stage 2 (top_leaf→top_root) against the note.
+    match (&proof.org_root, proof.org_tree_size, proof.epoch, &proof.org_id) {
+        (Some(org_root_b64), Some(org_size), Some(epoch), Some(org_id_str)) => {
+            let org_root = decode_hash(org_root_b64, "org_root")?;
+            if !verify_inclusion(
+                &leaf,
+                proof.leaf_index as usize,
+                org_size as usize,
+                &org_root,
+                &inclusion,
+            ) {
+                return Err("stage-1 inclusion proof does not reproduce org_root".to_string());
+            }
+
+            // (3) Stage 2 — the frozen top-leaf commitment is in the top tree,
+            // yielding the note's TOP root.
+            let org_id = decode_org_id(org_id_str)?;
+            let top_leaf = top_leaf_value(&org_id, epoch, &org_root);
+            let top_index = proof
+                .top_leaf_index
+                .ok_or_else(|| "two-stage proof missing top_leaf_index".to_string())?;
+            let top_inclusion = decode_proof_nodes(&proof.top_inclusion_proof, "top_inclusion_proof")?;
+            if !verify_inclusion(
+                &top_leaf,
+                top_index as usize,
+                note.size as usize,
+                &note.root,
+                &top_inclusion,
+            ) {
+                return Err("stage-2 top-tree inclusion proof does not reproduce the checkpoint root"
+                    .to_string());
+            }
+        }
+        (None, None, None, None) => {
+            // Single-tree proof: leaf is included directly under the note's root.
+            if !verify_inclusion(
+                &leaf,
+                proof.leaf_index as usize,
+                note.size as usize,
+                &note.root,
+                &inclusion,
+            ) {
+                return Err(
+                    "inclusion proof does not reproduce the checkpoint root".to_string()
+                );
+            }
+        }
+        _ => {
+            return Err(
+                "partial two-stage proof: org_root, org_tree_size, epoch, and org_id must all be \
+                 present together"
+                    .to_string(),
+            )
+        }
+    }
+
+    // (4) Witness cosignatures, when the relying party pinned witness keys. Each
+    // cosignature must be from a pinned witness key over the exact checkpoint
+    // note bytes. (With no pinned witnesses, cosignatures are informational and
+    // not required — mirrors the C2SP "skip unknown witnesses" posture.)
+    if !witness_pubkeys.is_empty() {
+        for cosig in &proof.cosignatures {
+            verify_cosignature(cosig, note.text.as_bytes(), witness_pubkeys)?;
+        }
+    }
+
+    Ok(())
+}
+
+/// Verify one witness cosignature over `note_bytes` against the pinned witness
+/// keys. A cosignature whose key is not pinned, or whose signature does not
+/// verify, is an error (we only reach here when witnesses ARE pinned).
+fn verify_cosignature(
+    cosig: &crate::receipt::Cosignature,
+    note_bytes: &[u8],
+    witness_pubkeys: &[[u8; 32]],
+) -> Result<(), String> {
+    use base64::engine::general_purpose::STANDARD as B64;
+    use base64::Engine as _;
+
+    let key_bytes = B64
+        .decode(cosig.witness_key.as_bytes())
+        .map_err(|_| "cosignature witness_key is not base64".to_string())?;
+    if key_bytes.len() != 32 || !witness_pubkeys.iter().any(|k| k.as_slice() == key_bytes) {
+        return Err(format!(
+            "cosignature witness_key `{}` is not a pinned witness",
+            cosig.witness_key
+        ));
+    }
+    let candidate = heso_verify::Signature {
+        algorithm: "Ed25519".to_string(),
+        public_key: cosig.witness_key.clone(),
+        signature: cosig.signature.clone(),
+    };
+    candidate
+        .verify(note_bytes)
+        .map_err(|e| format!("witness cosignature did not verify: {e}"))
+}
+
+/// Decode an ordered list of base64 32-byte proof nodes into fixed arrays.
+fn decode_proof_nodes(nodes: &[String], what: &str) -> Result<Vec<[u8; HASH_LEN]>, String> {
+    nodes.iter().map(|n| decode_hash(n, what)).collect()
+}
+
+/// Decode a single base64 32-byte hash.
+fn decode_hash(b64: &str, what: &str) -> Result<[u8; HASH_LEN], String> {
+    use base64::engine::general_purpose::STANDARD as B64;
+    use base64::Engine as _;
+    let bytes = B64
+        .decode(b64.as_bytes())
+        .map_err(|_| format!("{what} node is not base64"))?;
+    if bytes.len() != HASH_LEN {
+        return Err(format!("{what} node is not 32 bytes"));
+    }
+    let mut out = [0u8; HASH_LEN];
+    out.copy_from_slice(&bytes);
+    Ok(out)
+}
+
+/// Decode an org uuid string (canonical hyphenated form, with or without
+/// hyphens) into its 16 raw bytes for the top-leaf commitment.
+fn decode_org_id(s: &str) -> Result<[u8; 16], String> {
+    let hex: String = s.chars().filter(|c| *c != '-').collect();
+    if hex.len() != 32 {
+        return Err(format!("org_id `{s}` is not a 16-byte uuid"));
+    }
+    let mut out = [0u8; 16];
+    for (i, pair) in hex.as_bytes().chunks_exact(2).enumerate() {
+        let hi = org_hex_val(pair[0]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
+        let lo = org_hex_val(pair[1]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
+        out[i] = (hi << 4) | lo;
+    }
+    Ok(out)
+}
+
+fn org_hex_val(c: u8) -> Option<u8> {
+    match c {
+        b'0'..=b'9' => Some(c - b'0'),
+        b'a'..=b'f' => Some(c - b'a' + 10),
+        b'A'..=b'F' => Some(c - b'A' + 10),
+        _ => None,
+    }
 }
 
 /// Check a [`crate::receipt::Verb::Payment`] receipt's mandate binding: returns
@@ -1712,5 +1968,313 @@ mod tests {
         // Post-signing, flip the verdict to Valid WITHOUT re-stamping the hash.
         receipt.content.action.mandate.as_mut().unwrap().verdict = MandateVerdictTag::Valid;
         assert!(matches!(open_receipt(&receipt), ActionOutcome::HashMismatch));
+    }
+}
+
+#[cfg(test)]
+mod transparency_tests {
+    use super::*;
+    use crate::receipt::fixtures::fixed_content;
+    use crate::receipt::{
+        action_canonical_bytes, action_content_hash, ActionContent, Cosignature, SignatureEntry,
+        TransparencyProof, TransparencyRequirement, TrustLevel,
+    };
+    use crate::transparency::{
+        leaf_value_from_action_hash, merkle_tree_hash, node_hash, note_key_hash, split_point,
+        top_leaf_value, HASH_LEN,
+    };
+    use base64::engine::general_purpose::STANDARD as B64;
+    use base64::Engine as _;
+
+    const OPERATOR_SEED: [u8; 32] = [0u8; 32];
+    const LOG_SEED: [u8; 32] = [7u8; 32];
+    const WITNESS_SEED: [u8; 32] = [9u8; 32];
+    const LOG_NAME: &str = "log.heso.ca";
+
+    fn sign_entry(seed: &[u8; 32], role: &str, domain: &[u8], content: &ActionContent) -> SignatureEntry {
+        let key = heso_core::IdentityKey::from_bytes(seed);
+        let canonical = action_canonical_bytes(content);
+        let mut payload = Vec::with_capacity(domain.len() + canonical.len());
+        payload.extend_from_slice(domain);
+        payload.extend_from_slice(&canonical);
+        let s = key.sign(&payload);
+        SignatureEntry {
+            algorithm: s.algorithm,
+            key_id: role.to_string(),
+            public_key: s.public_key,
+            signature: s.signature,
+            valid_from: None,
+            valid_until: None,
+        }
+    }
+
+    /// An operator-signed L0 receipt with no transparency block yet.
+    fn signed_l0(mut content: ActionContent) -> ActionReceipt {
+        content.trust_level = TrustLevel::L0;
+        content.action_hash = action_content_hash(&content);
+        let operator = sign_entry(
+            &OPERATOR_SEED,
+            crate::domain::OPERATOR_KEY_ID,
+            crate::domain::ACTION_SIGNING_DOMAIN,
+            &content,
+        );
+        ActionReceipt {
+            alg: crate::domain::ACTION_ENVELOPE_ALG.into(),
+            content,
+            signatures: vec![operator],
+            transparency: vec![],
+        }
+    }
+
+    /// Build the RFC-6962 inclusion proof for `index` over `leaves` using only the
+    /// public `transparency.rs` primitives (no heso-engine dependency).
+    fn inclusion_path(index: usize, leaves: &[[u8; HASH_LEN]]) -> Vec<[u8; HASH_LEN]> {
+        let n = leaves.len();
+        if n == 1 {
+            return Vec::new();
+        }
+        let k = split_point(n);
+        if index < k {
+            let mut path = inclusion_path(index, &leaves[..k]);
+            path.push(merkle_tree_hash(&leaves[k..]));
+            path
+        } else {
+            let mut path = inclusion_path(index - k, &leaves[k..]);
+            path.push(merkle_tree_hash(&leaves[..k]));
+            path
+        }
+    }
+
+    fn b64_nodes(path: &[[u8; HASH_LEN]]) -> Vec<String> {
+        path.iter().map(|n| B64.encode(n)).collect()
+    }
+
+    /// Sign a C2SP note body and return the full signed-note text + the raw root.
+    fn sign_note(seed: &[u8; 32], name: &str, size: u64, root: &[u8; HASH_LEN]) -> String {
+        let body = format!("{name}\n{size}\n{}\n", B64.encode(root));
+        let key = heso_core::IdentityKey::from_bytes(seed);
+        let sig = key.sign(body.as_bytes());
+        let sig_raw = B64.decode(sig.signature.as_bytes()).unwrap();
+        let key_hash = note_key_hash(name, &key.public_key_bytes());
+        let mut blob = Vec::with_capacity(4 + 64);
+        blob.extend_from_slice(&key_hash);
+        blob.extend_from_slice(&sig_raw);
+        format!("{body}\n— {name} {}", B64.encode(&blob))
+    }
+
+    /// Build a real TWO-STAGE proof for a receipt's action_hash: an org tree
+    /// holding the leaf, and a top tree whose top-leaf commits the org root.
+    #[allow(clippy::too_many_arguments)]
+    fn two_stage_proof(
+        action_hash: &str,
+        org_leaves: &[[u8; HASH_LEN]],
+        leaf_index: usize,
+        org_id: &[u8; 16],
+        epoch: u64,
+        other_top_leaves: &[[u8; HASH_LEN]],
+        top_index: usize,
+    ) -> TransparencyProof {
+        let org_root = merkle_tree_hash(org_leaves);
+        let org_proof = inclusion_path(leaf_index, org_leaves);
+
+        // The top tree: insert this org's frozen top-leaf at `top_index`.
+        let top_leaf = top_leaf_value(org_id, epoch, &org_root);
+        let mut top_leaves = other_top_leaves.to_vec();
+        top_leaves.insert(top_index, top_leaf);
+        let top_root = merkle_tree_hash(&top_leaves);
+        let top_proof = inclusion_path(top_index, &top_leaves);
+
+        let checkpoint = sign_note(&LOG_SEED, LOG_NAME, top_leaves.len() as u64, &top_root);
+
+        let _ = leaf_value_from_action_hash(action_hash).unwrap(); // sanity
+
+        TransparencyProof {
+            log_id: LOG_NAME.to_string(),
+            leaf_index: leaf_index as u64,
+            inclusion_proof: b64_nodes(&org_proof),
+            org_root: Some(B64.encode(org_root)),
+            org_tree_size: Some(org_leaves.len() as u64),
+            epoch: Some(epoch),
+            org_id: Some(uuid_hyphenated(org_id)),
+            top_leaf_index: Some(top_index as u64),
+            top_inclusion_proof: b64_nodes(&top_proof),
+            checkpoint,
+            cosignatures: vec![],
+        }
+    }
+
+    fn uuid_hyphenated(b: &[u8; 16]) -> String {
+        let h: String = b.iter().map(|x| format!("{x:02x}")).collect();
+        format!("{}-{}-{}-{}-{}", &h[0..8], &h[8..12], &h[12..16], &h[16..20], &h[20..32])
+    }
+
+    fn log_pubkey() -> [u8; 32] {
+        heso_core::IdentityKey::from_bytes(&LOG_SEED).public_key_bytes()
+    }
+
+    /// A valid two-stage transparency proof passes.
+    #[test]
+    fn valid_two_stage_proof_passes() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        // The org has 3 leaves; ours is at index 1.
+        let org_leaves = [
+            leaf_value_from_action_hash(&"a".repeat(64)).unwrap(),
+            leaf,
+            leaf_value_from_action_hash(&"b".repeat(64)).unwrap(),
+        ];
+        let org_id = [3u8; 16];
+        // Two other orgs already have top-leaves; ours lands at top_index 2.
+        let others = [[1u8; HASH_LEN], [2u8; HASH_LEN]];
+        let proof = two_stage_proof(&ah, &org_leaves, 1, &org_id, 5, &others, 2);
+        receipt.transparency = vec![proof];
+
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &[], None);
+        assert!(matches!(outcome, ActionOutcome::Valid(TrustLevel::L0)), "got {outcome:?}");
+    }
+
+    /// A single-leaf org under a single-leaf top tree (the trivial proof shape).
+    #[test]
+    fn valid_single_leaf_two_stage_proof_passes() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_id = [42u8; 16];
+        let proof = two_stage_proof(&ah, &[leaf], 0, &org_id, 1, &[], 0);
+        receipt.transparency = vec![proof];
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &[], None);
+        assert!(matches!(outcome, ActionOutcome::Valid(_)), "got {outcome:?}");
+    }
+
+    /// A tampered stage-1 sibling node fails closed (does not reproduce org_root).
+    #[test]
+    fn tampered_stage1_proof_is_unverifiable() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_leaves = [leaf_value_from_action_hash(&"a".repeat(64)).unwrap(), leaf];
+        let org_id = [3u8; 16];
+        let mut proof = two_stage_proof(&ah, &org_leaves, 1, &org_id, 5, &[], 0);
+        // Flip a byte in the stage-1 sibling.
+        let mut node = B64.decode(proof.inclusion_proof[0].as_bytes()).unwrap();
+        node[0] ^= 0x01;
+        proof.inclusion_proof[0] = B64.encode(&node);
+        receipt.transparency = vec![proof];
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &[], None);
+        assert!(matches!(outcome, ActionOutcome::TransparencyUnverifiable(_)), "got {outcome:?}");
+    }
+
+    /// A checkpoint signed by the WRONG log key is rejected.
+    #[test]
+    fn checkpoint_signed_by_wrong_key_is_unverifiable() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_id = [3u8; 16];
+        let proof = two_stage_proof(&ah, &[leaf], 0, &org_id, 1, &[], 0);
+        receipt.transparency = vec![proof];
+        // Pin a DIFFERENT log key than the one that signed the note.
+        let wrong = heso_core::IdentityKey::from_bytes(&[8u8; 32]).public_key_bytes();
+        let outcome = open_receipt_with_transparency(&receipt, &wrong, &[], None);
+        assert!(matches!(outcome, ActionOutcome::TransparencyUnverifiable(_)), "got {outcome:?}");
+    }
+
+    /// Absent transparency + Required ⇒ TransparencyRequired.
+    #[test]
+    fn absent_transparency_required_fails() {
+        let receipt = signed_l0(fixed_content());
+        let outcome = open_receipt_with_transparency(
+            &receipt,
+            &log_pubkey(),
+            &[],
+            Some(TransparencyRequirement::Required),
+        );
+        assert!(matches!(outcome, ActionOutcome::TransparencyRequired), "got {outcome:?}");
+    }
+
+    /// Absent transparency + not required ⇒ stays Valid.
+    #[test]
+    fn absent_transparency_not_required_is_valid() {
+        let receipt = signed_l0(fixed_content());
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &[], None);
+        assert!(matches!(outcome, ActionOutcome::Valid(TrustLevel::L0)), "got {outcome:?}");
+    }
+
+    /// A forged receipt fails for the cryptographic reason FIRST, before any
+    /// transparency check runs.
+    #[test]
+    fn forged_receipt_fails_before_transparency() {
+        let mut receipt = signed_l0(fixed_content());
+        receipt.content.action.account = "acct_evil".into(); // breaks the self-hash
+        let outcome = open_receipt_with_transparency(
+            &receipt,
+            &log_pubkey(),
+            &[],
+            Some(TransparencyRequirement::Required),
+        );
+        assert!(matches!(outcome, ActionOutcome::HashMismatch), "got {outcome:?}");
+    }
+
+    /// A pinned witness cosignature over the checkpoint verifies; a forged one fails.
+    #[test]
+    fn witness_cosignature_is_enforced_when_pinned() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_id = [3u8; 16];
+        let mut proof = two_stage_proof(&ah, &[leaf], 0, &org_id, 1, &[], 0);
+
+        // The witness cosigns the EXACT checkpoint note bytes.
+        let note = crate::transparency::parse_signed_note(&proof.checkpoint).unwrap();
+        let witness = heso_core::IdentityKey::from_bytes(&WITNESS_SEED);
+        let wsig = witness.sign(note.text.as_bytes());
+        proof.cosignatures = vec![Cosignature {
+            witness_key: witness.public_key_b64(),
+            signature: wsig.signature.clone(),
+        }];
+        receipt.transparency = vec![proof.clone()];
+
+        let witnesses = [witness.public_key_bytes()];
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &witnesses, None);
+        assert!(matches!(outcome, ActionOutcome::Valid(_)), "got {outcome:?}");
+
+        // Tamper the cosignature → fails closed (we pinned the witness).
+        let mut bad = proof;
+        let mut raw = B64.decode(bad.cosignatures[0].signature.as_bytes()).unwrap();
+        raw[0] ^= 0x01;
+        bad.cosignatures[0].signature = B64.encode(&raw);
+        receipt.transparency = vec![bad];
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &witnesses, None);
+        assert!(matches!(outcome, ActionOutcome::TransparencyUnverifiable(_)), "got {outcome:?}");
+    }
+
+    /// The top-leaf domain constant is exercised: a top-leaf computed under a
+    /// different epoch will not reproduce the checkpoint root.
+    #[test]
+    fn wrong_epoch_top_leaf_does_not_reproduce_root() {
+        let mut receipt = signed_l0(fixed_content());
+        let ah = receipt.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_id = [3u8; 16];
+        let mut proof = two_stage_proof(&ah, &[leaf], 0, &org_id, 5, &[], 0);
+        proof.epoch = Some(6); // lie about the epoch → top_leaf_value changes
+        receipt.transparency = vec![proof];
+        let outcome = open_receipt_with_transparency(&receipt, &log_pubkey(), &[], None);
+        assert!(matches!(outcome, ActionOutcome::TransparencyUnverifiable(_)), "got {outcome:?}");
+    }
+
+    /// node_hash is re-exported usage sanity: a 2-leaf root equals node_hash of
+    /// the two leaf hashes (guards the proof-builder helper).
+    #[test]
+    fn two_leaf_root_is_node_hash_of_leaf_hashes() {
+        let a = leaf_value_from_action_hash(&"a".repeat(64)).unwrap();
+        let b = leaf_value_from_action_hash(&"b".repeat(64)).unwrap();
+        let root = merkle_tree_hash(&[a, b]);
+        let expected = node_hash(
+            &crate::transparency::leaf_hash(&a),
+            &crate::transparency::leaf_hash(&b),
+        );
+        assert_eq!(root, expected);
     }
 }

@@ -2799,3 +2799,153 @@ mod tests {
         assert!(json.get("key_rotation").is_none(), "key_rotation leaked into the standalone wire");
     }
 }
+
+// ============================================================================
+// RT-5 (BLOCKER): a POPULATED two-stage `transparency[]` rides through
+// open_receipt, the chain verifiers, and the JCS export round-trip WITHOUT
+// touching `action_hash` / signatures. The merge-at-export safety claim rests on
+// this — zero prior tests exercised a non-empty `transparency[]`.
+// ============================================================================
+
+#[cfg(test)]
+mod transparency_blocker_tests {
+    use super::*;
+    use crate::domain::{ACTION_ENVELOPE_ALG, ACTION_SIGNING_DOMAIN, OPERATOR_KEY_ID};
+    use crate::receipt::fixtures::fixed_content;
+    use crate::receipt::{action_content_hash, SignatureEntry, TransparencyProof, TrustLevel};
+    use crate::transparency::{leaf_value_from_action_hash, merkle_tree_hash, top_leaf_value, HASH_LEN};
+    use crate::verify::{open_receipt, ActionOutcome};
+    use base64::engine::general_purpose::STANDARD as B64;
+    use base64::Engine as _;
+
+    const OPERATOR_SEED: [u8; 32] = [0u8; 32];
+    const LOG_SEED: [u8; 32] = [7u8; 32];
+
+    fn sign_entry(seed: &[u8; 32], role: &str, domain: &[u8], content: &ActionContent) -> SignatureEntry {
+        let key = heso_core::IdentityKey::from_bytes(seed);
+        let canonical = action_canonical_bytes(content);
+        let mut payload = Vec::with_capacity(domain.len() + canonical.len());
+        payload.extend_from_slice(domain);
+        payload.extend_from_slice(&canonical);
+        let s = key.sign(&payload);
+        SignatureEntry {
+            algorithm: s.algorithm,
+            key_id: role.to_string(),
+            public_key: s.public_key,
+            signature: s.signature,
+            valid_from: None,
+            valid_until: None,
+        }
+    }
+
+    /// A real single-leaf two-stage proof over a receipt's `action_hash`.
+    fn proof_for(action_hash: &str) -> TransparencyProof {
+        let leaf = leaf_value_from_action_hash(action_hash).unwrap();
+        let org_root = merkle_tree_hash(&[leaf]);
+        let org_id = [3u8; 16];
+        let epoch = 5u64;
+        let top_leaf = top_leaf_value(&org_id, epoch, &org_root);
+        let top_root = merkle_tree_hash(&[top_leaf]);
+        let body = format!("log.heso.ca\n1\n{}\n", B64.encode(top_root));
+        let key = heso_core::IdentityKey::from_bytes(&LOG_SEED);
+        let sig = key.sign(body.as_bytes());
+        let sig_raw = B64.decode(sig.signature.as_bytes()).unwrap();
+        let kh = crate::transparency::note_key_hash("log.heso.ca", &key.public_key_bytes());
+        let mut blob = Vec::new();
+        blob.extend_from_slice(&kh);
+        blob.extend_from_slice(&sig_raw);
+        let checkpoint = format!("{body}\n— log.heso.ca {}", B64.encode(&blob));
+        TransparencyProof {
+            log_id: "log.heso.ca".into(),
+            leaf_index: 0,
+            inclusion_proof: vec![],
+            org_root: Some(B64.encode(org_root)),
+            org_tree_size: Some(1),
+            epoch: Some(epoch),
+            org_id: Some("03030303-0303-0303-0303-030303030303".into()),
+            top_leaf_index: Some(0),
+            top_inclusion_proof: vec![],
+            checkpoint,
+            cosignatures: vec![],
+        }
+    }
+
+    fn chained_with_transparency(session: &str, seq: u64, prev: Option<&ActionContent>) -> ActionReceipt {
+        let mut content = fixed_content();
+        content.action.workflow = format!("session-{session}-step-{seq}");
+        content.trust_level = TrustLevel::L0;
+        bind_into_chain(&mut content, session, prev);
+        content.action_hash = action_content_hash(&content);
+        let operator = sign_entry(&OPERATOR_SEED, OPERATOR_KEY_ID, ACTION_SIGNING_DOMAIN, &content);
+        let ah = content.action_hash.clone();
+        ActionReceipt {
+            alg: ACTION_ENVELOPE_ALG.into(),
+            content,
+            signatures: vec![operator],
+            transparency: vec![proof_for(&ah)],
+        }
+    }
+
+    /// (a) A populated `transparency[]` does NOT change the action_hash or break
+    /// the operator signature: open_receipt is still Valid.
+    #[test]
+    fn populated_transparency_does_not_break_open_receipt() {
+        let r = chained_with_transparency("s1", 0, None);
+        // Stamping transparency must not have touched the self-hash.
+        assert_eq!(r.content.action_hash, action_content_hash(&r.content));
+        assert!(matches!(open_receipt(&r), ActionOutcome::Valid(TrustLevel::L0)));
+        assert!(!r.transparency.is_empty(), "fixture must populate transparency[]");
+    }
+
+    /// (b) A chain whose every receipt carries a populated `transparency[]` still
+    /// verifies — transparency is outside the linked content.
+    #[test]
+    fn chain_with_populated_transparency_verifies() {
+        let g = chained_with_transparency("s1", 0, None);
+        let r1 = chained_with_transparency("s1", 1, Some(&g.content));
+        let r2 = chained_with_transparency("s1", 2, Some(&r1.content));
+        let chain = vec![g, r1, r2];
+        match verify_action_receipt_chain(&chain) {
+            ChainOutcome::Valid { length } => assert_eq!(length, 3),
+            other => panic!("expected Valid, got {other:?}"),
+        }
+        // And the rotation-aware lifecycle verifier accepts it too (a pure
+        // ACTION-domain fast chain needs no decision root).
+        let producer = heso_core::IdentityKey::from_bytes(&OPERATOR_SEED).public_key_b64();
+        let roots = KeyRegistry::from_roots(&producer, None);
+        match verify_session_chain_with_rotation(&chain, roots) {
+            ChainOutcome::Valid { length } => assert_eq!(length, 3),
+            other => panic!("expected rotation-aware Valid, got {other:?}"),
+        }
+    }
+
+    /// (c) The JCS export round-trip (serialize → bytes → deserialize) PRESERVES
+    /// `transparency[]` exactly and leaves `action_hash` + signatures untouched.
+    #[test]
+    fn jcs_round_trip_preserves_transparency_and_hash() {
+        let r = chained_with_transparency("s1", 0, None);
+        let bytes = serde_json::to_vec(&r).unwrap();
+        let back: ActionReceipt = serde_json::from_slice(&bytes).unwrap();
+        assert_eq!(back.transparency, r.transparency, "transparency[] must survive round-trip");
+        assert_eq!(back.content.action_hash, r.content.action_hash);
+        assert_eq!(back.signatures, r.signatures);
+        // The canonical signed bytes are identical with or without transparency:
+        // it lives OUTSIDE content.
+        let mut stripped = r.clone();
+        stripped.transparency.clear();
+        assert_eq!(
+            action_canonical_bytes(&back.content),
+            action_canonical_bytes(&stripped.content),
+            "transparency must not enter the canonical signed body"
+        );
+    }
+
+    /// Sanity: a top-leaf value is stable across two equal calls (the frozen
+    /// commitment) — guards the RT-5 proof builder against silent drift.
+    #[test]
+    fn top_leaf_value_is_deterministic() {
+        let org_id = [3u8; 16];
+        let root = [0xABu8; HASH_LEN];
+        assert_eq!(top_leaf_value(&org_id, 5, &root), top_leaf_value(&org_id, 5, &root));
+    }
+}
