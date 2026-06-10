@@ -13,8 +13,31 @@
 //! outcome the engine returns.
 
 use heso_action::chain::{verify_action_receipt_chain, ChainOutcome};
-use heso_action::receipt::ActionReceipt;
-use heso_action::verify::{open_receipt_with_time, ActionOutcome};
+use heso_action::receipt::{ActionReceipt, TransparencyRequirement};
+use heso_action::verify::{open_receipt_with_time, open_receipt_with_transparency, ActionOutcome};
+
+/// The pinned transparency-log inputs the relying party supplies on the command
+/// line (`--checkpoint`, `--log-key`, `--witness-keys`, `--require-transparency`).
+///
+/// The log + witness keys are TOFU pins the bundle ships; they are NEVER resolved
+/// from a `KeyRegistry`. When this is `Some`, every receipt's `transparency[]`
+/// block is verified two-stage against the pinned log key (and, with witnesses
+/// pinned, its cosignatures); `--require-transparency` additionally fails closed
+/// on a receipt that carries no proof.
+#[derive(Debug, Clone)]
+pub struct TransparencyOpts {
+    /// The pinned log public key (raw 32-byte Ed25519).
+    pub log_pubkey: [u8; 32],
+    /// The pinned witness public keys (raw 32-byte Ed25519), possibly empty.
+    pub witness_pubkeys: Vec<[u8; 32]>,
+    /// `Some(Required)` ⇒ a receipt with no `transparency[]` fails closed.
+    pub require: Option<TransparencyRequirement>,
+    /// Optional checkpoint-note cross-check: when set, every receipt's embedded
+    /// checkpoint MUST equal this exact note text (a swapped checkpoint is a
+    /// usage-class mismatch). The embedded note is still what gets verified
+    /// against the log key.
+    pub checkpoint: Option<String>,
+}
 
 /// The published exit-code contract a relying party scripts against. Stable: a
 /// caller may branch on the integer without parsing any text.
@@ -191,6 +214,7 @@ pub fn parse_receipts_jsonl(bytes: &[u8]) -> Result<Vec<ActionReceipt>, Verdict>
 pub fn verify_chain_verdict(
     chain: &[ActionReceipt],
     expected_pubkey: Option<&str>,
+    transparency: Option<&TransparencyOpts>,
 ) -> Verdict {
     if chain.is_empty() {
         return Verdict {
@@ -244,6 +268,29 @@ pub fn verify_chain_verdict(
 
     let total = chain.len();
 
+    // The base integrity verdict (per-receipt crypto + chain links). A non-Valid
+    // base short-circuits — transparency is only judged for an otherwise-sound
+    // bundle.
+    let base = base_chain_verdict(chain, total);
+    if base.code != ExitCode::Valid {
+        return base;
+    }
+
+    // Transparency-log enforcement (optional). Run AFTER the base passes so a
+    // tamper/forgery surfaces for its clearer reason first; then every receipt's
+    // `transparency[]` is checked against the pinned log + witness keys.
+    if let Some(opts) = transparency {
+        if let Some(v) = transparency_pass(chain, total, opts) {
+            return v;
+        }
+    }
+
+    base
+}
+
+/// The base integrity verdict: the standalone-receipt path for a single receipt,
+/// the chain integrity path for two or more. Transparency is NOT judged here.
+fn base_chain_verdict(chain: &[ActionReceipt], total: usize) -> Verdict {
     if total == 1 {
         // A standalone receipt: the chain machinery would still accept it as a
         // 1-link "chain", but a single receipt may legitimately carry NO chain
@@ -324,6 +371,47 @@ pub fn verify_chain_verdict(
             diverged_field: None,
         },
     }
+}
+
+/// Run the transparency-log pass over an already-integrity-valid chain. Returns
+/// `Some(failing_verdict)` on the FIRST receipt whose transparency does not hold,
+/// `None` when every receipt passes (so the caller keeps the base Valid verdict).
+fn transparency_pass(
+    chain: &[ActionReceipt],
+    total: usize,
+    opts: &TransparencyOpts,
+) -> Option<Verdict> {
+    for (i, receipt) in chain.iter().enumerate() {
+        // Optional cross-check: a `--checkpoint` file must match every receipt's
+        // embedded note byte-for-byte (a swapped checkpoint is a forgery).
+        if let Some(pinned) = &opts.checkpoint {
+            for proof in &receipt.transparency {
+                if &proof.checkpoint != pinned {
+                    return Some(Verdict {
+                        code: ExitCode::Invalid,
+                        reason: "receipt's embedded checkpoint does not match the --checkpoint file"
+                            .to_string(),
+                        total,
+                        failed_at: Some(i + 1),
+                        failure_kind: Some("transparency_unverifiable"),
+                        diverged_field: Some("transparency.checkpoint".to_string()),
+                    });
+                }
+            }
+        }
+
+        let outcome = open_receipt_with_transparency(
+            receipt,
+            &opts.log_pubkey,
+            &opts.witness_pubkeys,
+            opts.require,
+        );
+        match outcome {
+            ActionOutcome::Valid(_) => {}
+            other => return Some(receipt_failure(other, i + 1, total)),
+        }
+    }
+    None
 }
 
 /// Map a single-receipt [`ActionOutcome`] failure to a [`Verdict`] with the
@@ -440,6 +528,24 @@ fn receipt_failure(outcome: ActionOutcome, index: usize, total: usize) -> Verdic
                 .to_string(),
             Some("time_anchor".to_string()),
         ),
+        // A present transparency proof that does not verify against the pinned
+        // log key (bad checkpoint note, wrong log key, broken stage-1/stage-2
+        // inclusion, or a bad cosignature). Reuses Invalid (=1) and carries the
+        // distinct kind in the JSON reason field, NOT a new exit code.
+        ActionOutcome::TransparencyUnverifiable(m) => (
+            ExitCode::Invalid,
+            "transparency_unverifiable",
+            format!("transparency-log inclusion proof did not verify: {m}"),
+            Some("transparency".to_string()),
+        ),
+        // `--require-transparency` was set but the receipt carries no proof.
+        ActionOutcome::TransparencyRequired => (
+            ExitCode::Invalid,
+            "transparency_required",
+            "--require-transparency set but receipt carries no transparency-log inclusion proof"
+                .to_string(),
+            Some("transparency".to_string()),
+        ),
     };
     Verdict {
         code,
@@ -520,6 +626,93 @@ pub fn validate_pubkey(pubkey: &str) -> Result<(), Verdict> {
             failure_kind: Some("bad_input"),
             diverged_field: None,
         }),
+    }
+}
+
+/// Read the transparency-log CLI inputs into a [`TransparencyOpts`], or `Ok(None)`
+/// when no transparency flag was given.
+///
+/// A pinned log key is MANDATORY the moment any transparency flag is in play — a
+/// checkpoint, cosignatures, or a `--require-transparency` mandate cannot be
+/// judged without it. Missing/garbled files are usage-class errors (exit 64), so
+/// a relying party never silently "passes" a transparency check it could not run.
+pub fn load_transparency_opts(
+    checkpoint_path: Option<&str>,
+    log_key_path: Option<&str>,
+    witness_keys_path: Option<&str>,
+    require: bool,
+) -> Result<Option<TransparencyOpts>, Verdict> {
+    let any = checkpoint_path.is_some()
+        || log_key_path.is_some()
+        || witness_keys_path.is_some()
+        || require;
+    if !any {
+        return Ok(None);
+    }
+
+    let log_key_path = log_key_path.ok_or_else(|| {
+        usage_err("--log-key <file> is required when verifying transparency (checkpoint/witness/require)")
+    })?;
+    let log_raw = std::fs::read_to_string(log_key_path)
+        .map_err(|e| usage_err(&format!("reading --log-key {log_key_path}: {e}")))?;
+    let log_pubkey = decode_ed25519_pubkey(log_raw.trim())
+        .map_err(|why| usage_err(&format!("--log-key: {why}")))?;
+
+    let mut witness_pubkeys = Vec::new();
+    if let Some(p) = witness_keys_path {
+        let raw = std::fs::read_to_string(p)
+            .map_err(|e| usage_err(&format!("reading --witness-keys {p}: {e}")))?;
+        for (n, line) in raw.lines().enumerate() {
+            let t = line.trim();
+            if t.is_empty() {
+                continue;
+            }
+            let key = decode_ed25519_pubkey(t)
+                .map_err(|why| usage_err(&format!("--witness-keys line {}: {why}", n + 1)))?;
+            witness_pubkeys.push(key);
+        }
+    }
+
+    let checkpoint = match checkpoint_path {
+        Some(p) => Some(
+            std::fs::read_to_string(p)
+                .map_err(|e| usage_err(&format!("reading --checkpoint {p}: {e}")))?,
+        ),
+        None => None,
+    };
+
+    Ok(Some(TransparencyOpts {
+        log_pubkey,
+        witness_pubkeys,
+        require: require.then_some(TransparencyRequirement::Required),
+        checkpoint,
+    }))
+}
+
+/// Decode a base64 32-byte Ed25519 public key into raw bytes.
+fn decode_ed25519_pubkey(b64: &str) -> Result<[u8; 32], String> {
+    use base64::engine::general_purpose::STANDARD as B64;
+    use base64::Engine as _;
+    let bytes = B64
+        .decode(b64.as_bytes())
+        .map_err(|_| "key is not valid base64".to_string())?;
+    if bytes.len() != 32 {
+        return Err(format!("key decodes to {} bytes, expected 32", bytes.len()));
+    }
+    let mut out = [0u8; 32];
+    out.copy_from_slice(&bytes);
+    Ok(out)
+}
+
+/// A usage-class [`Verdict`] (exit 64) for a bad transparency CLI input.
+fn usage_err(msg: &str) -> Verdict {
+    Verdict {
+        code: ExitCode::Usage,
+        reason: msg.to_string(),
+        total: 0,
+        failed_at: None,
+        failure_kind: Some("usage"),
+        diverged_field: None,
     }
 }
 
@@ -651,7 +844,7 @@ mod tests {
     #[test]
     fn valid_chain_exits_zero() {
         let chain = good_chain("s1", 4);
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Valid, "{}", v.human());
         assert_eq!(v.total, 4);
         assert!(v.to_json().contains("\"status\":\"valid\""));
@@ -659,7 +852,7 @@ mod tests {
 
     #[test]
     fn valid_standalone_receipt_exits_zero() {
-        let v = verify_chain_verdict(&[standalone()], Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&[standalone()], Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Valid, "{}", v.human());
     }
 
@@ -667,7 +860,7 @@ mod tests {
     fn tampered_content_is_exit_two_hash_mismatch_with_pinpoint() {
         let mut chain = good_chain("s1", 4);
         chain[2].content.action.account = "acct_evil".into(); // no re-stamp ⇒ self-hash fails
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::WrongAlgorithmOrHash);
         assert_eq!(v.failure_kind, Some("hash_mismatch"));
         assert_eq!(v.failed_at, Some(3), "1-based pinpoint at receipt 3 of 4");
@@ -680,7 +873,7 @@ mod tests {
         let mut raw = B64.decode(chain[1].signatures[0].signature.as_bytes()).unwrap();
         raw[0] ^= 0x01;
         chain[1].signatures[0].signature = B64.encode(&raw);
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Invalid);
         assert_eq!(v.failure_kind, Some("invalid_signature"));
         assert_eq!(v.failed_at, Some(2));
@@ -690,7 +883,7 @@ mod tests {
     fn dropped_receipt_is_link_broken_exit_one() {
         let full = good_chain("s1", 4);
         let chain = vec![full[0].clone(), full[1].clone(), full[3].clone()];
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Invalid);
         assert_eq!(v.failure_kind, Some("link_broken"));
         assert!(v.reason.contains("chain broken"), "{}", v.reason);
@@ -702,7 +895,7 @@ mod tests {
     fn reordered_receipts_are_link_broken_exit_one() {
         let full = good_chain("s1", 4);
         let chain = vec![full[0].clone(), full[2].clone(), full[1].clone(), full[3].clone()];
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Invalid);
         assert_eq!(v.failure_kind, Some("link_broken"));
     }
@@ -720,7 +913,7 @@ mod tests {
             signatures: vec![operator],
             transparency: vec![],
         };
-        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&chain, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Invalid);
         assert_eq!(v.failure_kind, Some("link_broken"));
         assert_eq!(v.diverged_field.as_deref(), Some("prev_receipt_hash"));
@@ -731,14 +924,14 @@ mod tests {
     fn wrong_envelope_alg_is_exit_two() {
         let mut r = standalone();
         r.alg = heso_action::domain::ACTION_ENVELOPE_ALG_V1.into();
-        let v = verify_chain_verdict(&[r], None);
+        let v = verify_chain_verdict(&[r], None, None);
         assert_eq!(v.code, ExitCode::WrongAlgorithmOrHash);
         assert_eq!(v.failure_kind, Some("wrong_algorithm"));
     }
 
     #[test]
     fn empty_chain_is_usage() {
-        let v = verify_chain_verdict(&[], None);
+        let v = verify_chain_verdict(&[], None, None);
         assert_eq!(v.code, ExitCode::Usage);
     }
 
@@ -747,7 +940,7 @@ mod tests {
         // Genesis signed by the zero seed, but the bundle pins a different key.
         let chain = good_chain("s1", 2);
         let other = heso_core::IdentityKey::from_bytes(&[9u8; 32]).public_key_b64();
-        let v = verify_chain_verdict(&chain, Some(&other));
+        let v = verify_chain_verdict(&chain, Some(&other), None);
         assert_eq!(v.code, ExitCode::Invalid);
         assert_eq!(v.failure_kind, Some("wrong_operator_key"));
         assert_eq!(v.diverged_field.as_deref(), Some("public_key"));
@@ -764,7 +957,7 @@ mod tests {
         buf.push('\n'); // trailing blank line tolerated
         let parsed = parse_receipts_jsonl(buf.as_bytes()).unwrap();
         assert_eq!(parsed.len(), 3);
-        let v = verify_chain_verdict(&parsed, Some(ZERO_SEED_PUBKEY));
+        let v = verify_chain_verdict(&parsed, Some(ZERO_SEED_PUBKEY), None);
         assert_eq!(v.code, ExitCode::Valid, "{}", v.human());
     }
 
@@ -781,5 +974,111 @@ mod tests {
         assert!(validate_pubkey(ZERO_SEED_PUBKEY).is_ok());
         assert!(validate_pubkey("not base64!!").is_err());
         assert!(validate_pubkey(&B64.encode([0u8; 16])).is_err());
+    }
+
+    // --- transparency-log CLI flags + exit codes ---------------------------
+
+    const LOG_SEED: [u8; 32] = [7u8; 32];
+
+    fn log_pubkey() -> [u8; 32] {
+        heso_core::IdentityKey::from_bytes(&LOG_SEED).public_key_bytes()
+    }
+
+    /// Attach a real single-leaf two-stage proof to a standalone receipt.
+    fn standalone_with_proof() -> ActionReceipt {
+        use heso_action::transparency::{
+            leaf_value_from_action_hash, merkle_tree_hash, note_key_hash, top_leaf_value,
+        };
+        let mut r = standalone();
+        let ah = r.content.action_hash.clone();
+        let leaf = leaf_value_from_action_hash(&ah).unwrap();
+        let org_root = merkle_tree_hash(&[leaf]);
+        let org_id = [3u8; 16];
+        let epoch = 5u64;
+        let top_leaf = top_leaf_value(&org_id, epoch, &org_root);
+        let top_root = merkle_tree_hash(&[top_leaf]);
+        let body = format!("log.heso.ca\n1\n{}\n", B64.encode(top_root));
+        let key = heso_core::IdentityKey::from_bytes(&LOG_SEED);
+        let sig = key.sign(body.as_bytes());
+        let sig_raw = B64.decode(sig.signature.as_bytes()).unwrap();
+        let kh = note_key_hash("log.heso.ca", &key.public_key_bytes());
+        let mut blob = Vec::new();
+        blob.extend_from_slice(&kh);
+        blob.extend_from_slice(&sig_raw);
+        let checkpoint = format!("{body}\n— log.heso.ca {}", B64.encode(&blob));
+        r.transparency = vec![heso_action::receipt::TransparencyProof {
+            log_id: "log.heso.ca".into(),
+            leaf_index: 0,
+            inclusion_proof: vec![],
+            org_root: Some(B64.encode(org_root)),
+            org_tree_size: Some(1),
+            epoch: Some(epoch),
+            org_id: Some("03030303-0303-0303-0303-030303030303".into()),
+            top_leaf_index: Some(0),
+            top_inclusion_proof: vec![],
+            checkpoint,
+            cosignatures: vec![],
+        }];
+        r
+    }
+
+    fn opts(require: bool, log_key: [u8; 32]) -> TransparencyOpts {
+        TransparencyOpts {
+            log_pubkey: log_key,
+            witness_pubkeys: vec![],
+            require: require.then_some(TransparencyRequirement::Required),
+            checkpoint: None,
+        }
+    }
+
+    #[test]
+    fn valid_transparency_proof_exits_zero() {
+        let r = standalone_with_proof();
+        let v = verify_chain_verdict(&[r], Some(ZERO_SEED_PUBKEY), Some(&opts(true, log_pubkey())));
+        assert_eq!(v.code, ExitCode::Valid, "{}", v.human());
+    }
+
+    #[test]
+    fn missing_proof_with_require_exits_one() {
+        let r = standalone(); // no transparency[]
+        let v = verify_chain_verdict(&[r], Some(ZERO_SEED_PUBKEY), Some(&opts(true, log_pubkey())));
+        assert_eq!(v.code, ExitCode::Invalid);
+        assert_eq!(v.failure_kind, Some("transparency_required"));
+        assert!(v.to_json().contains("\"exit_code\":1"));
+    }
+
+    #[test]
+    fn missing_proof_without_require_exits_zero() {
+        let r = standalone();
+        let v = verify_chain_verdict(&[r], Some(ZERO_SEED_PUBKEY), Some(&opts(false, log_pubkey())));
+        assert_eq!(v.code, ExitCode::Valid, "{}", v.human());
+    }
+
+    #[test]
+    fn proof_under_wrong_log_key_exits_one_unverifiable() {
+        let r = standalone_with_proof();
+        let wrong = heso_core::IdentityKey::from_bytes(&[8u8; 32]).public_key_bytes();
+        let v = verify_chain_verdict(&[r], Some(ZERO_SEED_PUBKEY), Some(&opts(true, wrong)));
+        assert_eq!(v.code, ExitCode::Invalid);
+        assert_eq!(v.failure_kind, Some("transparency_unverifiable"));
+    }
+
+    #[test]
+    fn checkpoint_cross_check_mismatch_exits_one() {
+        let r = standalone_with_proof();
+        let mut o = opts(false, log_pubkey());
+        o.checkpoint = Some("a totally different note\n".to_string());
+        let v = verify_chain_verdict(&[r], Some(ZERO_SEED_PUBKEY), Some(&o));
+        assert_eq!(v.code, ExitCode::Invalid);
+        assert_eq!(v.failure_kind, Some("transparency_unverifiable"));
+    }
+
+    #[test]
+    fn load_transparency_opts_requires_log_key_when_any_flag_set() {
+        // No flags at all ⇒ None (transparency off).
+        assert!(load_transparency_opts(None, None, None, false).unwrap().is_none());
+        // --require-transparency with no --log-key ⇒ usage error.
+        let err = load_transparency_opts(None, None, None, true).unwrap_err();
+        assert_eq!(err.code, ExitCode::Usage);
     }
 }

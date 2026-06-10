@@ -28,7 +28,10 @@ mod verifier;
 
 use std::process::ExitCode as ProcExit;
 
-use verifier::{parse_receipts_jsonl, validate_pubkey, verify_chain_verdict, ExitCode, Verdict};
+use verifier::{
+    load_transparency_opts, parse_receipts_jsonl, validate_pubkey, verify_chain_verdict, ExitCode,
+    Verdict,
+};
 
 fn main() -> ProcExit {
     let args: Vec<String> = std::env::args().skip(1).collect();
@@ -52,16 +55,42 @@ fn run(args: &[String]) -> Result<(Verdict, bool), (Verdict, bool)> {
     let mut json = false;
     let mut positionals: Vec<&str> = Vec::new();
     let mut signature_path: Option<&str> = None;
+    let mut checkpoint_path: Option<&str> = None;
+    let mut log_key_path: Option<&str> = None;
+    let mut witness_keys_path: Option<&str> = None;
+    let mut require_transparency = false;
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
             "--json" => json = true,
+            "--require-transparency" => require_transparency = true,
             // -h / --help / help are intercepted in `main` before `run`.
             "--signature" | "--sig" => {
                 i += 1;
                 match args.get(i) {
                     Some(p) => signature_path = Some(p.as_str()),
                     None => return Err((usage("--signature needs a path argument"), json)),
+                }
+            }
+            "--checkpoint" => {
+                i += 1;
+                match args.get(i) {
+                    Some(p) => checkpoint_path = Some(p.as_str()),
+                    None => return Err((usage("--checkpoint needs a path argument"), json)),
+                }
+            }
+            "--log-key" => {
+                i += 1;
+                match args.get(i) {
+                    Some(p) => log_key_path = Some(p.as_str()),
+                    None => return Err((usage("--log-key needs a path argument"), json)),
+                }
+            }
+            "--witness-keys" => {
+                i += 1;
+                match args.get(i) {
+                    Some(p) => witness_keys_path = Some(p.as_str()),
+                    None => return Err((usage("--witness-keys needs a path argument"), json)),
                 }
             }
             other if other.starts_with('-') => {
@@ -76,7 +105,11 @@ fn run(args: &[String]) -> Result<(Verdict, bool), (Verdict, bool)> {
         [r, p] => (*r, *p),
         _ => {
             return Err((
-                usage("expected <receipts.jsonl> <public_key_file> [--json] [--signature <file>]"),
+                usage(
+                    "expected <receipts.jsonl> <public_key_file> [--json] [--signature <file>] \
+                     [--checkpoint <file> --log-key <file> [--witness-keys <file>] \
+                     [--require-transparency]]",
+                ),
                 json,
             ))
         }
@@ -112,7 +145,21 @@ fn run(args: &[String]) -> Result<(Verdict, bool), (Verdict, bool)> {
         Err(v) => return Err((v, json)),
     };
 
-    let verdict = verify_chain_verdict(&chain, Some(&pubkey));
+    // --- transparency-log inputs (optional) ---------------------------------
+    // `--log-key` is mandatory whenever any transparency flag is in play (a
+    // checkpoint / cosignatures cannot be judged without the pinned log key).
+    // `--require-transparency` without `--log-key` is a usage error.
+    let transparency = match load_transparency_opts(
+        checkpoint_path,
+        log_key_path,
+        witness_keys_path,
+        require_transparency,
+    ) {
+        Ok(opts) => opts,
+        Err(v) => return Err((v, json)),
+    };
+
+    let verdict = verify_chain_verdict(&chain, Some(&pubkey), transparency.as_ref());
     if verdict.code == ExitCode::Valid {
         Ok((verdict, json))
     } else {
@@ -149,10 +196,17 @@ fn print_usage() {
     eprintln!(
         "heso-verify-cli — offline ActionReceipt / chain verifier (zero heso install)\n\n\
          USAGE:\n  \
-         heso-verify-cli [--json] <receipts.jsonl> <public_key_file> [--signature <file>]\n\n\
+         heso-verify-cli [--json] <receipts.jsonl> <public_key_file> [--signature <file>]\n                  \
+         [--checkpoint <file> --log-key <file> [--witness-keys <file>] [--require-transparency]]\n\n\
+         TRANSPARENCY FLAGS (optional — verify the receipts' transparency-log inclusion proofs):\n  \
+         --checkpoint <file>      the signed C2SP checkpoint note the proofs are against\n  \
+         --log-key <file>         base64 32-byte Ed25519 PUBLIC key the checkpoint must be signed by\n  \
+         --witness-keys <file>    base64 32-byte witness public keys (one per line) — when set,\n                           \
+         every cosignature must verify against a pinned witness\n  \
+         --require-transparency   FAIL CLOSED when a receipt carries no inclusion proof\n\n\
          EXIT CODES:\n  \
-         0   valid                    every receipt verifies; chain intact\n  \
-         1   invalid                  tamper / bad signature / broken chain link\n  \
+         0   valid                    every receipt verifies; chain intact; transparency (if checked) holds\n  \
+         1   invalid                  tamper / bad signature / broken chain / unverifiable or missing transparency\n  \
          2   wrong algorithm or hash  foreign/older alg, unsupported version, malformed, hash mismatch\n  \
          64  usage                    bad arguments or unreadable inputs"
     );

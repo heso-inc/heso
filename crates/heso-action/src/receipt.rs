@@ -1079,16 +1079,68 @@ pub struct Attestation {
 }
 
 /// A transparency-log inclusion proof, shaped after the C2SP `tlog-proof`
-/// format. Not produced in v1.0.
+/// format. Produced by the hosted log and stapled to a receipt at export;
+/// the verifier ([`crate::verify`]) checks it when present.
+///
+/// ## Two-stage shape (HESO transparency D2)
+///
+/// HESO's log is a per-org append-only leaf log under a single append-only
+/// "epoch" top tree. Proving a receipt is logged therefore needs TWO RFC-6962
+/// inclusion checks, not one:
+///
+/// 1. **leaf → org_root** — the receipt's `action_hash` leaf is in the org's
+///    tree of `org_tree_size` leaves at `leaf_index` (the org-LOCAL index), via
+///    [`inclusion_proof`](Self::inclusion_proof), yielding `org_root`.
+/// 2. **top_leaf → top_root** — the frozen
+///    [`crate::transparency::top_leaf_value`]`(org_id, epoch, org_root)` is in
+///    the top tree at `top_leaf_index` via
+///    [`top_inclusion_proof`](Self::top_inclusion_proof), yielding the TOP root
+///    the [`checkpoint`](Self::checkpoint) signed-note commits to.
+///
+/// [`checkpoint`](Self::checkpoint) is the ONE canonical C2SP signed note per
+/// epoch (over the TOP root), byte-identical for every receipt of that epoch, so
+/// a witness cosignature verifies for all of them.
+///
+/// The second-stage fields are optional so a single-tree proof (or an older
+/// inert empty `transparency[]`) round-trips unchanged; the verifier runs
+/// stage 2 only when they are present.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransparencyProof {
-    /// Identifier of the log this receipt was included in.
+    /// Identifier of the log this receipt was included in (e.g.
+    /// `log.heso.ca`).
     pub log_id: String,
-    /// The receipt's leaf index in the log.
+    /// The receipt's org-LOCAL leaf index (0-based position in the org's leaf
+    /// sequence, ordered by the DB admission order). This is what the per-org
+    /// RFC-6962 stage-1 proof verifies against — NOT the global DB index.
     pub leaf_index: u64,
-    /// The Merkle inclusion proof (ordered sibling hashes, base64/hex).
+    /// The stage-1 RFC-6962 inclusion proof (ordered sibling hashes, base64):
+    /// `leaf -> org_root`.
     pub inclusion_proof: Vec<String>,
-    /// The signed log checkpoint (signed-note form) the proof is against.
+    /// Stage-1 result: base64 32-byte per-org Merkle root the stage-1 proof
+    /// recomputes to. Absent ⇒ single-tree proof (stage 2 is skipped).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub org_root: Option<String>,
+    /// The number of leaves in the org tree the stage-1 proof is against.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub org_tree_size: Option<u64>,
+    /// The epoch whose `(org_id, epoch, org_root)` commitment the top tree
+    /// includes — the second argument to [`crate::transparency::top_leaf_value`].
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub epoch: Option<u64>,
+    /// The opaque org uuid (canonical hyphenated form) the stage-2 top-leaf
+    /// commits to. Explicit (rather than parsed out of `log_id`) so the
+    /// commitment input is unambiguous.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub org_id: Option<String>,
+    /// The top-leaf index in the top tree (stage-2 RFC-6962 position).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub top_leaf_index: Option<u64>,
+    /// The stage-2 RFC-6962 inclusion proof (ordered sibling hashes, base64):
+    /// `top_leaf -> top_root`. Absent ⇒ single-tree proof.
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
+    pub top_inclusion_proof: Vec<String>,
+    /// The signed log checkpoint (C2SP signed-note form) over the TOP root the
+    /// proof is against. Byte-identical for every receipt of an epoch.
     pub checkpoint: String,
     /// Optional witness cosignatures over the checkpoint.
     #[serde(default, skip_serializing_if = "Vec::is_empty")]
@@ -1120,6 +1172,27 @@ pub enum AnchorRequirement {
     /// [`crate::verify::ActionOutcome::AnchorRequired`] when `time_anchor` is
     /// absent. The producer signs over this requirement, so it cannot be relaxed
     /// post-hoc without breaking `action_hash`.
+    Required,
+}
+
+/// The transparency-log requirement a verifier enforces. UNLIKE
+/// [`AnchorRequirement`], this is NOT a signed-content field: a receipt's
+/// `transparency[]` block lives OUTSIDE the signed content (it is stapled at
+/// export, after the fact), so the producer cannot sign over a transparency
+/// mandate. The requirement is therefore a VERIFIER-side policy passed into the
+/// verify call (CLI flag / library param), never read from the receipt.
+///
+/// It mirrors the shape of [`AnchorRequirement`] for symmetry, but its trust
+/// model differs: trusted-time is producer-signed and self-enforcing; a
+/// transparency mandate is a relying party's local choice about what evidence it
+/// will accept.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum TransparencyRequirement {
+    /// A verified transparency-log inclusion proof is MANDATORY: the verifier
+    /// fails closed with [`crate::verify::ActionOutcome::TransparencyRequired`]
+    /// when `transparency[]` is empty, and
+    /// [`crate::verify::ActionOutcome::TransparencyUnverifiable`] when a present
+    /// proof does not verify against the pinned log key.
     Required,
 }
 
