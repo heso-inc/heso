@@ -530,8 +530,8 @@ fn receipt_failure(outcome: ActionOutcome, index: usize, total: usize) -> Verdic
         ),
         // A present transparency proof that does not verify against the pinned
         // log key (bad checkpoint note, wrong log key, broken stage-1/stage-2
-        // inclusion, or a bad cosignature). Reuses Invalid (=1) and carries the
-        // distinct kind in the JSON reason field, NOT a new exit code.
+        // inclusion, or a bad cosignature). Per A-m2 this reuses Invalid (=1) and
+        // carries the distinct kind in the JSON reason field, NOT a new exit code.
         ActionOutcome::TransparencyUnverifiable(m) => (
             ExitCode::Invalid,
             "transparency_unverifiable",
@@ -976,7 +976,7 @@ mod tests {
         assert!(validate_pubkey(&B64.encode([0u8; 16])).is_err());
     }
 
-    // --- transparency-log CLI flags + exit codes ---------------------------
+    // --- RT-2: transparency-log CLI flags + exit codes ---------------------
 
     const LOG_SEED: [u8; 32] = [7u8; 32];
 

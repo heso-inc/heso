@@ -7,7 +7,7 @@ verifier** recompute inclusion and consistency over the *order* of Action
 Receipts the engine has logged, with **no HESO-specific code**.
 
 > **HONESTY — what actually ships (read this first; matches
-> LIMITS.md (HESO Enterprise) §4).** What ships today is the **pure RFC-6962
+> [LIMITS.md](../docs/LIMITS.md) §4).** What ships today is the **pure RFC-6962
 > producer + offline verify primitives only**: the `MerkleLog` producer
 > (`heso-engine/src/log.rs`) and the offline `verify_inclusion` /
 > `verify_consistency` functions (`heso_action::transparency`, re-exported from

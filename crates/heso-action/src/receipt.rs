@@ -269,6 +269,13 @@ pub enum SignerRole {
 /// }
 /// ```
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+// A receipt is exactly its signed content. An unknown wire key is rejected as
+// `Malformed` rather than silently dropped, so (a) a receipt decorated with
+// persuasive unsigned fields cannot open `Valid`, and (b) a clean-room
+// JCS-over-raw-wire verifier and the canonical (typed-projection) verifier agree
+// on the same artifact. New fields ship via an `alg` / `action_version` bump, not
+// by tolerating unknown keys.
+#[serde(deny_unknown_fields)]
 pub struct ActionReceipt {
     /// Envelope algorithm tag. Always [`crate::domain::ACTION_ENVELOPE_ALG`] for
     /// v1.0.
@@ -295,6 +302,11 @@ pub struct ActionReceipt {
 
 /// The action statement — everything the operator (and approver) sign over.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
+// Same policy as the envelope: an unknown content key is `Malformed`, never
+// silently dropped, so the signed bytes always equal the wire content the
+// verifier saw. Reserved-but-absent optional fields below remain the forward-
+// compatibility surface; genuinely new fields require a version bump.
+#[serde(deny_unknown_fields)]
 pub struct ActionContent {
     /// Format-version discriminator. [`crate::domain::ACTION_VERSION`] for v1.0.
     /// The verifier fails closed on an unknown value.
@@ -430,7 +442,7 @@ pub struct ActionContent {
     /// The trusted-time REQUIREMENT this receipt was minted under — the signed,
     /// verifier-enforced half of the async anchor knob.
     ///
-    /// The SDK-side anchor policy (BestEffort vs Required) is
+    /// The SDK-side [`crate::anchor`-style] policy (BestEffort vs Required) is
     /// bypassable: a producer could ignore it and sign an anchorless receipt. To
     /// make `Required` actually mean something, the producer stamps it HERE, in the
     /// SIGNED content, so the offline verifier can enforce it: a receipt carrying
@@ -1079,14 +1091,13 @@ pub struct Attestation {
 }
 
 /// A transparency-log inclusion proof, shaped after the C2SP `tlog-proof`
-/// format. Produced by the hosted log and stapled to a receipt at export;
-/// the verifier ([`crate::verify`]) checks it when present.
+/// format.
 ///
 /// ## Two-stage shape (HESO transparency D2)
 ///
 /// HESO's log is a per-org append-only leaf log under a single append-only
-/// "epoch" top tree. Proving a receipt is logged therefore needs TWO RFC-6962
-/// inclusion checks, not one:
+/// "epoch" top tree (see the backend's transparency design). Proving a receipt
+/// is logged therefore needs TWO RFC-6962 inclusion checks, not one:
 ///
 /// 1. **leaf → org_root** — the receipt's `action_hash` leaf is in the org's
 ///    tree of `org_tree_size` leaves at `leaf_index` (the org-LOCAL index), via
@@ -1102,8 +1113,8 @@ pub struct Attestation {
 /// a witness cosignature verifies for all of them.
 ///
 /// The second-stage fields are optional so a single-tree proof (or an older
-/// inert empty `transparency[]`) round-trips unchanged; the verifier runs
-/// stage 2 only when they are present.
+/// inert empty `transparency[]`) round-trips unchanged; the verifier
+/// ([`crate::verify`]) runs stage 2 only when they are present.
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct TransparencyProof {
     /// Identifier of the log this receipt was included in (e.g.
@@ -1307,10 +1318,10 @@ pub fn anchored_content_hash(content: &ActionContent) -> String {
 // hosted cloud and never touches this process), then the operator process
 // assembles the final L1 receipt from (1) the suspended L0 body it already holds
 // and (2) the approver's detached signature bytes. The KEY-HOLDING / VERIFYING
-// half lives in the proprietary SDK's signing seam (NOT in this verify-only
-// crate). Everything here is pure data transformation over [`ActionContent`]
-// with zero crypto, so it is fully reachable from this open build — in
-// particular the wasm verifier.
+// half lives in [`crate::sign`] (behind the `sign` feature). Everything here is
+// pure data transformation over [`ActionContent`] with zero crypto, so it stays
+// reachable from the default (verify-only, no-`sign`) build — in particular the
+// wasm verifier — which is the whole reason it is NOT in `sign.rs`.
 
 /// Errors from [`build_l1_content`] — the pure L0→L1 body promotion.
 ///
@@ -1373,9 +1384,9 @@ pub fn build_l1_content(
 /// This is the approver leg's payload — the SAME canonical body the operator
 /// signs, but under the distinct approval domain (so an operator authorization
 /// can never be replayed as an approver decision). The hosted approver signs
-/// these bytes out of band; the proprietary SDK's `cosign_approval_detached`
-/// verifies the returned signature over exactly this payload. Defined here so
-/// a verify-only build can construct the bytes a remote signer needs.
+/// these bytes out of band; [`crate::sign::cosign_approval_detached`] verifies
+/// the returned signature over exactly this payload. Defined here (always
+/// compiled) so a no-`sign` build can construct the bytes a remote signer needs.
 pub fn approval_cosign_payload(content: &ActionContent) -> Vec<u8> {
     let canonical = action_canonical_bytes(content);
     let mut payload =
@@ -1554,9 +1565,9 @@ pub fn multi_approver_canonical(content: &ActionContent, record: &ApproverRecord
 /// The approver leg reuses the v1 [`crate::domain::APPROVAL_SIGNING_DOMAIN`] (so an
 /// operator authorization can never be replayed as an approver decision), but over
 /// the per-record canonical rather than the shared body. Defined here (always
-/// compiled) so a verify-only build can construct the bytes a remote signer
-/// needs; the proprietary SDK's `assemble_quorum_from_parts` verifies each
-/// returned signature over exactly this payload.
+/// compiled) so a no-`sign` build can construct the bytes a remote signer needs;
+/// [`crate::sign::assemble_quorum_from_parts`] verifies each returned signature over
+/// exactly this payload.
 pub fn multi_approval_cosign_payload(content: &ActionContent, record: &ApproverRecord) -> Vec<u8> {
     let canonical = multi_approver_canonical(content, record);
     let mut payload =
@@ -1679,10 +1690,12 @@ pub(crate) mod fixtures {
 
     /// The all-zero operator seed pins a known public key across the project.
     const OPERATOR_SEED: [u8; 32] = [0u8; 32];
+    /// A distinct approver seed for L1 fixtures.
+    const APPROVER_SEED: [u8; 32] = [5u8; 32];
 
     /// Sign `domain ++ action_canonical_bytes(content)` with the house signer and
-    /// return a role-tagged [`SignatureEntry`]. Test-only helper so the verify
-    /// suites share one signing path (heso-action keeps no runtime signer).
+    /// return a role-tagged [`SignatureEntry`]. Test-only helper so the export +
+    /// verify suites share one signing path (heso-action keeps no runtime signer).
     fn sign_entry(
         seed: &[u8; 32],
         role: &str,
@@ -1702,6 +1715,61 @@ pub(crate) mod fixtures {
             signature: s.signature,
             valid_from: None,
             valid_until: None,
+        }
+    }
+
+    /// A fully-signed, operator-only (L0) [`ActionReceipt`] over [`fixed_content`].
+    /// The canonical fixture the export round-trip + crosswalk tests project from.
+    pub fn signed_fixture_l0() -> ActionReceipt {
+        let mut content = fixed_content();
+        content.trust_level = crate::receipt::TrustLevel::L0;
+        content.action_hash = action_content_hash(&content);
+        let operator = sign_entry(
+            &OPERATOR_SEED,
+            crate::domain::OPERATOR_KEY_ID,
+            crate::domain::ACTION_SIGNING_DOMAIN,
+            &content,
+        );
+        ActionReceipt {
+            alg: crate::domain::ACTION_ENVELOPE_ALG.into(),
+            content,
+            signatures: vec![operator],
+            transparency: vec![],
+        }
+    }
+
+    /// A fully-signed, gated (L1) [`ActionReceipt`]: operator + approver
+    /// co-signature over the identical canonical body. Used by the export tests to
+    /// confirm both signature roles project into the consumer formats.
+    pub fn signed_fixture_l1() -> ActionReceipt {
+        let mut content = fixed_content();
+        content.policy.decision_path = crate::receipt::GateDecision::RequireApproval;
+        content.approver_decision = Some(crate::receipt::ApproverRecord {
+            decision: crate::receipt::ApproverDecision::Approved,
+            approver_identity: heso_core::IdentityKey::from_bytes(&APPROVER_SEED).public_key_b64(),
+            reason: "amount under desk limit".into(),
+            decided_at: "2026-05-29T12:05:00Z".into(),
+            sla_minutes: Some(30),
+        });
+        content.trust_level = crate::receipt::TrustLevel::L1;
+        content.action_hash = action_content_hash(&content);
+        let operator = sign_entry(
+            &OPERATOR_SEED,
+            crate::domain::OPERATOR_KEY_ID,
+            crate::domain::ACTION_SIGNING_DOMAIN,
+            &content,
+        );
+        let approver = sign_entry(
+            &APPROVER_SEED,
+            crate::domain::APPROVER_KEY_ID,
+            crate::domain::APPROVAL_SIGNING_DOMAIN,
+            &content,
+        );
+        ActionReceipt {
+            alg: crate::domain::ACTION_ENVELOPE_ALG.into(),
+            content,
+            signatures: vec![operator, approver],
+            transparency: vec![],
         }
     }
 

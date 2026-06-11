@@ -601,7 +601,6 @@ mod tests {
 
     /// Mint a signed delegation envelope from parts, signing under the operator
     /// seed with the exact signed-payload layout.
-    #[allow(clippy::too_many_arguments)] // test builder mirrors the wire layout 1:1
     fn build_delegation(
         operator_seed: &[u8; 32],
         action_hash: [u8; 32],
@@ -696,7 +695,6 @@ mod tests {
     }
 
     /// The fixed golden inputs — the cross-stack oracle TS/Python reuse.
-    #[allow(clippy::type_complexity)] // a flat tuple keeps the golden inputs greppable
     fn golden_inputs() -> (
         [u8; 32], // operator seed
         [u8; 32], // K seed

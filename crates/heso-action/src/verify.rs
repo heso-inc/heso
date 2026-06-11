@@ -685,7 +685,10 @@ fn verify_cosignature(
 
 /// Decode an ordered list of base64 32-byte proof nodes into fixed arrays.
 fn decode_proof_nodes(nodes: &[String], what: &str) -> Result<Vec<[u8; HASH_LEN]>, String> {
-    nodes.iter().map(|n| decode_hash(n, what)).collect()
+    nodes
+        .iter()
+        .map(|n| decode_hash(n, what))
+        .collect()
 }
 
 /// Decode a single base64 32-byte hash.
@@ -712,14 +715,14 @@ fn decode_org_id(s: &str) -> Result<[u8; 16], String> {
     }
     let mut out = [0u8; 16];
     for (i, pair) in hex.as_bytes().chunks_exact(2).enumerate() {
-        let hi = org_hex_val(pair[0]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
-        let lo = org_hex_val(pair[1]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
+        let hi = hex_val(pair[0]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
+        let lo = hex_val(pair[1]).ok_or_else(|| format!("org_id `{s}` is not hex"))?;
         out[i] = (hi << 4) | lo;
     }
     Ok(out)
 }
 
-fn org_hex_val(c: u8) -> Option<u8> {
+fn hex_val(c: u8) -> Option<u8> {
     match c {
         b'0'..=b'9' => Some(c - b'0'),
         b'a'..=b'f' => Some(c - b'a' + 10),
@@ -1224,6 +1227,29 @@ mod tests {
         assert!(matches!(open_receipt(&receipt), ActionOutcome::Valid(TrustLevel::L1)));
         let bytes = serde_json::to_vec(&receipt).unwrap();
         assert!(matches!(verify_action_receipt(&bytes), ActionOutcome::Valid(TrustLevel::L1)));
+    }
+
+    #[test]
+    fn unknown_content_key_is_rejected_as_malformed() {
+        // CAL-CRYPTO-PROTO-01 regression: a receipt decorated with an extra,
+        // unsigned content key must NOT open Valid (it previously did, because the
+        // verifier dropped unknown keys before re-canonicalizing). deny_unknown_fields
+        // makes it Malformed, so a clean-room JCS-over-raw-wire verifier agrees with
+        // the canonical one on the same artifact.
+        let receipt = signed_l0(fixed_content());
+        let mut value = serde_json::to_value(&receipt).unwrap();
+        value["content"]["note"] = serde_json::json!("approved by the CFO");
+        let bytes = serde_json::to_vec(&value).unwrap();
+        assert!(matches!(verify_action_receipt(&bytes), ActionOutcome::Malformed(_)));
+    }
+
+    #[test]
+    fn unknown_envelope_key_is_rejected_as_malformed() {
+        let receipt = signed_l0(fixed_content());
+        let mut value = serde_json::to_value(&receipt).unwrap();
+        value["extra"] = serde_json::json!("decoration");
+        let bytes = serde_json::to_vec(&value).unwrap();
+        assert!(matches!(verify_action_receipt(&bytes), ActionOutcome::Malformed(_)));
     }
 
     /// END-TO-END GOLDEN VECTOR. Ed25519 is deterministic (RFC 8032), so the
@@ -1971,6 +1997,10 @@ mod tests {
     }
 }
 
+// ============================================================================
+// Transparency-log enforcement tests (RT-1)
+// ============================================================================
+
 #[cfg(test)]
 mod transparency_tests {
     use super::*;
@@ -2064,7 +2094,6 @@ mod transparency_tests {
 
     /// Build a real TWO-STAGE proof for a receipt's action_hash: an org tree
     /// holding the leaf, and a top tree whose top-leaf commits the org root.
-    #[allow(clippy::too_many_arguments)]
     fn two_stage_proof(
         action_hash: &str,
         org_leaves: &[[u8; HASH_LEN]],
@@ -2119,11 +2148,7 @@ mod transparency_tests {
         let ah = receipt.content.action_hash.clone();
         let leaf = leaf_value_from_action_hash(&ah).unwrap();
         // The org has 3 leaves; ours is at index 1.
-        let org_leaves = [
-            leaf_value_from_action_hash(&"a".repeat(64)).unwrap(),
-            leaf,
-            leaf_value_from_action_hash(&"b".repeat(64)).unwrap(),
-        ];
+        let org_leaves = [leaf_value_from_action_hash(&"a".repeat(64)).unwrap(), leaf, leaf_value_from_action_hash(&"b".repeat(64)).unwrap()];
         let org_id = [3u8; 16];
         // Two other orgs already have top-leaves; ours lands at top_index 2.
         let others = [[1u8; HASH_LEN], [2u8; HASH_LEN]];

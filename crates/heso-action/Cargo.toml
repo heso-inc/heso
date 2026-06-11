@@ -4,19 +4,20 @@ version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
-repository.workspace = true
 authors.workspace = true
-description = "Zero-dependency wire types + OFFLINE VERIFIER for HESO agent ActionReceipts (v1 + v2: chains, quorums, RFC-3161 time anchors, mandates, delegation). Verify-only: this crate carries no signing primitive and no entropy source — signing/minting live in the proprietary HESO compliance SDK, which depends DOWN on this crate, never the reverse. Reuses heso-verify for RFC-8785 canonicalization + BLAKE3 + Ed25519 verify_strict."
+publish = false
+description = "Zero-dependency wire types + offline verifier for HESO agent ActionReceipts. Mirrors heso-verify's domain-separation + canonicalization discipline; carries the signed ActionContent an action's operator (and optional human approver) authorize. Depends DOWN on the open heso crates, never up."
 # build.rs pins the RFC-3161 TSA roots at compile time. It does real work only
 # under the `tsa` feature (it parses roots/*.der and asserts SHA-256 vs the
 # manifest, failing the build on drift); under not(tsa) it emits an empty slice.
 build = "build.rs"
 
 [dependencies]
-# heso-verify is the single source of truth for RFC-8785 canonicalization +
-# BLAKE3 + Ed25519 verify_strict. NOTE: verify-only — heso-core (the house
-# SIGNER) is a dev-dependency below, used exclusively to mint test fixtures.
-heso-verify = { path = "../heso-verify" }
+# Reused open-HESO crates: heso-verify is the single source of truth for
+# RFC-8785 canonicalization + BLAKE3 + Ed25519 verify_strict; heso-core is the
+# house signer (its pubkey bytes are what `agent_identity` carries).
+heso-verify.workspace = true
+heso-core.workspace = true
 
 serde.workspace = true
 serde_json.workspace = true
@@ -28,23 +29,21 @@ thiserror.workspace = true
 sha2 = "0.11"
 # NOTE: Ed25519 verification is reused from heso-verify (heso_verify::Signature::
 # verify owns ed25519-dalek), so heso-action takes NO direct dalek dep — it never
-# signs. NO tokio, NO reqwest, NO rng: zero-async, zero-entropy.
+# signs (the signer lives in heso-compliance). NO tokio, NO reqwest: zero-async.
 
 # --- RFC-3161 TSA crypto: OPTIONAL, only under the `tsa` feature -------------
 # The DEFAULT build of heso-action stays zero-crypto-extra and byte-stable. The
-# real RFC-3161 CMS/TSTInfo verify path pulls the RustCrypto ASN.1 stack and is
-# compiled ONLY when `tsa` is enabled. With the feature OFF, a present
-# time_anchor still FAILS CLOSED in verify (it is not silently accepted) — see
-# src/tsa.rs. There is NO producer/minting path in this crate: requesting a
-# token from a TSA (the only part that needs a network + a nonce) lives in the
-# proprietary SDK.
+# real RFC-3161 CMS/TSTInfo verify path (and the producer-side requesting) pull
+# the RustCrypto ASN.1 stack and are compiled ONLY when `tsa` is enabled. With
+# the feature OFF, a present time_anchor still FAILS CLOSED in verify (it is not
+# silently accepted) — see src/tsa.rs.
 cms = { version = "0.3.0-pre.2", optional = true }
 x509-cert = { version = "0.3.0-rc.4", optional = true }
 der = { version = "0.8", optional = true }
 const-oid = { version = "0.10", features = ["db"], optional = true }
 rsa = { version = "0.10.0-rc.18", optional = true }
 # ECDSA P-256/P-384 verification for TSA signer/cert signatures that are not RSA
-# (so an ECDSA-rooted TSA — e.g. an ECDSA DigiCert responder — verifies).
+# (so a future ECDSA-rooted TSA — e.g. an ECDSA DigiCert responder — verifies).
 # Pinned to the RustCrypto line matching der 0.8 / const-oid 0.10 / signature 3.0.
 ecdsa = { version = "0.17.0-rc.4", optional = true }
 p256 = { version = "0.14.0-pre.10", optional = true, default-features = false, features = ["ecdsa", "pkcs8"] }
@@ -61,17 +60,13 @@ serde = { version = "1", features = ["derive"] }
 
 [features]
 # OFF by default: the verify path is always real (and fail-closed); only the
-# CMS/TSTInfo cryptographic check is gated.
+# CMS/TSTInfo cryptographic check + the producer stub are gated.
 default = []
-# `tsa` = the OFFLINE verify + token-decode crypto stack. Pins the in-binary TSA
-# roots (build.rs) and links NO http client and NO entropy source.
+# `tsa` = the OFFLINE verify + token-encode crypto stack. Pins the in-binary TSA
+# roots (build.rs) and links NO http client.
 tsa = ["dep:cms", "dep:x509-cert", "dep:der", "dep:const-oid", "dep:rsa", "dep:ecdsa", "dep:p256", "dep:p384"]
 
 [dev-dependencies]
-# The house Ed25519 signer — TEST-ONLY, used to mint the golden fixtures the
-# verify path is asserted against. Keys are fixed seeds (no OsRng anywhere);
-# Ed25519 is deterministic, so the pinned golden vectors are byte-stable.
-heso-core = { path = "../heso-core" }
 # TSA crypto tests mint a throwaway RSA root + TSA signer cert + a real RFC-3161
 # token at TEST time (no fixture bytes are checked in), then verify the full path
 # against the generated root. The cert + CMS BUILDERS assemble those structures;

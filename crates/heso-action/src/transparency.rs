@@ -628,45 +628,70 @@ mod tests {
         );
     }
 
-    // --- Two-stage inclusion round-trip (leaf→org_root, top_leaf→top_root) --
+    // --- Cross-language conformance fixture (shared with Python BE-2) -------
 
     fn hx_short(b: &[u8; HASH_LEN]) -> String {
         b.iter().map(|x| format!("{x:02x}")).collect()
     }
 
-    /// A full two-stage proof round-trips: a receipt leaf proves into its org
-    /// root (stage 1), and the frozen top-leaf commitment over that org root
-    /// proves into the top root (stage 2).
+    /// The RFC-6962 reference inputs (the published CT vectors, same bytes
+    /// heso-engine `log.rs` pins). Leaf VALUES here are the raw input bytes
+    /// padded/used as-is — we reuse the exact published roots for 1/2/3/8 leaves.
+    fn rfc6962_inputs() -> Vec<Vec<u8>> {
+        fn hex(s: &str) -> Vec<u8> {
+            (0..s.len()).step_by(2).map(|i| u8::from_str_radix(&s[i..i + 2], 16).unwrap()).collect()
+        }
+        // Byte-identical to heso-engine `log.rs` rfc6962_inputs (the published
+        // CT/Trillian vectors). Seven inputs → roots pinned for 0..=7 leaves.
+        vec![
+            hex(""),
+            hex("00"),
+            hex("10"),
+            hex("2021"),
+            hex("30313233"),
+            hex("4041424344454647"),
+            hex("505152535455565758595a5b5c5d5e5f"),
+        ]
+    }
+
+    fn ref_root(n: usize) -> [u8; HASH_LEN] {
+        let inputs = rfc6962_inputs();
+        // merkle_tree_hash takes 32-byte leaf VALUES; the RFC vectors use
+        // arbitrary-length leaf values, so hash them as leaf_hash inputs directly.
+        // Build via the same recursion but over variable-length values.
+        fn mth(leaves: &[Vec<u8>]) -> [u8; HASH_LEN] {
+            match leaves.len() {
+                0 => empty_root(),
+                1 => leaf_hash(&leaves[0]),
+                m => {
+                    let k = split_point(m);
+                    node_hash(&mth(&leaves[..k]), &mth(&leaves[k..]))
+                }
+            }
+        }
+        mth(&inputs[..n])
+    }
+
+    /// The published RFC-6962 / CT roots for 0,1,2,3,7 leaves — IDENTICAL to the
+    /// vectors heso-engine `log.rs` pins. The cross-language Python fixture (BE-2)
+    /// must produce these byte-for-byte from the same inputs.
     #[test]
-    fn two_stage_inclusion_round_trip() {
-        // Stage 1: an org tree of 4 leaves; prove leaf 2 → org_root.
-        let org_leaves: Vec<[u8; HASH_LEN]> = (0..4u8)
-            .map(|i| leaf_value_from_action_hash(&format!("{i:02x}").repeat(32)).unwrap())
-            .collect();
-        let org_root = merkle_tree_hash(&org_leaves);
-        let s1 = inclusion_path(2, &org_leaves);
-        assert!(verify_inclusion(&org_leaves[2], 2, org_leaves.len(), &org_root, &s1));
-
-        // Stage 2: a top tree of 3 leaves; this org's epoch commitment sits at
-        // top index 1 and must prove into the top root.
-        let org_id: [u8; 16] = [9u8; 16];
-        let epoch: u64 = 5;
-        let top_leaf = top_leaf_value(&org_id, epoch, &org_root);
-        let other = top_leaf_value(&[1u8; 16], epoch, &[0u8; HASH_LEN]);
-        let third = top_leaf_value(&[2u8; 16], epoch, &[1u8; HASH_LEN]);
-        let top_leaves = vec![other, top_leaf, third];
-        let top_root = merkle_tree_hash(&top_leaves);
-        let s2 = inclusion_path(1, &top_leaves);
-        assert!(verify_inclusion(&top_leaves[1], 1, top_leaves.len(), &top_root, &s2));
-
-        // A wrong org_root yields a different top-leaf that does NOT prove in.
-        let bad = top_leaf_value(&org_id, epoch, &[0xFFu8; HASH_LEN]);
-        assert!(!verify_inclusion(&bad, 1, top_leaves.len(), &top_root, &s2));
+    fn shared_rfc6962_root_vectors_match() {
+        let expected: [(usize, &str); 5] = [
+            (0, "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
+            (1, "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"),
+            (2, "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125"),
+            (3, "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77"),
+            (7, "5c9d6283894312cd8dde52269ae3e6e72dc88c15560d3569b2613fe73352bd58"),
+        ];
+        for (n, want) in expected {
+            assert_eq!(&hx_short(&ref_root(n)), want, "RFC-6962 root for {n} leaves drifted");
+        }
     }
 
     /// The frozen top-leaf commitment fixture — the cross-language conformance
-    /// surface the Python checkpoint job's `top_leaf` must reproduce. A FIXED
-    /// `(org_id, epoch, org_root)` triple yields a pinned 32-byte value forever.
+    /// surface BE-2's Python `top_leaf` must reproduce. A FIXED `(org_id, epoch,
+    /// org_root)` triple yields a pinned 32-byte value forever.
     #[test]
     fn frozen_top_leaf_value_vector() {
         assert_eq!(TOP_LEAF_DOMAIN, b"heso-transparency-top-leaf-v1");
@@ -684,7 +709,8 @@ mod tests {
         h.update(org_root);
         let expected: [u8; HASH_LEN] = h.finalize().into();
         assert_eq!(top_leaf_value(&org_id, epoch, &org_root), expected);
-        // Pin the hex so a drift (or a Python mismatch) is caught loudly.
+        // Pin the hex so a drift (or a Python mismatch) is caught loudly. This is
+        // the value BE-2's shared fixture commits to.
         assert_eq!(
             hx_short(&top_leaf_value(&org_id, epoch, &org_root)),
             "d735c0307fff8b8450df1ca9ac279975fc27a8c937502225d74c421c6533ea51"

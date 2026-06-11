@@ -53,7 +53,7 @@ An Action Receipt is JSON:
 - `transparency` — OPTIONAL array, **outside** `content` (reserved for
   transparency-log inclusion proofs; see [TRANSPARENCY-1.0.md](./TRANSPARENCY-1.0.md)).
   **Reserved and always empty on the wire in this version** — no live witnessed
-  service attaches a proof (LIMITS.md (HESO Enterprise) §4), so receipts are not
+  service attaches a proof ([LIMITS.md](../docs/LIMITS.md) §4), so receipts are not
   routinely logged or stapled. The slot's layout property still holds: because it is
   not part of the signed bytes, a future proof could be attached to an already-signed
   receipt without re-signing. Omitted on the wire when empty.
@@ -332,13 +332,13 @@ narrower per approver** than single-approver L1 (the operator vouches the action
 threshold + roster, NOT each approver's record), so it is deliberately not ranked
 above it. Its full semantics, the two-canonical rule, and its honest limits live in
 [ACTION-RECEIPT-2.0.md](./ACTION-RECEIPT-2.0.md) §2.4 and
-LIMITS.md (HESO Enterprise) §10. A standing-authority co-sign (**L2**) and an
+[LIMITS.md](../docs/LIMITS.md) §10. A standing-authority co-sign (**L2**) and an
 external / independent co-sign (**L3**) from the HESO/1.0 §5 grade story remain
 **RESERVED and deliberately NOT built or surfaced** — there is no such `TrustLevel`
 variant. The transparency layer ([TRANSPARENCY-1.0.md](./TRANSPARENCY-1.0.md))
 ships as offline RFC-6962 proof primitives only — there is no live witnessed
 service, no witness cosignature is produced, and `transparency[]` is always empty
-on the wire (LIMITS.md (HESO Enterprise) §4) — so it is NOT promoted to a trust
+on the wire ([LIMITS.md](../docs/LIMITS.md) §4) — so it is NOT promoted to a trust
 level and MUST NOT be presented as independent accountability. A verifier MUST
 derive the trust level from the verified roles (L0/L1 only, the quorum re-deriving
 to L1 via its `multi_approval` block) and MUST NOT honor an embedded `trust_level`
@@ -358,4 +358,4 @@ proof attaches without re-signing.
 | `content.attestation` `{kind, evidence, bound_field, collateral[]}` | TEE attestation binding a measured enclave to this receipt |
 | `content.action.result_hash` | BLAKE3 of the action's bound result |
 | `content.redaction.merkle_root` | the set-commitment over `commit_and_reveal` markers (present in that mode) |
-| `transparency[]` | reserved slot for future RFC-6962 inclusion proofs — always empty on the wire today; no receipt is stapled (LIMITS.md (HESO Enterprise) §4) |
+| `transparency[]` | reserved slot for future RFC-6962 inclusion proofs — always empty on the wire today; no receipt is stapled ([LIMITS.md](../docs/LIMITS.md) §4) |

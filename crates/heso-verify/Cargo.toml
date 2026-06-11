@@ -3,8 +3,10 @@ name = "heso-verify"
 version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
-license.workspace = true
-repository.workspace = true
+# Explicitly open (NOT the proprietary workspace license): this crate is part
+# of the public verify surface, mirrored to github.com/heso-inc/heso.
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/heso-inc/heso"
 authors.workspace = true
 description = "Standalone HESO/1.0 Grade-0 verifier: the single source of truth for canonicalization, plat_hash, and sealed-envelope verification. No engine, DOM, or network dependency — verify a run with nothing but the artifacts."
 

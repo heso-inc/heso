@@ -1,7 +1,5 @@
-//! RFC-3161 trusted-time anchoring — the VERIFY side (always on, fail-closed).
-//!
-//! Verify-only: requesting a token from a TSA (the producer side — the only
-//! part that needs a network round-trip and a nonce) is NOT in this crate.
+//! RFC-3161 trusted-time anchoring — the VERIFY side (always on, fail-closed)
+//! and a feature-gated producer.
 //!
 //! A [`crate::receipt::TimeAnchor`] is an independent "existed-no-later-than"
 //! bound over a receipt's `action_hash`: a TSA (Time-Stamping Authority) signs a
@@ -743,6 +741,322 @@ mod tsa_crypto {
         }
 
         Err("ECDSA public key is neither P-256 nor P-384".to_string())
+    }
+}
+
+// ============================================================================
+// Producer (token requesting) — MINT-TIME network, feature `tsa-net` ONLY
+// ============================================================================
+
+/// With `tsa` but NOT `tsa-net`: there is no HTTP client linked, so minting a
+/// fresh anchor is unavailable. This keeps the verify-only (`tsa`) build fully
+/// offline (no ureq/reqwest/hyper). Callers that need to mint must build with
+/// `tsa-net`.
+#[cfg(all(feature = "tsa", not(feature = "tsa-net")))]
+pub fn request_time_anchor(_action_hash: &str, _tsa_url: &str) -> Result<TimeAnchor, String> {
+    Err("minting a time anchor requires the `tsa-net` feature (this build links no HTTP client)"
+        .to_string())
+}
+
+/// Request an RFC-3161 timestamp token over `action_hash` from a TSA — the
+/// PRODUCER side, compiled ONLY under `tsa-net` (the sole feature that links an
+/// HTTP client; VERIFY never does).
+///
+/// The imprint is `SHA-256(the 32 raw BLAKE3 bytes of action_hash)` under the
+/// `id-sha256` OID — no public RFC-3161 TSA signs a BLAKE3 imprint, and this
+/// SHA-256 pre-image IS the authenticated `action_hash`, so it binds 1:1.
+///
+/// Flow: build a DER `TimeStampReq { version 1, messageImprint{id-sha256, sha256},
+/// nonce (random u64), certReq=TRUE }`, POST it raw (`application/timestamp-query`,
+/// 10s timeout, 64 KiB response cap), parse `TimeStampResp`, require `PKIStatus`
+/// in {granted, grantedWithMods}, echo-check the nonce, extract the
+/// `timeStampToken` (a CMS `ContentInfo`), and — VERIFY BEFORE ATTACH — run our
+/// OWN offline verifier against [`PINNED_TSA_ROOTS`]. We never attach a token we
+/// cannot ourselves prove.
+#[cfg(feature = "tsa-net")]
+pub fn request_time_anchor(action_hash: &str, tsa_url: &str) -> Result<TimeAnchor, String> {
+    if !is_64_lower_hex(action_hash) {
+        return Err("action_hash to anchor is not 64 lowercase-hex".to_string());
+    }
+    let nonce = tsa_net::random_nonce();
+    let req_der = tsa_net::build_timestamp_req(action_hash, nonce)?;
+
+    let token = tsa_net::post_and_extract_token(tsa_url, &req_der, nonce)?;
+
+    let token_b64 = B64.encode(&token);
+    let anchor = TimeAnchor {
+        kind: TIME_ANCHOR_RFC3161.to_string(),
+        token_b64,
+        tsa: tsa_url.to_string(),
+        anchored_hash: action_hash.to_string(),
+    };
+
+    // VERIFY BEFORE ATTACH: prove the freshly-minted token offline against the
+    // pinned roots before we ever hand it back to be signed over.
+    verify_time_anchor(&anchor, action_hash)
+        .map_err(|e| format!("minted token failed our own offline verify (not attaching): {e}"))?;
+
+    Ok(anchor)
+}
+
+/// The mint-time network + RFC-3161 request encoding, compiled ONLY under
+/// `tsa-net`. Nothing here is reachable from the verify path.
+#[cfg(feature = "tsa-net")]
+mod tsa_net {
+    use const_oid::ObjectIdentifier;
+    use der::asn1::{Any, Int, OctetString};
+    use der::{Decode, Encode, Reader, Sequence, SliceReader, Tag};
+    use sha2::Digest;
+    use x509_cert::spki::AlgorithmIdentifierOwned;
+
+    const ID_SHA256_OID: ObjectIdentifier =
+        ObjectIdentifier::new_unwrap("2.16.840.1.101.3.4.2.1");
+
+    /// 64-hex → 32 raw bytes (local copy; the verifier's is private to its
+    /// module). `None` if not exactly 64 hex chars.
+    fn hex_to_32(s: &str) -> Option<[u8; 32]> {
+        if s.len() != 64 {
+            return None;
+        }
+        let mut out = [0u8; 32];
+        let bytes = s.as_bytes();
+        for (i, slot) in out.iter_mut().enumerate() {
+            let hi = (bytes[2 * i] as char).to_digit(16)?;
+            let lo = (bytes[2 * i + 1] as char).to_digit(16)?;
+            *slot = (hi * 16 + lo) as u8;
+        }
+        Some(out)
+    }
+
+    /// Max response we will read from a TSA: 64 KiB. Tokens are a few KiB; this
+    /// bounds a hostile/buggy server.
+    const MAX_RESP: usize = 64 * 1024;
+
+    /// `MessageImprint ::= SEQUENCE { hashAlgorithm AlgorithmIdentifier,
+    /// hashedMessage OCTET STRING }`.
+    #[derive(Sequence)]
+    struct MessageImprint {
+        hash_algorithm: AlgorithmIdentifierOwned,
+        hashed_message: OctetString,
+    }
+
+    /// `TimeStampReq ::= SEQUENCE { version INTEGER (v1(1)),
+    /// messageImprint MessageImprint, [reqPolicy omitted], nonce INTEGER OPTIONAL,
+    /// certReq BOOLEAN DEFAULT FALSE, [extensions omitted] }`.
+    ///
+    /// We always send `certReq = TRUE` (load-bearing: without it both freeTSA and
+    /// DigiCert strip the signer cert and the token is not offline-verifiable).
+    /// `certReq` is DER DEFAULT FALSE, so encoding `true` is non-default and IS
+    /// emitted.
+    #[derive(Sequence)]
+    struct TimeStampReq {
+        version: i32,
+        message_imprint: MessageImprint,
+        nonce: Int,
+        cert_req: bool,
+    }
+
+    /// A random non-zero u64 nonce. We use getrandom (already in the enterprise
+    /// graph) rather than pulling a second rand_core major.
+    pub fn random_nonce() -> u64 {
+        let mut b = [0u8; 8];
+        getrandom::getrandom(&mut b).expect("OS entropy for TSA nonce");
+        // A zero nonce is legal but uninformative; bump it so the echo-check is
+        // meaningful.
+        let n = u64::from_le_bytes(b);
+        if n == 0 {
+            1
+        } else {
+            n
+        }
+    }
+
+    /// Build the DER `TimeStampReq` over `SHA-256(raw action_hash bytes)`.
+    pub fn build_timestamp_req(action_hash: &str, nonce: u64) -> Result<Vec<u8>, String> {
+        let raw = hex_to_32(action_hash)
+            .ok_or_else(|| "action_hash is not 64-hex (32 bytes)".to_string())?;
+        let imprint = sha2::Sha256::digest(raw);
+
+        let req = TimeStampReq {
+            version: 1,
+            message_imprint: MessageImprint {
+                hash_algorithm: AlgorithmIdentifierOwned {
+                    oid: ID_SHA256_OID,
+                    parameters: None,
+                },
+                hashed_message: OctetString::new(imprint.to_vec())
+                    .map_err(|e| format!("encode imprint octets: {e}"))?,
+            },
+            nonce: Int::new(&nonce.to_be_bytes())
+                .map_err(|e| format!("encode nonce: {e}"))?,
+            cert_req: true,
+        };
+        req.to_der().map_err(|e| format!("encode TimeStampReq: {e}"))
+    }
+
+    /// POST the DER request, enforce the response content-type/size, parse the
+    /// `TimeStampResp`, check `PKIStatus`, echo-check `nonce`, and return the raw
+    /// DER `timeStampToken` (a CMS `ContentInfo`).
+    pub fn post_and_extract_token(
+        tsa_url: &str,
+        req_der: &[u8],
+        nonce: u64,
+    ) -> Result<Vec<u8>, String> {
+        use std::io::Read;
+        use std::time::Duration;
+
+        let agent = ureq::AgentBuilder::new()
+            .timeout(Duration::from_secs(10))
+            .build();
+
+        let resp = agent
+            .post(tsa_url)
+            .set("Content-Type", "application/timestamp-query")
+            .send_bytes(req_der)
+            .map_err(|e| format!("TSA POST failed: {e}"))?;
+
+        if resp.status() != 200 {
+            return Err(format!("TSA returned HTTP {}", resp.status()));
+        }
+        // RFC-3161 reply content-type (best-effort check; some servers vary case).
+        let ctype = resp.header("Content-Type").unwrap_or_default().to_ascii_lowercase();
+        if !ctype.contains("application/timestamp-reply") {
+            return Err(format!("TSA reply has unexpected Content-Type `{ctype}`"));
+        }
+
+        let mut body = Vec::new();
+        resp.into_reader()
+            .take((MAX_RESP + 1) as u64)
+            .read_to_end(&mut body)
+            .map_err(|e| format!("reading TSA reply: {e}"))?;
+        if body.len() > MAX_RESP {
+            return Err("TSA reply exceeds 64 KiB cap; refusing".to_string());
+        }
+
+        extract_token(&body, nonce)
+    }
+
+    /// `PKIStatusInfo ::= SEQUENCE { status PKIStatus (INTEGER), ... }`.
+    /// We only need `status`; trailing OPTIONAL fields are ignored by decoding
+    /// just the leading INTEGER.
+    #[derive(Sequence)]
+    struct PkiStatusInfo {
+        status: i32,
+    }
+
+    /// `TimeStampResp ::= SEQUENCE { status PKIStatusInfo,
+    /// timeStampToken ContentInfo OPTIONAL }`.
+    #[derive(Sequence)]
+    struct TimeStampResp {
+        status: PkiStatusInfo,
+        // The token is a CMS ContentInfo; we capture it as Any to re-encode the
+        // exact DER bytes (what we attach + verify).
+        time_stamp_token: Option<Any>,
+    }
+
+    /// Parse the response, require a granted status, extract the token DER, and
+    /// echo-check the nonce embedded in the token's TSTInfo.
+    fn extract_token(resp_der: &[u8], nonce: u64) -> Result<Vec<u8>, String> {
+        let resp = TimeStampResp::from_der(resp_der)
+            .map_err(|e| format!("TimeStampResp is not valid DER: {e}"))?;
+
+        // PKIStatus: granted(0) or grantedWithMods(1) are the only acceptable.
+        match resp.status.status {
+            0 | 1 => {}
+            other => return Err(format!("TSA PKIStatus {other} is not granted; failing the mint")),
+        }
+
+        let token_any = resp
+            .time_stamp_token
+            .ok_or_else(|| "granted TimeStampResp carries no timeStampToken".to_string())?;
+        let token_der = token_any
+            .to_der()
+            .map_err(|e| format!("re-encoding timeStampToken: {e}"))?;
+
+        echo_check_nonce(&token_der, nonce)?;
+        Ok(token_der)
+    }
+
+    /// Decode the token's TSTInfo far enough to read its `nonce` and confirm it
+    /// equals the one we sent. A mismatch means a replay / wrong response — fail.
+    fn echo_check_nonce(token_der: &[u8], nonce: u64) -> Result<(), String> {
+        use cms::content_info::ContentInfo;
+        use cms::signed_data::SignedData;
+
+        let ci = ContentInfo::from_der(token_der)
+            .map_err(|e| format!("minted token is not valid CMS: {e}"))?;
+        let sd = ci
+            .content
+            .decode_as::<SignedData>()
+            .map_err(|e| format!("minted token content is not SignedData: {e}"))?;
+        let econtent = sd
+            .encap_content_info
+            .econtent
+            .as_ref()
+            .ok_or_else(|| "minted token has no eContent".to_string())?;
+        let tst_der = econtent.value();
+
+        // TSTInfo with the nonce field decoded. We re-declare a local shape that
+        // reads through to the OPTIONAL nonce; fields after it are ignored.
+        let got = read_tstinfo_nonce(tst_der)?;
+        match got {
+            Some(n) if n == nonce => Ok(()),
+            Some(_) => Err("TSA token nonce does not echo the request nonce".to_string()),
+            None => Err("TSA token carries no nonce to echo-check".to_string()),
+        }
+    }
+
+    /// Pull the OPTIONAL `nonce INTEGER` out of a TSTInfo.
+    ///
+    /// After the five required fields, `TSTInfo` carries the OPTIONAL
+    /// `accuracy` (SEQUENCE), `ordering` (BOOLEAN, DEFAULT FALSE), `nonce`
+    /// (INTEGER), `[0] tsa` and `[1] extensions`. A `der::Sequence` derive over a
+    /// fixed prefix + a single `Option<Int>` only works when the nonce is the very
+    /// next field; real tokens interleave accuracy/ordering and append tsa/
+    /// extensions, so that derive fails as "trailing data". We instead walk the
+    /// SEQUENCE body by hand: skip the five required fields, then scan the trailing
+    /// TLVs and take the first UNIVERSAL `INTEGER` as the nonce (accuracy is a
+    /// SEQUENCE, ordering is BOOLEAN, and tsa/extensions are context-specific, so
+    /// none of them collide with a bare INTEGER). Any malformed TLV is length-
+    /// checked by the reader and fails closed.
+    fn read_tstinfo_nonce(tst_der: &[u8]) -> Result<Option<u64>, String> {
+        let map_err = |e: der::Error| format!("decoding TSTInfo for nonce echo failed: {e}");
+
+        let mut outer = SliceReader::new(tst_der).map_err(map_err)?;
+        let nonce_int: Option<Int> = outer
+            .sequence(|body| {
+                // version, policy, messageImprint, serialNumber, genTime — drained
+                // by TLV framing; we trust none of them here, only the nonce.
+                for _ in 0..5 {
+                    body.tlv_bytes()?;
+                }
+                // Then OPTIONAL accuracy (SEQUENCE) / ordering (BOOLEAN) / nonce
+                // (INTEGER) / [0] tsa / [1] extensions. The nonce is the first bare
+                // UNIVERSAL INTEGER among them.
+                let mut found: Option<Int> = None;
+                while !body.is_finished() {
+                    if found.is_none() && Tag::peek(body)? == Tag::Integer {
+                        found = Some(Int::decode(body)?);
+                    } else {
+                        body.tlv_bytes()?;
+                    }
+                }
+                Ok(found)
+            })
+            .map_err(map_err)?;
+
+        match nonce_int {
+            None => Ok(None),
+            Some(int) => {
+                let bytes = int.as_bytes();
+                if bytes.len() > 8 {
+                    return Err("TSA nonce wider than u64".to_string());
+                }
+                let mut buf = [0u8; 8];
+                buf[8 - bytes.len()..].copy_from_slice(bytes);
+                Ok(Some(u64::from_be_bytes(buf)))
+            }
+        }
     }
 }
 
