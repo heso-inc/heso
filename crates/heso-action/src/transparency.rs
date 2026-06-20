@@ -108,6 +108,167 @@ pub fn merkle_tree_hash(leaves: &[[u8; HASH_LEN]]) -> [u8; HASH_LEN] {
 }
 
 // ============================================================================
+// RFC-6962 conformance vectors (shared, single source of truth)
+// ============================================================================
+
+/// The published RFC-6962 / Certificate-Transparency reference vectors, shared
+/// verbatim by every HESO Merkle implementation.
+///
+/// These are FROZEN: they are the cross-language conformance surface. The Rust
+/// transparency verifier (`heso-action`), the stateful producer
+/// (`heso-engine::log::MerkleLog`), and the Python checkpoint job (BE-2) must
+/// all reproduce [`RFC6962_INPUTS`] and the roots in [`RFC6962_ROOTS`]
+/// byte-for-byte. Both Rust test modules consume this module instead of
+/// hand-syncing the same byte arrays — so "byte-identical" is enforced
+/// mechanically by [`reference_root`], not by a comment.
+pub mod conformance {
+    use super::{empty_root, leaf_hash, node_hash, split_point, HASH_LEN};
+
+    /// The 7 published RFC-6962 / Trillian leaf VALUES (arbitrary-length, unlike
+    /// the 32-byte production leaves), as raw bytes. Indexed 0..=6; the root over
+    /// the first `n` of them is [`RFC6962_ROOTS`]`[n]`.
+    pub const RFC6962_INPUTS: [&[u8]; 7] = [
+        &[],
+        &[0x00],
+        &[0x10],
+        &[0x20, 0x21],
+        &[0x30, 0x31, 0x32, 0x33],
+        &[0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47],
+        &[
+            0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a, 0x5b, 0x5c, 0x5d,
+            0x5e, 0x5f,
+        ],
+    ];
+
+    /// The published RFC-6962 roots for 0..=7 of [`RFC6962_INPUTS`], lowercase
+    /// hex. `RFC6962_ROOTS[n]` is the Merkle Tree Hash over the first `n` inputs.
+    /// Pinned so any drift — Rust or the Python BE-2 fixture — is caught loudly.
+    pub const RFC6962_ROOTS: [&str; 8] = [
+        "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d",
+        "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125",
+        "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77",
+        "d37ee418976dd95753c1c73862b9398fa2a2cf9b4ff0fdfe8b30cd95209614b7",
+        "1dcadf8bda03bf92d0ee3d5dc9a2a46eb460efad001f1b28f1804b82a6a72537",
+        "17c1852c508e1c962451b5a8b1add18fec073708c393651aa1ffbad00ed34c20",
+        "5c9d6283894312cd8dde52269ae3e6e72dc88c15560d3569b2613fe73352bd58",
+    ];
+
+    /// RFC-6962 Merkle Tree Hash (§2.1) over arbitrary-length leaf VALUES.
+    ///
+    /// Identical recursion to [`super::merkle_tree_hash`] but over `&[&[u8]]`,
+    /// because the conformance vectors use variable-length leaves (production
+    /// leaves are always 32 bytes). Built on the SAME [`leaf_hash`] / [`node_hash`]
+    /// / [`empty_root`] / [`split_point`] primitives, so it cannot drift from the
+    /// production tree hashing.
+    pub fn reference_merkle_root(leaves: &[&[u8]]) -> [u8; HASH_LEN] {
+        match leaves.len() {
+            0 => empty_root(),
+            1 => leaf_hash(leaves[0]),
+            n => {
+                let k = split_point(n);
+                node_hash(&reference_merkle_root(&leaves[..k]), &reference_merkle_root(&leaves[k..]))
+            }
+        }
+    }
+
+    /// The RFC-6962 root over the first `n` of [`RFC6962_INPUTS`] (`n <= 7`).
+    pub fn reference_root(n: usize) -> [u8; HASH_LEN] {
+        reference_merkle_root(&RFC6962_INPUTS[..n])
+    }
+
+    /// The RFC-6962 inclusion proof (§2.1.1) for leaf `index` in the
+    /// variable-length conformance tree — the reference path both test modules
+    /// check their proofs against.
+    pub fn reference_inclusion_path(index: usize, leaves: &[&[u8]]) -> Vec<[u8; HASH_LEN]> {
+        let n = leaves.len();
+        if n == 1 {
+            return Vec::new();
+        }
+        let k = split_point(n);
+        if index < k {
+            let mut path = reference_inclusion_path(index, &leaves[..k]);
+            path.push(reference_merkle_root(&leaves[k..]));
+            path
+        } else {
+            let mut path = reference_inclusion_path(index - k, &leaves[k..]);
+            path.push(reference_merkle_root(&leaves[..k]));
+            path
+        }
+    }
+
+    /// The RFC-6962 consistency proof (§2.1.2) from an `m`-leaf prefix to the
+    /// full variable-length conformance tree.
+    pub fn reference_consistency_path(m: usize, leaves: &[&[u8]]) -> Vec<[u8; HASH_LEN]> {
+        if m == leaves.len() {
+            return Vec::new();
+        }
+        reference_consistency_subproof(m, leaves, true)
+    }
+
+    fn reference_consistency_subproof(
+        m: usize,
+        leaves: &[&[u8]],
+        b: bool,
+    ) -> Vec<[u8; HASH_LEN]> {
+        let n = leaves.len();
+        if m == n {
+            return if b { Vec::new() } else { vec![reference_merkle_root(leaves)] };
+        }
+        let k = split_point(n);
+        if m <= k {
+            let mut proof = reference_consistency_subproof(m, &leaves[..k], b);
+            proof.push(reference_merkle_root(&leaves[k..]));
+            proof
+        } else {
+            let mut proof = reference_consistency_subproof(m - k, &leaves[k..], false);
+            proof.push(reference_merkle_root(&leaves[..k]));
+            proof
+        }
+    }
+
+    #[cfg(test)]
+    mod tests {
+        use super::*;
+
+        fn hx(b: &[u8; HASH_LEN]) -> String {
+            b.iter().map(|x| format!("{x:02x}")).collect()
+        }
+
+        /// The frozen inputs are EXACTLY the published RFC-6962 / CT byte
+        /// sequences. Pinning the raw bytes here makes any future edit to
+        /// [`RFC6962_INPUTS`] a loud failure rather than a silent drift.
+        #[test]
+        fn inputs_are_the_published_byte_sequences() {
+            let expected: [&[u8]; 7] = [
+                b"",
+                &[0x00],
+                &[0x10],
+                &[0x20, 0x21],
+                &[0x30, 0x31, 0x32, 0x33],
+                &[0x40, 0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47],
+                &[
+                    0x50, 0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5a, 0x5b, 0x5c,
+                    0x5d, 0x5e, 0x5f,
+                ],
+            ];
+            assert_eq!(RFC6962_INPUTS, expected);
+        }
+
+        /// The single source-of-truth round-trip: the shared reference tree-hash
+        /// over the shared inputs reproduces every pinned root. Both Rust test
+        /// modules and the Python BE-2 fixture consume this same pair, so this is
+        /// the one place "byte-identical" is enforced mechanically.
+        #[test]
+        fn reference_root_reproduces_pinned_roots() {
+            for (n, want) in RFC6962_ROOTS.iter().enumerate() {
+                assert_eq!(&hx(&reference_root(n)), want, "root for {n} leaves drifted");
+            }
+        }
+    }
+}
+
+// ============================================================================
 // Pure offline verification (public API)
 // ============================================================================
 
@@ -634,58 +795,14 @@ mod tests {
         b.iter().map(|x| format!("{x:02x}")).collect()
     }
 
-    /// The RFC-6962 reference inputs (the published CT vectors, same bytes
-    /// heso-engine `log.rs` pins). Leaf VALUES here are the raw input bytes
-    /// padded/used as-is — we reuse the exact published roots for 1/2/3/8 leaves.
-    fn rfc6962_inputs() -> Vec<Vec<u8>> {
-        fn hex(s: &str) -> Vec<u8> {
-            (0..s.len()).step_by(2).map(|i| u8::from_str_radix(&s[i..i + 2], 16).unwrap()).collect()
-        }
-        // Byte-identical to heso-engine `log.rs` rfc6962_inputs (the published
-        // CT/Trillian vectors). Seven inputs → roots pinned for 0..=7 leaves.
-        vec![
-            hex(""),
-            hex("00"),
-            hex("10"),
-            hex("2021"),
-            hex("30313233"),
-            hex("4041424344454647"),
-            hex("505152535455565758595a5b5c5d5e5f"),
-        ]
-    }
-
-    fn ref_root(n: usize) -> [u8; HASH_LEN] {
-        let inputs = rfc6962_inputs();
-        // merkle_tree_hash takes 32-byte leaf VALUES; the RFC vectors use
-        // arbitrary-length leaf values, so hash them as leaf_hash inputs directly.
-        // Build via the same recursion but over variable-length values.
-        fn mth(leaves: &[Vec<u8>]) -> [u8; HASH_LEN] {
-            match leaves.len() {
-                0 => empty_root(),
-                1 => leaf_hash(&leaves[0]),
-                m => {
-                    let k = split_point(m);
-                    node_hash(&mth(&leaves[..k]), &mth(&leaves[k..]))
-                }
-            }
-        }
-        mth(&inputs[..n])
-    }
-
-    /// The published RFC-6962 / CT roots for 0,1,2,3,7 leaves — IDENTICAL to the
-    /// vectors heso-engine `log.rs` pins. The cross-language Python fixture (BE-2)
-    /// must produce these byte-for-byte from the same inputs.
+    /// The published RFC-6962 / CT roots — driven entirely off the shared
+    /// [`conformance`] vectors, so heso-action, heso-engine, and the Python BE-2
+    /// fixture cannot drift. This replaces the previously comment-synced inputs.
     #[test]
     fn shared_rfc6962_root_vectors_match() {
-        let expected: [(usize, &str); 5] = [
-            (0, "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"),
-            (1, "6e340b9cffb37a989ca544e6bb780a2c78901d3fb33738768511a30617afa01d"),
-            (2, "fac54203e7cc696cf0dfcb42c92a1d9dbaf70ad9e621f4bd8d98662f00e3c125"),
-            (3, "aeb6bcfe274b70a14fb067a5e5578264db0fa9b51af5e0ba159158f329e06e77"),
-            (7, "5c9d6283894312cd8dde52269ae3e6e72dc88c15560d3569b2613fe73352bd58"),
-        ];
-        for (n, want) in expected {
-            assert_eq!(&hx_short(&ref_root(n)), want, "RFC-6962 root for {n} leaves drifted");
+        use conformance::{reference_root, RFC6962_ROOTS};
+        for (n, want) in RFC6962_ROOTS.iter().enumerate() {
+            assert_eq!(&hx_short(&reference_root(n)), want, "RFC-6962 root for {n} leaves drifted");
         }
     }
 

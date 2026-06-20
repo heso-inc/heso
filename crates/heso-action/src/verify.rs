@@ -1259,7 +1259,7 @@ mod tests {
     /// skip_serializing_if behavior, or the action_hash strip would change these
     /// literals while the round-trip tests (which re-sign with the drifted code)
     /// would still pass. Pinned identically in
-    /// `specs/ACTION-RECEIPT-1.0.md` for clean-room verifiers.
+    /// `heso-spec/modules/action-receipt-v1.md` for clean-room verifiers.
     #[test]
     fn golden_zero_seed_receipt_is_byte_stable() {
         let receipt = signed_l0(fixed_content());
@@ -1282,7 +1282,7 @@ mod tests {
     /// `action = "authorize_payment"`). Setting the two descriptive labels is a
     /// real signed-byte change, so it has its OWN deliberately regenerated
     /// `action_hash` + operator signature, pinned here and noted in
-    /// `specs/ACTION-RECEIPT-2.0.md`. A domain/action-bearing receipt still
+    /// `heso-spec/modules/action-receipt.md`. A domain/action-bearing receipt still
     /// round-trips Valid — the labels are signed content, not a security input.
     #[test]
     fn golden_zero_seed_domain_action_receipt_is_byte_stable() {
